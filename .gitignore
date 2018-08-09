@@ -25,54 +25,7 @@
 *.thm
 *.toc
 
-# Generated files (plain text)
-*.bst
-*.cls
-*.def
-*.ins
-*.sty
-latexmkrc
-latexmkrc-en
-
-# Generated files (binary)
+# Generated files
 *.dvi
-*.pdf
 *.xdv
-*.zip
-
-# Primitive files
-*.ai
-
-# Tools
-*.bat
-*.json
-*.txt
-
-# Folders
-.vs/
-.vscode/
-build/
-logo/
-support/
-TDS/
-temp/
-thesis/
-tools/
-
-# GitHub Pages
-docs/_site/
-docs/.sass-cache/
-docs/images/font-samples/
-docs/.jekyll-metadata
-docs/Gemfile.lock
-
-# Other
-git-comment.md
-TODO.md
-docs/tex/images/
-source/*.md
-source/*.tex
-test/dtxtest/
-!install-win.bat
-!testfiles/support/
-!testfiles/support/*
+*.pdf
