@@ -1,0 +1,11 @@
+{
+    "editor.insertSpaces": true,
+    "editor.wordWrapColumn": 100,
+    "editor.rulers": [100],
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+    "[latex]": {
+        "editor.tabSize": 2,
+        "files.insertFinalNewline": true,
+    }
+}
