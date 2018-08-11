@@ -22,7 +22,6 @@
 % 中文字体
 \setCJKmainfont { Source~ Han~ Serif~ SC }
 \setCJKsansfont { Source~ Han~ Sans~ SC}
-\setCJKsansfont { Source~ Han~ Sans~ SC}
 
 \ctexset
   {
@@ -44,3 +43,6 @@
 \int_set_eq:NN \g_faqcn_count_int \c_one
 
 \NewDocumentCommand \zhquote { m } { “#1” }
+
+\RequirePackage{hyperref}
+\hypersetup{colorlinks}
