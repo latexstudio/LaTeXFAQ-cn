@@ -14,3 +14,23 @@
 &emsp;&emsp;对于新手，我们建议同时安装[gitextensions](https://gitextensions.github.io/) ，安装完成后设置好就可以用了，如下图：
 
 ![](images\git-gui.png)
+
+&emsp;&emsp;配置好后按确定即可。
+
+# 协作者规范
+
+1. clone到本地目录
+
+2. 修正内容
+
+3. commit到working分支
+
+4. 提出pr申请
+
+#  内部协作者规范
+
+1. 内部协作者收到pr申请
+2. 打开项目主页，查看pr申请
+3. 对pr做出批示，同意合并
+
+   
