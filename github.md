@@ -13,7 +13,7 @@
 
 &emsp;&emsp;对于新手，我们建议同时安装[gitextensions](https://gitextensions.github.io/) ，安装完成后设置好就可以用了，如下图：
 
-<img src="images/git-gui.png" width="30%"/>
+<img src="images/git-gui.png" />
 
 &emsp;&emsp;配置好后按确定即可。
 
