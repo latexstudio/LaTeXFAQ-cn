@@ -44,5 +44,7 @@
 
 \NewDocumentCommand \zhquote { m } { “#1” }
 
+\RequirePackage{xurl}
+
 \RequirePackage{hyperref}
 \hypersetup{colorlinks}
