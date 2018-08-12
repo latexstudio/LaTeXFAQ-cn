@@ -6,6 +6,10 @@
 
 1. 尽量遵从 [W3C 中文排版需求](https://w3c.github.io/clreq/)
 
+## 字体下载
+
+链接在这里，思源字体的下载链接：[](https://pan.baidu.com/s/1-9P_UWsV7GF5vEbjdBGlHw) 密码： 密码：ji3i
+
 ## 总体样式
 
 1. 所有文件以 UTF-8（无 BOM）保存，行尾使用 LF
