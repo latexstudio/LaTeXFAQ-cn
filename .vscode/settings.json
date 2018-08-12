@@ -4,6 +4,20 @@
     "editor.rulers": [100],
     "files.encoding": "utf8",
     "files.eol": "\n",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
     "[latex]": {
         "editor.tabSize": 2,
         "files.insertFinalNewline": true,
