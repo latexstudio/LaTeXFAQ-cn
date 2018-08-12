@@ -1,7 +1,3 @@
-
-
-
-
 # **【建设LaTeX史上最宏伟的中文FAQ工程，见证我们LaTeX中文社区的新生力量，大家是历史创造者。】**
 
 **更新前请仔细阅读：**
@@ -499,7 +495,7 @@ Texpad 是运行于 Mac/IOS 在线平台的编辑器，带自动编译，支持�
 Visual Studio Code（vscode），是一款强大的跨平台编辑器。安装LaTeX Workshop 插件后就可以尽享tex编程乐趣，界面比较美观，适合window平台，软件下载可见官网[https://code.visualstudio.com/](https://code.visualstudio.com/)。配置可参考下面网址[http://www.latexstudio.net/archives/11087.html](http://www.latexstudio.net/archives/11087.html)。
 ### 46. 如何在 Sublime 上配置 LaTeX 编译环境
 
-可以参考LaTeXTools插件的安装教程，具体安装方法~~可见~~~~ ~~[http://www.qhjack.cn/blog/1787.html](http://www.qhjack.cn/blog/1787.html)
+可以参考LaTeXTools插件的安装教程，具体安装方法~~可见[http://www.qhjack.cn/blog/1787.html](http://www.qhjack.cn/blog/1787.html)~~
 链接更新为[http://www.qhjack.cn/blog/1792.html](http://www.qhjack.cn/blog/1792.html)。
 如果只是配置最简单的LaTeXTools(如果已经安装好TeXLive，Subline Text 3和Sumatra PDF)，也可以参考[https://blog.csdn.net/qazxswed807/article/details/51234834](https://blog.csdn.net/qazxswed807/article/details/51234834)。
 ### 47. LaTeX 能转成 word 吗
