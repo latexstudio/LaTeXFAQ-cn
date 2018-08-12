@@ -28,10 +28,10 @@
 
 ### 1. 什么是TeX？
 
-       TeX是由著名的计算机科学家 [Donald E. Knuth](https://www-cs-faculty.stanford.edu/~knuth/)（高德纳）发明的排版系统，他在他的书的前言中曾提到「TeX旨在创造美丽的书籍，特别是那些包含很多数学公式的书」。（如果说TeX仅仅是为了更方便些数学方面的书而生的，那么它就不会像今天这么使用广泛了：事实上，TeX是一个很好的文字排版工具）。
-       Knuth是美国加州斯坦福大学计算机编程专业的名誉教授，他在1978年开发了第一个版本的TeX用来处理他的“计算机编程艺术”的修订。这个想法特别受欢迎，所以1982年他推出了TeX的第二个版本，也就是们今天所用的TeX的基础。
-       Knuth开发了一套“识字编程”来编写TeX，他还提供了免费的TeX资源，以及可以将网络资源转化为可以编译或者打印的东西的工具；Knuth做了什么，对人们来说从来都不是什么神秘的事情。TeX以及它的文档都是高度可移植的。
-       对于感兴趣的程序员来说，TeX有其迷人之处：没有什么能比得上一个人可以构建这样一个程序，至今它的持续时间比大多数的程序都好，而且已经被移植到了许多不同的计算机构架和操作系统中——许多现代编程所追求的属性。经过处理的“可读”的TeX程序源代码可以在 [TDS structured](https://texfaq.org/FAQ-tds) 版本中找到。
+TeX是由著名的计算机科学家 [Donald E. Knuth](https://www-cs-faculty.stanford.edu/~knuth/)（高德纳）发明的排版系统，他在他的书的前言中曾提到「TeX旨在创造美丽的书籍，特别是那些包含很多数学公式的书」。（如果说TeX仅仅是为了更方便些数学方面的书而生的，那么它就不会像今天这么使用广泛了：事实上，TeX是一个很好的文字排版工具）。
+Knuth是美国加州斯坦福大学计算机编程专业的名誉教授，他在1978年开发了第一个版本的TeX用来处理他的“计算机编程艺术”的修订。这个想法特别受欢迎，所以1982年他推出了TeX的第二个版本，也就是们今天所用的TeX的基础。
+Knuth开发了一套“识字编程”来编写TeX，他还提供了免费的TeX资源，以及可以将网络资源转化为可以编译或者打印的东西的工具；Knuth做了什么，对人们来说从来都不是什么神秘的事情。TeX以及它的文档都是高度可移植的。
+对于感兴趣的程序员来说，TeX有其迷人之处：没有什么能比得上一个人可以构建这样一个程序，至今它的持续时间比大多数的程序都好，而且已经被移植到了许多不同的计算机构架和操作系统中——许多现代编程所追求的属性。经过处理的“可读”的TeX程序源代码可以在 [TDS structured](https://texfaq.org/FAQ-tds) 版本中找到。
 
 ### 2. TeX 中常见术语的解释
 * **引擎**
@@ -39,7 +39,7 @@
 LaTeX/TeX解析引擎，其实就是一个编译器，它输入一个.tex文件作为输入，根据源文件的内容送入解析引擎和渲染引擎进行处理，并将排版的成果——文档编译输出，LaTeX/TeX的解析引擎目前有pdflatex、xelatex、lualatex等，它们都可以输出pdf文档文件（部分解析器可以输出dvi文件），用于在多平台进行分发甚至打印出版。
 * **格式**
 
-        TeX是存在各种不同的封装格式的，比如原生的TeX或者LaTeX，我们所使用的LaTeX只是tex封装格式的其中一种，是目前流行的封装规范。
+TeX是存在各种不同的封装格式的，比如原生的TeX或者LaTeX，我们所使用的LaTeX只是tex封装格式的其中一种，是目前流行的封装规范。
 * **发行版**
 
  LaTeX/TeX都包含了成千上万个宏包，甚至有可能我们需要安装新的宏包，除了手动安装外，最好的方式就是利用发行版的宏包管理器，所谓发行版就是把LaTeX/TeX的相关组件打包，形成一个独立完善的LaTeX/TeX系统，目前流行的发行版有MiKTeX、proTeXt 以及TeXLive。
@@ -47,13 +47,12 @@ LaTeX/TeX解析引擎，其实就是一个编译器，它输入一个.tex文件�
 ### 3. 不同的TeX封装格式的区别？
 * **原生TeX**
 
-       TeX本身是一个基于控制序列的排版系统，它指示TeX如何在页面上放置文本。例如，\hskip指在文档中在文档中插入一定数量的水平空间，而\font是指给文档中的文字定义一种给定的字体。TeX是完全可编程的，它使用一种集成的宏脚本语言，支持变量，范围，条件执行，控制流和函数定义等。
+TeX本身是一个基于控制序列的排版系统，它指示TeX如何在页面上放置文本。例如，\hskip指在文档中在文档中插入一定数量的水平空间，而\font是指给文档中的文字定义一种给定的字体。TeX是完全可编程的，它使用一种集成的宏脚本语言，支持变量，范围，条件执行，控制流和函数定义等。
 ** **
 * **TeX宏包（TeX格式）**
-
-       TeX的一些控制序列直接使用是单调乏味的；它们主要作为更高层次的构建快，因此更易于用户使用。例如，在基础TeX中没有办法能够制定一段文字应该排版为更大的字体，相反，你必须了解当前的字体和大小，然后加载一种同样字体但更大字号的字体。幸运的是，TeX是可编程的，它可以通过写一个宏将这些复杂性都隐藏在一个简单的，新的控制序列之后。例如，我们可以通过 \larger{my text}将“my text”定义为比当前更大的字体。
+TeX的一些控制序列直接使用是单调乏味的；它们主要作为更高层次的构建快，因此更易于用户使用。例如，在基础TeX中没有办法能够制定一段文字应该排版为更大的字体，相反，你必须了解当前的字体和大小，然后加载一种同样字体但更大字号的字体。幸运的是，TeX是可编程的，它可以通过写一个宏将这些复杂性都隐藏在一个简单的，新的控制序列之后。例如，我们可以通过 \larger{my text}将“my text”定义为比当前更大的字体。
     一些使用者会写一些完全由自己定义的宏集，然后再一些文档中重复使用，但，常见的还是依赖于由专家编写的TeX宏包——一些宏的集合。为了方便用户，这些宏包通常与基本的TeX引擎结合到一个独立的可执行的文件中。
-   
+  
 * **TeXLive、MacTeX、MikTeX、CTEX**
 
 TeXLive 由类 UNIX 系统上的 teTeX 发展并取而代之，最终成为跨平台的 TeX 发行版。TeXLive 自 2011 年起以年份作为发行版的版本号，保持了一年一更的频率。
@@ -68,37 +67,37 @@ TeX是一种排版文件的计算机程序，它需要一个计算机文件，�
 * **Plain TeX(TeX)**
 
 Knuth设计了一个名叫PlainTeX的基本格式，以与低层次的原始TeX呼应。这种格式是用TeX处理文本时相当基本的部分，以致于我们有时都分不清到底哪条指令是真正的处理程序TeX的原始命令，哪条是PlainTeX格式的。大多数声称只使用TeX的人，实际上指的是只用PlainTeX。
-	   PlainTeX也是其它格式的基础，这进一步加深了很多人认为TeX和PlainTeX是同一事物的印象。
-	   PlainTeX的重点还只是在于如何排版的层次上，而不是从一位作者的观点出发。对它的深层功能的进一步发掘，需要相当丰富的编程技巧。因此它的应用就局限于高级排版和程序设计人员。
-        注：有关Plain TeX的相关信息可见：[http://www.ntg.nl/doc/wilkins/pllong.pdf](http://www.ntg.nl/doc/wilkins/pllong.pdf)
+PlainTeX也是其它格式的基础，这进一步加深了很多人认为TeX和PlainTeX是同一事物的印象。
+PlainTeX的重点还只是在于如何排版的层次上，而不是从一位作者的观点出发。对它的深层功能的进一步发掘，需要相当丰富的编程技巧。因此它的应用就局限于高级排版和程序设计人员。
+注：有关Plain TeX的相关信息可见：[http://www.ntg.nl/doc/wilkins/pllong.pdf](http://www.ntg.nl/doc/wilkins/pllong.pdf)
 
 * **LaTeX(latex)**
 
 有两个版本，分别是LaTeX2e和LaTeX2.09，前者是当前使用的版本，后者是1994年最开使用的过时的版本。
-       [LeslieLamport](https://baike.sogou.com/lemma/ShowInnerLink.htm?lemmaId=73792246&ss_c=ssc.citiao.link)开发的LaTeX是当今世界上最流行和使用最为广泛的TeX格式。它构筑在PlainTeX的基础之上，并加进了很多的功能以使得使用者可以更为方便的利用TeX的强大功能。使用LaTeX基本上不需要使用者自己设计命令和宏等，因为LaTeX已经替你做好了。因此，即使使用者并不是很了解TeX，也可以在短短的时间内生成高质量的文档。对于生成复杂的数学公式，LaTeX表现的更为出色。
+[LeslieLamport](https://baike.sogou.com/lemma/ShowInnerLink.htm?lemmaId=73792246&ss_c=ssc.citiao.link)开发的LaTeX是当今世界上最流行和使用最为广泛的TeX格式。它构筑在PlainTeX的基础之上，并加进了很多的功能以使得使用者可以更为方便的利用TeX的强大功能。使用LaTeX基本上不需要使用者自己设计命令和宏等，因为LaTeX已经替你做好了。因此，即使使用者并不是很了解TeX，也可以在短短的时间内生成高质量的文档。对于生成复杂的数学公式，LaTeX表现的更为出色。
 	   LaTeX自从二十世纪八十年代初问世以来，也在不断的发展。最初的正式版本为2.09，在经过几年的发展之后，许多新的功能，机制被引入到LaTeX中。在享受这些新功能带来的便利的同时，它所伴随的副作用也开始显现，这就是不兼容性。标准的LaTeX2.09，引入了“新字体选择框架”(NFSS)的LaTeX，SLiTeX，AMSLaTeX等等，相互之间并不兼容。这给使用者和维护者都带来很大的麻烦。
 	   为结束这种糟糕的状况，Frank Mittelbach等人成立了LaTeX3项目小组，目标是建立一个最优的，有效的，统一的，标准的命令集合。即得到LaTeX的一个新版本3。这是一个长期目标，向这个目标迈出第一步就是在1994年发布的LaTeX2e。LaTeX2e采用了NFSS作为标准，加入了很多新的功能，同时还兼容旧的LaTeX2.09。LaTeX2e每6个月更新一次，修正发现的错误并加入一些新的功能。在LaTeX3p最终完成之前，LaTeX2e将是标准的LaTeX版本。
 * **ConTeXt(context)**
 
 ConTeXt是TeX的一种格式，是Hans Hagen和荷兰Pragma-ADE公司设计的一种高端的文档制造工具，官方网站为 [ConTeXtGarden](http://wiki.contextgarden.net/Main_Page)。ConTeXt就像LaTeX是基于TeX排班系统的文档制作系统，如果说LaTeX将作者从排版的细节中隔离出来，那么ConTeXt就是采用一种互补的方法来处理结构化的界面来处理排版，包括对颜色、背景、超链接、演示文稿、图形文本集成和条件编译的广泛支持， 对于数学、化学等科技文档的支持同等优秀甚至更为方便，而且其为了更容易实现各种华丽排版效果。它可以让用户对格式进行广泛的控制，同时又可以在不需要学习TeX宏语言的情况下轻松地创建新的布局和样式。 因此ConTeX的图形功能要远远强于TeX和LaTeX，可以制作非常漂亮的PD文档，特别适合做幻灯片和一些非正式的文档。
-       ConTeXt将MetaFun，MetaPost的超集以及一个强大的矢量图形系统整合起来。MetaFun可以作为一个独立的系7统来生成数据，但是它的优势在于用精确的图形元素来增强ConTeXt文档。
-       目前，ConTeXt主要分为两个版本，分别是Mark Ⅱ—后缀名为mkii，在pdfTeX上运行但不是主动开发阶段；和Mark Ⅳ—后缀名为mkiv，在LuaTeX上运行而且正在开发阶段。（LuaTeX的发展也是由于ConTeXt驱动）。
-       注：CTAN不支持ConTeXt的发布——潜在的用户可以去 [ConTeXt Garden](http://wiki.contextgarden.net/Main_Page)了解当前发行版的详细信息。
+ConTeXt将MetaFun，MetaPost的超集以及一个强大的矢量图形系统整合起来。MetaFun可以作为一个独立的系7统来生成数据，但是它的优势在于用精确的图形元素来增强ConTeXt文档。
+目前，ConTeXt主要分为两个版本，分别是Mark Ⅱ—后缀名为mkii，在pdfTeX上运行但不是主动开发阶段；和Mark Ⅳ—后缀名为mkiv，在LuaTeX上运行而且正在开发阶段。（LuaTeX的发展也是由于ConTeXt驱动）。
+注：CTAN不支持ConTeXt的发布——潜在的用户可以去 [ConTeXt Garden](http://wiki.contextgarden.net/Main_Page)了解当前发行版的详细信息。
 
 * **TeXinfo(TeX,makeinfo)**
 
 TeXinfo是一个使用同一个源文件生成在线信息和打印输出的文档系统，所以只需要编写一个文档源文件，当工作被修改时，只需要修改源文件即可。其源文件的后缀名为texi或texinfo。
-        TeXinfo是一门宏语言，就像LaTeX一样，但是它的表达能力略弱，它的表观与TeX的其他宏语言相似，只不过它的宏要以@开头，而TeX系统中用\开头。
-       你可以在GNU Emacs中编写以及将TeXinfo文件转化成info文件，你也可以在makeinfo中将TeXinfo文件转换成info文件，然后再info中阅读，所以也不是必须依赖于Emacs。这个发行版包括一个Perl脚本，texi2html，可以将texinfo文件转换成HTML，这种语言比LaTeX更适合HTML，所以将LaTeX转换成HTML的痛苦就可以避免了。
-       当然，你也可以用pdfTeX将输入文件转换成PDF格式。
-       makeinfo可将texinfo文档转换成HTML，DocBook,，Emacs info,，XML和全文本。TeX（或者texi2dvi和texi2pdf），因为TeX加载了普通的TeX宏，而并不是TeXinfo，所以TeXinfo文档必须以“\input texinfo”开头来加载texinfo包。
+TeXinfo是一门宏语言，就像LaTeX一样，但是它的表达能力略弱，它的表观与TeX的其他宏语言相似，只不过它的宏要以@开头，而TeX系统中用\开头。
+你可以在GNU Emacs中编写以及将TeXinfo文件转化成info文件，你也可以在makeinfo中将TeXinfo文件转换成info文件，然后再info中阅读，所以也不是必须依赖于Emacs。这个发行版包括一个Perl脚本，texi2html，可以将texinfo文件转换成HTML，这种语言比LaTeX更适合HTML，所以将LaTeX转换成HTML的痛苦就可以避免了。
+当然，你也可以用pdfTeX将输入文件转换成PDF格式。
+makeinfo可将texinfo文档转换成HTML，DocBook,，Emacs info,，XML和全文本。TeX（或者texi2dvi和texi2pdf），因为TeX加载了普通的TeX宏，而并不是TeXinfo，所以TeXinfo文档必须以“\input texinfo”开头来加载texinfo包。
 * **Eplain(eplain)**
 
 * **Eplain扩展并延伸了Plain TeX的定义，它并不像ConTeX**
 
 ### 5. LaTeX2.09和LaTeX2e有什么区别？
 
-       后者是前者的改进，从文件内容上看，两者最显著的不同在于LaTeX2.09使用\documentstyle命令定义文档类型以及所包含宏包，如
+后者是前者的改进，从文件内容上看，两者最显著的不同在于LaTeX2.09使用\documentstyle命令定义文档类型以及所包含宏包，如
 
 ```
 \documentstyle[twoside,epsfig]{article}
@@ -107,7 +106,7 @@ TeXinfo是一个使用同一个源文件生成在线信息和打印输出的文�
 ### 6. 文本文件编码解读
 ### 7. LaTeX源文件
 
-       LaTeX的源文件是*.tex文件，是指latex编译器处理输入文件的源码，latex编译器会对输入文件进行解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于LaTeX解析器可能对中文文件名处理存在兼容性问题，不建议将LaTeX的源文件的文件名设置为中文。
+LaTeX的源文件是*.tex文件，是指latex编译器处理输入文件的源码，latex编译器会对输入文件进行解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于LaTeX解析器可能对中文文件名处理存在兼容性问题，不建议将LaTeX的源文件的文件名设置为中文。
 ### 8. 连字符如何在TeX起作用
 
 如果 LaTeX 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词中间断开。对于绝大部分单词，LaTeX 能够找到合适的断词位置，在断开的行尾加上连字符 - 。
@@ -149,7 +148,7 @@ al\-i\-do\-cious.
 ### 21. 什么是DVI驱动程序
 ### 22. 什么是DVI文件
 
-       DVI文件（device independent）为[TeX](https://baike.baidu.com/item/TeX)电子排版系统的输出文件。七十年代末，[Donald E. Knuth](https://baike.baidu.com/item/Donald%20E.%20Knuth)（高德纳）在看到其多卷巨著“The Art of ComputerProgramming”第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此决定自己来开发一个高质量的计算机排版系统，这样就有了TeX。TeX 的输出文件称为 DVI 文件，即是“Device Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI文件就可以被送到任何[输出设备](https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87)如打印机，屏幕等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，从页面设置到文本中字符的位置都被固定，不能更改。
+DVI文件（device independent）为[TeX](https://baike.baidu.com/item/TeX)电子排版系统的输出文件。七十年代末，[Donald E. Knuth](https://baike.baidu.com/item/Donald%20E.%20Knuth)（高德纳）在看到其多卷巨著“The Art of ComputerProgramming”第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此决定自己来开发一个高质量的计算机排版系统，这样就有了TeX。TeX 的输出文件称为 DVI 文件，即是“Device Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI文件就可以被送到任何[输出设备](https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87)如打印机，屏幕等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，从页面设置到文本中字符的位置都被固定，不能更改。
 ### 23. 什么是“Berry命名方案”
 ### 24. 什么是TDS
 
@@ -257,49 +256,49 @@ Overleaf v2 目前还是比较稳定的（2018年9月将会全面上线）。当
 很多用户所谓的如何安装 LaTeX，实际上是一个无解的问题，因为 LaTeX 不是一款软件，相关概念不再赘述。用户可以直接安装 LaTeX 发行版，如 proTeXt , TeXLive 和 MacTeX (TeXLive在MacOS 的一个再次发行版)。
 ### 30. 如何下载 proTeXt 安装包
 
-       访问以下链接即可
+访问以下链接即可
 [http://mirror.ctan.org/systems/protext/protext.exe](http://mirror.ctan.org/systems/protext/protext.exe)
 ### 31. 如何下载 TeXlive 安装包
 
-        访问以下网址获取 texlive 安装包镜像文件：
+访问以下网址获取 texlive 安装包镜像文件：
 [http://mirror.ctan.org/systems/texlive/Images/texlive.iso](http://mirror.ctan.org/systems/texlive/Images/texlive.iso)
 MacTeX安装包下载地址：
 [http://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg](http://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg)
 ### 32. 如何安装 TeXlive
 
-      TeXlive 为用户提供了官方安装手册，其中文版地址是：
+TeXlive 为用户提供了官方安装手册，其中文版地址是：
 [https://tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf](https://tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf)
 建议有余力的用户通读手册，以了解更多内容。
-       也可以参照以下网址
+也可以参照以下网址
 [https://www.tug.org/texlive/quickinstall.html](https://www.tug.org/texlive/quickinstall.html)
 ### 33. 如何挂载镜像文件：
 
-       目前市面上有很多虚拟光驱软件可供用户选择，例如 UltraISO。
-       特别一提，在 windows 8、windows 10 操作系统中，默认被双击后，镜像文件将会直接挂载。
-       在 Linux 操作系统中，可使用命令行挂载镜像文件：
+目前市面上有很多虚拟光驱软件可供用户选择，例如 UltraISO。
+特别一提，在 windows 8、windows 10 操作系统中，默认被双击后，镜像文件将会直接挂载。
+在 Linux 操作系统中，可使用命令行挂载镜像文件：
 ```
 mount -o loop ~/Download/TeXlive.iso ~/iso
 ```
 ### 34. 挂载镜像文件后该如何做？
 
-       windows 用户可以双击 install-tl-windows.bat 文件来进行安装。
-       linux 用户请在命令行执行 ./install-tl 进入 no gui 安装模式
+windows 用户可以双击 install-tl-windows.bat 文件来进行安装。
+linux 用户请在命令行执行 ./install-tl 进入 no gui 安装模式
 ### 35. 双击 install-tl-windows.bat 出现错误怎么办？
 
-       使用命令行。同时按下 win 键和 R 键，打开“运行”窗口，在窗口的“打开”处，输入 cmd 打开命令行窗口（黑窗）。
-       在黑窗内输入
+使用命令行。同时按下 win 键和 R 键，打开“运行”窗口，在窗口的“打开”处，输入 cmd 打开命令行窗口（黑窗）。
+在黑窗内输入
 ```
 cd /d [~]
 ```
 后按 enter 键（即执行该命令），此处 [~] 代指 install-tl-windows.bat 所在目录，例如 C:/Downloads 等，注意命令中的空格。
-       进入目录后继续执行
+进入目录后继续执行
 ```
 install-tl-windows.bat -no-gui
 ```
 开启纯命令行安装模式。默认状态下，点击 I 键 ( HIJK 的 I)，安装便会开始。若用户想改变安装路径或其他设置，只需根据屏幕提示进行更改即可。特别强调，安装路径一定是不带空格的纯英文路径。
 ### 36. 使用命令行安装TeXLive出现 goodbye 怎么办？
 
-      主要是缺少CMD所在的环境变量。
+主要是缺少CMD所在的环境变量。
 只需要在命令行中执行
 ```
 path=%path%;C:\Windows\system32
@@ -307,7 +306,7 @@ path=%path%;C:\Windows\system32
 后再尝试安装。或者因为下载文件损坏，上述方法不管用应重新下载。
 ### 37. 想在 linux 系统中使用 gui 模式安装该怎么做？
 
-        自行安装 perl，详细办法请上网自行搜索。然后执行命令
+自行安装 perl，详细办法请上网自行搜索。然后执行命令
 ```
 ./install-tl -gui wizard  
 ```
@@ -317,8 +316,8 @@ path=%path%;C:\Windows\system32
 ```
 ### 38. 如何搭配 TeXLive 的环境变量？
 
-       Windows 用户一般不必担忧这个问题。因为 TeXLive 已经自动将环境变量写入，用户不必自己手动修改。
-       Linux 用户需要手动配置环境变量。例如，将
+Windows 用户一般不必担忧这个问题。因为 TeXLive 已经自动将环境变量写入，用户不必自己手动修改。
+Linux 用户需要手动配置环境变量。例如，将
 ```
 TEXDIR=/usr/local/texlive/2018
 if [ -d $TEXDIR ]; then
@@ -330,7 +329,7 @@ fi;
 写入~/.profile。注意本例中的 2018 可以根据需要修改，例如部分用户还在使用 TeXLive 2017，就可将 2018 改为 2017等等。
 ### 39. 如何判断 TeXLive 安装成功？
 
-       在命令行中执行
+在命令行中执行
 ```
 tex -v
 ```
@@ -339,9 +338,9 @@ TeXLive 2018
 等内容，即说明安装成功。
 ### 40. 如何删除 TeXLive
 
-       windows 用户请找卸载批命令文件，如
+windows 用户请找卸载批命令文件，如
 C:\texlive\2018\tlpkg\installer\uninst.bat
-       linux 用户请直接删除文件夹，如执行
+linux 用户请直接删除文件夹，如执行
 ```
 rm -rf /usr/local/texlive/2018
 rm -rf ~/.texlive2018
@@ -349,8 +348,8 @@ rm -rf ~/.texlive2018
 并且手动清理环境变量
 ### 41. TeXLive 如何升级宏包？
 
-        建议使用命令行升级宏包。
-        首先指定源，执行命令
+建议使用命令行升级宏包。
+首先指定源，执行命令
 ```
 tlmgr option repository ctan
 ```
@@ -541,15 +540,15 @@ LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.or
 提问可以先到 LaTeX Stack Exchange 看看，网址是 [https://tex.stackexchange.com/](https://tex.stackexchange.com/)
 ### 58. 如何提出问题
 
-       在问问题的时候，要先自己尝试，先问自己如何解决，清晰有效的组织自己想问的问题，究竟想表达什么？没有人会为你不知所谓的问题浪费时间，就算有人愿意理你，也会因为你的问题不清晰甚至完全无效的问题而伤透脑筋，为了自己，也为了别人，建议大家可以参考下[《提问的艺术》](https://www.jianshu.com/p/f96aa7f7bf59)这篇文字，清晰有效的提出自己的问题。
-       最后，要给大家强调一个问题，我们愿意在我们的能力范围内为你的问题进行讨论，尽全力帮你解决问题，但并不是我们的义务，问问题前，要强调的是，别人有权利不帮你。
-       ![图片](https://images-cdn.shimo.im/oen00vOZ5jcQd3g8/T9A1X27O9_32FZZ_3Z7_8.png!thumbnail)大图可以参见[网址](https://i.loli.net/2018/08/08/5b6adcda1ab87.png)。
-       另外，在QQ群提出问题所使用的代码最好代码粘贴的网站，如[Ubuntu Pastebin](https://paste.ubuntu.com/)暂存，避免刷屏，影响效率。
+在问问题的时候，要先自己尝试，先问自己如何解决，清晰有效的组织自己想问的问题，究竟想表达什么？没有人会为你不知所谓的问题浪费时间，就算有人愿意理你，也会因为你的问题不清晰甚至完全无效的问题而伤透脑筋，为了自己，也为了别人，建议大家可以参考下[《提问的艺术》](https://www.jianshu.com/p/f96aa7f7bf59)这篇文字，清晰有效的提出自己的问题。
+最后，要给大家强调一个问题，我们愿意在我们的能力范围内为你的问题进行讨论，尽全力帮你解决问题，但并不是我们的义务，问问题前，要强调的是，别人有权利不帮你。
+![图片](https://images-cdn.shimo.im/oen00vOZ5jcQd3g8/T9A1X27O9_32FZZ_3Z7_8.png!thumbnail)大图可以参见[网址](https://i.loli.net/2018/08/08/5b6adcda1ab87.png)。
+另外，在QQ群提出问题所使用的代码最好代码粘贴的网站，如[Ubuntu Pastebin](https://paste.ubuntu.com/)暂存，避免刷屏，影响效率。
 ### 59. 如何制作一个迷你范例（MWE）
 
-       迷你范例即最小工作示例，英文简称 MWE，以下内容摘自刘海洋的《LaTeX入门》。
-       最小工作示例就是一个精简到最小长度的、可以说明所需问题的TeX源文件。一方面，最小工作示例应该是一个完整的、可以直接编译的文件，利用示例可以方便地再现遇到的问题，不需要添加额外的代码；另一方面，示例文件应该尽可能地短小，不包含额外的文件，也没有与问题无关的文字代码干扰相对错误的分析。
-       一个典型的最小工作示例代码不应超过10行：
+迷你范例即最小工作示例，英文简称 MWE，以下内容摘自刘海洋的《LaTeX入门》。
+最小工作示例就是一个精简到最小长度的、可以说明所需问题的TeX源文件。一方面，最小工作示例应该是一个完整的、可以直接编译的文件，利用示例可以方便地再现遇到的问题，不需要添加额外的代码；另一方面，示例文件应该尽可能地短小，不包含额外的文件，也没有与问题无关的文字代码干扰相对错误的分析。
+一个典型的最小工作示例代码不应超过10行：
 ```
 \documentclass{article}
 \usepackage{amsmath}
@@ -568,8 +567,8 @@ LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.or
 ### 63. 在线介绍：Plain TeX
 ### 64. 如何让参考文献满足国标GB7714-2015样式要求
 
-       有两种比较简单的方式。
-       首先是利用 biblatex 的例子，如
+有两种比较简单的方式。
+首先是利用 biblatex 的例子，如
 ```
 \documentclass{ctexart}
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
@@ -597,7 +596,7 @@ LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.or
 LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.org/help/books/) 中列出的 TeX and LaTeX Books 之一，用户可访问 [https://en.wikibooks.org/wiki/LaTeX](https://en.wikibooks.org/wiki/LaTeX) 进行查阅。
 ### 70. 如何找到...符号
 
-       在LaTeX中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于XeTeX引擎，目前使用的多为Unicode编码的字体，直接加载Unicode字体，插入Unicode符号也是一种很好的办法。下面分别介绍：
+在LaTeX中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于XeTeX引擎，目前使用的多为Unicode编码的字体，直接加载Unicode字体，插入Unicode符号也是一种很好的办法。下面分别介绍：
 * 加载符号宏包　*The Comprehensive LATEX Symbol List* 收录了上万文本或数学符号，在命令行中键入
 ```
 texdoc symbols-a4
@@ -828,7 +827,7 @@ xelatex demo
 ### 104. 基于Plain TeX的BibTeX的使用
 ### 105. 常用的biblatex参考文献样式
 
-       biblatex除了可以应用自带的标准样式外，还可以使用其他作者提供的第三方样式，这里介绍一些常用的样式：
+biblatex除了可以应用自带的标准样式外，还可以使用其他作者提供的第三方样式，这里介绍一些常用的样式：
 * 国外常用
   * APA
   * MLA
@@ -866,14 +865,14 @@ footnote-dw|`\usepackage[style=footnote-dw]{biblatex}`| |Dominik Waßenhoven|fo
 ## 六、字体篇
 ### 106. LaTeX字体是如何处理的
 
-       LaTeX 2ε目前的字体机制称为“新字体选择机制”（New Font Selection Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学字体初学者不必过早了解）：
+LaTeX 2ε目前的字体机制称为“新字体选择机制”（New Font Selection Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学字体初学者不必过早了解）：
 * 编码（encoding）。这个属性初学者暂时不必了解。在（pdf）latex和uplatex中，默认的西文编码称为OT1；在xelatex中，默认的编码称为EU2，就是Unicode。
 * 字族（family）。一套成风格的字型的统称，如cmr、ptm（times）等。LaTeX 2ε预先定义了三个切换字族的命令：\rmfamily（衬线体）、\sffamily（无衬线体）、\ttfamily（等宽体）。
 * 系列（series）。在一般的字体中一般表示字重（weight）。如粗体命令为\bfseries，正常粗细为\mdseries。
 * 字形（shape）。在同一字族、同一系列下的风格差异，如斜体\slshape、意大利斜体\itshape、正体\upshape、小型大写\scshape。
 * 字号（size）。以上四种变化是字型（typeface）的变化，而这是同一字型下不同大小的变化。LaTeX 2ε提供了成套的字号命令，如\normalsize、\small、\scriptsize等。
 
-       中文字体的方面，不同的中文解决方案的处理也有不同，这里就不介绍了。
+中文字体的方面，不同的中文解决方案的处理也有不同，这里就不介绍了。
 ### 107. 获取位图字体
 ### 108. PDF格式图片插入过程中的字形缺失
 ### 109. 为数学排版选择Type 1字体
@@ -882,9 +881,9 @@ footnote-dw|`\usepackage[style=footnote-dw]{biblatex}`| |Dominik Waßenhoven|fo
 ### 112. 由于Ghostscript太旧造成字体模糊
 ### 113. 如何使用斜体
 
-       斜体一般是西文字体用的，在中文中不用斜体。
-       斜体这个名字比较误导，因为它对应英文的两个名字：倾斜体（slanted，指字形风格大致相同但是倾斜）和意大利体（italic，指字形设计为接近手写的形态，同时也就出现了倾斜）。
-       两种情况下分别有\slshape和\itshape两个命令，使用例如{\slshape slanted}及{\itshape italic}；也有把斜体内容作为参数的命令（推荐使用这种），如\textsl{slanted}及\textit{italic}。
+斜体一般是西文字体用的，在中文中不用斜体。
+斜体这个名字比较误导，因为它对应英文的两个名字：倾斜体（slanted，指字形风格大致相同但是倾斜）和意大利体（italic，指字形设计为接近手写的形态，同时也就出现了倾斜）。
+两种情况下分别有\slshape和\itshape两个命令，使用例如{\slshape slanted}及{\itshape italic}；也有把斜体内容作为参数的命令（推荐使用这种），如\textsl{slanted}及\textit{italic}。
 ### 114. 如何使用粗体
 ### 115. 列表环境 (enumerate/itemize/description) 的条目间距太大了，怎么改小一些？
 
@@ -1042,7 +1041,7 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
 
 ### 131. 指定列宽度的表格如何使单元格内容居中
 
-        指定宽度的表格列一般采用 p{<width>} 形式的列格式，这种列格式下，表格内容是两端对齐的，如果想使其成为居中对齐需要借助 array 宏包提供的功能，示例如下：
+ 指定宽度的表格列一般采用 p{<width>} 形式的列格式，这种列格式下，表格内容是两端对齐的，如果想使其成为居中对齐需要借助 array 宏包提供的功能，示例如下：
 ```
 \usepackage{array} % this line in preamble
 \begin{tabular}{c|>{\centering\arraybackslash}p{4cm}}
@@ -1123,7 +1122,7 @@ f(x)     &  2.58   \\
 
 ### 134. 如果想让表格中数字小数点对齐要怎么做
 
-        可以借助 @ 的功能，如
+ 可以借助 @ 的功能，如
 ```
 \begin{tabular}{r@{.}l}
   \hline
