@@ -29,3 +29,6 @@
 *.dvi
 *.xdv
 *.pdf
+
+# Folders
+temp/
