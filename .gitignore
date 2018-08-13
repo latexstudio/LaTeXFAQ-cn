@@ -20,6 +20,7 @@
 *.out
 *.run.xml
 *.sav
+*.synctex
 *.synctex.gz
 *.synctex(busy)
 *.thm
