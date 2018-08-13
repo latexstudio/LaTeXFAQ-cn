@@ -4,9 +4,13 @@
 
 感谢大家的参与，请大家加入我们的微信群！定期沟通！
 
-<center>
+<div align="center">
     <img src="images/weixin.jpg" width="40%"/>
-</center>
+</div>
+
+## 贡献
+
+如果您有任何改进意见或者功能需求，欢迎提交 [issue](https://github.com/latexstudio/LaTeXFAQ-cn/issues) 或 [pull request](https://github.com/latexstudio/LaTeXFAQ-cn/pulls)。编辑文档前，请先阅读 [文档协作指南](CONTRIBUTING.md)。
 
 ## 参与人员
 
