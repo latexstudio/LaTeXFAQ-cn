@@ -6,7 +6,7 @@
 3. **每周末，根据编辑历史，没有内容贡献的用户，将取消其权限并移出群。**
 4. **感谢大家的参与，** **请大家加入我们的微信群！方便大家沟通！（协作平台与微信名片统一，便于清理和沟通）**
 
-![图片](images/weixin.jpg)
+![图片](../images/weixin.jpg)
 **模块冠名（按照各个模块更新贡献多少，观其量，冠其名）**
 
 |**模块**|冠名|**备注**|
@@ -45,9 +45,10 @@ TeX是存在各种不同的封装格式的，比如原生的TeX或者LaTeX，我
 
 TeX本身是一个基于控制序列的排版系统，它指示TeX如何在页面上放置文本。例如，\hskip指在文档中在文档中插入一定数量的水平空间，而\font是指给文档中的文字定义一种给定的字体。TeX是完全可编程的，它使用一种集成的宏脚本语言，支持变量，范围，条件执行，控制流和函数定义等。
 * **TeX宏包（TeX格式）**
+
 TeX的一些控制序列直接使用是单调乏味的；它们主要作为更高层次的构建快，因此更易于用户使用。例如，在基础TeX中没有办法能够制定一段文字应该排版为更大的字体，相反，你必须了解当前的字体和大小，然后加载一种同样字体但更大字号的字体。幸运的是，TeX是可编程的，它可以通过写一个宏将这些复杂性都隐藏在一个简单的，新的控制序列之后。例如，我们可以通过 \larger{my text}将“my text”定义为比当前更大的字体。
-    一些使用者会写一些完全由自己定义的宏集，然后再一些文档中重复使用，但，常见的还是依赖于由专家编写的TeX宏包——一些宏的集合。为了方便用户，这些宏包通常与基本的TeX引擎结合到一个独立的可执行的文件中。
-  
+一些使用者会写一些完全由自己定义的宏集，然后再一些文档中重复使用，但，常见的还是依赖于由专家编写的TeX宏包——一些宏的集合。为了方便用户，这些宏包通常与基本的TeX引擎结合到一个独立的可执行的文件中。
+
 * **TeXLive、MacTeX、MikTeX、CTEX**
 
 TeXLive 由类 UNIX 系统上的 teTeX 发展并取而代之，最终成为跨平台的 TeX 发行版。TeXLive 自 2011 年起以年份作为发行版的版本号，保持了一年一更的频率。
@@ -57,7 +58,7 @@ MikTeX 是主要用于 Windows 平台的一个稳定发展的 TeX 发行版，�
 ### 4. TeX有哪些不同的封装格式
 
 TeX是一种排版文件的计算机程序，它需要一个计算机文件，根据TeX的规则进行准备，并将其转换成一种可以在高质量打印机上打印的形式，比如激光打印机，可以打印出一份与高质量的书籍和期刊相媲美的打印文档。不包含数学公式或表格的简单文档可以很容易就生成，事实上，所有人都必须直接输入文本（只是遵循不同的符号规则）。输入数学公式时比较复杂的，但当考虑到产生一些数学公式的复杂性时，TeX是相对容易使用的，它可以产生大量的数学符号。
-     TeX包括各种不同的“方言”，其中包括LaTeX。Plain TeX是TeX中最基础的版本，也是其他“方言”的基础。为了用TeX生成文档，我们必须首先在计算机上创建一个合适的输入文件，我们将TeX程序应用到输入文件中，然后再用打印机打印由TeX程序生成的所谓的“DVI”文件。
+TeX包括各种不同的“方言”，其中包括LaTeX。Plain TeX是TeX中最基础的版本，也是其他“方言”的基础。为了用TeX生成文档，我们必须首先在计算机上创建一个合适的输入文件，我们将TeX程序应用到输入文件中，然后再用打印机打印由TeX程序生成的所谓的“DVI”文件。
 
 * **Plain TeX(TeX)**
 
@@ -70,8 +71,8 @@ PlainTeX的重点还只是在于如何排版的层次上，而不是从一位作
 
 有两个版本，分别是LaTeX2e和LaTeX2.09，前者是当前使用的版本，后者是1994年最开使用的过时的版本。
 [LeslieLamport](https://baike.sogou.com/lemma/ShowInnerLink.htm?lemmaId=73792246&ss_c=ssc.citiao.link)开发的LaTeX是当今世界上最流行和使用最为广泛的TeX格式。它构筑在PlainTeX的基础之上，并加进了很多的功能以使得使用者可以更为方便的利用TeX的强大功能。使用LaTeX基本上不需要使用者自己设计命令和宏等，因为LaTeX已经替你做好了。因此，即使使用者并不是很了解TeX，也可以在短短的时间内生成高质量的文档。对于生成复杂的数学公式，LaTeX表现的更为出色。
-	   LaTeX自从二十世纪八十年代初问世以来，也在不断的发展。最初的正式版本为2.09，在经过几年的发展之后，许多新的功能，机制被引入到LaTeX中。在享受这些新功能带来的便利的同时，它所伴随的副作用也开始显现，这就是不兼容性。标准的LaTeX2.09，引入了“新字体选择框架”(NFSS)的LaTeX，SLiTeX，AMSLaTeX等等，相互之间并不兼容。这给使用者和维护者都带来很大的麻烦。
-	   为结束这种糟糕的状况，Frank Mittelbach等人成立了LaTeX3项目小组，目标是建立一个最优的，有效的，统一的，标准的命令集合。即得到LaTeX的一个新版本3。这是一个长期目标，向这个目标迈出第一步就是在1994年发布的LaTeX2e。LaTeX2e采用了NFSS作为标准，加入了很多新的功能，同时还兼容旧的LaTeX2.09。LaTeX2e每6个月更新一次，修正发现的错误并加入一些新的功能。在LaTeX3p最终完成之前，LaTeX2e将是标准的LaTeX版本。
+LaTeX自从二十世纪八十年代初问世以来，也在不断的发展。最初的正式版本为2.09，在经过几年的发展之后，许多新的功能，机制被引入到LaTeX中。在享受这些新功能带来的便利的同时，它所伴随的副作用也开始显现，这就是不兼容性。标准的LaTeX2.09，引入了“新字体选择框架”(NFSS)的LaTeX，SLiTeX，AMSLaTeX等等，相互之间并不兼容。这给使用者和维护者都带来很大的麻烦。
+为结束这种糟糕的状况，Frank Mittelbach等人成立了LaTeX3项目小组，目标是建立一个最优的，有效的，统一的，标准的命令集合。即得到LaTeX的一个新版本3。这是一个长期目标，向这个目标迈出第一步就是在1994年发布的LaTeX2e。LaTeX2e采用了NFSS作为标准，加入了很多新的功能，同时还兼容旧的LaTeX2.09。LaTeX2e每6个月更新一次，修正发现的错误并加入一些新的功能。在LaTeX3p最终完成之前，LaTeX2e将是标准的LaTeX版本。
 * **ConTeXt(context)**
 
 ConTeXt是TeX的一种格式，是Hans Hagen和荷兰Pragma-ADE公司设计的一种高端的文档制造工具，官方网站为 [ConTeXtGarden](http://wiki.contextgarden.net/Main_Page)。ConTeXt就像LaTeX是基于TeX排班系统的文档制作系统，如果说LaTeX将作者从排版的细节中隔离出来，那么ConTeXt就是采用一种互补的方法来处理结构化的界面来处理排版，包括对颜色、背景、超链接、演示文稿、图形文本集成和条件编译的广泛支持， 对于数学、化学等科技文档的支持同等优秀甚至更为方便，而且其为了更容易实现各种华丽排版效果。它可以让用户对格式进行广泛的控制，同时又可以在不需要学习TeX宏语言的情况下轻松地创建新的布局和样式。 因此ConTeX的图形功能要远远强于TeX和LaTeX，可以制作非常漂亮的PD文档，特别适合做幻灯片和一些非正式的文档。
@@ -88,7 +89,7 @@ TeXinfo是一门宏语言，就像LaTeX一样，但是它的表达能力略弱�
 makeinfo可将texinfo文档转换成HTML，DocBook,，Emacs info,，XML和全文本。TeX（或者texi2dvi和texi2pdf），因为TeX加载了普通的TeX宏，而并不是TeXinfo，所以TeXinfo文档必须以“\input texinfo”开头来加载texinfo包。
 * **Eplain(eplain)**
 
-* **Eplain扩展并延伸了Plain TeX的定义，它并不像ConTeX**
+Eplain扩展并延伸了Plain TeX的定义，它并不像ConTeX 
 
 ### 5. LaTeX2.09和LaTeX2e有什么区别？
 
@@ -98,11 +99,17 @@ makeinfo可将texinfo文档转换成HTML，DocBook,，Emacs info,，XML和全文
 \documentstyle[twoside,epsfig]{article}
 ```
 而LaTeX2e使用\documentclass命令设置文档类型，用\usepackage命令调用宏包。
-### 6. 文本文件编码解读
-### 7. LaTeX源文件
+
+### 6. Tex, LaTex, pdflatex, xelatex, xetex等的区别和关系，什么时候用什么编译器编译
+
+LaTeX 其实是目前使用最广泛的 TeX 格式。xeTeX 是一种引擎（编译器），pdfLaTeX （xeLaTeX） 是命令，他们分别结合了 pdfTeX（xeTeX） 引擎和 LaTeX 格式。对于刚开始接触的人，建议处理英文时直接使用 pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件） 
+
+### 7. 文本文件编码解读
+
+### 8. LaTeX源文件
 
 LaTeX的源文件是*.tex文件，是指latex编译器处理输入文件的源码，latex编译器会对输入文件进行解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于LaTeX解析器可能对中文文件名处理存在兼容性问题，不建议将LaTeX的源文件的文件名设置为中文。
-### 8. 连字符如何在TeX起作用
+### 9. 连字符如何在TeX起作用
 
 如果 LaTeX 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词中间断开。对于绝大部分单词，LaTeX 能够找到合适的断词位置，在断开的行尾加上连字符 - 。
 如果一些单词没能自动断词，我们可以在单词内手动使用 \- 命令指定断词的位置，如：
@@ -110,8 +117,9 @@ I think this is: su\-per\-cal\-%
 i\-frag\-i\-lis\-tic\-ex\-pi\-%
 al\-i\-do\-cious.
 
-### 9. Unicode和TeX
-### 10. 常见的TeX文件扩展名与文件用途
+### 10. Unicode和TeX
+
+### 11. 常见的TeX文件扩展名与文件用途
 
 常见的用户文件的扩展名与其用户如下：
   * .tex 文件。源文件，需用户编写。
@@ -130,22 +138,34 @@ al\-i\-do\-cious.
   * .ind makeindex 处理 .idx 生成的格式化索引记录文件。
   * .ilg makeindex 生成的日志文件。
   * .out hyperref 宏包生成的 PDF 书签记录文件。
-### 11. 什么是“决议”(resolutions)
-### 12. 什么是（TeX）宏
-### 13. 什么是LaTeX环境
-### 14. 什么是LaTeX类和工具包
-### 15. 什么是PK文件
-### 16. 什么是TFM文件
-### 17. 什么是编码
-### 18. 什么是EC字体
-### 19. 什么是虚拟字体
-### 20. 什么是“Encapsulated PostScript”(EPS)
-### 21. 什么是DVI驱动程序
-### 22. 什么是DVI文件
+### 12. 什么是“决议”(resolutions)
+
+### 13. 什么是（TeX）宏
+
+### 14. 什么是LaTeX环境
+
+### 15. 什么是LaTeX类和工具包
+
+### 16. 什么是PK文件
+
+### 17. 什么是TFM文件
+
+### 18. 什么是编码
+
+### 19. 什么是EC字体
+
+### 20. 什么是虚拟字体
+
+### 21. 什么是“Encapsulated PostScript”(EPS)
+
+### 22. 什么是DVI驱动程序
+
+### 23. 什么是DVI文件
 
 DVI文件（device independent）为[TeX](https://baike.baidu.com/item/TeX)电子排版系统的输出文件。七十年代末，[Donald E. Knuth](https://baike.baidu.com/item/Donald%20E.%20Knuth)（高德纳）在看到其多卷巨著“The Art of ComputerProgramming”第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此决定自己来开发一个高质量的计算机排版系统，这样就有了TeX。TeX 的输出文件称为 DVI 文件，即是“Device Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI文件就可以被送到任何[输出设备](https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87)如打印机，屏幕等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，从页面设置到文本中字符的位置都被固定，不能更改。
-### 23. 什么是“Berry命名方案”
-### 24. 什么是TDS
+### 24. 什么是“Berry命名方案”
+
+### 25. 什么是TDS
 
 TDS 全称 TeX Directory Structure，意为 TeX 目录结构，即 TeX 发行版的文件组织结构。大部分 TeX 发行版都将自身的文件组织成相近的路径结构，也就是 TDS。TDS 也称为 TEXMF 树，这是 TeX 与 METAFONT 的合称。很多系统的 TDS 结构都以 `texmf` 或者类似的词作为 TEXMF 树的根目录名，如在 TeX Live 中，安装目录下的 `texmf-dist`、`texmf-var` 等就是两个不同的 TEXMF 树。
 
@@ -221,9 +241,11 @@ tex/                            TeX 宏，可被引擎读入
 
 （来自刘海洋《LaTeX 入门》）
 
-### 25. 从TeX编写（文本）文件
-### 26. \special命令
-### 27. Overleaf是什么？如何使用？
+### 26. 从TeX编写（文本）文件
+
+### 27. \special命令
+
+### 28. Overleaf是什么？如何使用？
 
 ~~【这个答案严重误导！急需修订！】~~~~首先，经常使用的~~~~ ~~~~minted~~~~ ~~~~宏包不可使用，一般对~~~~ ~~~~lstlisting~~~~ ~~~~环境进行配置，比如MATLAB的配置可以参考~~[网址](http://www.latexstudio.net/archives/7483.html)~~。其次，其上传文件的个数是有限制，并且不支持两层及以上的文件夹，如果要将书籍的章以及其下的节分文件夹储存，则结构不清晰。最后，overleaf v2暂时不稳定，本地有TeXLive最好在本地进行内容的编写。回答时间2018-08-10。~~
 
@@ -241,32 +263,35 @@ Overleaf v2 目前还是比较稳定的（2018年9月将会全面上线）。当
 
 【这里先预定个位置，以后可以写个篇幅比较长的功能介绍。若对 Overleaf 有任何问题，建议直接电邮 support@overleaf.com 询问，不必过多自行揣测。若是担心语言问题，Overleaf 技术支援人员有谙中文的。】
 
-### 28. 编译器与编辑器的区别是什么
+### 29. 编译器与编辑器的区别是什么
+
 在 lshort-zh 中，确切解释了，所谓编译器，真正的名称叫排版引擎，是读入源代码并编译生成文档的程序，如 pdfTeX、XeTeX 等。
 编辑器，其实是用户书写源代码的工具，例如 windows 下的记事本、ubuntu 下的 gedit 等等。目前很多编辑器都提供了"编译“按钮，本质上是基于命令行调用了编译器。
 
 ## 二、安装与配置问题
-### 29. 如何安装 LaTeX
+### 30. 如何安装 LaTeX
 
 很多用户所谓的如何安装 LaTeX，实际上是一个无解的问题，因为 LaTeX 不是一款软件，相关概念不再赘述。用户可以直接安装 LaTeX 发行版，如 proTeXt , TeXLive 和 MacTeX (TeXLive在MacOS 的一个再次发行版)。
-### 30. 如何下载 proTeXt 安装包
+
+### 31. 如何下载 proTeXt 安装包
 
 访问以下链接即可
 [http://mirror.ctan.org/systems/protext/protext.exe](http://mirror.ctan.org/systems/protext/protext.exe)
-### 31. 如何下载 TeXlive 安装包
+### 32. 如何下载 TeXlive 安装包
 
 访问以下网址获取 texlive 安装包镜像文件：
 [http://mirror.ctan.org/systems/texlive/Images/texlive.iso](http://mirror.ctan.org/systems/texlive/Images/texlive.iso)
 MacTeX安装包下载地址：
 [http://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg](http://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg)
-### 32. 如何安装 TeXlive
+### 33. 如何安装 TeXlive
 
 TeXlive 为用户提供了官方安装手册，其中文版地址是：
 [https://tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf](https://tug.org/texlive/doc/texlive-zh-cn/texlive-zh-cn.pdf)
 建议有余力的用户通读手册，以了解更多内容。
 也可以参照以下网址
 [https://www.tug.org/texlive/quickinstall.html](https://www.tug.org/texlive/quickinstall.html)
-### 33. 如何挂载镜像文件：
+
+### 34. 如何挂载镜像文件：
 
 目前市面上有很多虚拟光驱软件可供用户选择，例如 UltraISO。
 特别一提，在 windows 8、windows 10 操作系统中，默认被双击后，镜像文件将会直接挂载。
@@ -274,11 +299,11 @@ TeXlive 为用户提供了官方安装手册，其中文版地址是：
 ```
 mount -o loop ~/Download/TeXlive.iso ~/iso
 ```
-### 34. 挂载镜像文件后该如何做？
+### 35. 挂载镜像文件后该如何做？
 
 windows 用户可以双击 install-tl-windows.bat 文件来进行安装。
 linux 用户请在命令行执行 ./install-tl 进入 no gui 安装模式
-### 35. 双击 install-tl-windows.bat 出现错误怎么办？
+### 36. 双击 install-tl-windows.bat 出现错误怎么办？
 
 使用命令行。同时按下 win 键和 R 键，打开“运行”窗口，在窗口的“打开”处，输入 cmd 打开命令行窗口（黑窗）。
 在黑窗内输入
@@ -291,7 +316,7 @@ cd /d [~]
 install-tl-windows.bat -no-gui
 ```
 开启纯命令行安装模式。默认状态下，点击 I 键 ( HIJK 的 I)，安装便会开始。若用户想改变安装路径或其他设置，只需根据屏幕提示进行更改即可。特别强调，安装路径一定是不带空格的纯英文路径。
-### 36. 使用命令行安装TeXLive出现 goodbye 怎么办？
+### 37. 使用命令行安装TeXLive出现 goodbye 怎么办？
 
 主要是缺少CMD所在的环境变量。
 只需要在命令行中执行
@@ -299,7 +324,8 @@ install-tl-windows.bat -no-gui
 path=%path%;C:\Windows\system32
 ```
 后再尝试安装。或者因为下载文件损坏，上述方法不管用应重新下载。
-### 37. 想在 linux 系统中使用 gui 模式安装该怎么做？
+
+### 38. 想在 linux 系统中使用 gui 模式安装该怎么做？
 
 自行安装 perl，详细办法请上网自行搜索。然后执行命令
 ```
@@ -309,7 +335,7 @@ path=%path%;C:\Windows\system32
 ```
 ./install-tl -gui perltk
 ```
-### 38. 如何搭配 TeXLive 的环境变量？
+### 39. 如何搭配 TeXLive 的环境变量？
 
 Windows 用户一般不必担忧这个问题。因为 TeXLive 已经自动将环境变量写入，用户不必自己手动修改。
 Linux 用户需要手动配置环境变量。例如，将
@@ -322,7 +348,7 @@ if [ -d $TEXDIR ]; then
 fi;
 ```
 写入~/.profile。注意本例中的 2018 可以根据需要修改，例如部分用户还在使用 TeXLive 2017，就可将 2018 改为 2017等等。
-### 39. 如何判断 TeXLive 安装成功？
+### 40. 如何判断 TeXLive 安装成功？
 
 在命令行中执行
 ```
@@ -331,7 +357,7 @@ tex -v
 若命令行窗口中显示
 TeXLive 2018
 等内容，即说明安装成功。
-### 40. 如何删除 TeXLive
+### 41. 如何删除 TeXLive
 
 windows 用户请找卸载批命令文件，如
 C:\texlive\2018\tlpkg\installer\uninst.bat
@@ -341,7 +367,7 @@ rm -rf /usr/local/texlive/2018
 rm -rf ~/.texlive2018
 ```
 并且手动清理环境变量
-### 41. TeXLive 如何升级宏包？
+### 42. TeXLive 如何升级宏包？
 
 建议使用命令行升级宏包。
 首先指定源，执行命令
@@ -379,10 +405,10 @@ tlmgr restore --bakeupdir E:\latexwork\backup --all
 tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
 ```
 就可以用于恢复mcmthesis。
-### 42. MikTeX 如何升级宏包
+### 43. MikTeX 如何升级宏包
 
 MikTeX 可以用界面升级宏包，有些用户经常升级失败是因为源不稳定造成的。建议到 [https://miktex.org/pkg/repositories](https://miktex.org/pkg/repositories) 找稳定的源。
-### 43. TexLive对源的操作有哪些
+### 44. TexLive对源的操作有哪些
 
 查看源列表
 ```
@@ -411,7 +437,7 @@ tlmgr repository remove jp
 tlmgr repository set path[#tag] [path[#tag] ...]
 ```
 特别强调，TeXLive 要求源列表中至少存在一个被标记为 main 的源，否则一切操作都将失效。
-### 44. 如何自动升级 TeXLive 宏包？
+### 45. 如何自动升级 TeXLive 宏包？
 
 [这](http://pd10ibe5c.bkt.clouddn.com/TeXLive%E5%AE%8F%E5%8C%85%E6%AF%8F%E6%9C%88%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0.zip)[里可以下载每月自动升级TeXLive宏包的脚本](http://pd10ibe5c.bkt.clouddn.com/TeXLive%E5%AE%8F%E5%8C%85%E6%AF%8F%E6%9C%88%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0.zip)。
 [这里是该脚本的说明](http://htharoldht.com/texlive-package-automatically-upgrades-every-month/)。
@@ -484,7 +510,7 @@ tlmgr update --all --no-auto-install
   * 批处理编写
 
 代码里面其余部分均是 bat 编程的基本语句，可参考[百度百科](https://baike.baidu.com/item/%E6%89%B9%E5%A4%84%E7%90%86/1448600?fr=aladdin)。
-### 45. 不同平台LaTeX编辑器推荐
+### 46. 不同平台LaTeX编辑器推荐
 
 用户编写的 tex 文件，本质上是文本文件，因此很多编辑器都可以对 tex 文件进行更改。某些编辑器，如 notepad++，vscode，sublime 等，还对 tex 文件进行了语法高亮，甚至可以利用插件做成一个 IDE。
 TexMaker 是一款免费、现代、跨平台的 LaTeX 编辑器，它能够在 linux，macosx 和 windows 系统中使用，并且将很多开发 LaTeX 文件的工具集成在了一个应用当中。详情见官网：[http://www.xm1math.net/texmaker/](http://www.xm1math.net/texmaker/)
@@ -493,16 +519,17 @@ WinEdt 是一款功能强大且功能多样的 Windows专用文本编辑器，�
 TeXStudio 是一款跨平台的开源TeX/LaTeX IDE(集成开发环境)，对于大部分用户而言，它的功能足以满足需要，下载可访问官网 [http://texstudio.sourceforge.net/ ](http://texstudio.sourceforge.net/)。
 Texpad 是运行于 Mac/IOS 在线平台的编辑器，带自动编译，支持多人联合编辑，更多内容可访问 [https://www.texpad.com](https://www.texpad.com) 
 Visual Studio Code（vscode），是一款强大的跨平台编辑器。安装LaTeX Workshop 插件后就可以尽享tex编程乐趣，界面比较美观，适合window平台，软件下载可见官网[https://code.visualstudio.com/](https://code.visualstudio.com/)。配置可参考下面网址[http://www.latexstudio.net/archives/11087.html](http://www.latexstudio.net/archives/11087.html)。
-### 46. 如何在 Sublime 上配置 LaTeX 编译环境
+### 47. 如何在 Sublime 上配置 LaTeX 编译环境
 
 可以参考LaTeXTools插件的安装教程，具体安装方法~~可见[http://www.qhjack.cn/blog/1787.html](http://www.qhjack.cn/blog/1787.html)~~
 链接更新为[http://www.qhjack.cn/blog/1792.html](http://www.qhjack.cn/blog/1792.html)。
 如果只是配置最简单的LaTeXTools(如果已经安装好TeXLive，Subline Text 3和Sumatra PDF)，也可以参考[https://blog.csdn.net/qazxswed807/article/details/51234834](https://blog.csdn.net/qazxswed807/article/details/51234834)。
-### 47. LaTeX 能转成 word 吗
+
+### 48. LaTeX 能转成 word 吗
 
 严格来讲，可以做，例如利用 pandoc。但十分不建议这样做。
 ## 三、文档编辑
-### 48. La(TeX)教程
+### 49. La(TeX)教程
 
 lshort-zh 是一本比较薄的针对中文用户的 LaTeX 入门教程，该教程已在发行版中，用户可以在命令行中执行
 ```
@@ -511,35 +538,46 @@ texdoc lshort-zh
 来查阅。
 LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.org/help/books/) 中列出的 TeX and LaTeX Books 之一，用户可访问 [https://en.wikibooks.org/wiki/LaTeX](https://en.wikibooks.org/wiki/LaTeX) 进行查阅。
 除此之外，用户还可以购买胡伟、刘海洋等编著书籍，这里不再赘述。
-### 49. 关于LaTeX的书籍
+### 50. 关于LaTeX的书籍
+
 * LaTeX 入门，刘海洋， 电子工业出版社；
 * LaTeX2ε 完全学习手册(第2版)，胡伟，清华大学出版社；
 * LaTeX 入门与提高(第二版) ，陈志杰等，高等教育出版社（注：此书出版逾十年，部分内容已经过时）；
 * LaTeX Beginner's Guide, Stefan Kottwit, Packt Publishing.
-### 50. LaTeX支持中文有哪些方式，如何选择
+### 51. LaTeX支持中文有哪些方式，如何选择
 
 历史上，LaTeX 支持中文的方式包括中西文点点通、天元、CCT、CJK 等。目前流行的方式是使用 CTeX 宏集，详情请见 [https://mirrors.tuna.tsinghua.edu.cn/CTAN/language/chinese/ctex/ctex.pdf](https://mirrors.tuna.tsinghua.edu.cn/CTAN/language/chinese/ctex/ctex.pdf)
-### 51. 关于教程，用户比较容易获取的有两个：lshort 和 LaTeX wikibook。
-### 52. 关于TeX, Plain TeX及相关书籍
-### 53. 关于类型的书籍
-### 54. 关于其他TeX相关事项的书籍
-### 55. 工具包文档
-### 56. 可免费提供La(TeX)的书籍
+### 52. 关于教程，用户比较容易获取的有两个：lshort 和 LaTeX wikibook。
+
+### 53. 关于TeX, Plain TeX及相关书籍
+
+### 54. 关于类型的书籍
+
+### 55. 关于其他TeX相关事项的书籍
+
+### 56. 工具包文档
+
+每个工具包自带的文档是最全面最权威的文档，一般可以通过texdoc命令+工具包名的方式找到相应工具包的文档。一些常用的工具包有不少爱好者写了自己使用过程中的经验，也可以找来看看。 
+
+### 57. 可免费提供La(TeX)的书籍
+
 * LaTeX常用数学符号
 * LaTeX Note 包太雷
 * 一份不太简短的 LaTeX2e 介绍
 * Tex Live指南 2018
-### 57. 获取在线帮助
+### 58. 获取在线帮助
 
 一般资料可以去 wikibook 上面查询，网址是 [https://en.wikibooks.org/wiki/LaTeX](https://en.wikibooks.org/wiki/LaTeX)
 提问可以先到 LaTeX Stack Exchange 看看，网址是 [https://tex.stackexchange.com/](https://tex.stackexchange.com/)
-### 58. 如何提出问题
+
+### 59. 如何提出问题
 
 在问问题的时候，要先自己尝试，先问自己如何解决，清晰有效的组织自己想问的问题，究竟想表达什么？没有人会为你不知所谓的问题浪费时间，就算有人愿意理你，也会因为你的问题不清晰甚至完全无效的问题而伤透脑筋，为了自己，也为了别人，建议大家可以参考下[《提问的艺术》](https://www.jianshu.com/p/f96aa7f7bf59)这篇文字，清晰有效的提出自己的问题。
 最后，要给大家强调一个问题，我们愿意在我们的能力范围内为你的问题进行讨论，尽全力帮你解决问题，但并不是我们的义务，问问题前，要强调的是，别人有权利不帮你。
 ![图片](https://images-cdn.shimo.im/oen00vOZ5jcQd3g8/T9A1X27O9_32FZZ_3Z7_8.png!thumbnail)大图可以参见[网址](https://i.loli.net/2018/08/08/5b6adcda1ab87.png)。
 另外，在QQ群提出问题所使用的代码最好代码粘贴的网站，如[Ubuntu Pastebin](https://paste.ubuntu.com/)暂存，避免刷屏，影响效率。
-### 59. 如何制作一个迷你范例（MWE）
+
+### 60. 如何制作一个迷你范例（MWE）
 
 迷你范例即最小工作示例，英文简称 MWE，以下内容摘自刘海洋的《LaTeX入门》。
 最小工作示例就是一个精简到最小长度的、可以说明所需问题的TeX源文件。一方面，最小工作示例应该是一个完整的、可以直接编译的文件，利用示例可以方便地再现遇到的问题，不需要添加额外的代码；另一方面，示例文件应该尽可能地短小，不包含额外的文件，也没有与问题无关的文字代码干扰相对错误的分析。
@@ -554,13 +592,16 @@ LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.or
 \]
 ```
 
-### 60. 学习如何撰写LaTeX类及工具包
+### 61. 学习如何撰写LaTeX类及工具包
 
       可以命令行使用texdoc查看clsguide，dtxtut，macros2e；classes，source2e，The TeXBook；expl3，interface3，l3styleguide，source3。以上内容参考自[知乎](https://www.zhihu.com/question/27017364)。以及《LaTeX2e文类和宏包学习手册》（胡伟，清华大学出版社）。
-### 61. MetaFont和MetaPost教程
-### 62. 在线介绍：LaTeX
-### 63. 在线介绍：Plain TeX
-### 64. 如何让参考文献满足国标GB7714-2015样式要求
+### 62. MetaFont和MetaPost教程
+
+### 63. 在线介绍：LaTeX
+
+### 64. 在线介绍：Plain TeX
+
+### 65. 如何让参考文献满足国标GB7714-2015样式要求
 
 有两种比较简单的方式。
 首先是利用 biblatex 的例子，如
@@ -582,14 +623,19 @@ LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.or
   \bibliography{bibfilename}
 \end{document}
 ```
-### 65. 专家邮件列表
-### 66. PicTeX手册
-### 67. 基于TeX系统的教程
-### 68. 排版教程
-### 69. 关于TeX的Wiki书籍
+### 66. 专家邮件列表
+
+### 67. PicTeX手册
+
+### 68. 基于TeX系统的教程
+
+### 69. 排版教程
+
+### 70. 关于TeX的Wiki书籍
 
 LaTeX wikibook 是 [https://www.latex-project.org/](https://www.latex-project.org/help/books/) 中列出的 TeX and LaTeX Books 之一，用户可访问 [https://en.wikibooks.org/wiki/LaTeX](https://en.wikibooks.org/wiki/LaTeX) 进行查阅。
-### 70. 如何找到...符号
+
+### 71. 如何找到...符号
 
 在LaTeX中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于XeTeX引擎，目前使用的多为Unicode编码的字体，直接加载Unicode字体，插入Unicode符号也是一种很好的办法。下面分别介绍：
 * 加载符号宏包　*The Comprehensive LATEX Symbol List* 收录了上万文本或数学符号，在命令行中键入
@@ -608,8 +654,9 @@ texdoc symbols-a4
 向导=>数学助手 手写输入完之后插入即可。
 ![图片](https://images-cdn.shimo.im/StDWQgBPj9YmY4U1/image.png!thumbnail)
 
-### 71. 如何找到FAQs
-### 72. 如何控制章节编号的深度
+### 72. 如何找到FAQs
+
+### 73. 如何控制章节编号的深度
 
 LaTeX 标准文档类对章节划分了层级：
 * 在 article 文档类里 part 为 0，section 为1，依此类推；
@@ -632,28 +679,164 @@ secnumdepth 计数器在article 文档类里默认为3（subsubsection 一级）
 
 ```
 控制目录页排版显示深度可以使用\setcounter{tocdepth}{2}，此命令表示显示到三级标题。关于此问题的具体介绍可以参考[网址](https://blog.csdn.net/RobertChenGuangzhi/article/details/50480856)。
-### 73. 如何下载 arXiv 上面的 TeX 源文件
+
+### 74. 如何下载 arXiv 上面的 TeX 源文件
 
 先访问 arXiv 上面的文章，在右边找到 Downloads -> Other formats，点击进入下载页，点击 Download source。将文件下载到本地后，重命名文件，文件后缀名是 .tar.gz。接下来解压缩 .tar.gz 文件，即可获得 tex 源文件。
-### 74. windows 系统下用 texstudio 打开中文编写的源文件遇到乱码怎么办
+
+### 75. windows 系统下用 texstudio 打开中文编写的源文件遇到乱码怎么办
 
 最简单的方法是借助 notepad++ 等编辑器将文件转码为 UTF-8。如果没有 noteapd++，也可以直接使用 texstudio。这里我们默认文件的编码是 GB2312。
 首先打开文件，在 texstudio 右下角找到 encoding 位置的内容，有时系统显示为 ISO-8859-1。点击那里，进入 More encodings，在列表中点击 GB2312，然后点击按钮 view with。正常来讲，乱码应该都会消失。
 接下来，继续进入 More encodings，在列表中点击 UTF-8，然后点击按钮 change to。
 经过这些操作，源文件就重新变成了 UTF-8 编码。
+
+### 76.如何在listing抄录环境中显示公式 
+
+有时对抄录环境中的代码进行说明时，要用显示公式， 这时只要进选项texcl设为true即可，或者设置mathescape 选项为true。
+
+```
+\begin{lstlisting}[
+numbers=left,
+upquote=true,
+basicstyle=\ttfamily,
+texcl=true,
+language=Python
+]
+#Generates Graphs $G^{(12)} ---  G^{(17)}$
+sGL6=['E@QW', 'EHQW', 'E@`w', 'E@]o', 'E@Rw', 'EAMw']
+GL=[Graph(s) for s in sGL6]
+\end{lstlisting}
+```
+
+![minted](..\images\minted.png)
+
+```
+\begin{lstlisting}[mathescape=true]
+  if foo
+  list= { $S_1,S_2,S_3$ }
+\end{lstlisting}
+```
+
+### 77.能不能介绍一下排版试卷的方法与技巧，比如选择题，密封线设置等。 
+
+### 78.一个文档，如何在不同部分使用不同的页眉页脚 
+
+参考 geometry 宏包的自定义命令。大概就是 \newgeometry{<options>} 和\restoregeometry 以及 \savegeometry{<name>} 和loadgeometry{<name>}这四个命令了。具体可参见该宏包的说明文档。 
+
+### 79. 如何给中文文本加注音符号? 
+
+### 80. 在book类文档中边注用什么宏包?边注的宽度能调整吗？
+
+### 81. 如何使用ctex相关类或者宏包制定章节样式，目录样式？
+
+### 82. 如何给章节标题，目录列表加盒子边框？
+
+### 83. 如何使用带圈数字？ 
+
+### 84. 如何改变列表标签样式，行距，缩进等各种相关间距？ 
+
+### 85. 换行与换段的区别，有几种方式？ 
+
+换行是\\\
+
+换段是\par，或者空一行 
+
+### 86. 如何改变计数器样式为 中文数字 罗马数字 阿拉伯数字 拉丁字母？ 
+
+### 87. 列表环境 (enumerate/itemize/description) 的条目间距太大了，怎么改小一些？ 
+
+可以使用 paralist 宏包，它提供了一系列压缩了行间距的列表。对应的环境名称分别是 compactenum/compactitem/compactdesc ，也可以使用 enumitem 宏包修改三个列表环境的格式。 
+
+### 88. 列表的条目项内容很短，可以让他们在一行内排版么？ 
+
+### 89. enumerate 宏包修改列表标签格式很方便，但是这个宏包和 enumitem 宏包冲突，有什么解决办法么？
+
+如果只是需要使用这种短标签表示方法，利用 enumitem 宏包同样能够做到，只需要带上 shortlabels 选项加载 enumitem 宏包即可。同时，enumitem 宏包提供了自定义短标签名称和格式的宏命令，你也可以自己定义一些有趣的标签形式。 
+
+### 90. 如何使用带圈数字作为 enumerate 列表的标签？
+
+LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的排版效果非常差，几乎很少有人会直接使用。带圈数字可以通过unicode字符实现，也可通过 pifont 宏包中 \ding 命令实现（但是只能用到10以内的数字），甚至可以通过 tikz 自己绘制一个。使用带圈数字做enumerate的标签，可以通过 enumitem 宏包设置。这里给出一个使用 unicode 字符实现带圈数字的方法，并将其应用于 enumerate 的标签。 
+
+```
+\documentclass{article}
+\usepackage{xeCJK,xunicode,calc}
+\usepackage[shortlabels]{enumitem}
+\newcommand{\Cnum}[1]{%
+\ifnum #1<21
+  \edef\a{\the\numexpr #1+9311}
+\else
+  \ifnum #1<36
+    \edef\a{\the\numexpr #1+12860}
+  \else
+    \ifnum #1<51
+     \edef\a{\the\numexpr #1+12941}
+    \else
+      \PackageError{your package}{Number too large}{}
+    \fi
+  \fi
+\fi
+{\CJKfontspec{Noto Serif CJK SC}\fontspec{Noto Serif CJK SC}\symbol\a}}
+\SetEnumerateShortLabel{o}{\protect\Cnum{\arabic*}}
+\begin{document}
+\Cnum{12} \Cnum{32} \Cnum{46} 
+
+\begin{enumerate}[o]
+  \item The first item.
+  \item The second item.
+  \item The Third One.
+\end{enumerate}
+\end{document}
+```
+
+
+
+### 91. 如何给目录中的章节都带上引导点来连接页码？ 
+
+其实级别较高的章节结构，如 book/report 中的chapter和arcticle中的section，是不需要这种引导点来连接页码的，有这种需求的多是受MS Word 的影响。如果一定要这种引导点，可以在导言区增加这样一段代码。 
+
+```
+\makeatletter
+\def\@bfdottedtocline#1#2#3#4#5{%
+\ifnum #1>\c@tocdepth \else
+  \vskip \z@ \@plus.2\p@
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+   \parindent #2\relax\@afterindenttrue
+   \interlinepenalty\@M
+   \leavevmode \bfseries
+   \@tempdima #3\relax
+   \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+   {#4}\normalfont\nobreak
+   \leaders\hbox{$\m@th
+      \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+      mu$}\hfill
+   \nobreak
+   \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+   \par}%
+\fi}
+\renewcommand*\l@section{\@bfdottedtocline{0}{0em}{1.5em}}
+\makeatother
+```
+
+当然，最后一句应根据实际的文档类型来重定义\l@chapter或\l@section. 
+
+### 92. 如何临时切换页面大小？
+
 ## 四、介绍公式的常见问题。
-### 75. \[...\]与$...$有什么区别？
+
+### 93. \[...\]与$...$有什么区别？
 
 重定义的难度不同、造成的间距也不同。推荐使用 \[...\]。
 见 [https://www.zhihu.com/question/27589739/answer/37255728](https://www.zhihu.com/question/27589739/answer/37255728)
 
-### 76. 如何让长公式自动断行？
+### 94. 如何让长公式自动断行？
 
 长公式自动断行要看情况，如果是在行内模式，合理使用空格，一般可以在二元运算符处断行，如果是行间模式，推荐使用align类环境，在需要断行处添加 \\ 手动断行。
-### 77. 公式希腊字符如何加粗？
+### 95. 公式希腊字符如何加粗？
 
 希腊字母没有粗体，可以选择合适的数学字体。
-### 78. 极限符号下面有两个趋近该怎么写
+
+### 96. 极限符号下面有两个趋近该怎么写
 
 直接给出例子：
 ```
@@ -674,12 +857,71 @@ secnumdepth 计数器在article 文档类里默认为3（subsubsection 一级）
 ```
 效果如下：
 ![图片](https://images-cdn.shimo.im/FCY4A1SeBIcwBCGT/双重极限.PNG!thumbnail)
-### 79. 怎样在 LaTeX 中输入引号
 
-左引号用 `，右引号用 '。双引号也一样，`` ''。
+### 97. 怎样在 LaTeX 中输入引号 
+
+左引号用 `（键盘1旁边那个键），右引号用 '。双引号也一样，`` ''。中文条件下可以直接用中文引号，会有自动配对，但是如果需要用到不配对引号的情况，需要使用通用方法。 
+
+### 98. align环境默认是居中对齐吗？我在使用时，发现公式开始是居中的，后来却一直靠右断对齐，这是什么原因？ 
+
+~~align 默认靠右对齐，所以通常加 & 符号，让代码左对齐。验证一下以下代码： ~~
+
+```
+\begin{align}
+& \nabla \times H = J,\\
+& \nabla \times E = - \partial _t B,\\
+& \nabla \cdot B = 0.
+\end{align}
+```
+
+再试试把 & 去掉什么样。
+
+align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，两列之间用&分隔。 
+
+### 99. 中英文标点使用规则不是很明白，尤其在公式环境里，字体和间距差别都比较大。怎样才能让正文和公式的标点统一（形状和间隔）？ 
+
+### 100. 公式如何居左对齐,居右对齐？ 
+
+### 101. 公式之后解释公式符号的文字，通常是 “符号 —— 解释” 这样的格式，我希望这段文字的格式是按破折号对齐，并且解释文字折行后悬挂缩进，怎样实现这样的格式？ 
+
+方法很多，可以列表，可以align等环境。  这里给出一个使用自定义列表的例子： 
+
+```
+\usepackage{ifthen}
+\newcounter{qlst}
+\newenvironment{EqDesc}[2][式中]{%
+\begin{list}{}
+    {%
+  \usecounter{qlst}
+  \settowidth{\labelwidth}{#1，#2\ --- \ }
+  \setlength{\labelsep}{0pt}
+     \setlength{\leftmargin}{\labelwidth}
+     \setlength{\rightmargin}{0em}
+     \setlength{\parsep}{0ex}
+     \setlength{\itemsep}{0ex}
+     \setlength{\itemindent}{0em}
+     \setlength{\listparindent}{0em}
+     \renewcommand{\makelabel}[1]{\stepcounter{qlst}\ifthenelse{\value{qlst}>1}{\hfill ##1\ --- \ }{#1，\hfill ##1\ --- \ }}
+     }}%
+{\end{list}}%
+```
+
+EqDesc 环境有两个参数，第一个为可选参数，是解释公式符号前的引导词，默认是“式中”，第二个参数是样本符号，可以选择一个列表中宽度最大的符号。条目\item 有一个可选参数（实际使用是必选参数），内容是要说明的符号。使用如下： 
+
+```
+\[ a^2+b^2=c^2 \]
+\begin{EqDesc}[其中]{$a$}
+   \item[$a$] 三角形的一条直角边；
+   \item[$b$] 三角形的另一条直角边；
+   \item[$c$] 三角形的斜边。
+\end{EqDesc}
+```
+
 ## 五、参考文献篇
-### 80. 参考文献中的特殊字符或字母
-### 81. BibTeX 不理解的作者列表
+
+### 102. 参考文献中的特殊字符或字母
+
+### 103. BibTeX 不理解的作者列表
 
 BibTeX 只支持三种姓名格式：
 * First von Last
@@ -691,8 +933,9 @@ BibTeX 只支持三种姓名格式：
 author = {Knuth, Donald E. and Lamport, Leslie},
 ```
 
-### 82. BibTeX 排序和名字前缀
-### 83. BibTeX 中的大写字母
+### 103. BibTeX 排序和名字前缀
+
+### 104. BibTeX 中的大写字母
 
 英文标题中常使用的大小写方式有：
 1. Title case: 句首字母大写，并且除冠词、连词和短介词以外的词首字母大写，这里说的“短”介词一般指不超过 4 个字母的介词。比如“The Quick Brown Fox Jumps over the Lazy Dog”；
@@ -704,20 +947,20 @@ title = {Finite Element Methods for {Maxwell's} Equations},
 ```
 注意尽量避免将一个词中个别字母用大括号括起来，如“{M}axwell's”，这可能会导致字母的间距有问题，建议将整个词括起来，如“{Maxwell's}”。
 
-### 84. 如何选择参考文献的风格
+### 105. 如何选择参考文献的风格
 
 参考文献的风格一般是期刊或会议模板指定 bst 的，作者应仔细阅读投稿要求和模板使用说明，根据规定使用合适的 bst。通常有以下方式：
 1. 在文档中声明 `\bibliographystyle{ieeetran}
 
 在模板的文档类选项中使用合适的参数，如“\documentclass[authoryear]{ustcthesis}”。 
 
-### 85.  BibTeX 参考文献数据库
+### 106.  BibTeX 参考文献数据库
 
 BibTeX 的 bib 文件是一个记录已阅文献的数据库，但是通常不建议手动编译 bib 文件，建议：
 1. 使用 JabRef 或 Zotero 等文献管理工具导出 bib 文件创
 2. 使用 [Google Scholar](https://scholar.google.com/) 或 [Bing 学术](https://cn.bing.com/academic)导出 bib 条目建
 
-### 86. 创建参考文献风格
+### 107. 创建参考文献风格
 
 BibTeX 的风格文件 bst 是使用一种后缀语言写的代码，如果对编程能力比较自信的话，可以阅读 BibTeX 的文档 btxdoc 和 btxhak，btxbst.doc 文件提供了标准 bst 风格的代码注释，另外还可以阅读 ttb 和 The LaTeX Companion 等资料。
 
@@ -725,7 +968,7 @@ BibTeX 的风格文件 bst 是使用一种后缀语言写的代码，如果对�
 
 另外还可以考虑使用 biblatex，它提供更方便的接口用于自定义参考文献格式。
 
-### 87. 参考文献中的数字格式
+### 108. 参考文献中的数字格式
 
 参考文献表中的数字格式是由 \@biblabel 控制的，可以通过重定义该命令来修改格式。比如将数字修改为左对齐：
 ```
@@ -734,34 +977,37 @@ BibTeX 的风格文件 bst 是使用一种后缀语言写的代码，如果对�
 \makeatother
 ```
 
-### 88. BibTeX文献条目列表
+### 109. BibTeX文献条目列表
 
 科技论文通常要求参考文献表中的文献必须在正文中引用，但是在某些特殊情况下仅需要列出 bib 数据库中的文献，可以使用 \nocite{*} 命令列出调用的bib中所有条目，或者使用类似\nocite{ref1,ref2,ref3}命令列出需要显示的条目。
 
-### 89. 制作参考文献的HTML
-### 90. BibTeX中的多字母缩写
-### 91. 多个参考文献表
+### 110. 制作参考文献的HTML
+
+### 111. BibTeX中的多字母缩写
+
+### 112. 多个参考文献表
 
 natbib宏包与Donald Arseneau和Niel Kempson编写的chapterbib宏包兼容，该宏包允许在一个文档内有多个独立的参考文献列表。通常用法是一本书的各章有独立的参考文献列表，尤其是在各章由不同作者独立编写时。
 
-### 92. 同一位置多文献引用
+### 113. 同一位置多文献引用
 
 只需要将多篇文献的bibkey用英文半角逗号分隔写在一个cite指令的选项里即可。如：
 ```
 \cite{knuth84,lamport86}
 ```
 
-### 93. 非英文参考文献条目
+### 114. 非英文参考文献条目
 
 什么叫非英文参考文献条目？是指bibkey么？一般不建议用中文，处理好编码格式，无殊。
 中文的参考文献条目，与英文条目并没有什么差别，只是注意编码。目前处理中文推荐用xelatex 编译 utf8 编码的文件。因此中文的 bib 条目也应该用 utf8 编码。
-### 94. **BibTeX**** 文献手写很困难，有没有什么工具能够生成？**
+### 115. **BibTeX**** 文献手写很困难，有没有什么工具能够生成？**
 
 多数时候，我们无需自己手写 BibTeX 文献条目。从 [https://scholar.google.com/](https://scholar.google.com/)、[https://academic.microsoft.com/](https://academic.microsoft.com/)、 [https://cn.bing.com/academic?mkt=zh-CN](https://cn.bing.com/academic?mkt=zh-CN) 或者期刊、数据库的网站上都能够导出 BibTeX 文献条目。
 老牌的文献管理软件 EndNote 也支持生成 BibTeX 格式的数据库，详情见 官网[https://endnote.com/](https://endnote.com/)。
 开源软件 JabRef 甚至支持 BibTeX 文献条目的导入、导出和管理，详情见 官网[http://www.jabref.org/](http://www.jabref.org/)。
 Zetero 使用起来也非常方便，详情见官网 [https://www.zotero.org/](https://www.zotero.org/)。
-### 95. 如何使用 BibTeX 排版参考文献
+### 116. 如何使用 BibTeX 排版参考文献
+
 * 准备一份 BibTeX 数据库，假设数据库文件名为 books.bib，和 LaTeX 源代码一般位于同一个目录下。
 * 在源代码中添加必要的命令，如 \bibliographystyle{abbrv}，\bibliography{books}。假设源代码名为 demo.tex。其中，\bibliographystyle 设定参考文献的格式。\bibliography 告诉系统使用哪个数据库和参考文献列在哪个位置。
 * 写好了以上两个文件之后，我们就可以开始编译了。例如在命令行中执行以下命令
@@ -772,11 +1018,11 @@ xelatex demo
 xelatex demo
 ```
 
-### 96. 如何将参考文献条目录入到正文中
+### 117. 如何将参考文献条目录入到正文中
 
 理工科类论文很少用。
 
-### 97. bib文件的重建
+### 118. bib文件的重建
 
 用文本编辑器如Notepad++, Sublime Text或WinEdt或专门文献管理软件JabRef，BibDesk等创建文件，改名为 ref.bib 文件，往里头添加参考文献目录。参考如下：
 ![图片](https://images-cdn.shimo.im/VKQ8uAycksg1zPlo/image.png!thumbnail)
@@ -801,26 +1047,29 @@ xelatex demo
 ![图片](https://images-cdn.shimo.im/VFUjYs5MvKQz522e/image.png!thumbnail)
 然后文件->导出文献库->导出格式 BibTeX  确定保存生成的bib文件，可以将这个 bib 文件中的参考文献全部复制黏贴到你的 ref.bib 文件中，也可以单独作为一个新的bib文件，在正文区则需要添加多个bib文件就可以，用命令 \bibliography{test,ref}，多个bib文件用逗号分隔即可。同时为引用的参考文献需要命令 \nocite{*} 来将未引用的文件全部排版出来。
 注：百度学术、万方数据库也支持导出 .bib 文件。
-1. 如何减少参考文献条目行间距
+### 119. 如何减少参考文献条目行间距
 
 文献条目间距为\itemsep,默认值4.5pt plus 2pt minus 1pt,可通过指令\addtolength{\itemsep}{距离}调整。
 
-### 98. 按照章节分开参考文献条目
+### 120. 按照章节分开参考文献条目
 
 可看看chapterbib宏包。
-### 99. 引文的排序及压缩
+### 121. 引文的排序及压缩
 
 这个取决于使用的宏包，常用的natbib宏包可以使用sort或者sort&compress选项激活相应的排序或排序并压缩功能。
-### 100. 引文列表排序
+### 122. 引文列表排序
 
 这个取决于bst，一般模板都有指定的bst。
-### 101. BibTeX中过长的字符串
-### 102. 按照“unsrt”规则的目录重排序
-### 103. BibTeX参考文献中的URL
+### 123. BibTeX中过长的字符串
+
+### 124. 按照“unsrt”规则的目录重排序
+
+### 125. BibTeX参考文献中的URL
 
  调用url或者xurl宏包即可正常使用url，也可以看看href宏包。
-### 104. 基于Plain TeX的BibTeX的使用
-### 105. 常用的biblatex参考文献样式
+### 126. 基于Plain TeX的BibTeX的使用
+
+### 127. 常用的biblatex参考文献样式
 
 biblatex除了可以应用自带的标准样式外，还可以使用其他作者提供的第三方样式，这里介绍一些常用的样式：
 * 国外常用
@@ -855,11 +1104,25 @@ biblatex除了可以应用自带的标准样式外，还可以使用其他作者
 |authortitle-dw|`\usepackage[style=authortitle-dw]{biblatex}`| |Dominik Waßenhoven|for Humanities|
 |footnote-dw|`\usepackage[style=footnote-dw]{biblatex}`| |Dominik Waßenhoven|for Humanities|
 
+### 128. 使用超链接，如何去除颜色边框？ 
 
-* 
-* 
+直接在引用 hyperref 宏包的时候使用以下命令之一 
+
+```
+\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks]{hyperref}
+```
+
+第一种方法是隐藏链接，即隐藏颜色和边框。第二种方法是用不同颜色来替换默认的边框强调超链接的方式，但是这种方法会使得链接具有不同的颜色。如果需要设置各种链接的颜色可以参考 hyprref 的说明文档，值得庆幸的是，该宏包已经有了一个[中文翻译版](https://github.com/latexstudio/LaTeXPackages-CN/blob/master/hyperref/hyperref-zh-cn.pdf)。 
+
+### 129. 参考文献列表行距如何设置？ 
+
+### 130. 参考文献编号如何左对齐，右对齐？ 
+
+### 131. 插入参考文献列表有几种方式？如何定义其样式？如何定义正文引用样式？ 
+
 ## 六、字体篇
-### 106. LaTeX字体是如何处理的
+### 132. LaTeX字体是如何处理的
 
 LaTeX 2ε目前的字体机制称为“新字体选择机制”（New Font Selection Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学字体初学者不必过早了解）：
 * 编码（encoding）。这个属性初学者暂时不必了解。在（pdf）latex和uplatex中，默认的西文编码称为OT1；在xelatex中，默认的编码称为EU2，就是Unicode。
@@ -869,73 +1132,47 @@ LaTeX 2ε目前的字体机制称为“新字体选择机制”（New Font Selec
 * 字号（size）。以上四种变化是字型（typeface）的变化，而这是同一字型下不同大小的变化。LaTeX 2ε提供了成套的字号命令，如\normalsize、\small、\scriptsize等。
 
 中文字体的方面，不同的中文解决方案的处理也有不同，这里就不介绍了。
-### 107. 获取位图字体
-### 108. PDF格式图片插入过程中的字形缺失
-### 109. 为数学排版选择Type 1字体
-### 110. Type 1字体配置
-### 111. 切换到T1时字体变得模糊
-### 112. 由于Ghostscript太旧造成字体模糊
-### 113. 如何使用斜体
+### 124. 获取位图字体
+
+### 125. PDF格式图片插入过程中的字形缺失
+
+### 126. 为数学排版选择Type 1字体
+
+### 127. Type 1字体配置
+
+### 128. 切换到T1时字体变得模糊
+
+### 129. 由于Ghostscript太旧造成字体模糊
+
+### 130. 如何使用斜体
 
 斜体一般是西文字体用的，在中文中不用斜体。
 斜体这个名字比较误导，因为它对应英文的两个名字：倾斜体（slanted，指字形风格大致相同但是倾斜）和意大利体（italic，指字形设计为接近手写的形态，同时也就出现了倾斜）。
 两种情况下分别有\slshape和\itshape两个命令，使用例如{\slshape slanted}及{\itshape italic}；也有把斜体内容作为参数的命令（推荐使用这种），如\textsl{slanted}及\textit{italic}。
-### 114. 如何使用粗体
-### 115. 列表环境 (enumerate/itemize/description) 的条目间距太大了，怎么改小一些？
+### 131. 如何使用粗体
 
-可以使用 paralist 宏包，它提供了一系列压缩了行间距的列表。对应的环境名称分别是 compactenum/compactitem/compactdesc ，也可以使用 enumitem 宏包修改三个列表环境的格式。
-### 116. 列表的条目项内容很短，可以让他们在一行内排版么？
+- \mathbf 
 
-可以使用 paralist 宏包，这个宏包提供了 inparenum/inparitem/inpardesc 环境，可以在行内输出列表内容；也可以带上 inline 选项使用 enumitem 宏包，可以使用带*形式的三个列表环境，即在行内输出列表内容。
-### 117. enumerate 宏包修改列表标签格式很方便，但是这个宏包和 enumitem 宏包冲突，有什么解决办法么？
+  **\mathbf 只能用来加粗拉丁字母，对希腊字母无效。 **
 
-如果只是需要使用这种短标签表示方法，利用 enumitem 宏包同样能够做到，只需要带上 shortlabels 选项加载 enumitem 宏包即可。同时，enumitem 宏包提供了自定义短标签名称和格式的宏命令，你也可以自己定义一些有趣的标签形式。
-### 118. 如何使用带圈数字作为 enumerate 列表的标签？
+- \boldmath 
 
-LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的排版效果非常差，几乎很少有人会直接使用。带圈数字可以通过unicode字符实现，也可通过 pifont 宏包中 \ding 命令实现（但是只能用到10以内的数字），甚至可以通过 tikz 自己绘制一个。使用带圈数字做enumerate的标签，可以通过 enumitem 宏包设置。这里给出一个使用 unicode 字符实现带圈数字的方法，并将其应用于 enumerate 的标签。
-```
-\documentclass{article}
-\usepackage{xeCJK,xunicode,calc}
-\usepackage[shortlabels]{enumitem}
-\newcommand{\Cnum}[1]{%
-\ifnum #1<21
-  \edef\a{\the\numexpr #1+9311}
-\else
-  \ifnum #1<36
-    \edef\a{\the\numexpr #1+12860}
-  \else
-    \ifnum #1<51
-     \edef\a{\the\numexpr #1+12941}
-    \else
-      \PackageError{your package}{Number too large}{}
-    \fi
-  \fi
-\fi
-{\CJKfontspec{Noto Serif CJK SC}\fontspec{Noto Serif CJK SC}\symbol\a}}
-\SetEnumerateShortLabel{o}{\protect\Cnum{\arabic*}}
-\begin{document}
-\Cnum{12} \Cnum{32} \Cnum{46} 
+- \boldsymbol
 
-\begin{enumerate}[o]
-  \item The first item.
-  \item The second item.
-  \item The Third One.
-\end{enumerate}
-\end{document}
-```
-### 119. 公式之后解释公式符号的文字，通常是 “符号 —— 解释” 这样的格式，我希望这段文字的格式是按破折号对齐，并且解释文字折行后悬挂缩进，怎样实现这样的格式？
+- \bm 
 
-方法很多，可以列表，可以align等环境。
-### 120. 如何给目录中的章节都带上引导点来连接页码？
+- \textbf 
 
- 这个需要在cls里查看目录的设置，可以通过修改或重定义\titlecontents的方式来设置想要的格式。
-### 121. 格式
-### 122. **打开.tex文件出现乱码**
+- \bfseries 
 
-   这个一般是由于文档保存的编码和编辑器默认编码不一致导致的，可以用记事本或者notepad++之类的转换文档编码，也可以在编辑器里选择相应的编码格式重新打开文档，还需要注意的是编码与编译引擎也需要一致，才能得到正确的结果。
-10. **字体相对大小指令**
+### 132. 如何设置文档字体为本机已安装字体？ 
+
+### 133. 如何通过字体文件名来调用未安装本机字体？
+
+### 134. 字体相对大小指令
 
 \small 等命令对应的字体大小与文章 \documentlcass 中指定的字体有关，对应 10, 11, 12pt 三种全局字体大小的情况如下表所示，
+```
       指令                        10pt    11pt    12pt
       \tiny                           5       6       6
       \scriptsize                 7       8       8
@@ -947,9 +1184,9 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
       \LARGE                    17.28   17.28   20.74
       \huge                       20.74   20.74   24.88
       \Huge                      24.88   24.88   24.88
-
+```
 ## 七、插图篇
-### 123. LaTeX可以插图哪些类型的图片？
+### 135. LaTeX可以插图哪些类型的图片？
 
 我们通常使用LaTeX、PDFTeX、XeTeX编译源文件。各种编译方式下图形格式支持如下
 * LaTeX直接支持EPS、PS图形文件，间接支持JPEG、PNG等格式；
@@ -957,12 +1194,129 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
 * XeLaTeX直接支持BMP、JPEG、PNG、EPS、PDF图形格式
 
 【注意】在使用PDFLaTeX时，如果要插入EPS，可以先把EPS转化为其他格式（比如PDF、JPEG、PNG、EPS），或者在导言区加载epstopdf，此宏包需要在graphicx宏包之后调用。更改图片格式可以使用ImageMagick或者类似[改图宝](http://www.gaitubao.com)等在线改图软件。
-### 124. 图片的路径如何自动设置，不用正文一个个设置路径？
+
+### 136. 在子文档中想用主文档所在文件夹下的子文件夹内的图片？ 
+
+关键在于找到图片，直接暴力使用指定路径的方法，MWE如下：
+
+```
+main----subfile
+     |--figure
+
+main.tex in main folder, figure.png in figure folder, sub.tex in subfile folder.
+
+main.tex:
+% !TeX program = pdflatex
+\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+  \include{./subfile/sub1}
+\end{document}
+
+sub.tex:
+% !TeX root = ../file.tex
+\section{test}
+hello! \LaTeX{}!
+\includegraphics[width=\linewidth]{../figure/figure.png}
+```
+
+但是此种情况有问题，就是不能够使用 \graphicspath 指定插图路径。这个就留给后来人去解决吧。 
+
+### 137. 图片的路径如何自动设置，不用正文一个个设置路径？
 
  可以使用指令graphicspath来设置图片路径，如：\graphicspath{{./figures/}} 即设定图片路径为当前目录下子文件夹figures。
-### 125. 图片浮动如何控制？各自参数如何使用？
-### 126. 图文混排用什么方法实现？
-### 127. 并列插图如何进行排版
+
+### 138. 图片浮动如何控制？各自参数如何使用？
+
+插图(figure)、表格(table)等浮动体浮动位置有四个选项可以控制，分别是 h -- here（当前位置）, t -- top （页面顶部）, b -- bottom（页面底部）和 p -- page（单独一个浮动页）。这四个位置选项的输入顺序是无所谓的，也就是说 [htbp] 和 [btph] 的效果是一样的。LaTeX 总是按照h-t-b-p的顺序依次尝试浮动，直到找到合适的位置。LaTeX 标准文档类中对位置参数的默认值是[tbp]，可以通过重定义内部命令\fps@figure 和\fps@table 来修改。 
+
+```
+\makeatletter
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
+\makeatother
+```
+
+LaTeX 放置浮动体时，浮动体不能造成页面溢出（overfull page），且只能放置于当前页或后面的页面中，浮动体根据其类型必须按源码内出现的顺序出现，也就是说，只有当之前的插图都被处理之后才能对下一幅插图进行处理，那么，只要前面有未处理的插图，当前位置就不会放置插图，一幅不可放置的插图将阻碍其后的图形放置，直到文件结束或出现\clearpage 等处理所有未处理浮动体的名令出现之处。 需要说明的是，对于两种浮动体类型，表格的排版和插图的排版是相互独立处理的，未处理的表格不会影响插图的布置。一般来说，给出的参数越多，排版的结果就越好，单个参数选项极容易引发问题，一旦浮动体不适合指定位置，将被搁置并阻碍接下来其他浮动体的处理，一旦被阻塞的浮动体超过LaTeX允许的最大值，还将产生错误。 LaTeX还设定了一些计数器来限制页面上浮动体的数量，这些包括： 
+
+|    计数器    |                            含义                             |
+| :----------: | :---------------------------------------------------------: |
+| dbltopnumber | twocolumn 模式下可以位于页面顶部的浮动体最大数目（缺省为2） |
+| topnumber | 可以位于页面顶部的浮动体最大数目（缺省为2）|
+| bottomnumber | 可以位于页面底部的浮动体最大数目（缺省为1）|
+| totalnumber | 可以位于文本页中的浮动体最大数目（缺省为3）|
+
+LaTeX 还设定了一些比例参数控制浮动体的放置，包括：
+
+| 参数          | 含义                            |
+| ------------- | ------------------------------- |
+| \textfraction | 文本页上文本最小比例（默认0.2） |
+| \topfraction | 页面顶部浮动体高度比例（默认0.7）|
+| \bottomfraction | 页面底部浮动体高度比例（默认0.3）|
+| \floatpagefraction | 浮动页浮动体高度比例（默认0.5）|
+| \dbltopfraction | twocolumn 模式下页面顶部浮动体高度比例（默认0.7）|
+| \dblfloatpagefraction | twocolumn 模式下浮动页浮动体高度比例（默认0.5）|
+
+这些计数器和比例值可以通过\setcounter 和\renewcommand 分别进行调整。但调整时应特别小心，不适当的比例值会导致非常糟糕的排版或大量未处理的浮动体。如果只是需要LaTeX在处理某一浮动体时忽略以上这些限制条件，可以在浮动体位置选项参数中加!即可。注意，! 对 浮动页限制条件的忽略无效。 
+
+```
+\begin{table}[!hbt]
+  the contents of the table ...
+\end{table}
+```
+
+
+
+### 139. 图文混排用什么方法实现？
+
+大概有好几个宏包：picinpar、wrapfig，以及过时了的 picins 宏包。但是都有或多或少的问题，都不能够做得比较智能。等着后来人的修订以及更好的实现方式吧。 
+
+- wrapfig 用法 
+
+  ```
+  \begin{wrapfigure}{行数}{位置}{超出长度}{宽度}
+    <图形>
+  \end{wrapfigure}
+  ```
+
+  - 行数 
+
+    是指图形高度所占的文本行的数目，如果不给出此选项， wrapfig 会自动计算。 
+
+  - 位置 
+
+    是指图形相对于文本的位置，须给定下面四项的一个。 
+
+    r,R    表示图形位于文本的左边。 
+
+    l,L    表示图形位于文本的右边。 
+
+    i,R    表示图形位于页面靠里的一边（用在双面格式里）。
+
+    o,O    表示图形位于页面靠外的一边。 
+
+  - 超出长度 
+
+    是指图形超出文本边界的长度，缺省为 0pt。 
+
+  - 宽度 
+
+    指图形的宽度。 wrapfig 会自动计算 图形的高度。不过，我们也可设定图形的高度，具体可见 wrapfig.sty 内 的说明。 
+
+- picinpar 用法 
+
+  picinpar 宏包定义了一个基本的环境 window，还有两个变体  figwindow 和 tabwindow。允许在文本段落中打开一个``窗口 ''， 在其中放入图形、文字和表格等。这里我们主要讨论将图形放入文本段落 的用法，其它的用法可参考 picinpar 的说明。  
+
+  ```
+  \begin{window} [行数，对齐方式，内容，内容说明]\end{window}
+  \begin{figwindow} [行数，对齐方式，图形，标题]\end{figwindow}
+  ```
+
+  - 是指“窗口”开始前的行数。 
+  - 对齐方式是指在段落中“窗口'“的对齐方式。缺省为 l， 即左对齐。 另外两种是 c ：居中和 r ：右对齐 。
+  - 第三个参数是出现在“窗口”中的“内容”，这在 figwindow 中就是 要插入的图形。第四个参数则是对``窗口''内容的说明性文字，这在  figwindow 中就是图形的标题。 
+
+### 140. 并列插图如何进行排版
 
 并列插图有3种情况：
 * 并排摆放，各有标题。 
@@ -1012,10 +1366,11 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
 
 此外，如果是并列的是两个有各自标题的插图，可以使用floatrow系列浮动体宏包，该宏包提供的floatrow环境可以并列图表等浮动体。
 
-### 128. 并列子图如何进行排版
+### 141. 并列子图如何进行排版
 
 并列子图可以看看subfigure，subfloat等宏包。
-### 129. 如果想让图片的题注在图片右侧，应该怎么做
+
+### 142. 如果想让图片的题注在图片右侧，应该怎么做
 
 可以利用盒子来实现这个功能。下面给出一个例子
 ```
@@ -1030,12 +1385,20 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
 \end{document}
 ```
 若要让题注在图片左侧，只需将 \parbox 那段代码移到 \includegraphics 之前。
+
 ## 八、表格篇
-### 130. 如何指定表格的总宽度
+
+### 143. 有没有办法把图片固定在某位置篇
+
+### 144. 如何指定表格的总宽度
+
+可以看看tabularx、tabu等宏包。 
+
+### 145. 如何指定表格的总宽度
 
 可以看看tabularx、tabu等宏包。
 
-### 131. 指定列宽度的表格如何使单元格内容居中
+### 146. 指定列宽度的表格如何使单元格内容居中
 
  指定宽度的表格列一般采用 p{<width>} 形式的列格式，这种列格式下，表格内容是两端对齐的，如果想使其成为居中对齐需要借助 array 宏包提供的功能，示例如下：
 ```
@@ -1082,7 +1445,26 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
 \end{tabularx}
 
 ```
-### 132. tabularx 中的 X 列格式，当单元格内容发生换行时，如何使同一行其他列的单元格垂直居中对齐？
+### 147. tabularx 中的 X 列格式如何居中对齐 
+
+同样采用 array 宏包的 >{<format>} 方法，并利用 \newcolumntype 定义新的列格式，如： 
+
+```
+\usepackage{array,tabularx}  % this line in preamble
+\newcolumntype{Z}{>{\centering\arraybackslash}X} % this line in preamble
+\begin{tabularx}{\linewidth}{ZZ}
+\hline
+1  &  3.530  \\
+2  &  456.0  \\
+3  &  78.945 \\
+4  &  3.65   \\
+\hline
+\end{tabularx}
+```
+
+
+
+### 148. tabularx 中的 X 列格式，当单元格内容发生换行时，如何使同一行其他列的单元格垂直居中对齐？
 
 对于指定宽度的表格列格式 p{<width>}，单元格内一旦进行换行，该单元格同一行内其他列的单元格内容均为垂直方向上顶端对齐，我们可以使用 array 宏包，以 m{<width>} 列格式或者 b{<width>} 列格式 替代 p{<width>} 格式即可实现垂直居中对齐或垂直底部对齐。对于 tabularx 中的 X 列格式，也是采用同样的思路实现，只是这里需要对 \tabularxcolumn 宏进行重定义如下：
 ```
@@ -1099,7 +1481,19 @@ LaTeX 自带一个带圈字符的命令 \textcircled，不过，这个命令的�
 \setlength{\belowrulesep}{0pt}
 \setlength{\aboverulesep}{0pt}
 ```
-### 133. 表格的一列全是公式，有什么办法能输入简单些？
+### 149. booktabs的三线表，竖线为什么是不连续的？ 
+
+宏包的作者为表格线的前后都增加了额外的sep，而且，宏包的作者认为三线表是不应该有竖线的。当然，如果你一定想要使用竖线，不妨以下面两个命令将表格线前后的sep设置为0pt。 
+
+```
+\usepackage{booktabs} % this line in preamble
+\setlength{\belowrulesep}{0pt}
+\setlength{\aboverulesep}{0pt}
+```
+
+
+
+### 150. 表格的一列全是公式，有什么办法能输入简单些？
 
 可以使用 array 宏包，>{ } 与 <{ } 可以为一列数据前后加上特定的宏命令。在一列数据前后均加上$则把这列数据放入数学模式中，举例如下：
 ```
@@ -1114,9 +1508,9 @@ f(x)     &  2.58   \\
 \end{tabular}
 ```
 第一列数据省去了输入数学模式起止符号 $ 的痛苦。对于不需要放入数学模式的单元格，比如表头，需要用 \multicolumn{1}{c}{xxx}的方式来保护一下，重新指定对齐方式。
-1. 我的表格单元格内容是一个列表环境 (enumerate/itemize)，它和表格横线之间间距好大啊，怎么能把这些间距去掉？
+### 151. 我的表格单元格内容是一个列表环境 (enumerate/itemize)，它和表格横线之间间距好大啊，怎么能把这些间距去掉？
 
-### 134. 如果想让表格中数字小数点对齐要怎么做
+### 152. 如果想让表格中数字小数点对齐要怎么做
 
  可以借助 @ 的功能，如
 ```
@@ -1158,7 +1552,8 @@ f(x)     &  2.58   \\
 \end{tabular}
 \end{document}
 ```
-### 135. 表格竖排
+### 153. 表格竖排
+
 ```
 \documentclass{ctexart}
 \usepackage[usestackEOL]{stackengine}
@@ -1175,8 +1570,162 @@ Foo bar & {\Centerstack{ 这 \\ 一 \\ 列 \\ 竖 \\ 排 }} & Foo bar \\
 
 \end{document}
 ```
+### 154. 跨页长表格 
+
+\usepackage{longtable}，做好对长表格跨页时的设置 
+
+### 155. 双栏中表格过大怎么调整? 
+
+- 方法一：用 graphicx 宏包提供的 \raisebox 命令： 
+
+  ```
+  \raisebox{width}{height}{function}
+  ```
+
+  raisebox 会缩小 function 中的内容到 width 宽度、height 高度。你也可以指定其中一项，另一个用!占位，这样系统会自适应另一个参数，即相当于scale命令。 
+
+- 方法二：用 table* 取代 table 环境，针对的是单栏表格。 
+
+- 方法三：将表格中的字体缩小。 
+
+- 方法四：使用横排：使用 rotating 宏包 
+
+### 166. 如何制作列数可变的表格，例如试卷的计分表？ 
+
+主要是使用 makecell 和 interfaces-makecell 宏包。下面给出一个 MWE。 
+
+```
+\documentclass{standalone}
+\usepackage{ctex,calc,makecell,interfaces-makecell,CJKnumb,tabularx,multirow}
+
+\newcounter{TotalPart}
+\newcounter{SubColumn}
+\newcounter{EmptyColumn}
+
+\setcounter{TotalPart}{1}
+
+% 计分表制作
+\newcommand{\ScoreTable}{
+ \setcounter{SubColumn}{\value{TotalPart}+2}
+ \setcounter{EmptyColumn}{\value{TotalPart}+4}
+ \begin{tabularx}{\textwidth}{|*{\theSubColumn}{X<{\centering}|}*{3}{c|}}
+  \hline
+   \multicolumn{\theSubColumn}{|c|}{\multirow{2}{*}{试卷卷面成绩}}
+   & \multicolumn{1}{c|}{\multirow{3}{3em}{课程考核成绩占~\%}}
+   & \multicolumn{1}{c|}{\multirow{3}{3em}{平时成绩占\,\%}}
+   & \multicolumn{1}{c|}{\multirow{3}{3em}{课程考核成绩}}
+  \\
+   \multicolumn{\theSubColumn}{|c|}{}
+   & & &
+  \\
+  \cline{1-\theSubColumn}
+   \hfill 题 \hfill 号 \hfill~
+   & \repeatcell{\theTotalPart}{text=\CJKnumber{\column}}
+   & \hfill 小 \hfill 计 \hfill~
+   & & &
+  \\
+  \hline
+   \hfill 得 \hfill 分 \hfill~
+   & \eline{\theEmptyColumn}
+  \\
+  \hline
+ \end{tabularx}
+}
+
+\begin{document}
+
+\ScoreTable
+
+\end{document}
+```
+
+CJKnumb 宏包是为了把阿拉伯数字转换为小写汉字序号。
+
+calc 宏包是为了做四则运算。
+
+tabularx 宏包是为了做列宽自动扩展的表格。
+
+multirow 宏包是为了合并单元格。
+
+makecell 是制作表格。
+
+interfaces-makecell 宏包提供了一系列命令，使得制作可变表格称为可能，同时简化了表格制作。 
+
+### 167. 双栏中表格过大怎么调整? 
+
+### 168. 表格在单元格内如何换行？ 
+
+可以通过限制列宽实现，例如下面的例子：
+
+```
+\begin{tabular}{|c|c|m{50mm}|}%这里用m则必须调用array宏包
+\hline
+a & b & \LaTeX{}表格固定列宽自动换行自动换行自动换行自动换行自动换行\\
+\hline
+a & b & \LaTeX{}表格固定列宽自动换行自动换行自动换行自动换行自动换行\\
+\hline
+a & b & \LaTeX{}表格固定列宽自动换行自动换行自动换行自动换行自动换行\\
+\hline
+\end{tabular}
+```
+
+### 169. 如何插入子图/表，各自分别带子标题，不带子标题？ 
+
+### 170. 如何减小表格，插图，公式，列表等前后空白？ 
+
+表格、插图、公式、列表的前后空白很多是由于不良的文本结构引起的，比如太短篇幅的正文，接连几级标题之间没有正文内容，甚至标题之间只有插图和表格等浮动体而没有任何说明的正文，这些都是不好的行文习惯，应杜绝这样的行文方式。此外，一些不良的代码写法也会引入较大的空白，如： 
+
+```
+\begin{center}
+  \begin{figure}
+  ...
+  \end{figure}
+\end{center}
+```
+
+或者 
+
+```
+\begin{figure}
+  \begin{center}
+  \includegraphics{x.pdf}
+  \caption{the title}
+  \end{center}
+\end{figure}
+```
+
+而应该采用的方式是： 
+
+```
+\begin{figure}
+\centering
+\includegraphics{x.pdf}
+\caption{the title}
+\end{figure}
+```
+
+这是因为 center 环境本身就是一个 list 列表环境，其与上下文之间就有垂直间距，加上figure 浮动体与正文之间的间距，插图与正文之间的间距自然就变大了。 
+
+### 171. 表格如何分页？ 
+
+表格如何分页？ 
+
+### 172. 表格怎样可以旋转90度？ 
+
+希望旋转90度的表格多半是由于过宽而需要进行横排，这里一个方法是使用 rotating 宏包，使用方法非常简单，用 sidewaytable 替代 table 即可，但这种表格不能实现跨页长表格（当然又宽又长的表格确实很少见）；另一个方法是使用lscape 宏包提供的 landscape 环境，进入横排状态，在其中使用相应的环境即可，这种方法可以实现跨页表格。 
+
+### 173. 如何使用图表目录？ 
+
+- \listoftables
+- \listoffigures 
+
+### 174. 图表如何使用双语标题 
+
+使用 bicaption 宏包或 ccaption 宏包。 
+
 ## 九、beamer篇
-### 136. 隐藏导航栏
+
+### 175. 隐藏导航栏
 
 Beamer 自带的导航符号看起来很不错，但是实际上使用的并不多，为了让文稿的显示面积增加，减少干扰元素，我们可以隐藏下方的导航栏符号，两个方法如下：
 
@@ -1190,7 +1739,7 @@ Beamer 自带的导航符号看起来很不错，但是实际上使用的并不�
 ```
 \setbeamertemplate{footline} 
 ```
-### 137. 向 Beamer 中添加参考文献
+### 176. 向 Beamer 中添加参考文献
 
 我们可以使用下面的命令添加参考文献，最好放在 `appendix' 后面。
 
@@ -1201,7 +1750,7 @@ Beamer 自带的导航符号看起来很不错，但是实际上使用的并不�
 \bibliography{mybib}
 \end{frame}
 ```
-### 138. 每节显示目录
+### 177. 每节显示目录
 
 在我们做一个比较长的报告时，我们可能会想在每一节添加一个目录，让听众清楚内容讲到哪了，我们可以在导言区添加如下的命令。
 
@@ -1215,7 +1764,7 @@ Beamer 自带的导航符号看起来很不错，但是实际上使用的并不�
 ```
 \setbeamertemplate{headline}{}
 ```
-### 139. 多栏显示
+### 178. 多栏显示
 
 	有时候我们有图需要并排摆放，一个好方法是使用分栏，尤其是当两个图不同的高度的时候，然后在每一栏插入我们需要的图片。代码如下：
 
@@ -1227,7 +1776,7 @@ Beamer 自带的导航符号看起来很不错，但是实际上使用的并不�
 \includegraphics ...
 \end{columns}
 ```
-### 140. 添加 LOGO
+### 179. 添加 LOGO
 
 在右下方添加 logo，直接用系统默认的命令就可以。
 
@@ -1245,10 +1794,12 @@ Beamer 自带的导航符号看起来很不错，但是实际上使用的并不�
 ```
 ## 十、绘图篇
 
+### 180. 如何利用Tikz画超过360º的角，并做好标注
+
 ## 十一、开发篇-含LaTeX3
 
 介绍宏开发技巧，宏包和模板类开发的常见问题。
-### 141. 在阅读已有的宏包或者文类时，遇到未知的命令应如何处理
+### 181. 在阅读已有的宏包或者文类时，遇到未知的命令应如何处理
 
 可以参照胡伟的《LaTeX2e文类和宏包学习手册》中的第四章-命令集注。
 # 十二、常见错误提示﻿
@@ -1267,7 +1818,7 @@ Beamer 自带的导航符号看起来很不错，但是实际上使用的并不�
 * ! LaTeX Error: There's no line here to end. 在\par 或空行后调用命令\newline 或 \\ 。这里它们没有任何意义，如果需要额外竖直间距，应使用 \vspace 命令。
 * ! LaTeX Error: Lonely \item -- perhaps a missing list enviroment. 在列表环境外使用了\item 命令。
 # 十三、用法惯例
-1. TeX编辑器中的魔法注释
+### 182. TeX编辑器中的魔法注释
 
 在TeX中有单行注释命令为%，其后的文本主要是对源代码进行一些说明，它们会被TeX，LaTeX等排版引擎所忽略。但有些注释对专门的TeX相关编辑器来说，可能用特别的意义。在不同的TeX编辑器中，这魔法注释(magic comments）可能是不同的。
 下面是一些例子：
@@ -1345,9 +1896,11 @@ texshop
 
 ## 其它
 
-* LaTeX与数学软件(Mathematica, Maple,Sagemath等)
-* LaTeX与公式编辑器
-* MathJaX
+### 183. LaTeX与数学软件(Mathematica, Maple,Sagemath等)
+
+### 184. LaTeX与公式编辑器
+
+### 185. MathJaX
 
 **官网**：http://www.latexstudio.net
 **微信公众号**：latex2015
