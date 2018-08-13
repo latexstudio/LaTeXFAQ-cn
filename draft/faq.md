@@ -828,31 +828,31 @@ biblatex除了可以应用自带的标准样式外，还可以使用其他作者
   * MLA
 * 国内
   * GB7714-2015
-样式名|用法|对应的bibtex样式|作者介绍|样式说明|
-:----:|:----:|:----:|:----:|:----:|
-trad-plain|`\usepackage[style=trad-plain]{biblatex}`|plain|MarcoDaniel and MoritzWemheuer，后者是biblatex维护者之一|将引文按字母顺序排序,比较次序为作者姓氏、出版年份和题名,如果不能顺序,将以在正文中的引用顺序为准。|
-trad-unsrt|`\usepackage[style=trad-unsrt]{biblatex}`|unsrt|MarcoDaniel and MoritzWemheuer|按照在正文中引用文献的先后顺序排列文献,其排版格式与trad-plain基本相同|
-trad-alpha|`\usepackage[style=trad-alpha]{biblatex}`|alpha|MarcoDaniel and MoritzWemheuer|用文献的作者姓氏前三个字母加出版年份的后两位数作为文献序号,如果出现相同的序号,则会根据排序结果在序号后追加字母以示区别，排序方法和排版格式与trad-plain相同|
-trad-abbrv|`\usepackage[style=trad-abbrv]{biblatex}`|abbrv|MarcoDaniel and MoritzWemheuer|将文献中作者名和月份名的拼写改为缩写, 显得文献信息紧凑简洁, 其排序方法和排版格式与trad-plain相同|
-ieee|`\usepackage[style=ieee]{biblatex}`|IEEEtran|Joseph Wright，biblatex 维护者之一|国际电气电子工程师协会IEEE期刊文献格式|
-apa|`\usepackage[style=apa]{biblatex}`|apalike|Philip Kime，biblatex 作者之一|American Psychological Association 的文献格式|
-Chicago|`\usepackage{biblatex-chicago}`|Chicago|David Fussner|for the Chicago Manual of Style|
-iso-numeric|`\usepackage[style=iso-numeric]{biblatex}`| |Michal Hoftich|ISO690 international standard numeric system|
-iso-iso-authoryear|`\usepackage[style=iso-iso-authoryear]{biblatex}`| |Michal Hoftich|ISO690 international standard nameanddate system,so-called Harvard style|
-gb7714-2015|`\usepackage[style=gb7714-2015]{biblatex}`|gbt7714-unsrt.bst by zepinglee|hushidong|中文文献著录标准 GB/T 7714-2015 顺序编码制|
-gb7714-2015ay|`\usepackage[style=gb7714-2015ay]{biblatex}`|gbt7714-plain.bst by zepinglee|hushidong|中文文献著录标准 GB/T 7714-2015 著者年份制|
-caspervector|`\usepackage[style=caspervector]{biblatex}`| |Casper vector|一种中文文献格式|
-nature|`\usepackage[style=nature]{biblatex}`| |Joseph Wright|for Nature|
-science|`\usepackage[style=science]{biblatex}`| |Joseph Wright|for Science|
-chem-acs|`\usepackage[style=chem-acs]{biblatex}`| |Joseph Wright|covers most American Chemistry Society journals|
-chem-angew|`\usepackage[style=chem-angew]{biblatex}`| |Joseph Wright|covers Angewandte Chemie Chemistry–A European Journal.|
-chem-biochem|`\usepackage[style=chem-biochem]{biblatex}`| |Joseph Wright|covers Biochemistry and asmallnumber of other American Chemistry Society journals|
-chem-rsc|`\usepackage[style=chem-rsc ]{biblatex}`| |Joseph Wright|covers all Royal Society of Chemistry journals|
-phys|`\usepackage[style=phys]{biblatex}`| |Joseph Wright|for AIP and APS|
-nejm|`\usepackage[style=nejm]{biblatex}`| |MarcoDaniel|for New England Journal of Medicine|
-mla|`\usepackage[style=mla]{biblatex}`| |James Clawson|for Modern Language Association|
-authortitle-dw|`\usepackage[style=authortitle-dw]{biblatex}`| |Dominik Waßenhoven|for Humanities|
-footnote-dw|`\usepackage[style=footnote-dw]{biblatex}`| |Dominik Waßenhoven|for Humanities|
+|样式名|用法|对应的bibtex样式|作者介绍|样式说明|
+|:----:|:----|:----|:----|:----|
+|trad-plain|`\usepackage[style=trad-plain]{biblatex}`|plain|MarcoDaniel and MoritzWemheuer，后者是biblatex维护者之一|将引文按字母顺序排序,比较次序为作者姓氏、出版年份和题名,如果不能顺序,将以在正文中的引用顺序为准。|
+|trad-unsrt|`\usepackage[style=trad-unsrt]{biblatex}`|unsrt|MarcoDaniel and MoritzWemheuer|按照在正文中引用文献的先后顺序排列文献,其排版格式与trad-plain基本相同|
+|trad-alpha|`\usepackage[style=trad-alpha]{biblatex}`|alpha|MarcoDaniel and MoritzWemheuer|用文献的作者姓氏前三个字母加出版年份的后两位数作为文献序号,如果出现相同的序号,则会根据排序结果在序号后追加字母以示区别，排序方法和排版格式与trad-plain相同|
+|trad-abbrv|`\usepackage[style=trad-abbrv]{biblatex}`|abbrv|MarcoDaniel and MoritzWemheuer|将文献中作者名和月份名的拼写改为缩写, 显得文献信息紧凑简洁, 其排序方法和排版格式与trad-plain相同|
+|ieee|`\usepackage[style=ieee]{biblatex}`|IEEEtran|Joseph Wright，biblatex 维护者之一|国际电气电子工程师协会IEEE期刊文献格式|
+|apa|`\usepackage[style=apa]{biblatex}`|apalike|Philip Kime，biblatex 作者之一|American Psychological Association 的文献格式|
+|Chicago|`\usepackage{biblatex-chicago}`|Chicago|David Fussner|for the Chicago Manual of Style|
+|iso-numeric|`\usepackage[style=iso-numeric]{biblatex}`| |Michal Hoftich|ISO690 international standard numeric system|
+|iso-iso-authoryear|`\usepackage[style=iso-iso-authoryear]{biblatex}`| |Michal Hoftich|ISO690 international standard nameanddate system,so-called Harvard style|
+|gb7714-2015|`\usepackage[style=gb7714-2015]{biblatex}`|gbt7714-unsrt.bst by zepinglee|hushidong|中文文献著录标准 GB/T 7714-2015 顺序编码制|
+|gb7714-2015ay|`\usepackage[style=gb7714-2015ay]{biblatex}`|gbt7714-plain.bst by zepinglee|hushidong|中文文献著录标准 GB/T 7714-2015 著者年份制|
+|caspervector|`\usepackage[style=caspervector]{biblatex}`| |Casper vector|一种中文文献格式|
+|nature|`\usepackage[style=nature]{biblatex}`| |Joseph Wright|for Nature|
+|science|`\usepackage[style=science]{biblatex}`| |Joseph Wright|for Science|
+|chem-acs|`\usepackage[style=chem-acs]{biblatex}`| |Joseph Wright|covers most American Chemistry Society journals|
+|chem-angew|`\usepackage[style=chem-angew]{biblatex}`| |Joseph Wright|covers Angewandte Chemie Chemistry–A European Journal.|
+|chem-biochem|`\usepackage[style=chem-biochem]{biblatex}`| |Joseph Wright|covers Biochemistry and asmallnumber of other American Chemistry Society journals|
+|chem-rsc|`\usepackage[style=chem-rsc ]{biblatex}`| |Joseph Wright|covers all Royal Society of Chemistry journals|
+|phys|`\usepackage[style=phys]{biblatex}`| |Joseph Wright|for AIP and APS|
+|nejm|`\usepackage[style=nejm]{biblatex}`| |MarcoDaniel|for New England Journal of Medicine|
+|mla|`\usepackage[style=mla]{biblatex}`| |James Clawson|for Modern Language Association|
+|authortitle-dw|`\usepackage[style=authortitle-dw]{biblatex}`| |Dominik Waßenhoven|for Humanities|
+|footnote-dw|`\usepackage[style=footnote-dw]{biblatex}`| |Dominik Waßenhoven|for Humanities|
 
 
 * 
