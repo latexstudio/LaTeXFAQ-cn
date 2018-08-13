@@ -828,6 +828,7 @@ biblatex除了可以应用自带的标准样式外，还可以使用其他作者
   * MLA
 * 国内
   * GB7714-2015
+
 |样式名|用法|对应的bibtex样式|作者介绍|样式说明|
 |:----:|:----|:----|:----|:----|
 |trad-plain|`\usepackage[style=trad-plain]{biblatex}`|plain|MarcoDaniel and MoritzWemheuer，后者是biblatex维护者之一|将引文按字母顺序排序,比较次序为作者姓氏、出版年份和题名,如果不能顺序,将以在正文中的引用顺序为准。|
