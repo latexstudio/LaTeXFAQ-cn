@@ -37,5 +37,8 @@
 
 ## 杂项
 
-1. TeX、LaTeX 等使用 `\TeX{}`、`\LaTeX{}`，以保证正确排版以及之后的空格。特例：LaTeX3 使用 `\LaTeX3`
+1. TeX、LaTeX 等使用 `\TeX{}`、`\LaTeX{}`，以保证正确排版以及之后的空格。
     - 遵循 `l3styleguide`
+    - 例外：
+        - LaTeX3 使用 `\LaTeX3`
+        - The TeXbook 使用 `The \TeX book`

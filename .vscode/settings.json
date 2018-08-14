@@ -2,6 +2,10 @@
     "editor.insertSpaces": true,
     "editor.wordWrapColumn": 100,
     "editor.rulers": [100],
+    "files.associations": {
+        "*.cls": "latex-expl3",
+        "*.tex": "latex"
+    },
     "files.encoding": "utf8",
     "files.eol": "\n",
     "latex-workshop.latex.tools": [
