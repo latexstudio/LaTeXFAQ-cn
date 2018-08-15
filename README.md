@@ -8,6 +8,10 @@
     <img src="images/weixin.jpg" width="40%"/>
 </div>
 
+## 编译
+
+如果您需要再本地自行编译本文档，请参考 [编译指南](BUILD.md)。
+
 ## 贡献
 
 如果您有任何改进意见或者功能需求，欢迎提交 [issue](https://github.com/latexstudio/LaTeXFAQ-cn/issues) 或 [pull request](https://github.com/latexstudio/LaTeXFAQ-cn/pulls)。编辑文档前，请先阅读 [文档协作指南](CONTRIBUTING.md)。
