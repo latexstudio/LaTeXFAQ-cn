@@ -12,6 +12,7 @@
     geometry,
     hologo,
     xurl,
+    zref-base,
     hyperref
   }
 
@@ -116,22 +117,33 @@
   }
 
 % 问答环境
-\NewDocumentEnvironment { faq } { m }
-  { \faqcn_faq_begin:n {#1} }
+\NewDocumentEnvironment { faq } { m o }
+  { \faqcn_faq_begin:nn {#1} {#2} }
   { \faqcn_faq_end: }
-\cs_new_protected:Npn \faqcn_faq_begin:n #1
+\cs_new_protected:Npn \faqcn_faq_begin:nn #1#2
   {
-
-    \textbf { \int_use:N \g_faqcn_count_int \quad #1}
+    \hypertarget { faq @ #2 } { \textbf { \int_use:N \g_faqcn_count_int \quad #1} }
+    \tl_if_novalue:nF {#2} { \zref@labelbylist { faq: #2 } { faqcn } }
     \int_gincr:N \g_faqcn_count_int
     \par
   }
 \int_new:N \g_faqcn_count_int
 \int_set_eq:NN \g_faqcn_count_int \c_one
+
 \cs_set_eq:NN \faqcn_faq_end: \par
 
+\zref@newlist { faqcn }
+\zref@newprop { faq@num } { 问题 \int_use:N \g_faqcn_count_int }
+\zref@addprop { faqcn } { faq@num }
+
+% 问答环境交叉引用
+\NewDocumentCommand \faqref { m }
+  { \faqcn_ref:n {#1} }
+\cs_new_protected:Npn \faqcn_ref:n #1
+  { \hyperlink { faq @ #1 } { \zref@extract { faq: #1 } { faq@num } } }
+
 % 问答环境参考文献
-\NewDocumentEnvironment { faqref } { }
+\NewDocumentEnvironment { reference } { }
   { \textbf { 参考： } \enumerate }
   { \endenumerate }
 
