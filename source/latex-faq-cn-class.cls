@@ -36,7 +36,7 @@
         Extension      = .otf,
         UprightFont    = *-Regular,
         BoldFont       = *-Bold,
-        ItalicFont     = *-It,
+        ItalicFont     = *-regularIt,
         BoldItalicFont = *-BoldIt
       ]
   }
