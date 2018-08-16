@@ -235,9 +235,9 @@
     % TODO
     \cs_set_protected:cpn {#1}
       {
-        \group_begin:
-          \fontspec { Fetamont } #1
-        \group_end:
+        \bool_if:NTF \g_faqcn_use_customized_fonts_bool
+          { \group_begin: \fontspec { Fetamont } #1 \group_end: }
+          {#1}
       }
   }
 
