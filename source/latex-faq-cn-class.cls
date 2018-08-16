@@ -175,6 +175,4 @@
 
 \hypersetup{colorlinks}
 
-\makeatletter
-\def\@captype{figure}
-\makeatother
+
