@@ -218,6 +218,75 @@
 %\begin{faq}{什么是（\TeX{}）宏}
 %\end{faq}
 
+\begin{faq}{什么是“Berry命名方案”}
+\end{faq}
+
+\begin{faq}{什么是TDS}
+  TDS 全称 TeX Directory Structure，意为 TeX 目录结构，即 TeX 发行版的文件组织结构。大部分 TeX 发行版都将自身的文件组织成相近的路径结构，也就是 TDS。TDS 也称为 TEXMF 树，这是 TeX 与 METAFONT 的合称。很多系统的 TDS 结构都以 texmf 或者类似的词作为 TEXMF 树的根目录名，如在 TeX Live 中，安装目录下的 texmf-dist、texmf-var 等就是两个不同的 TEXMF 树，如图 \ref{texmf-dir}。
+  \begingroup
+    \makeatletter
+    \def\@captype{figure}
+    \makeatother
+    \dirtree {%
+      .1 TEXMF树.
+      .2 bibtex/\DTcomment{BibTeX 相关文件}.
+      .3 bib/\DTcomment{公用 bib 数据库}.
+      .3 bst/\DTcomment{格式文件}.
+      .2 doc/\DTcomment{各类用户文档}.
+      .3 bibtex/\DTcomment{BibTeX 相关文档}.
+      .3 fonts/\DTcomment{字体文档}.
+      .3 generic/\DTcomment{通用于各种格式的文档}.
+      .4 pgf/.
+      .5 pgfmanual.pdf\DTcomment{PGF/TikZ 用户手册}.
+      .3 latex/\DTcomment{用于 LaTeX 格式的文档}.
+      .4 ctex/.
+      .5 ctex.pdf\DTcomment{ctex 宏集用户手册}.
+      .5 README.md\DTcomment{ctex 宏集简短介绍}.
+      .3 texlive/\DTcomment{TeX Live 发行版自身的文档}.
+      .2 font/\DTcomment{字体相关文件}.
+      .3 opentype/\DTcomment{OpenType 格式的字体}.
+      .3 source/\DTcomment{字体源代码}.
+      .3 truetype/\DTcomment{TrueType 格式的字体}.
+      .3 type1/\DTcomment{Type1 格式的字体}.
+      .2 scripts/\DTcomment{可执行脚本}.
+      .3 l3build/\DTcomment{LaTeX 构建、测试脚本}.
+      .3 latexmk/\DTcomment{自动编译系统}.
+      .3 texdoc/\DTcomment{文档查询系统}.
+      .2 source/\DTcomment{源代码}.
+      .3 bibtex/\DTcomment{BibTeX 相关宏包代码}.
+      .3 fonts/\DTcomment{字体源代码}.
+      .3 generic/\DTcomment{通用于各种格式的宏包代码}.
+      .3 latex/\DTcomment{用于 LaTeX 格式的宏包代码}.
+      .4 ctex/\DTcomment{ctex 宏集源代码}.
+      .5 ctex.dtx.
+      .5 ctex.ins.
+      .5 ctexpuct.spa.
+      .2 tex/\DTcomment{TeX 宏，可被引擎读入}.
+      .3 generic/\DTcomment{通用于各种格式}.
+      .3 latex/\DTcomment{用于 LaTeX 格式}.
+      .4 base/\DTcomment{LaTeX 的基本宏文件}.
+      .5 article.cls.
+      .5 book.cls.
+      .5 report.cls.
+      .5 latex.ltx.
+      .4 beamer/\DTcomment{beamer 宏包相关文件}.
+      .4 ctex/\DTcomment{ctex 宏集相关文件}.
+      .5 ctexart.cls.
+      .5 ctexbeamer.cls.
+      .5 ctexbook.cls.
+      .5 ctexrep.cls.
+      .5 ctex.sty.
+      .3 plain/\DTcomment{用于 Plain TeX 格式}.
+      .3 xetex/\DTcomment{用于 XeTeX 引擎}.
+      .3 xelatex/\DTcomment{用于 XeTeX 引擎下的 LaTeX 格式}.
+      .4 xecjk/\DTcomment{xeCJK 宏包相关文件}.
+      .5 xeCJK.sty.
+    }
+    \caption{TEXMF树目录结构}
+    \label{texmf-dir}
+  \endgroup
+\end{faq}
+
 \begin{faq}{\LaTeX{} 源文件有什么要求？}
   LaTeX的源文件是 *.tex文件，是指latex编译器处理输入文件的源码，latex编译器会对输入文件进行解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于LaTeX解析器可能对中文文件名处理存在兼容性问题，不建议将LaTeX的源文件的文件名设置为中文。
 \end{faq}

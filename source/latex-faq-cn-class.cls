@@ -170,7 +170,11 @@
     paper      = a4paper,
     vmargin    = 2.54 cm,
     hmargin    = 3.18 cm,
-    headheight = 15 pt
+    headheight = 15 pt,
   }
 
 \hypersetup{colorlinks}
+
+\makeatletter
+\def\@captype{figure}
+\makeatother
