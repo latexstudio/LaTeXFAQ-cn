@@ -1114,6 +1114,14 @@ $\sum\limits_{i=1}^n \quad
 
 ### 127. 参考文献中的特殊字符或字母
 
+参考文献信息中大体可能有几类特殊的字符或字母：
+
+一是 %&#这里键盘上直接能输入的字符，那么使用tex对特殊字符的输入方法，比如\%，\&，\#
+
+二是数学类的字符，那么使用数学环境来输入，比如$\mathbf{R}$，$\mathbb{L}$
+
+三是单纯的unicode字符，那么直接输入它，比如φ。但要注意要限制这些unicode字符需要能显示该字符的字体的支持。
+
 ### 128. BibTeX 不理解的作者列表
 
 BibTeX 只支持三种姓名格式：
@@ -1124,9 +1132,26 @@ BibTeX 只支持三种姓名格式：
 多个姓名之间必须使用“and”连接，如
 ```
 author = {Knuth, Donald E. and Lamport, Leslie},
+
 ```
 
+当有更多作者省略时，可以加上“and others”，比如：
+```
+author = {Knuth, Donald E. and Lamport, Leslie and others},
+
+```
+
+
 ### 129. BibTeX 排序和名字前缀
+
+参考文献的排序一般由参考样式决定。
+
+对于使用bibtex的用户，排序由bst决定。
+
+对于使用biblatex的用户，排序由biblatex的样式决定。
+
+名字的前缀在排序中扮演的角色由这些参考文献样式设定。
+
 
 ### 130. BibTeX 中的大写字母
 
@@ -1140,6 +1165,8 @@ title = {Finite Element Methods for {Maxwell's} Equations},
 ```
 注意尽量避免将一个词中个别字母用大括号括起来，如“{M}axwell's”，这可能会导致字母的间距有问题，建议将整个词括起来，如“{Maxwell's}”。
 
+基于biblatex的参考文献生成方法，同样支持这种用花括号保护字母大小写的机制。一般情况下，文献各部分内容的大小写，会由参考文献样式来决定，当有特殊的要求的时候，比如使用专有名词等，才需要采用这种保护机制。
+
 ### 131. 如何选择参考文献的风格
 
 参考文献的风格一般是期刊或会议模板指定 bst 的，作者应仔细阅读投稿要求和模板使用说明，根据规定使用合适的 bst。通常有以下方式：
@@ -1147,11 +1174,20 @@ title = {Finite Element Methods for {Maxwell's} Equations},
 
 在模板的文档类选项中使用合适的参数，如“\documentclass[authoryear]{ustcthesis}”。 
 
+基于biblatex的参考文献生成方法，文献表的著录格式和正文中的引用标注也都是由样式文件决定的，不同于bibtex的bst文件，biblatex的样式使用bbx和cbx为后缀名。选择某种文献的风格(规范/标准)，就是选择符合该风格的样式，比如要采用ieee的风格，在导言区做如下声明：
+
+```
+\usepackage[backend=biber,style=ieee]{biblatex}
+```
+
+其中，选择的`style=ieee`样式，实质上是使用了ieee.bbx和ieee.cbx两个样式文件。
+
+
 ### 132.  BibTeX 参考文献数据库
 
 BibTeX 的 bib 文件是一个记录已阅文献的数据库，但是通常不建议手动编译 bib 文件，建议：
 1. 使用 JabRef 或 Zotero 等文献管理工具导出 bib 文件创
-2. 使用 [Google Scholar](https://scholar.google.com/) 或 [Bing 学术](https://cn.bing.com/academic)导出 bib 条目建
+2. 使用 [Google Scholar](https://scholar.google.com/) 或 [Bing 学术](https://cn.bing.com/academic)导出 bib 条目。
 
 ### 133. 创建参考文献风格
 
@@ -1160,6 +1196,7 @@ BibTeX 的风格文件 bst 是使用一种后缀语言写的代码，如果对�
 如果不习惯 bst 的编程语言，可以使用 custom-bib 工具，在命令行下运行latex makebst，回答一系列问题生成自己的bst。
 
 另外还可以考虑使用 biblatex，它提供更方便的接口用于自定义参考文献格式。
+基于 biblatex 的参考文献格式控制也依赖于参考文献样式文件，即前面提到过的bbx和cbx文件。尽管biblatex 的参考文献样式定制相对简单，但作为一般用户，首先要做的是查看是否有现成的参考文献样式可以使用，因为除了biblatex自带的各种样式外，还有更多第三方提供的样式可用，比如 trad-usrt，ieee，apa，mla，gb7714-2015 等等。实在没法使用现成资源，再考虑创建 biblatex 的参考文献样式，具体的方法可以参考 biblatex 手册及其中译版。
 
 ### 134. 参考文献中的数字格式
 
@@ -1170,17 +1207,54 @@ BibTeX 的风格文件 bst 是使用一种后缀语言写的代码，如果对�
 \makeatother
 ```
 
+基于biblatex的参考文献生成方法，文献表中的数字标签格式，通常由参考文献样式决定。如果一定要手动定制可以采用修改域格式的方法，比如：
+```
+\DeclareFieldFormat{labelnumberwidth}{\ttfamily\mkbibbrackets{#1}\hfill}
+```
+其中#1是标签数字，`\ttfamily`设置了标签的字族，`\mkbibbrackets`设置用方括号包围数字，`\hfill`设置左对齐。
+
 ### 135. BibTeX文献条目列表
 
 科技论文通常要求参考文献表中的文献必须在正文中引用，但是在某些特殊情况下仅需要列出 bib 数据库中的文献，可以使用 \nocite{*} 命令列出调用的bib中所有条目，或者使用类似\nocite{ref1,ref2,ref3}命令列出需要显示的条目。
 
+基于biblatex的参考文献生成方法同样支持这种机制，可以利用 \nocite 命令将未在正文引用的文献，引入到文献表中。
+
 ### 136. 制作参考文献的HTML
 
+这个问题的真正需求不明确。
+
 ### 137. BibTeX中的多字母缩写
+
+这个问题的真正需求不明确。
+
+如果是要tex自动提取多个词构成字符串中各个词的首字母并大写，构成一个缩写的信息。biblatex目前还没有提供这种工具。但是用户可以手动提供的一个缩写信息，比如；
+```
+author ={{National Aeronautics and Space Administration}},
+shortauthor={NASA},
+```
+其中shortauthor就是author的缩写信息。缩写信息的使用由参考文献样式使用，一般情况下，标注、缩略信息表中使用shortauthor，而参考文献表中使用author，但这些并不是绝对的，因为样式都是可以定制的。
 
 ### 138. 多个参考文献表
 
 natbib宏包与Donald Arseneau和Niel Kempson编写的chapterbib宏包兼容，该宏包允许在一个文档内有多个独立的参考文献列表。通常用法是一本书的各章有独立的参考文献列表，尤其是在各章由不同作者独立编写时。
+
+基于biblatex的参考文献生成方法，可以由printbibliography命令生成任意数量的文献表。就分章文献表而言，biblatex提供了refsection环境来划分参考文献节，每一节都可以生成一个独立的文献表：
+```
+\chapter{one}
+\begin{refsection}
+citation for chapter one\cite{bibkey1}
+\printbibliography
+\end{refsection}
+
+\chapter{two}
+\begin{refsection}
+citation for chapter two\cite{bibkey2}
+\printbibliography
+\end{refsection}
+
+```
+其中，两章内容分别生成一个文献表，第一章的文献表打印文献bibkey1，第二张打印bibkey2。
+
 
 ### 139. 同一位置多文献引用
 
@@ -1189,16 +1263,34 @@ natbib宏包与Donald Arseneau和Niel Kempson编写的chapterbib宏包兼容，�
 \cite{knuth84,lamport86}
 ```
 
+基于biblatex的参考文献生成方法，同样支持这种逗号分隔列表的机制。比如：
+```
+\cite{bibkey1,bibkey2,bibkey3,bibkey4}
+\supercite{bibkey1,bibkey2,bibkey3,bibkey4}
+\parencite{bibkey1,bibkey2,bibkey3,bibkey4}
+\textcite{bibkey1,bibkey2,bibkey3,bibkey4}
+```
+
+
 ### 140. 非英文参考文献条目
+
+这个问题的真正需求不明确。
 
 什么叫非英文参考文献条目？是指bibkey么？一般不建议用中文，处理好编码格式，无殊。
 中文的参考文献条目，与英文条目并没有什么差别，只是注意编码。目前处理中文推荐用xelatex 编译 utf8 编码的文件。因此中文的 bib 条目也应该用 utf8 编码。
+
+基于biblatex的参考文献生成方法，支持多语言参考文献。可以利用babel等宏包实现西文文献的无缝切换，可以实现多语言共存的文献表。东亚语言的参考文献，可以利用英文文献的机制生成，基于参考文献样式的设计，可以实现中英文对照的文献表。
+
+
 ### 141. **BibTeX**** 文献手写很困难，有没有什么工具能够生成？**
 
 多数时候，我们无需自己手写 BibTeX 文献条目。从 [https://scholar.google.com/](https://scholar.google.com/)、[https://academic.microsoft.com/](https://academic.microsoft.com/)、 [https://cn.bing.com/academic?mkt=zh-CN](https://cn.bing.com/academic?mkt=zh-CN) 或者期刊、数据库的网站上都能够导出 BibTeX 文献条目。
 老牌的文献管理软件 EndNote 也支持生成 BibTeX 格式的数据库，详情见 官网[https://endnote.com/](https://endnote.com/)。
 开源软件 JabRef 甚至支持 BibTeX 文献条目的导入、导出和管理，详情见 官网[http://www.jabref.org/](http://www.jabref.org/)。
 Zetero 使用起来也非常方便，详情见官网 [https://www.zotero.org/](https://www.zotero.org/)。
+
+
+
 ### 142. 如何使用 BibTeX 排版参考文献
 
 * 准备一份 BibTeX 数据库，假设数据库文件名为 books.bib，和 LaTeX 源代码一般位于同一个目录下。
@@ -1211,9 +1303,66 @@ xelatex demo
 xelatex demo
 ```
 
+基于biblatex的参考文献生成方法，与基于bibtex的方法类似，只是文献数据处理程序需要换成biber：
+
+* 首先准备BibTeX格式文献数据库，即bib文件
+* 接着完成tex源代码，即tex文件，其中参考文献样式引入用biblatex宏包，打印文献用printbibliography命令，比如：
+```
+\documentclass[twoside]{article}
+	\usepackage[backend=biber,style=alphabetic]{biblatex}
+    \addbibresource{youbib.bib}
+
+\begin{document}
+    \section{references of alphabetic style}
+
+	\nocite{*}
+
+    \printbibliography
+\end{document} 
+```
+* 最后编译文档，命令如下：
+```
+xelatex demo
+biber demo
+xelatex demo
+xelatex demo
+```
+
+
+
 ### 143. 如何将参考文献条目录入到正文中
 
 理工科类论文很少用。
+
+基于biblatex的参考文献生成方法，可以把文献表(或者说详细的文献信息)放到文档的任何位置，包括正文中、文后、页脚处、边注处等等位置。这些要求一般由相应的文献样式来实现。比如：
+```
+\documentclass[twoside]{article}
+\usepackage[backend=biber,citestyle=verbose-note,bibstyle=verbose]{biblatex}%alphabetic
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+@ARTICLE{bernanke1989agency,
+  AUTHOR = {Bernanke, Ben and Gertler, Mark},
+  PUBLISHER = {JSTOR},
+  DATE = {1989},
+  JOURNALTITLE = {The American Economic Review},
+  shortjournal={AER},
+  KEYWORDS = {bernanke1989agency},
+  PAGES = {14--31},
+  TITLE = {Agency costs, net worth, and business fluctuations},
+}
+\end{filecontents}
+\addbibresource{\jobname.bib}
+
+\begin{document}
+\section{references of verbose-note style}
+
+first time: \footnote{\cite{bernanke1989agency}}
+second time:\footnote{\cite{bernanke1989agency}}
+
+\end{document} 
+```
+
+其中，标注样式verbose-note实现了在脚注中给出完整参考文献信息的方法，而如果将其换成verbose，那么将在正文中引入完整的文献信息。
 
 ### 144. bib文件的重建
 
@@ -1245,23 +1394,52 @@ xelatex demo
 
 文献条目间距为\itemsep,默认值4.5pt plus 2pt minus 1pt,可通过指令\addtolength{\itemsep}{距离}调整。
 
+基于biblatex的参考文献生成方法，由\bibitemsep 控制各条目的垂直间距，此外还有\bibnamesep，\bibinitsep 用于控制插入在两条姓名不同的条目之间的垂直间距和插入在两条首字母不同的条目之间的垂直间距。三个尺寸遵守\addvspace 的规则所得到的垂直间距取为三个间距中的最大值。
+
 ### 146. 按照章节分开参考文献条目
 
 可看看chapterbib宏包。
+
+参见前面的“多个参考文献表”的问题
+
 ### 147. 引文的排序及压缩
 
 这个取决于使用的宏包，常用的natbib宏包可以使用sort或者sort&compress选项激活相应的排序或排序并压缩功能。
+
+基于biblatex的参考文献生成方法，文献表的排序由sorting选项控制，而引用的标注标签中的排序则有sortcites选项控制，引用标注标签的压缩则由所采用的标注样式决定，类似numeric-comp这样带comp的biblatex标注样式通常使用压缩方式。
+
+
 ### 148. 引文列表排序
 
 这个取决于bst，一般模板都有指定的bst。
+
+
+基于biblatex的参考文献生成方法，引文列表排序，由sorting选项控制，一般情况下，各个参考文献样式做了默认设置，无需调整。
+
 ### 149. BibTeX中过长的字符串
 
+这个问题的真正需求不明确。没有遇到过。
+
+
 ### 150. 按照“unsrt”规则的目录重排序
+
+这个问题的真正需求不明确。目录的重排序？
+
+基于biblatex的参考文献生成方法，有对应传统unsrt的bst文件的样式，名为：trad-unsrt。使用方法为：
+
+`\usepackage[style=trad-unsrt]{biblatex}`
+
 
 ### 151. BibTeX参考文献中的URL
 
  调用url或者xurl宏包即可正常使用url，也可以看看href宏包。
+ 
+ 基于biblatex的参考文献生成方法，由于biblatex自动载入url宏包，并利用biburlnumpenalty、biburlucpenalty、biburllcpenalty 三个计数器的值来控制url在数字/大写字母/小写字母处进行断行。计数器取值大于等于0但小于10000，等于0表示不断行。而是否在文献表中输出url由宏包选项url控制，url的格式则由所选样式中设置的域格式控制，url的字体由url宏包的字体控制命令设置。
+ 
+ 
 ### 152. 基于Plain TeX的BibTeX的使用
+
+这个问题没有遇到过，不懂。
 
 ### 153. 常用的biblatex参考文献样式
 
@@ -1311,9 +1489,30 @@ biblatex除了可以应用自带的标准样式外，还可以使用其他作者
 
 ### 155. 参考文献列表行距如何设置？
 
+基于biblatex的参考文献生成方法，参考文献列表的行距与正文是一致的。由于文献表本质上与正文是一致的，因此所有正文中设置行距的方法均对其有效，而且可以将这些设置用编组局部化，避免影响文档的其它内容。关于各条目的垂直间距问题见前面的问题“如何减少参考文献条目行间距”。
+
 ### 156. 参考文献编号如何左对齐，右对齐？
 
+基于biblatex的参考文献生成方法，默认情况下使用list环境来构造文献表，因此文献的数字编号标签是右对齐的。但可以通过对标签数字域格式的修改进行调整，比如：
+```
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}\hfill}
+```
+其中将带方括号的数字标签设置左对齐。
+需要注意：通常标签的格式是由参考文献样式决定的，用户一般不需要做修改。
+
+
 ### 157. 插入参考文献列表有几种方式？如何定义其样式？如何定义正文引用样式？
+
+基于biblatex的参考文献生成方法，使用printbibliography打印参考文献的完整信息列表，利用printbiblist打印参考文献的缩略信息列表。列表内部各条目的著录格式以及整个列表的段落格式由参考文献样式决定。其中整个列表的段落格式由\defbibenvironment 定义的环境控制。
+
+### 158. 参考文献列表的字体字号如何设置？
+
+基于biblatex的参考文献生成方法，字体字号由命令bibfont控制，重定义该命令即做出设置，比如：
+```
+\renewcommand{\bibfont}{\fangsong\zihao{6}}
+```
+其中设置参考文献表内容的默认字体为仿宋，字号为6.
+
 
 ## 六、字体篇
 ### 158. LaTeX字体是如何处理的
