@@ -1,23 +1,59 @@
+% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
 \ProvidesExplClass{latex-faq-cn-class}{2018/08/09}{0.1}{Chinese LaTeX FAQ document class}
 
 \PassOptionsToPackage { log-declarations = false } { xparse   }
 \PassOptionsToPackage { no-math                  } { fontspec }
+\RequirePackage { xparse, xtemplate, l3keys2e }
 
-\LoadClass [ fontset = none ] { ctexart }
+\cs_new:Npn \__faqcn_msg_new:nn  { \msg_new:nnn      { faqcn } }
+\cs_new:Npn \__faqcn_warning:nnn { \msg_warning:nnnn { faqcn } }
 
+% 文档类选项
+\bool_new:N \g_faqcn_use_customized_fonts_bool
+\keys_define:nn { faqcn / option }
+  {
+    use-customized-fonts .bool_gset:N = \g_faqcn_use_customized_fonts_bool,
+    use-customized-fonts .initial:n   = true
+  }
+\ProcessKeysOptions { faqcn / option }
+
+% 根据是否使用自定义字体来决定 ctex 文档类的载入方式
+\bool_if:NTF \g_faqcn_use_customized_fonts_bool
+  { \LoadClass [ fontset = none ] { ctexart } }
+  { \LoadClass { ctexart } }
+
+% 载入相关宏包
 \RequirePackage
   {
+    enumitem,
+    fancyvrb,
     geometry,
     hologo,
+    unicode-math,
     xurl,
     zref-base,
     hyperref
   }
 
 % 西文字体
-\IfFontExistsTF { libertinusserif-regular.otf }
+\bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
     \setmainfont { libertinusserif }
       [
@@ -27,20 +63,32 @@
         ItalicFont     = *-italic,
         BoldItalicFont = *-bolditalic
       ]
-  }
-  { \BOOM }
-\IfFontExistsTF { SourceSansPro-Regular.otf }
-  {
-    \setsansfont { SourceSansPro }
+    \setsansfont { Roboto }
       [
-        Extension      = .otf,
+        Extension      = .ttf,
         UprightFont    = *-Regular,
         BoldFont       = *-Bold,
-        ItalicFont     = *-regularIt,
-        BoldItalicFont = *-BoldIt
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
       ]
+    \setmonofont { cmun }
+      [
+        Extension   = .otf,
+        UprightFont = * btl,
+        BoldFont    = * tb,
+        SlantedFont = * bto,
+        HyphenChar  = None
+      ]
+    % \setmonofont { RobotoMono }
+    %   [
+    %     Extension      = .ttf,
+    %     UprightFont    = *-Regular,
+    %     BoldFont       = *-Bold,
+    %     ItalicFont     = *-Italic,
+    %     BoldItalicFont = *-BoldItalic
+    %   ]
+    \setmathfont { libertinusmath-regular.otf }
   }
-  { \BOOM }
 
 % 中文字体
 
@@ -49,7 +97,7 @@
 % #1: \setCJK...font
 % #2, #3, #4, #5: font names
 % #2: options clist
-\cs_new_protected:Npn \faqcn_set_cjk_fonts:Nnnnnn #1#2#3#4#5#6
+\cs_new_protected:Npn \faqcn_set_cjk_font:Nnnnnn #1#2#3#4#5#6
   {
     \IfFontExistsTF { #2-Regular.ttc }
       { #1 { #2 } [ Extension = .ttc, FontIndex = 2, #6 ] }
@@ -68,28 +116,31 @@
       }
   }
 
-\faqcn_set_cjk_fonts:Nnnnnn \setCJKmainfont
-  { NotoSerifCJK } { SourceHanSerif } { NotoSerifCJKsc } { SourceHanSerifSC }
+\bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
-    UprightFont    = *-Regular,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Regular,
-    BoldItalicFont = *-Bold,
-  }
-\faqcn_set_cjk_fonts:Nnnnnn \setCJKsansfont
-  { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
-  {
-    UprightFont    = *-Medium,
-    BoldFont       = *-Bold,
-    ItalicFont     = *-Medium,
-    BoldItalicFont = *-Bold,
-  }
-\faqcn_set_cjk_fonts:Nnnnnn \setCJKmonofont
-  { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
-  {
-    UprightFont    = *-Medium,
-    BoldFont       = *-Bold,
-    AutoFakeSlant  = 0.2
+    \faqcn_set_cjk_font:Nnnnnn \setCJKmainfont
+      { NotoSerifCJK } { SourceHanSerif } { NotoSerifCJKsc } { SourceHanSerifSC }
+      {
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Regular,
+        BoldItalicFont = *-Bold,
+      }
+    \faqcn_set_cjk_font:Nnnnnn \setCJKsansfont
+      { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
+      {
+        UprightFont    = *-Medium,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Medium,
+        BoldItalicFont = *-Bold,
+      }
+    \faqcn_set_cjk_font:Nnnnnn \setCJKmonofont
+      { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
+      {
+        UprightFont    = *-Medium,
+        BoldFont       = *-Bold,
+        AutoFakeSlant  = 0.2
+      }
   }
 
 \ctexset
@@ -116,11 +167,35 @@
     #1
   }
 
+% 列表环境
+\setlist
+  {
+    itemsep       = 0 pt,
+    parsep        = 0 pt,
+    listparindent = \parindent
+  }
+
+% 页面尺寸
+\geometry
+  {
+    paper      = a4paper,
+    vmargin    = 2.54 cm,
+    hmargin    = 3.18 cm,
+    headheight = 15 pt
+  }
+
+\hypersetup { colorlinks }
+
 % 问答环境
-\NewDocumentEnvironment { faq } { m o }
-  { \faqcn_faq_begin:nn {#1} {#2} }
-  { \faqcn_faq_end: }
-\cs_new_protected:Npn \faqcn_faq_begin:nn #1#2
+% #1: 选项
+% #2: 长名称
+% #3: 短名称
+\NewDocumentCommand \faq { o m m }
+  {
+    \faqcn_faq:nn {#2} {#3}
+  }
+
+\cs_new_protected:Npn \faqcn_faq:nn #1#2
   {
     \hypertarget { faq @ #2 } { \textbf { \int_use:N \g_faqcn_count_int \quad #1} }
     \tl_if_novalue:nF {#2} { \zref@labelbylist { faq: #2 } { faqcn } }
@@ -129,8 +204,6 @@
   }
 \int_new:N \g_faqcn_count_int
 \int_set_eq:NN \g_faqcn_count_int \c_one
-
-\cs_set_eq:NN \faqcn_faq_end: \par
 
 \zref@newlist { faqcn }
 \zref@newprop { faq@num } { 问题 \int_use:N \g_faqcn_count_int }
@@ -150,29 +223,37 @@
 % TeX logo 命令
 \clist_map_inline:nn
   {
-    TeX, LaTeX, LaTeXe, LaTeXTeX, ConTeXt
+    TeX, LaTeX, LaTeXe, LaTeXTeX, plainTeX, ConTeXt,
     pdfTeX, pdfLaTeX, LuaTeX, LuaLaTeX, XeTeX, XeLaTeX,
-    BibTeX,
-    METAFONT, METAPOST,
+    BibTeX, MetaFun,
     MiKTeX
   }
   { \cs_set_protected:cpn {#1} { \hologo {#1} } }
-
-\cs_set_protected:Npn \ApTeX   { Ap\TeX       }
-\cs_set_protected:Npn \ApLaTeX { Ap\LaTeX     }
-\cs_set_protected:Npn \TeXLive { \TeX{}~ Live }
-\cs_set_protected:Npn \MacTeX  { Mac\TeX      }
-
-% \NewDocumentCommand \zhquote { m } { “#1” }
-
-\geometry
+\clist_map_inline:nn
+  { METAFONT, METAPOST }
   {
-    paper      = a4paper,
-    vmargin    = 2.54 cm,
-    hmargin    = 3.18 cm,
-    headheight = 15 pt,
+    % TODO
+    \cs_set_protected:cpn {#1}
+      {
+        \bool_if:NTF \g_faqcn_use_customized_fonts_bool
+          { \group_begin: \fontspec { Fetamont } #1 \group_end: }
+          {#1}
+      }
   }
 
-\hypersetup{colorlinks}
+\cs_set_protected:Npn \ApTeX    { Ap\TeX        }
+\cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
+\cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
+\cs_set_protected:Npn \MacTeX   { Mac\TeX       }
+\cs_set_protected:Npn \PlainTeX { Plain~ \TeX   }
+\cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
 
+% 宏包与文档类
+\cs_set_protected:Npn \pkg #1 { \textsf {#1} }
+\cs_set_protected:Npn \cls #1 { \textsf {#1} }
 
+% 允许使用 |...| 作为行内抄录
+\AtBeginDocument
+  { \DefineShortVerb   { \| } }
+\AtEndDocument
+  { \UndefineShortVerb { \| } }
