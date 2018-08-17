@@ -94,48 +94,66 @@
 
 % 设置思源字体系列。由于命名比较复杂，这里需要做多次判断
 % ttc 格式封装的思源字体中，简体中文位于第 3 个，因此 FontIndex = 2
-% #1: \setCJK...font
-% #2, #3, #4, #5: font names
-% #2: options clist
-\cs_new_protected:Npn \faqcn_set_cjk_font:Nnnnnn #1#2#3#4#5#6
+% #1: \setCJK...font 命令
+% #2, #3, #4, #5: OTC/OTF 文件名
+% #6: Super OTC 字体名
+% #7: 选项
+\cs_new_protected:Npn \faqcn_set_cjk_font:Nnnnnnn #1#2#3#4#5#6#7
+  {
+    \bool_set_false:N \l__source_han_super_otc_bool
+    \__faqcn_source_han_otc_otf:Nnnnnn #1 {#2} {#3} {#4} {#5} {#7}
+    \bool_if:NT \l__source_han_super_otc_bool
+      { \__faqcn_source_super_otc:Nnn #1 {#6} {#7} }
+  }
+\cs_new_protected:Npn \__faqcn_source_han_otc_otf:Nnnnnn #1#2#3#4#5#6
   {
     \IfFontExistsTF { #2-Regular.ttc }
-      { #1 { #2 } [ Extension = .ttc, FontIndex = 2, #6 ] }
+      { #1 {#2} [ Extension = .ttc, FontIndex = 2, #6 ] }
       {
         \IfFontExistsTF { #3-Regular.ttc }
-          { #1 { #3 } [ Extension = .ttc, FontIndex = 2, #6 ] }
+          { #1 {#3} [ Extension = .ttc, FontIndex = 2, #6 ] }
           {
             \IfFontExistsTF { #4-Regular.otf }
-              { #1 { #4 } [ Extension = .otf, #6 ] }
+              { #1 {#4} [ Extension = .otf, #6 ] }
               {
                 \IfFontExistsTF { #5-Regular.otf }
-                  { #1 { #5 } [ Extension = .otf, #6 ] }
-                  { \BOOM }
+                  { #1 {#5} [ Extension = .otf, #6 ] }
+                  { \bool_set_true:N \l__source_han_super_otc_bool }
               }
           }
       }
   }
+\cs_new_protected:Npn \__faqcn_source_super_otc:Nnn #1#2#3
+  {
+    \IfFontExistsTF {#2}
+      { #1 {#2} [#3] }
+      { \BOOM }
+  }
+\bool_new:N \l__source_han_super_otc_bool
 
 \bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
-    \faqcn_set_cjk_font:Nnnnnn \setCJKmainfont
+    \faqcn_set_cjk_font:Nnnnnnn \setCJKmainfont
       { NotoSerifCJK } { SourceHanSerif } { NotoSerifCJKsc } { SourceHanSerifSC }
+      { Source~ Han~ Serif~ SC }
       {
         UprightFont    = *-Regular,
         BoldFont       = *-Bold,
         ItalicFont     = *-Regular,
-        BoldItalicFont = *-Bold,
+        BoldItalicFont = *-Bold
       }
-    \faqcn_set_cjk_font:Nnnnnn \setCJKsansfont
+    \faqcn_set_cjk_font:Nnnnnnn \setCJKsansfont
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
+      { Source~ Han~ Sans~ SC }
       {
         UprightFont    = *-Medium,
         BoldFont       = *-Bold,
         ItalicFont     = *-Medium,
-        BoldItalicFont = *-Bold,
+        BoldItalicFont = *-Bold
       }
-    \faqcn_set_cjk_font:Nnnnnn \setCJKmonofont
+    \faqcn_set_cjk_font:Nnnnnnn \setCJKmonofont
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
+      { Source~ Han~ Sans~ SC }
       {
         UprightFont    = *-Medium,
         BoldFont       = *-Bold,
@@ -236,11 +254,13 @@
     \cs_set_protected:cpn {#1}
       {
         \bool_if:NTF \g_faqcn_use_customized_fonts_bool
-          { \group_begin: \fontspec { Fetamont } #1 \group_end: }
+          { \group_begin: \fontspec { ffmr10.otf } #1 \group_end: }
           {#1}
       }
   }
 
+\cs_set_protected:Npn \pTeX     { p\TeX         }
+\cs_set_protected:Npn \pLaTeX   { p\LaTeX       }
 \cs_set_protected:Npn \ApTeX    { Ap\TeX        }
 \cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
 \cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
