@@ -25,6 +25,7 @@
 *.synctex(busy)
 *.thm
 *.toc
+*.DS_Store
 
 # Generated files
 *.dvi
