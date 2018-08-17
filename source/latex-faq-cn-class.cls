@@ -96,21 +96,14 @@
 % ttc 格式封装的思源字体中，简体中文位于第 3 个，因此 FontIndex = 2
 % #1: \setCJK...font 命令
 % #2, #3, #4, #5: OTC/OTF 文件名
-% #6: OTC/OTF 选项
-% #7: Super OTC 字体名
-% #8: Super OTC 选项
-\cs_new_protected:Npn \faqcn_set_cjk_font:Nnnnnnnn #1#2#3#4#5#6#7#8
+% #6: Super OTC 字体名
+% #7: 选项
+\cs_new_protected:Npn \faqcn_set_cjk_font:Nnnnnnn #1#2#3#4#5#6#7
   {
     \bool_set_false:N \l__source_han_super_otc_bool
-    \__faqcn_source_han_otc_otf:Nnnnnn #1
-      {#2} {#3} {#4} {#5}  % 文件名
-      {#6}                 % 选项
+    \__faqcn_source_han_otc_otf:Nnnnnn #1 {#2} {#3} {#4} {#5} {#7}
     \bool_if:NT \l__source_han_super_otc_bool
-      {
-        \__faqcn_source_super_otc:Nnn #1
-          {#7}  % 字体名
-          {#8}  % 选项
-      }
+      { \__faqcn_source_super_otc:Nnn #1 {#6} {#7} }
   }
 \cs_new_protected:Npn \__faqcn_source_han_otc_otf:Nnnnnn #1#2#3#4#5#6
   {
@@ -140,47 +133,30 @@
 
 \bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
-    \faqcn_set_cjk_font:Nnnnnnnn \setCJKmainfont
+    \faqcn_set_cjk_font:Nnnnnnn \setCJKmainfont
       { NotoSerifCJK } { SourceHanSerif } { NotoSerifCJKsc } { SourceHanSerifSC }
+      { Source~ Han~ Serif~ SC }
       {
         UprightFont    = *-Regular,
         BoldFont       = *-Bold,
         ItalicFont     = *-Regular,
         BoldItalicFont = *-Bold
       }
-      { Source~ Han~ Serif~ SC }
-      {
-        UprightFont    = *~ Regular,
-        BoldFont       = *~ Bold,
-        ItalicFont     = *~ Regular,
-        BoldItalicFont = *~ Bold
-      }
-    \faqcn_set_cjk_font:Nnnnnnnn \setCJKsansfont
+    \faqcn_set_cjk_font:Nnnnnnn \setCJKsansfont
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
+      { Source~ Han~ Sans~ SC }
       {
         UprightFont    = *-Medium,
         BoldFont       = *-Bold,
         ItalicFont     = *-Medium,
         BoldItalicFont = *-Bold
       }
-      { Source~ Han~ Sans~ SC }
-      {
-        UprightFont    = *~ Medium,
-        BoldFont       = *~ Bold,
-        ItalicFont     = *~ Medium,
-        BoldItalicFont = *~ Bold
-      }
-    \faqcn_set_cjk_font:Nnnnnnnn \setCJKmonofont
+    \faqcn_set_cjk_font:Nnnnnnn \setCJKmonofont
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
+      { Source~ Han~ Sans~ SC }
       {
         UprightFont    = *-Medium,
         BoldFont       = *-Bold,
-        AutoFakeSlant  = 0.2
-      }
-      { Source~ Han~ Sans~ SC }
-      {
-        UprightFont    = *~ Medium,
-        BoldFont       = *~ Bold,
         AutoFakeSlant  = 0.2
       }
   }
@@ -283,6 +259,8 @@
       }
   }
 
+\cs_set_protected:Npn \pTeX     { p\TeX         }
+\cs_set_protected:Npn \pLaTeX   { p\LaTeX       }
 \cs_set_protected:Npn \ApTeX    { Ap\TeX        }
 \cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
 \cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }

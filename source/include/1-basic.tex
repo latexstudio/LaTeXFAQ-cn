@@ -335,19 +335,42 @@ TDS 全称 \TeX{} Directory Structure，意为 \TeX{} 目录结构，即 \TeX{} 
 
 \faq{Overleaf 是什么？如何使用？}{overleaf}
 
-Overleaf (\url{https://www.overleaf.com} 是一个在线的LaTeX协作平台，可在各大浏览器内运行，也就是说：不需要本地安装LaTeX 套装，就可以撰写编译LaTeX文件。2017年与另一家在线 LaTeX 平台 ShareLaTeX.com 合并，新的 Overleaf v2 平台 \url{https://v2.overleaf.com/} 囊括了两个原先平台的主要功能，而原有的 Overleaf 和 ShareLaTeX.com 用户可以在 Overleaf v2 上继续编辑原先的所有项目文件。
+\href{https://www.overleaf.com}{Overleaf} 是一个在线的 \LaTeX{} 协作平台，可在各大浏览器内运行，
+也就是说，不需要本地安装 \LaTeX{} 套装，就可以撰写编译 \LaTeX{} 文件。2017 年 Overleaf 与另一家
+在线 \LaTeX{} 平台 \href{https://www.sharelatex.com}{ShareLaTeX} 合并，新的
+\href{https://v2.overleaf.com}{Overleaf v2 平台} 囊括了两个原先平台的主要功能，而原有的 Overleaf 和
+ShareLaTeX 用户可以在 Overleaf v2 上继续编辑原先所有的项目文件。
 
-由于个别地区、单位的网络问题或限制，一些用户可能不能顺利登录、访问 Overleaf，在此不作（也不方便）讨论。
+由于个别地区、单位的网络问题或限制，有些用户可能无法顺利登录、访问 Overleaf，在此我们不作
+（也不方便）讨论。
 
-Overleaf v1 目前运行的是TeX Live 2016, Overleaf v2 则是 TeX Live 2017。升级 TeX Live 2018 应该是明年的事了（到时我再来这里更新）。Overleaf v1 和 v2 都支持 LaTeX+dvipdf, pdflatex, XeLaTeX, LuaLaTeX 编译，通过 latexmkrc 设置也可用 pTeX 等其它编译器。支持中文，可以用 CJKutf8 （例：https://www.overleaf.com/read/xhzmbjjnbfrq）也可用 xeCJK、ctex, 例：https://www.overelaf.com/read/gndvpvsmjcqx。当然比较推荐后者。由于字库档案版权问题，Overleaf 上不会有 Windows 中文字体可用，因此如果一定要用 Windows 中文字体的话（高校论文要求等原因），则还是建议本地编译。毕竟字库文件太大，要一一上载还是比较不方便。
+Overleaf v1 目前运行的是 \TeXLive{} 2016，Overleaf v2 则是 \TeXLive{} 2017。升级 \TeXLive{} 2018
+可能需要等到 2019 年。Overleaf v1 和 v2 都支持 \LaTeX{} + dvipdf、\pdfLaTeX{}、\XeLaTeX{}、
+\LuaLaTeX{} 等多种编译方式；通过 |latexmkrc| 设置也可用 \pTeX{} 等其它编译器。支持中文，可以用
+传统手段 \pkg{CJK} 宏包
+\footnote{示例见 \url{https://www.overleaf.com/read/xhzmbjjnbfrq}。}，
+也可用 \CTeX{} 宏集的新一代解决方案
+\footnote{示例见 \url{https://www.overleaf.com/read/gndvpvsmjcqx}。}，
+当然我们比较推荐后者。由于字库版权问题，Overleaf 上不会有 Windows 中文字体可用，因此如果一定要用
+Windows 中文字体的话（高校论文要求等原因），则还是建议本地编译。毕竟字库文件太大，逐个上传还是
+比较麻烦。
 
-Overleaf 用的伺服器是 Ubuntu Linux，因此档案名大小写一定要一致。编译时用的是 latexmk，因此在Overleaf上每“编译”一次，其实可能已经运行了4次|xelatex| + 1次|bibtex| + 1次 |makeglossaries| 等等，把所有交叉引用、文献引用等等都解决掉，也可以自动调用 |biber| 或 |biblatex|，或自动编译 |chapterbib|、|multibib| 所导出的多个文献列表。
+Overleaf 用的服务器系统是 Ubuntu Linux，因此文件名区分大小写。编译时用的是 \pkg{latexmk}，因此在
+Overleaf上每“编译”一次，其实可能已经运行了 4 次 |xelatex| + 1 次 |bibtex| + 1 次 |makeglossaries|
+等等，把所有交叉引用、文献引用等等都解决掉，也可以自动调用 |biber| 或 \pkg{biblatex}，或自动编译
+\pkg{chapterbib}、\pkg{multibib} 所导出的多个文献列表。
 
-Overleaf 编译也自动启用 |--shell-escape|，因此\pkg{minted}、\pkg{tikz-externalize} 等都可以使用。|--shell-escape| 本来是有安全隐忧的，但是每个 Overleaf 文件项目都是一个单独的 Docker 盒子 (container)，因此若是有谁想玩什么把戏，也不会波及其它项目。
+Overleaf 编译也自动启用 |--shell-escape|，因此 \pkg{minted}、\pkg{tikz-externalize} 
+等都可以使用。|--shell-escape| 本来是有安全隐忧的，但是每个 Overleaf 文件项目都是一个单独的 Docker 
+容器（container），因此若是有谁想玩什么把戏，也不会波及其它项目。
 
-【其它重点功能介绍明天，不，有空时再补充：multi-authors collaboration, RichText mode, Overleaf Gallery and templates, one-click submission to journals, git bridge and github sync, history tracking, 文件项目空间上限】
+【其它重点功能介绍明天，不，有空时再补充：multi-authors collaboration, RichText mode,
+Overleaf Gallery and templates, one-click submission to journals, git bridge and github sync,
+history tracking, 文件项目空间上限】
 
-若对 Overleaf 有任何问题，建议直接电邮 \href{mailto:support@overleaf.com}{support@overleaf.com} 询问，不必过多自行揣测。若是担心语言沟通问题，大可放心——Overleaf 技术支援人员有谙中文的。
+如果对 Overleaf 有任何问题，建议直接发送电子邮件至
+\href{mailto:support@overleaf.com}{support@overleaf.com} 询问，不必过多自行揣测。若是担心语言沟通
+问题，大可放心——Overleaf 技术支援人员有熟悉中文的。
 
 %\pkg{minted} 在 Overleaf v1、v2 都是可以用的，例子参照
 %\url{https://www.overleaf.com/read/qphhfvnsddbs}。MATLAB 高亮也一样可以用 \pkg{minted} 完成，注意
