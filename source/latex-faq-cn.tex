@@ -14,9 +14,23 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 %
 
-% \documentclass{latex-faq-cn-class}
+%\documentclass{ctexart}
+%
+%\setCJKmainfont{Source Han Sans SC}
+%  %[
+%  %  UprightFont    = * Medium,
+%  %  BoldFont       = * Bold,
+%  %  ItalicFont     = * Medium,
+%  %  BoldItalicFont = * Bold
+%  %]
+%\begin{document}
+%你好，世界
+%
+%\end{document}
+
+\documentclass{latex-faq-cn-class}
 % 如果遇到字体问题，可以选择不使用自定义字体：
-\documentclass[use-customized-fonts=false]{latex-faq-cn-class}
+% \documentclass[use-customized-fonts=false]{latex-faq-cn-class}
 
 \usepackage{dirtree}
 
@@ -51,4 +65,12 @@
 % \input{include/11-dev}
 % \input{include/12-error}
 
+\end{document}
+
+
+\documentclass{article}
+\usepackage{fontspec}
+\begin{document}
+\IfFontExistsTF{SourceHanSerif.ttc}{SourceHanSerif True}{SourceHanSerif False}
+\IfFontExistsTF{SourceHanSerif-Regular.ttc}{SourceHanSerif-Regular True}{SourceHanSerif-Regular False}
 \end{document}
