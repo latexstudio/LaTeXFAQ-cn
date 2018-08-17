@@ -1,292 +1,384 @@
+% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
 \section{背景知识与基本概念}
+\label{sec:basic}
 
-\begin{faq}{什么是 \TeX{}？}
-  \TeX{} 是由著名计算机科学家 Donald~E. Knuth（高德纳）发明的排版系统。他在《The \TeX book》一书的
-  前言中曾提到：“（\TeX{}）旨在创造美丽的书籍，尤其是那些包含很多数学公式的书。”
-  \footnote{原文如下：“This is a handbook about \TeX{}, a new typesetting system intended for the
-  creation of beautiful books---and especially for books that contain a lot of mathematics.”}
-  
-  1976 年，Knuth 出版鸿篇巨著《The Art of Computer Programming》第二卷的第二版，但当时所用的照排技术
-  却令他非常失望。作为斯坦福大学计算机科学系的教授，Knuth 决定自己开发一套高质量的排版系统。1978 年，
-  他开发出了 \TeX{} 的第一个版本；随后，又在 1982 年推出了 \TeX{} 的第二个版本（\TeX 82），也就是
-  人们今天所用 \TeX{} 的基础。Knuth 将 \TeX{} 的源代码无偿发布在公有领域
-  \footnote{\TeX{} 使用的许可证为 \href{https://www.ctan.org/license/knuth}{Knuth License}。}，
-  这使得他人可以进一步完善这一系统，并增加新的功能。
-  
-  在今天，\TeX{} 既可以指 Knuth 发明的这一套排版系统，也可以指相应的排版语言，有时候也指将其打包、
-  整理以方便用户使用的软件套装（发行版）。
-  
-  \begin{reference}
-    \item https://texfaq.org/FAQ-whatTeX
-    \item \TeX{}, Wikipedia, The Free Encyclopedia, \url{https://en.wikipedia.org/wiki/TeX}
-  \end{reference}
-  
-  % Knuth 是美国加州斯坦福大学计算机编程专业的名誉教授，他在 1978 年开发了第一个版本的 \TeX{} 用来处理
-  % 他的《计算机编程艺术》的修订。这个想法特别受欢迎，所以1982年他推出了 \TeX{} 的第二个版本，也就是
-  % 人们今天所用的 \TeX{} 的基础。
-  %
-  % Knuth 开发了一套“文学编程”系统来编写 \TeX{}，他还提供了免费的 \TeX{} 资源，以及可以将网络
-  % 资源转化为可以编译或者打印的东西的工具；Knuth 做了什么，对人们来说从来都不是什么神秘的事情。
-  % \TeX{} 以及它的文档都是高度可移植的。
-  %
-  % 对于感兴趣的程序员来说，\TeX{} 有其迷人之处：没有什么能比得上一个人可以构建这样一个程序，至今它的
-  % 持续时间比大多数的程序都好，而且已经被移植到了许多不同的计算机构架和操作系统中许多现代编程所追求
-  % 的属性。经过处理的“可读”的 \TeX{} 程序源代码可以在 TDS structured 版本中找到。
-  
-  % 来源 https://texfaq.org/FAQ-whatTeX
-\end{faq}
+\faq{什么是 \TeX{}？}{what-is-tex}
 
-\begin{faq}{\TeX{} 中常见术语的解释}
-  \textbf{引擎}
-    
-  \LaTeX/\TeX{}解析引擎，其实就是一个编译器，它输入一个\verb|.tex|文件作为输入，根据源文件的内容送入解析引擎和渲染引擎进行处理，并将排版的成果——文档编译输出，\LaTeX/\TeX{}的解析引擎目前有pdflatex、xelatex、lualatex等，它们都可以输出pdf文档文件（部分解析器可以输出dvi文件），用于在多平台进行分发甚至打印出版。
-  
-  \textbf{格式}
-  
-  \TeX{} 是存在各种不同的封装格式的，比如原生的 \TeX{} 或者 \LaTeX{}，我们所使用的 \LaTeX{} 只是\TeX{} 封装格式的其中一种，是目前流行的封装规范。
-  
-  \textbf{发行版}
-  
-  \LaTeX/\TeX{}都包含了成千上万个宏包，甚至有可能我们需要安装新的宏包，除了手动安装外，最好的方式就是利用发行版的宏包管理器，所谓发行版就是把\LaTeX/\TeX{}的相关组件打包，形成一个独立完善的\LaTeX/\TeX{}系统，目前流行的发行版有MiKTeX、proTeXt 以及TeXLive。
-\end{faq}
+\TeX{} 是由著名计算机科学家 Donald~E. Knuth（高德纳）发明的排版系统。他在《The \TeX book》一书的
+前言中曾提到：“（\TeX{}）旨在创造美丽的书籍，尤其是那些包含很多数学公式的书。”
+\footnote{原文如下：“This is a handbook about \TeX{}, a new typesetting system intended for the
+creation of beautiful books---and especially for books that contain a lot of mathematics.”}
+
+1976 年，Knuth 出版鸿篇巨著《The Art of Computer Programming》第二卷的第二版，但当时所用的照排技术
+却令他非常失望。作为斯坦福大学计算机科学系的教授，Knuth 决定自己开发一套高质量的排版系统。1978 年，
+他开发出了 \TeX{} 的第一个版本；随后，又在 1982 年推出了 \TeX{} 的第二个版本（\TeX 82），也就是人们
+今天所用 \TeX{} 的基础。Knuth 将 \TeX{} 的源代码无偿发布在公有领域
+\footnote{\TeX{} 使用的许可证为 \href{https://www.ctan.org/license/knuth}{Knuth License}。}，
+这使得他人可以进一步完善这一系统，并增加新的功能。
+
+在今天，\TeX{} 既可以指 Knuth 发明的这一套排版系统，也可以指相应的排版语言，有时候也指将其打包、
+整理以方便用户使用的软件套装（发行版）。
+
+\begin{reference}
+  \item https://texfaq.org/FAQ-whatTeX
+  \item \TeX{}, Wikipedia, The Free Encyclopedia, \url{https://en.wikipedia.org/wiki/TeX}
+\end{reference}
 
 
-\begin{faq}{不同的TeX封装格式的区别？}[tex-format]
-  \textbf{原生\TeX{}}
-  
-  TeX本身是一个基于控制序列的排版系统，它指示TeX如何在页面上放置文本。例如，\verb|\hskip|指在文档中在文档中插入一定数量的水平空间，而\verb|\font|是指给文档中的文字定义一种给定的字体。TeX是完全可编程的，它使用一种集成的宏脚本语言，支持变量，范围，条件执行，控制流和函数定义等。
-  
-  \textbf{TeX宏包（\TeX{}格式）}
-  
-  TeX的一些控制序列直接使用是单调乏味的；它们主要作为更高层次的构建快，因此更易于用户使用。例如，在基础TeX中没有办法能够制定一段文字应该排版为更大的字体，相反，你必须了解当前的字体和大小，然后加载一种同样字体但更大字号的字体。幸运的是，TeX是可编程的，它可以通过写一个宏将这些复杂性都隐藏在一个简单的，新的控制序列之后。例如，我们可以通过 \mintinline{latex}{\larger{my text}}将“my text”定义为比当前更大的字体。
-  一些使用者会写一些完全由自己定义的宏集，然后再一些文档中重复使用，但，常见的还是依赖于由专家编写的TeX宏包——一些宏的集合。为了方便用户，这些宏包通常与基本的TeX引擎结合到一个独立的可执行的文件中。
-  
-  \textbf{TeXLive、MacTeX、MikTeX、CTex}
-  
-  TeXLive 由类 UNIX 系统上的 teTeX 发展并取而代之，最终成为跨平台的 TeX 发行版。TeXLive 自 2011 年起以年份作为发行版的版本号，保持了一年一更的频率。
-  MacTeX 是 macOS（OS X）系统下的一个定制化的 TeXLive 版本，与 TeXLive 同步更新。
-  MikTeX 是主要用于 Windows 平台的一个稳定发展的 TeX 发行版，目前已开发出跨平台版本。
-  中国的 LaTeX 用户应该对“CTeX 套装”比较熟悉，它是一个经过本地化配置的MikTeX，目前已不推荐使用。
+\faq{\TeX{} 中常见术语的解释}{tex-terms}
 
-\end{faq}
+\begin{description}
+  % TODO
+  \item[引擎] \LaTeX{}/\TeX{} 解析引擎，其实就是一个编译器，它输入一个 |.tex| 文件作为输入，根据
+    源文件的内容送入解析引擎和渲染引擎进行处理，并将排版的成果——文档编译输出，\LaTeX{}/\TeX{} 的
+    解析引擎目前有pdflatex、xelatex、lualatex等，它们都可以输出pdf文档文件（部分解析器可以输出dvi
+    文件），用于在多平台进行分发甚至打印出版。
+  \item[格式] \TeX{} 是存在各种不同的封装格式的，比如原生的 \TeX{} 或者 \LaTeX{}，我们所使用的
+    \LaTeX{} 只是\TeX{} 封装格式的其中一种，是目前流行的封装规范。
+  \item[发行版] \LaTeX/\TeX{}都包含了成千上万个宏包，甚至有可能我们需要安装新的宏包，除了手动安装
+    外，最好的方式就是利用发行版的宏包管理器，所谓发行版就是把\LaTeX/\TeX{}的相关组件打包，形成一个
+    独立完善的\LaTeX/\TeX{}系统，目前流行的发行版有MiKTeX、proTeXt 以及TeXLive。
+\end{description}
 
-\begin{faq}{\TeX{}有哪些不同的封装格式}[tex-format2]
-  TeX是一种排版文件的计算机程序，它需要一个计算机文件，根据TeX的规则进行准备，并将其转换成一种可以在高质量打印机上打印的形式，比如激光打印机，可以打印出一份与高质量的书籍和期刊相媲美的打印文档。不包含数学公式或表格的简单文档可以很容易就生成，事实上，所有人都必须直接输入文本（只是遵循不同的符号规则）。输入数学公式时比较复杂的，但当考虑到产生一些数学公式的复杂性时，TeX是相对容易使用的，它可以产生大量的数学符号。
-  TeX包括各种不同的“方言”，其中包括\LaTeX{}。Plain TeX是TeX中最基础的版本，也是其他“方言”的基础。为了用TeX生成文档，我们必须首先在计算机上创建一个合适的输入文件，我们将TeX程序应用到输入文件中，然后再用打印机打印由TeX程序生成的所谓的“DVI”文件。
-  
-  \textbf{Plain TeX(\TeX{})}
-  
-  Knuth设计了一个名叫PlainTeX的基本格式，以与低层次的原始TeX呼应。这种格式是用TeX处理文本时相当基本的部分，以致于我们有时都分不清到底哪条指令是真正的处理程序TeX的原始命令，哪条是PlainTeX格式的。大多数声称只使用TeX的人，实际上指的是只用PlainTeX。
-  PlainTeX也是其它格式的基础，这进一步加深了很多人认为TeX和PlainTeX是同一事物的印象。
-  PlainTeX的重点还只是在于如何排版的层次上，而不是从一位作者的观点出发。对它的深层功能的进一步发掘，需要相当丰富的编程技巧。因此它的应用就局限于高级排版和程序设计人员。
-  注：有关Plain TeX的相关信息可见：\url{http://www.ntg.nl/doc/wilkins/pllong.pdf}
-  
-  \textbf{\LaTeX{}(latex)}
-  
-  有两个版本，分别是LaTeX2e和LaTeX2.09，前者是当前使用的版本，后者是1994年最开使用的过时的版本。
-  \href{https://baike.sogou.com/lemma/ShowInnerLink.htm?lemmaId=73792246&ss_c=ssc.citiao.link}{LeslieLamport}开发的LaTeX是当今世界上最流行和使用最为广泛的TeX格式。它构筑在PlainTeX的基础之上，并加进了很多的功能以使得使用者可以更为方便的利用TeX的强大功能。使用LaTeX基本上不需要使用者自己设计命令和宏等，因为LaTeX已经替你做好了。因此，即使使用者并不是很了解TeX，也可以在短短的时间内生成高质量的文档。对于生成复杂的数学公式，LaTeX表现的更为出色。
-  LaTeX自从二十世纪八十年代初问世以来，也在不断的发展。最初的正式版本为2.09，在经过几年的发展之后，许多新的功能，机制被引入到LaTeX中。在享受这些新功能带来的便利的同时，它所伴随的副作用也开始显现，这就是不兼容性。标准的LaTeX2.09，引入了“新字体选择框架”(NFSS)的LaTeX，SLiTeX，AMSLaTeX等等，相互之间并不兼容。这给使用者和维护者都带来很大的麻烦。
-  为结束这种糟糕的状况，Frank Mittelbach等人成立了LaTeX3项目小组，目标是建立一个最优的，有效的，统一的，标准的命令集合。即得到LaTeX的一个新版本3。这是一个长期目标，向这个目标迈出第一步就是在1994年发布的LaTeX2e。LaTeX2e采用了NFSS作为标准，加入了很多新的功能，同时还兼容旧的LaTeX2.09。LaTeX2e每6个月更新一次，修正发现的错误并加入一些新的功能。在LaTeX3p最终完成之前，LaTeX2e将是标准的LaTeX版本。
-  
-  \textbf{ConTeXt(context)}
-  
-  ConTeXt是TeX的一种格式，是Hans Hagen和荷兰Pragma-ADE公司设计的一种高端的文档制造工具，官方网站为 \href{http://wiki.contextgarden.net/Main_Page}{ConTeXtGarden}。ConTeXt就像LaTeX是基于TeX排班系统的文档制作系统，如果说LaTeX将作者从排版的细节中隔离出来，那么ConTeXt就是采用一种互补的方法来处理结构化的界面来处理排版，包括对颜色、背景、超链接、演示文稿、图形文本集成和条件编译的广泛支持， 对于数学、化学等科技文档的支持同等优秀甚至更为方便，而且其为了更容易实现各种华丽排版效果。它可以让用户对格式进行广泛的控制，同时又可以在不需要学习TeX宏语言的情况下轻松地创建新的布局和样式。 因此ConTeX的图形功能要远远强于TeX和LaTeX，可以制作非常漂亮的PD文档，特别适合做幻灯片和一些非正式的文档。
-  ConTeXt将MetaFun，MetaPost的超集以及一个强大的矢量图形系统整合起来。MetaFun可以作为一个独立的系7统来生成数据，但是它的优势在于用精确的图形元素来增强ConTeXt文档。
-  目前，ConTeXt主要分为两个版本，分别是Mark Ⅱ—后缀名为mkii，在pdfTeX上运行但不是主动开发阶段；和Mark Ⅳ—后缀名为mkiv，在LuaTeX上运行而且正在开发阶段。（LuaTeX的发展也是由于ConTeXt驱动）。
-  注：CTAN不支持ConTeXt的发布——潜在的用户可以去 \href{http://wiki.contextgarden.net/Main_Page}{ConTeXt Garden}了解当前发行版的详细信息。
-  
-  \textbf{TeXinfo(\TeX{},makeinfo)}
-  
-  TeXinfo是一个使用同一个源文件生成在线信息和打印输出的文档系统，所以只需要编写一个文档源文件，当工作被修改时，只需要修改源文件即可。其源文件的后缀名为texi或texinfo。
-  TeXinfo是一门宏语言，就像LaTeX一样，但是它的表达能力略弱，它的表观与TeX的其他宏语言相似，只不过它的宏要以@开头，而TeX系统中用\\开头。
-  你可以在GNU Emacs中编写以及将TeXinfo文件转化成info文件，你也可以在makeinfo中将TeXinfo文件转换成info文件，然后再info中阅读，所以也不是必须依赖于Emacs。这个发行版包括一个Perl脚本，texi2html，可以将texinfo文件转换成HTML，这种语言比LaTeX更适合HTML，所以将LaTeX转换成HTML的痛苦就可以避免了。
-  当然，你也可以用pdfTeX将输入文件转换成PDF格式。
-  makeinfo可将texinfo文档转换成HTML，DocBook,，Emacs info,，XML和全文本。TeX（或者texi2dvi和texi2pdf），因为TeX加载了普通的TeX宏，而并不是TeXinfo，所以TeXinfo文档必须以“\mintinline{latex}{\input texinfo}”开头来加载texinfo包。
-  
-  \textbf{Eplain(eplain)}
-  
-  Eplain扩展并延伸了Plain TeX的定义，它并不像ConTeX 。
 
-\end{faq}
+% \faq{不同的TeX封装格式的区别？}[tex-format]
+% TODO: 该问题跟上下两个重复
+%
+% \textbf{原生\TeX{}}
+%
+% TeX本身是一个基于控制序列的排版系统，它指示TeX如何在页面上放置文本。例如，|\hskip|指在文档中在
+% 文档中插入一定数量的水平空间，而|\font|是指给文档中的文字定义一种给定的字体。TeX是完全可编程的，
+% 它使用一种集成的宏脚本语言，支持变量，范围，条件执行，控制流和函数定义等。
+%
+% \textbf{TeX宏包（\TeX{}格式）}
+%
+% TeX的一些控制序列直接使用是单调乏味的；它们主要作为更高层次的构建快，因此更易于用户使用。例如，
+% 在基础TeX中没有办法能够制定一段文字应该排版为更大的字体，相反，你必须了解当前的字体和大小，然后
+% 加载一种同样字体但更大字号的字体。幸运的是，TeX是可编程的，它可以通过写一个宏将这些复杂性都隐藏在
+% 一个简单的，新的控制序列之后。例如，我们可以通过 |\larger{my text}| 将“my text”定义为比当前更大的
+% 字体。一些使用者会写一些完全由自己定义的宏集，然后再一些文档中重复使用，但，常见的还是依赖于由专家
+% 编写的TeX宏包——一些宏的集合。为了方便用户，这些宏包通常与基本的TeX引擎结合到一个独立的可执行的
+% 文件中。
+%
+% \textbf{TeXLive、MacTeX、MikTeX、CTex}
+%
+% TeXLive 由类 UNIX 系统上的 teTeX 发展并取而代之，最终成为跨平台的 TeX 发行版。TeXLive 自 2011 年
+% 起以年份作为发行版的版本号，保持了一年一更的频率。MacTeX 是 macOS（OS X）系统下的一个定制化的
+% TeXLive 版本，与 TeXLive 同步更新。MikTeX 是主要用于 Windows 平台的一个稳定发展的 TeX 发行版，
+% 目前已开发出跨平台版本。中国的 LaTeX 用户应该对“CTeX 套装”比较熟悉，它是一个经过本地化配置的
+% MikTeX，目前已不推荐使用。
 
-\begin{faq}{LaTeX2.09和LaTeX2e有什么区别？}[Latex-Latex2e-diff]
 
-  后者是前者的改进，从文件内容上看，两者最显著的不同在于LaTeX2.09使用\verb|\documentstyle|命令定义文档类型以及所包含宏包，如：
-  
-  \begin{minted}{latex}
+\faq{\TeX{} 有哪些格式？}{tex-format}
+
+\TeX{} 是一种排版文件的计算机程序，它需要一个计算机文件，根据 \TeX{} 的规则进行准备，并将其转换成
+一种可以在高质量打印机上打印的形式，比如激光打印机，可以打印出一份与高质量的书籍和期刊相媲美的打印
+文档。不包含数学公式或表格的简单文档可以很容易就生成，事实上，所有人都必须直接输入文本（只是遵循
+不同的符号规则）。输入数学公式时比较复杂的，但当考虑到产生一些数学公式的复杂性时，\TeX{} 是相对容易
+使用的，它可以产生大量的数学符号。
+
+\TeX{} 包括各种不同的“方言”，其中包括 \LaTeX{}。\PlainTeX{} 是 \TeX{} 中最基础的版本，也是其他
+“方言”的基础。为了用 \TeX{} 生成文档，我们必须首先在计算机上创建一个合适的输入文件，我们将 \TeX{}
+程序应用到输入文件中，然后再用打印机打印由 \TeX{} 程序生成的所谓的“DVI”文件。
+
+\begin{description}
+  \item[\PlainTeX] Knuth 设计了一个名叫 \PlainTeX{} 的基本格式，以与低层次的原始 \TeX{} 呼应。
+    这种格式是用 \TeX{} 处理文本时相当基本的部分，以致于我们有时都分不清到底哪条指令是真正的处理
+    程序 \TeX{} 的原始命令，哪条是 \PlainTeX{} 格式的。大多数声称只使用 \TeX{} 的人，实际上指的是
+    只用 \PlainTeX{}。
+
+    \PlainTeX{} 也是其它格式的基础，这进一步加深了很多人认为 \TeX{} 和 \PlainTeX{} 是同一事物的
+    印象。\PlainTeX{} 的重点还只是在于如何排版的层次上，而不是从一位作者的观点出发。对它的深层功能
+    的进一步发掘，需要相当丰富的编程技巧。因此它的应用就局限于高级排版和程序设计人员。
+
+    有关 \PlainTeX{} 的相关信息可见：\url{http://www.ntg.nl/doc/wilkins/pllong.pdf}
+
+  \item[\LaTeX] 有两个版本，分别是 \LaTeXe{} 和 \LaTeX2.09，前者是当前使用的版本，后者是在 1994 年
+    首次发布的公开版本，但现已过时。因此，\LaTeX{} 与 \LaTeXe{} 实际上是同义词。
+
+    Leslie Lamport 开发的 \LaTeX{} 是当今世界上最流行和使用最为广泛的 \TeX{} 格式。它构筑在 Plain
+    \TeX{} 的基础之上，并加进了很多的功能以使得使用者可以更为方便的利用 \TeX{} 的强大功能。使用
+    \LaTeX{} 基本上不需要使用者自己设计命令和宏等，因为它已经替你做好了。因此，即使使用者并不是很
+    了解 \TeX{}，也可以在短时间内生成高质量的文档。对于生成复杂的数学公式，\LaTeX{} 也表现得更为
+    出色。
+
+    \LaTeX{} 自从二十世纪八十年代初问世以来，也在不断的发展。最初的正式版本为 2.09，在经过几年的
+    发展之后，许多新的功能，机制被引入到 \LaTeX{} 中。在享受这些新功能带来的便利的同时，它所伴随的
+    副作用也开始显现，这就是不兼容性。标准的 \LaTeX2.09，引入了“新字体选择框架”（NFSS）的 \LaTeX{}、
+    % TODO
+    SLiTeX、AMSLaTeX 等等，相互之间并不兼容。这给使用者和维护者都带来很大的麻烦。
+
+    为结束这种糟糕的状况，Frank Mittelbach 等人成立了 \LaTeX3 项目小组，目标是建立一个最优的、有效
+    的、统一的、标准的命令集合，即得到 \LaTeX{} 的一个新版本 3。这是一个长期目标，向这个目标迈出
+    第一步就是在 1994 年发布的 \LaTeXe{}。\LaTeXe{} 采用了 NFSS 作为标准，加入了很多新的功能，同时
+    还兼容旧的 \LaTeX2.09。\LaTeXe{} 每 6 个月更新一次，修正发现的错误并加入一些新的功能。在
+    \LaTeX3 最终完成之前，\LaTeXe{} 将是标准的 \LaTeX{} 版本。
+
+  \item[\ConTeXt] \ConTeXt{} 是 \TeX{} 的一种格式，是 Hans Hagen 和荷兰 Pragma-ADE 公司设计的一种
+    高端的文档制造工具，官方网站为 \href{http://wiki.contextgarden.net}{\ConTeXt{} Garden}。
+    \ConTeXt{} 就像 \LaTeX{} 是基于 \TeX{} 排班系统的文档制作系统，如果说 \LaTeX{} 将作者从排版的
+    细节中隔离出来，那么 \ConTeXt{} 就是采用一种互补的方法来处理结构化的界面来处理排版，包括对
+    颜色、背景、超链接、演示文稿、图形文本集成和条件编译的广泛支持， 对于数学、化学等科技文档的支持
+    同等优秀甚至更为方便，而且其为了更容易实现各种华丽排版效果。它可以让用户对格式进行广泛的控制，
+    同时又可以在不需要学习 \TeX{} 宏语言的情况下轻松地创建新的布局和样式。 因此 \ConTeXt{} 的图形
+    功能要远远强于 \TeX{} 和 \LaTeX{}，可以制作非常漂亮的 PDF 文档，特别适合做幻灯片和一些非正式的
+    文档。
+
+    \ConTeXt{} 将 \METAFONT{}、\METAPOST{} 的超集以及一个强大的矢量图形系统整合起来。\MetaFun{}
+    可以作为一个独立的系统来生成数据，但是它的优势在于用精确的图形元素来增强 \ConTeXt{} 文档。
+
+    目前，\ConTeXt{} 主要分为两个版本，分别是 Mark II 和 Mark IV（MkII 和 MkIV）。前者已处于稳定
+    状态，只进行代码维护；而后者仍在活跃开发中。MkII 默认使用 \pdfTeX{} 引擎；而 MkIV 由于采用了
+    新的字体机制，仅支持 \LuaTeX{} 引擎。（\LuaTeX{} 的发展也是由于 \ConTeXt{} 驱动）。
+
+    注：CTAN 不支持 \ConTeXt{} 的发布。潜在的用户可以去
+    \href{http://wiki.contextgarden.net/Main_Page}{ConTeXt Garden} 了解当前发行版的详细信息。
+
+  \item[Texinfo] TeXinfo 是一个使用同一个源文件生成在线信息和打印输出的文档系统，所以只需要编写一个
+    文档源文件，当工作被修改时，只需要修改源文件即可。其源文件的后缀名为 |texi| 或 |texinfo|。
+
+    TeXinfo 是一门宏语言，就像 \LaTeX{} 一样，但是它的表达能力略弱，它的表观与 \TeX{} 的其他宏语言
+    相似，只不过它的宏要以 |@| 开头，而 \TeX{} 系统中用 |\| 开头。
+
+    你可以在 GNU Emacs 中编写以及将 TeXinfo 文件转化成 info 文件，你也可以在 makeinfo 中将 TeXinfo
+    文件转换成 info 文件，然后再 info 中阅读，所以也不是必须依赖于 Emacs。这个发行版包括一个 Perl
+    脚本，|texi2html|，可以将 TeXinfo 文件转换成 HTML，这种语言比 \LaTeX{} 更适合 HTML，所以将
+    \LaTeX{} 转换成 HTML 的痛苦就可以避免了。
+
+    当然，你也可以用 \pdfTeX{} 将输入文件转换成 PDF 格式。makeinfo 可将 texinfo 文档转换成 HTML、
+    DocBook、Emacs info、XML 和纯文本。\TeX{}（或者 |texi2dvi| 和 |texi2pdf|），因为 \TeX{} 加载了
+    普通的 \TeX{} 宏，而并不是 TeXinfo，所以 TeXinfo 文档必须以 |\input texinfo| 开头来加载
+    \pkg{texinfo} 包。
+
+  % TODO: 不常用，可删去
+  \item[Eplain] Eplain 扩展并延伸了 \PlainTeX{} 的定义，它并不像 \ConTeXt{}。
+\end{description}
+
+
+\faq{\LaTeX2.09 和 \LaTeXe{} 有什么区别？}{latex2.09-latex2e-diff}
+
+后者是前者的改进。从文件内容上看，两者最显著的不同在于 \LaTeX2.09 使用 |\documentstyle| 命令定义
+文档类以及所包含宏包，如：
+
+\begin{verbatim}
 \documentstyle[twoside,epsfig]{article}
-  \end{minted}
-  
-  而LaTeX2e使用\mintinline{latex}{\documentclass}命令设置文档类型，用\mintinline{latex}{\usepackage}命令调用宏包。
+\end{verbatim}
 
-\end{faq}
+而 \LaTeX2e{} 使用 |\documentclass| 命令设置文档类型，用 |\usepackage| 命令调用宏包。
 
-\begin{faq}{\TeX{}, \LaTeX{}, pdflatex, xelatex, xetex等的区别和关系，什么时候用什么编译器编译}[build-all-diff]
 
-  LaTeX 其实是目前使用最广泛的 \TeX{} 格式。xeTeX 是一种引擎（编译器），pdfLaTeX （xeLaTeX） 是命令，他们分别结合了 pdfTeX（xeTeX） 引擎和 \LaTeX{} 格式。对于刚开始接触的人，建议处理英文时直接使用 pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件） 
+\faq{\TeX{}, \LaTeX{}, pdflatex, xelatex, xetex等的区别和关系，什么时候用什么编译器编译}
+  {build-all-diff}
+% TODO: 非常混乱……
 
-\end{faq}
+LaTeX 其实是目前使用最广泛的 \TeX{} 格式。xeTeX 是一种引擎（编译器），pdfLaTeX （xeLaTeX） 是命令，
+他们分别结合了 pdfTeX（xeTeX） 引擎和 \LaTeX{} 格式。对于刚开始接触的人，建议处理英文时直接使用
+pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件）
 
-%\begin{faq}{文本文件编码解读}
-%\end{faq}
 
-\begin{faq}{\LaTeX{}源文件}[latex-src]
+\faq{文本文件编码解读}{encoding}
 
-  LaTeX的源文件是*.tex文件，是指latex编译器处理输入文件的源码，latex编译器会对输入文件进行解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于LaTeX解析器可能对中文文件名处理存在兼容性问题，不建议将LaTeX的源文件的文件名设置为中文。
 
-\end{faq}
+\faq{\LaTeX{} 的源文件有什么要求？}{latex-source-file}
 
-\begin{faq}{连字符如何在\TeX{}起作用}[Tex-char]
+\LaTeX{} 的源文件是 |*.tex| 文件，是指 latex 编译器处理输入文件的源码，latex 编译器会对输入文件进行
+解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于 \LaTeX{} 解析器可能对中文
+文件名处理存在兼容性问题，不建议将 \LaTeX{} 的源文件的文件名设置为中文。
 
-  如果 LaTeX 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词中间断开。对于绝大部分单词，LaTeX 能够找到合适的断词位置，在断开的行尾加上连字符 - 。
-  如果一些单词没能自动断词，我们可以在单词内手动使用 \- 命令指定断词的位置，如：
-  
-  \begin{quote}
-  I think this is: su\-per\-cal\-\%
-  
-  i\-frag\-i\-lis\-tic\-ex\-pi\-\%
-  
-  al\-i\-do\-cious.
-  \end{quote}
 
-\end{faq}
+\faq{连字符如何在 \TeX{} 起作用？}{hyphen}
+% TODO: 不应该放在这里，给的例子也很奇怪
 
-\begin{faq}{Unicode和\TeX{}}
-\end{faq}
+如果 \LaTeX{} 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词
+中间断开。对于绝大部分单词，\LaTeX{} 能够找到合适的断词位置，在断开的行尾加上连字符 |-|。如果一些
+单词没能自动断词，我们可以在单词内手动使用 |\-| 命令指定断词的位置，如：
 
-\begin{faq}{常见的TeX文件扩展名与文件用途}
+\begin{verbatim}
+I think this is: su\-per\-cal\-\%
+i\-frag\-i\-lis\-tic\-ex\-pi\-\%
+al\-i\-do\-cious.
+\end{verbatim}
 
-  常见的用户文件的扩展名与其用户如下：
-  \begin{itemize}
-    \item .tex 文件。源文件，需用户编写。
-    \item .sty 宏包文件。宏包的名称就是去掉扩展名的文件名。
-    \item .cls 文档类文件。同样地，文档类名称就是文件名
-    \item .bib BibTeX 参考文献数据库文件。
-    \item .bst BibTeX 用到的参考文献格式模板。
-    \item .log 排版引擎生成的日志文件，供排查错误使用。
-    \item .aux LaTeX 生成的主辅助文件，记录交叉引用、目录、参考文献的引用等。
-    \item .toc LaTeX 生成的目录记录文件。
-    \item .lof LaTeX 生成的图片目录记录文件。
-    \item .lot LaTeX 生成的表格目录记录文件。
-    \item .bbl BibTeX 生成的参考文献记录文件。
-    \item .blg BibTeX 生成的日志文件。
-    \item .idx LaTeX 生成的供 makeindex 处理的索引记录文件。
-    \item .ind makeindex 处理 .idx 生成的格式化索引记录文件。
-    \item .ilg makeindex 生成的日志文件。
-    \item .out hyperref 宏包生成的 PDF 书签记录文件。
-  \end{itemize}
 
-\end{faq}
+\faq{Unicode 和 \TeX{}}{unicode-and-tex}
 
-%\begin{faq}{什么是“决议”(resolutions)}
-%\end{faq}
-%
-%\begin{faq}{什么是（\TeX{}）宏}
-%\end{faq}
-%
-%\begin{faq}{什么是\LaTeX{}类和工具包}
-%\end{faq}
-%
-%\begin{faq}{什么是PK文件}
-%\end{faq}
-%
-%\begin{faq}{什么是TFM文件}
-%\end{faq}
-%
-%\begin{faq}{什么是编码}
-%\end{faq}
-%
-%\begin{faq}{什么是EC字体}
-%\end{faq}
-%
-%\begin{faq}{什么是虚拟字体}
-%\end{faq}
-%
-%\begin{faq}{什么是“Encapsulated PostScript”(EPS)}
-%\end{faq}
-%
-%\begin{faq}{什么是DVI驱动程序}
-%\end{faq}
 
-\begin{faq}{什么是DVI文件}
+\faq{常见的 \TeX{} 文件扩展名与文件用途}{extensions}
+% TODO: 见如下链接
+%   https://tex.stackexchange.com/q/7770/136923
+%   https://tex.stackexchange.com/q/53240/136923
+%   https://github.com/wspr/latex-auxfiles
 
-  DVI文件（device independent）为\href{https://baike.baidu.com/item/TeX}{TeX}电子排版系统的输出文件。七十年代末，\href{https://baike.baidu.com/item/Donald%20E.%20Knuth}{Donald E. Knuth（高德纳）}在看到其多卷巨著“The Art of ComputerProgramming”第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此决定自己来开发一个高质量的计算机排版系统，这样就有了TeX。TeX 的输出文件称为 DVI 文件，即是“Device Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI文件就可以被送到任何\href{https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87}{输出设备}如打印机，屏幕等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，从页面设置到文本中字符的位置都被固定，不能更改。
+常见的用户文件的扩展名与其用户如下：
+\begin{itemize}
+  \item |.tex| 文件。源文件，需用户编写。
+  \item |.sty| 宏包文件。宏包的名称就是去掉扩展名的文件名。
+  \item |.cls| 文档类文件。同样地，文档类名称就是文件名
+  \item |.bib| \BibTeX{} 参考文献数据库文件。
+  \item |.bst| \BibTeX{} 用到的参考文献格式模板。
+  \item |.log| 排版引擎生成的日志文件，供排查错误使用。
+  \item |.aux| \LaTeX{} 生成的主辅助文件，记录交叉引用、目录、参考文献的引用等。
+  \item |.toc| \LaTeX{} 生成的目录记录文件。
+  \item |.lof| \LaTeX{} 生成的图片目录记录文件。
+  \item |.lot| \LaTeX{} 生成的表格目录记录文件。
+  \item |.bbl| \BibTeX{} 生成的参考文献记录文件。
+  \item |.blg| \BibTeX{} 生成的日志文件。
+  \item |.idx| \LaTeX{} 生成的供 \pkg{makeindex} 处理的索引记录文件。
+  \item |.ind| \pkg{makeindex} 处理 |.idx| 生成的格式化索引记录文件。
+  \item |.ilg| \pkg{makeindex} 生成的日志文件。
+  \item |.out| \pkg{hyperref} 宏包生成的 PDF 书签记录文件。
+\end{itemize}
 
-\end{faq}
 
-%
-%\begin{faq}{什么是（\TeX{}）宏}
-%\end{faq}
+\faq{什么是 DVI 文件？}{what-is-dvi}
+% TODO: 部分内容重复
 
-\begin{faq}{什么是“Berry命名方案”}
-\end{faq}
+DVI（device independent）文件为 \TeX{} 电子排版系统的输出文件。七十年代末，Knuth 在看到其多卷巨著
+《The Art of ComputerProgramming》第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此
+决定自己来开发一个高质量的计算机排版系统，这样就有了 TeX。TeX 的输出文件称为 DVI 文件，即是“Device
+Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI 文件就可以被送到任何输出设备，如打印机、屏幕
+等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，
+从页面设置到文本中字符的位置都被固定，不能更改。
 
-\begin{faq}{什么是TDS}
-  TDS 全称 TeX Directory Structure，意为 TeX 目录结构，即 TeX 发行版的文件组织结构。大部分 TeX 发行版都将自身的文件组织成相近的路径结构，也就是 TDS。TDS 也称为 TEXMF 树，这是 TeX 与 METAFONT 的合称。很多系统的 TDS 结构都以 texmf 或者类似的词作为 TEXMF 树的根目录名，如在 TeX Live 中，安装目录下的 texmf-dist、texmf-var 等就是两个不同的 TEXMF 树，如图 \ref{texmf-dir}。
-  \begingroup
-    \makeatletter
-    \def\@captype{figure}
-    \makeatother
-    \dirtree {%
-      .1 TEXMF树.
-      .2 bibtex/\DTcomment{BibTeX 相关文件}.
-      .3 bib/\DTcomment{公用 bib 数据库}.
-      .3 bst/\DTcomment{格式文件}.
-      .2 doc/\DTcomment{各类用户文档}.
-      .3 bibtex/\DTcomment{BibTeX 相关文档}.
-      .3 fonts/\DTcomment{字体文档}.
-      .3 generic/\DTcomment{通用于各种格式的文档}.
-      .4 pgf/.
-      .5 pgfmanual.pdf\DTcomment{PGF/TikZ 用户手册}.
-      .3 latex/\DTcomment{用于 LaTeX 格式的文档}.
-      .4 ctex/.
-      .5 ctex.pdf\DTcomment{ctex 宏集用户手册}.
-      .5 README.md\DTcomment{ctex 宏集简短介绍}.
-      .3 texlive/\DTcomment{TeX Live 发行版自身的文档}.
-      .2 font/\DTcomment{字体相关文件}.
-      .3 opentype/\DTcomment{OpenType 格式的字体}.
-      .3 source/\DTcomment{字体源代码}.
-      .3 truetype/\DTcomment{TrueType 格式的字体}.
-      .3 type1/\DTcomment{Type1 格式的字体}.
-      .2 scripts/\DTcomment{可执行脚本}.
-      .3 l3build/\DTcomment{LaTeX 构建、测试脚本}.
-      .3 latexmk/\DTcomment{自动编译系统}.
-      .3 texdoc/\DTcomment{文档查询系统}.
-      .2 source/\DTcomment{源代码}.
-      .3 bibtex/\DTcomment{BibTeX 相关宏包代码}.
-      .3 fonts/\DTcomment{字体源代码}.
-      .3 generic/\DTcomment{通用于各种格式的宏包代码}.
-      .3 latex/\DTcomment{用于 LaTeX 格式的宏包代码}.
-      .4 ctex/\DTcomment{ctex 宏集源代码}.
-      .5 ctex.dtx.
-      .5 ctex.ins.
-      .5 ctexpuct.spa.
-      .2 tex/\DTcomment{TeX 宏，可被引擎读入}.
-      .3 generic/\DTcomment{通用于各种格式}.
-      .3 latex/\DTcomment{用于 LaTeX 格式}.
-      .4 base/\DTcomment{LaTeX 的基本宏文件}.
-      .5 article.cls.
-      .5 book.cls.
-      .5 report.cls.
-      .5 latex.ltx.
-      .4 beamer/\DTcomment{beamer 宏包相关文件}.
-      .4 ctex/\DTcomment{ctex 宏集相关文件}.
-      .5 ctexart.cls.
-      .5 ctexbeamer.cls.
-      .5 ctexbook.cls.
-      .5 ctexrep.cls.
-      .5 ctex.sty.
-      .3 plain/\DTcomment{用于 Plain TeX 格式}.
-      .3 xetex/\DTcomment{用于 XeTeX 引擎}.
-      .3 xelatex/\DTcomment{用于 XeTeX 引擎下的 LaTeX 格式}.
-      .4 xecjk/\DTcomment{xeCJK 宏包相关文件}.
-      .5 xeCJK.sty.
-    }
-    \caption{TEXMF树目录结构}
-    \label{texmf-dir}
-  \endgroup
-\end{faq}
 
-\begin{faq}{\LaTeX{} 源文件有什么要求？}
-  LaTeX的源文件是 *.tex文件，是指latex编译器处理输入文件的源码，latex编译器会对输入文件进行解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于LaTeX解析器可能对中文文件名处理存在兼容性问题，不建议将LaTeX的源文件的文件名设置为中文。
-\end{faq}
+\faq{什么是 TDS？}{what-its-tds}
+
+TDS 全称 \TeX{} Directory Structure，意为 \TeX{} 目录结构，即 \TeX{} 发行版的文件组织结构。大部分
+\TeX{} 发行版都将自身的文件组织成相近的路径结构，也就是 TDS。TDS 也称为 TEXMF 树，这是 \TeX{} 与
+\METAFONT{} 的合称。很多系统的 TDS 结构都以 |texmf| 或者类似的词作为 TEXMF 树的根目录名，如在
+\TeXLive{} 中，安装目录下的 |texmf-dist|、|texmf-var| 等就是两个不同的 TEXMF 树，
+如图~\ref{fig:texmf-dir}。
+
+\begingroup
+  % TODO: 有页面溢出的问题
+  \makeatletter
+  \def\@captype{figure}
+  \makeatother
+  \dirtree {%
+    .1 TEXMF树.
+    .2 bibtex/\DTcomment{\BibTeX{} 相关文件}.
+    .3 bib/\DTcomment{公用 bib 数据库}. % TODO: verb 有问题
+    .3 bst/\DTcomment{格式文件}.
+    .2 doc/\DTcomment{各类用户文档}.
+    .3 bibtex/\DTcomment{\BibTeX{} 相关文档}.
+    .3 fonts/\DTcomment{字体文档}.
+    .3 generic/\DTcomment{通用于各种格式的文档}.
+    .4 pgf/.
+    .5 pgfmanual.pdf\DTcomment{PGF/\TikZ{} 用户手册}.
+    .3 latex/\DTcomment{用于 \LaTeX{} 格式的文档}.
+    .4 ctex/.
+    .5 ctex.pdf\DTcomment{\CTeX{} 宏集用户手册}.
+    .5 README.md\DTcomment{\CTeX{} 宏集简短介绍}.
+    .3 texlive/\DTcomment{\TeXLive{} 发行版自身的文档}.
+    .2 font/\DTcomment{字体相关文件}.
+    .3 opentype/\DTcomment{OpenType 格式的字体}.
+    .3 source/\DTcomment{字体源代码}.
+    .3 truetype/\DTcomment{TrueType 格式的字体}.
+    .3 type1/\DTcomment{Type1 格式的字体}.
+    .2 scripts/\DTcomment{可执行脚本}.
+    .3 l3build/\DTcomment{\LaTeX{} 构建、测试脚本}.
+    .3 latexmk/\DTcomment{自动编译系统}.
+    .3 texdoc/\DTcomment{文档查询系统}.
+    .2 source/\DTcomment{源代码}.
+    .3 bibtex/\DTcomment{\BibTeX{} 相关宏包代码}.
+    .3 fonts/\DTcomment{字体源代码}.
+    .3 generic/\DTcomment{通用于各种格式的宏包代码}.
+    .3 latex/\DTcomment{用于 \LaTeX{} 格式的宏包代码}.
+    .4 ctex/\DTcomment{\CTeX{} 宏集源代码}.
+    .5 ctex.dtx.
+    .5 ctex.ins.
+    .5 ctexpuct.spa.
+    .2 tex/\DTcomment{\TeX{} 宏，可被引擎读入}.
+    .3 generic/\DTcomment{通用于各种格式}.
+    .3 latex/\DTcomment{用于 \LaTeX{} 格式}.
+    .4 base/\DTcomment{\LaTeX{} 的基本宏文件}.
+    .5 article.cls.
+    .5 book.cls.
+    .5 report.cls.
+    .5 latex.ltx.
+    .4 beamer/\DTcomment{\cls{beamer} 宏集相关文件}.
+    .4 ctex/\DTcomment{\CTeX{} 宏集相关文件}.
+    .5 ctexart.cls.
+    .5 ctexbeamer.cls.
+    .5 ctexbook.cls.
+    .5 ctexrep.cls.
+    .5 ctex.sty.
+    .3 plain/\DTcomment{用于 \PlainTeX{} 格式}.
+    .3 xetex/\DTcomment{用于 \XeTeX{} 引擎}.
+    .3 xelatex/\DTcomment{用于 \XeTeX{} 引擎下的 \LaTeX{} 格式}.
+    .4 xecjk/\DTcomment{\pkg{xeCJK} 宏包相关文件}.
+    .5 xeCJK.sty.
+  }
+  \caption{TEXMF 树目录结构}
+  \label{fig:texmf-dir}
+\endgroup
+（来自刘海洋《LaTeX 入门》）
+
+%\faq{从TeX编写（文本）文件}{tex-text-write}
+
+%\faq{\\special命令}{special-command}
+
+\faq{Overleaf 是什么？如何使用？}{overleaf}
+
+\pkg{minted} 在 Overleaf v1、v2 都是可以用的，例子参照
+\url{https://www.overleaf.com/read/qphhfvnsddbs}。MATLAB 高亮也一样可以用 \pkg{minted} 完成，注意
+字母大小写：
+
+\begin{verbatim}
+\begin{minted}{matlab}
+...
+\end{minted}
+\end{verbatim}
+
+Overleaf v1 的确有文件数目及项目大小限制，视收费与否而定：\url{https://www.overleaf.com/help/297}；
+Overleaf v2 则相对宽松得多：所有项目（包括免费）都无文件大小上限，条件：每个项目限 2000 文件，以及
+可编辑纯文本文件不大于 5MB。详见
+\url{https://www.sharelatex.com/learn/Uploading_a_project#Limitations_on_Uploads}。
+
+Overleaf v1 是支持两层及以上的文件夹的，详情看 \url{https://www.overleaf.com/help/187}；
+Overleaf v2 可以直接右键资料夹，再创建子资料夹。
+
+Overleaf v2 目前还是比较稳定的（2018 年 9 月将会全面上线）。当然如果是特定地区、单位限制的原因，
+则不方便在这里讨论。
+
+【这里先预定个位置，以后可以写个篇幅比较长的功能介绍。若对 Overleaf 有任何问题，建议直接电邮
+support@overleaf.com 询问，不必过多自行揣测。若是担心语言问题，Overleaf 技术支援人员有谙中文的。】
+
+\faq{编译器与编辑器的区别是什么？}{ide-compile-diff}
+
+在 \pkg{lshort} 中，确切解释了，所谓编译器，真正的名称叫排版引擎，是读入源代码并编译生成文档的
+程序，如 \pdfTeX{}、\XeTeX{} 等。
+
+编辑器，其实是用户书写源代码的工具，例如 Windows 下的记事本、Ubuntu 下的 gedit 等等。目前很多编辑器
+都提供了“编译”按钮，本质上是基于命令行调用了编译器。
+
+\faq{未来有计划做到像 Bakoma 那样所见即所得吗？}{bakoma}
+
+\LaTeX{} 的缺点之一，相比“所见即所得”的模式有一些不便，为了查看生成的文档，用户总要不停地编译。  
+
+% \faq{什么是“决议”(resolutions)}
+% \faq{什么是（\TeX{}）宏}
+% \faq{什么是\LaTeX{}类和工具包}
+% \faq{什么是PK文件}
+% \faq{什么是TFM文件}
+% \faq{什么是编码}
+% \faq{什么是EC字体}
+% \faq{什么是虚拟字体}
+% \faq{什么是“Encapsulated PostScript”(EPS)}
+% \faq{什么是DVI驱动程序}
+% \faq{什么是“Berry命名方案”}
