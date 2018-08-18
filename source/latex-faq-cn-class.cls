@@ -42,13 +42,16 @@
 % 载入相关宏包
 \RequirePackage
   {
+    amsmath,
+    dirtree,
     enumitem,
     fancyvrb,
     geometry,
+    graphicx,
     hologo,
     unicode-math,
     xurl,
-    zref-base,
+    zref-abspage,
     hyperref
   }
 
@@ -123,14 +126,13 @@
           }
       }
   }
+\bool_new:N \l__source_han_super_otc_bool
 \cs_new_protected:Npn \__faqcn_source_super_otc:Nnn #1#2#3
   {
     \IfFontExistsTF {#2}
       { #1 {#2} [#3] }
       { \BOOM }
   }
-\bool_new:N \l__source_han_super_otc_bool
-
 \bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
     \faqcn_set_cjk_font:Nnnnnnn \setCJKmainfont
@@ -161,9 +163,34 @@
       }
   }
 
+% 中文版式设置
 \ctexset
   {
     section / number = \Alph { section }
+  }
+
+% 列表环境
+\setlist
+  {
+    itemsep       = 0 pt,
+    parsep        = 0 pt,
+    listparindent = \parindent
+  }
+
+% 页面尺寸
+\geometry
+  {
+    paper      = a4paper,
+    vmargin    = 2.54 cm,
+    hmargin    = 3.18 cm,
+    headheight = 15 pt
+  }
+
+% hyperref 有关设置
+\hypersetup
+  {
+    bookmarksnumbered = true,
+    colorlinks        = true
   }
 
 % 脚注
@@ -185,41 +212,34 @@
     #1
   }
 
-% 列表环境
-\setlist
-  {
-    itemsep       = 0 pt,
-    parsep        = 0 pt,
-    listparindent = \parindent
-  }
-
-% 页面尺寸
-\geometry
-  {
-    paper      = a4paper,
-    vmargin    = 2.54 cm,
-    hmargin    = 3.18 cm,
-    headheight = 15 pt
-  }
-
-\hypersetup { colorlinks }
-
 % 问答环境
 % #1: 选项
 % #2: 长名称
 % #3: 短名称
 \NewDocumentCommand \faq { o m m }
   {
+    % TODO: 选项准备仿照 l3doc，如 added、updated 选项
     \faqcn_faq:nn {#2} {#3}
   }
 
 \cs_new_protected:Npn \faqcn_faq:nn #1#2
   {
-    \hypertarget { faq @ #2 } { \textbf { \int_use:N \g_faqcn_count_int \quad #1} }
-    \tl_if_novalue:nF {#2} { \zref@labelbylist { faq: #2 } { faqcn } }
+    \tl_set:Nn \l__faqcn_faq_title_tl { \textbf { \int_use:N \g_faqcn_count_int \quad #1 } }
+    \tl_set:Nn \l__faqcn_faq_name_tl  { faq: #2 }
+    % 问题之间留空
+    \skip_vertical:n { 2 ex }
+    % 排版标题，以及交叉引用
+    \hypertarget { faq @ #2 } { \tl_use:N \l__faqcn_faq_title_tl }
+    \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
+    % PDF 书签
+    \pdfbookmark [ 2 ]
+      { \int_use:N \g_faqcn_count_int \tex_space:D #1 }
+      { \tl_use:N \l__faqcn_faq_name_tl }
     \int_gincr:N \g_faqcn_count_int
     \par
   }
+\tl_new:N \l__faqcn_faq_title_tl
+\tl_new:N \l__faqcn_faq_name_tl
 \int_new:N \g_faqcn_count_int
 \int_set_eq:NN \g_faqcn_count_int \c_one
 
@@ -264,16 +284,89 @@
 \cs_set_protected:Npn \ApTeX    { Ap\TeX        }
 \cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
 \cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
+\cs_set_protected:Npn \MiKTeX   { MiK\kern-.025em \TeX }
 \cs_set_protected:Npn \MacTeX   { Mac\TeX       }
+\cs_set_protected:Npn \proTeXt  { pro\TeX t     }
 \cs_set_protected:Npn \PlainTeX { Plain~ \TeX   }
 \cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
 
 % 宏包与文档类
-\cs_set_protected:Npn \pkg #1 { \textsf {#1} }
-\cs_set_protected:Npn \cls #1 { \textsf {#1} }
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\DeclareRobustCommand\meta[1]{%
+     \ensuremath\langle
+     \ifmmode \expandafter \nfss@text \fi
+     {%
+      \meta@font@select
+      \edef\meta@hyphen@restore
+        {\hyphenchar\the\font\the\hyphenchar\font}%
+      \hyphenchar\font\m@ne
+      \language\l@nohyphenation
+      #1\/%
+      \meta@hyphen@restore
+     }\ensuremath\rangle
+}
+\def\meta@font@select{\itshape}
+\newcommand\Arg[1]
+  { \texttt{\char`\{} \meta{#1} \texttt{\char`\}} }
+\providecommand\marg[1]{ \Arg{#1} }
+\providecommand\oarg[1]{ \texttt[ \meta{#1} \texttt] }
+\providecommand\parg[1]{ \texttt( \meta{#1} \texttt) }
+\DeclareRobustCommand \file {\nolinkurl}
+\DeclareRobustCommand \env {\texttt}
+\DeclareRobustCommand \pkg {\textsf}
+\DeclareRobustCommand \cls {\textsf}
 
 % 允许使用 |...| 作为行内抄录
 \AtBeginDocument
   { \DefineShortVerb   { \| } }
 \AtEndDocument
   { \UndefineShortVerb { \| } }
+
+% 为 dirtree 宏包打补丁，使得跨页时可以正常显示
+% 见 https://tex.stackexchange.com/q/6103/136923
+%    https://gist.github.com/flaviotoribio/e35402f9220835a998e444ec5b2adfd4
+\ctex_preto_cmd:NnnTF \dirtree
+  {
+    \ExplSyntaxOff
+    \char_set_catcode_letter:n { 64 }
+  }
+  { \global\advance\DT@treenum by\@ne }
+  { } { \ctex_patch_failure:N \dirtree }
+\ctex_patch_cmd:Nnn \dirtree
+  { \count@=\z@ }
+  {
+    \count@=\z@
+    \DT@splitfalse
+  }
+\ctex_patch_cmd:Nnn \dirtree
+  { \ifnum\count@=\z@ }
+  {
+      \ifnum0\zref@extract{DT\the\DT@treenum.\the\DT@countiv}{abspage} =
+        0\zref@extract{DT\the\DT@treenum.\the\DT@countii}{abspage}\relax
+      \else
+        \advance\DT@countiv\@ne
+        \count@=\@ne
+        \DT@splittrue
+      \fi
+    \ifnum\count@=\z@
+  }
+\ctex_patch_cmd:Nnn \dirtree
+  { \kern-0.5\DT@rulewidth }
+  {
+    \ifDT@split
+      \advance\dimen\z@ by.4\baselineskip
+    \fi
+    \kern-0.5\DT@rulewidth
+  }
+\ctex_patch_cmd:Nnn \DT@readarg
+  { \@namedef{DT@body@\the\DT@counti}{\strut{\DTstyle{#2}\strut}} }
+  {
+    \edef\DT@label{DT\the\DT@treenum.\the\DT@counti}
+    \expandafter\def\csname DT@body@\the\DT@counti\expandafter\endcsname
+        \expandafter{\expandafter\strut\expandafter\zref@label\expandafter{
+        \DT@label}
+      {\DTstyle{#2}\strut}
+    }
+  }
+\newcount\DT@treenum \DT@treenum=0
+\newif\ifDT@split
