@@ -42,10 +42,12 @@
 % 载入相关宏包
 \RequirePackage
   {
+    amsmath,
     dirtree,
     enumitem,
     fancyvrb,
     geometry,
+    graphicx,
     hologo,
     unicode-math,
     xurl,
