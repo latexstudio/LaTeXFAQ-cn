@@ -43,17 +43,17 @@
 \RequirePackage
   {
     amsmath,
+    diagbox,
     dirtree,
     enumitem,
     fancyvrb,
     geometry,
     graphicx,
     hologo,
+    tabularx,
     unicode-math,
     xurl,
     zref-abspage,
-    tabularx,
-    diagbox,
     hyperref
   }
 
