@@ -177,19 +177,9 @@ Zetero 使用起来也非常方便，详情见官网 \url{https://www.zotero.org
   准备一份 BibTeX 数据库，假设数据库文件名为 books.bib，和 LaTeX
   源代码一般位于同一个目录下。
 \item
-  在源代码中添加必要的命令，如
-
-  \bibliographystyle{abbrv}
-
-  ，
-
-  \bibliography{books}
-
-  。假设源代码名为 demo.tex。其中，
-
-  \cs{bibliographystyle}
-
-  设定参考文献的格式。\textbackslash{}bibliography
+  在源代码中添加必要的命令，如 |\bliographystyle{abbrv}|,|\bibliography{books}|。假设源代码名为
+   demo.tex。其中，\cs{bibliographystyle}设定参考文献的格式。
+   \cs{bibliography}
   告诉系统使用哪个数据库和参考文献列在哪个位置。
 \item
   写好了以上两个文件之后，我们就可以开始编译了。例如在命令行中执行以下命令
@@ -259,7 +249,9 @@ ref.bib
 
 \faq{按照章节分开参考文献条目}{}
 
-可看看chapterbib宏包。 \#\# 引文的排序及压缩
+可看看chapterbib宏包。 
+
+\#\# 引文的排序及压缩
 
 这个取决于使用的宏包，常用的natbib宏包可以使用sort或者sort\&compress选项激活相应的排序或排序并压缩功能。
 \#\# 引文列表排序

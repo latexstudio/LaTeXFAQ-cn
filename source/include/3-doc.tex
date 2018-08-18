@@ -541,6 +541,9 @@ enumitem 宏包
 %  在读入文件之前会另起一页。\cs{input}
 %  命令纯粹是把文件里的内容插入 * \cs{include}不可用于导言区
 %\end{faq}
+%\faq{如何在axmath转换代码到texstudio?}{}
+%点击下图中第10个按钮，即可将数学公式转换为LaTeX代码，复制即可。
+%图片: https://images-cdn.shimo.im/oMh77ZPr7iIsh2tB/image.png
 %
 %
 %\begin{faq}{subfiles有什么用？}
@@ -597,6 +600,32 @@ enumitem 宏包
 %    有什么区别，我创建新命令的时候究竟应该用哪个？
 %    \item
 %    怎样创建一个带*的命令？
+%有以下几种方法：
+%1. 最基本的方法，使用 LaTeX 内部命令 \@ifstar 判断
+%\makeatletter
+%\newcommand{\mycommand}{%
+%  \@ifstar
+%  \mycommandStar%
+%  \mycommandNoStar%
+%}
+%\makeatother
+%\newcommand{\mycommandStar}{starred version}
+%\newcommand{\mycommandNoStar}{normal version}
+%2. 比较简单的方法，使用 ifthen 宏包
+%\usepackage{ifthen}
+%\newcommand{\mycommand}[1]{\ifthenelse{\equal{#1}{*}}%
+%  {\mycommandStar}%
+%  {\mycommandNoStar{#1}}%
+%}
+%\newcommand{\mycommandStar}{starred version}
+%\newcommand{\mycommandNoStar}[1]{normal version}
+%3. 使用latex3的机制：
+%\usepackage{xparse}
+%\NewDocumentCommand\mycommand{s}{%
+%  \IfBooleanTF#1%
+%  {starred version}%
+%  {normal version}%
+%}
 %    \item
 %    ~类似 \verb|\macro[<option1>][<option2>]{<arg>}|
 %    这样的宏命令，当我只使用一个可选参数时，LaTeX
@@ -604,13 +633,44 @@ enumitem 宏包
 %    \item
 %    \cs{newcommand}
 %    创建的命令，仅有第一个命令可以成为可选参数，如果我想创建具有两个可选参数的命令，应该如何去写？
+%1.可以用一个小把戏实现：
+%\newcommand{\mycmd}[1][option1]{%
+%  \def\ArgI{{#1}}%
+%  \mycmdoptii
+%}
+%\newcommand\mycmdoptii[1][option2]{%
+%  ...
+%}
+%使用latex3机制：
+%\usepackage{xparse}
+%\NewDocumentCommand\mycmd{O{option1} O{option2} m}{%
+%  #1#2#3
+%}
 %    \item
 %    有些命令的参数是使用( ) 扩起来的，这类命令是如何定义的？
 %    \item
 %    我想新建一个带有可选参数的命令，可选参数的缺省值与必选参数值一样，这样的命令如何创建？
+%第一种方法：
+%\newcommand{\mycmd}[2][\DefaultOpt]{%
+%  \def\DefaultOpt{#2}%
+%  optional arg: #1,  mandatory arg: #2%
+%}
+%第二种方法：
+%\def\mycmd{\futurelet\testchar\WithOptCmd}
+%\def\WithOptCmd{%
+%  \ifx[\testchar 
+%  \let\next\OptCmd 
+%  \else 
+%  \let\next\NoOptCmd 
+%  \fi\next}
+%\def\OptCmd[#1]#2{optional arg: #1,  mandatory arg: #2}
+%\def\NoOptCmd#1{optional arg: #1,  mandatory arg: #1}
 %    \item
 %    想用minted包写文档，怕别人用不来不会设置-shell --escepe咋办
 %    \item
 %    .latex如何给整个页面加边框？
 %  \end{enumerate}
 %\end{faq}
+
+%\faq{每一部分第一段段首如何空两格，区别于下面段落的自动换行。}{}
+%使用 \usepackage{indentfirst}
