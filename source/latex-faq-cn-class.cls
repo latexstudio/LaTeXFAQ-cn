@@ -284,7 +284,9 @@
 \cs_set_protected:Npn \ApTeX    { Ap\TeX        }
 \cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
 \cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
+\cs_set_protected:Npn \MiKTeX   { MiK\kern-.025em \TeX }
 \cs_set_protected:Npn \MacTeX   { Mac\TeX       }
+\cs_set_protected:Npn \proTeXt  { pro\TeX t     }
 \cs_set_protected:Npn \PlainTeX { Plain~ \TeX   }
 \cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
 
