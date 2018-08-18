@@ -52,6 +52,8 @@
     unicode-math,
     xurl,
     zref-abspage,
+    tabularx,
+    diagbox,
     hyperref
   }
 
