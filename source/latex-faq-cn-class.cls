@@ -126,14 +126,13 @@
           }
       }
   }
+\bool_new:N \l__source_han_super_otc_bool
 \cs_new_protected:Npn \__faqcn_source_super_otc:Nnn #1#2#3
   {
     \IfFontExistsTF {#2}
       { #1 {#2} [#3] }
       { \BOOM }
   }
-\bool_new:N \l__source_han_super_otc_bool
-
 \bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
     \faqcn_set_cjk_font:Nnnnnnn \setCJKmainfont
@@ -164,9 +163,34 @@
       }
   }
 
+% 中文版式设置
 \ctexset
   {
     section / number = \Alph { section }
+  }
+
+% 列表环境
+\setlist
+  {
+    itemsep       = 0 pt,
+    parsep        = 0 pt,
+    listparindent = \parindent
+  }
+
+% 页面尺寸
+\geometry
+  {
+    paper      = a4paper,
+    vmargin    = 2.54 cm,
+    hmargin    = 3.18 cm,
+    headheight = 15 pt
+  }
+
+% hyperref 有关设置
+\hypersetup
+  {
+    bookmarksnumbered = true,
+    colorlinks        = true
   }
 
 % 脚注
@@ -188,45 +212,34 @@
     #1
   }
 
-% 列表环境
-\setlist
-  {
-    itemsep       = 0 pt,
-    parsep        = 0 pt,
-    listparindent = \parindent
-  }
-
-% 页面尺寸
-\geometry
-  {
-    paper      = a4paper,
-    vmargin    = 2.54 cm,
-    hmargin    = 3.18 cm,
-    headheight = 15 pt
-  }
-
-\hypersetup
-  {
-    bookmarksnumbered=true,
-    colorlinks,
-  }
-
 % 问答环境
 % #1: 选项
 % #2: 长名称
 % #3: 短名称
 \NewDocumentCommand \faq { o m m }
   {
+    % TODO: 选项准备仿照 l3doc，如 added、updated 选项
     \faqcn_faq:nn {#2} {#3}
   }
 
 \cs_new_protected:Npn \faqcn_faq:nn #1#2
   {
-    \hypertarget { faq @ #2 } { \textbf { \int_use:N \g_faqcn_count_int \quad #1} }
-    \tl_if_novalue:nF {#2} { \zref@labelbylist { faq: #2 } { faqcn } }
+    \tl_set:Nn \l__faqcn_faq_title_tl { \textbf { \int_use:N \g_faqcn_count_int \quad #1 } }
+    \tl_set:Nn \l__faqcn_faq_name_tl  { faq: #2 }
+    % 问题之间留空
+    \skip_vertical:n { 2 ex }
+    % 排版标题，以及交叉引用
+    \hypertarget { faq @ #2 } { \tl_use:N \l__faqcn_faq_title_tl }
+    \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
+    % PDF 书签
+    \pdfbookmark [ 2 ]
+      { \int_use:N \g_faqcn_count_int \tex_space:D #1 }
+      { \tl_use:N \l__faqcn_faq_name_tl }
     \int_gincr:N \g_faqcn_count_int
     \par
   }
+\tl_new:N \l__faqcn_faq_title_tl
+\tl_new:N \l__faqcn_faq_name_tl
 \int_new:N \g_faqcn_count_int
 \int_set_eq:NN \g_faqcn_count_int \c_one
 
