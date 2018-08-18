@@ -111,168 +111,140 @@ lshort-zh 是一本比较薄的针对中文用户的 \LaTeX{} 入门教程，该
 
 \faq{学习如何撰写 \LaTeX{} 类及工具包}{learn-how-to-write-latex-and-tools}
 
-可以用命令行使用texdoc查看clsguide，dtxtut，macros2e；classes，source2e，The TeXBook；expl3，interface3，
+可以用命令行使用 |texdoc| 查看 clsguide，dtxtut，macros2e；classes，source2e，The TeXBook；expl3，interface3，
 l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}{知乎}）。以及《\LaTeX{2e} 
 文类和宏包学习手册》（胡伟，清华大学出版社）。
 
 
 \faq{MetaFont 和 MetaPost 教程}{metafont-metapost-tutorial}
-%
-%\begin{faq}{MetaFont和MetaPost教程}
-%  
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%    
-%    \item
-%    在线介绍：LaTeX
-%    \item
-%    在线介绍：Plain TeX
-%    \item
-%    如何让参考文献满足国标GB7714-2015样式要求
-%  \end{enumerate}
-%  
-%  有两种比较简单的方式。
-%  
-%  首先是利用 biblatex 的例子，如
-%  
-%  \begin{verbatim}
-%  \documentclass{ctexart}
-%  \usepackage[backend=biber,style=gb7714-2015]{biblatex}
-%  \addbibresource{bibfilename.bib}
-%  \begin{document}
-%  引用文献\cite{bibkey1,bibkey2}
-%  \printbibliography
-%  \end{document}
-%  \end{verbatim}
-%  
-%  接下来是利用 bibtex 的例子，如
-%  
-%  \begin{verbatim}
-%  \documentclass{ctexart}
-%  \usepackage{gbt7714}
-%  \begin{document}
-%  引用文献\cite{bibkey1,bibkey2}
-%  \bibliography{bibfilename}
-%  \end{document}
-%  \end{verbatim}
-%\end{faq}
-%
-%
-%\begin{faq}{专家邮件列表}
-%  
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%    
-%    \item
-%    PicTeX手册
-%    \item
-%    基于TeX系统的教程
-%    \item
-%    排版教程
-%    \item
-%    关于TeX的Wiki书籍
-%  \end{enumerate}
-%  
-%  LaTeX wikibook 是
-%  \href{https://www.latex-project.org/help/books/}{https://www.latex-project.org/}
-%  中列出的 TeX and LaTeX Books 之一，用户可访问
-%  \url{https://en.wikibooks.org/wiki/LaTeX} 进行查阅。 6.
-%  如何找到\ldots{}符号:
+
+
+\faq{在线介绍：\LaTeX{}}{}
+
+
+\faq{在线介绍：Plain \TeX{}}{}
+
+
+\faq{如何让参考文献满足国标GB7714-2015样式要求}{how-to-reference-GB}
+
+有两种比较简单的方式。
+\begin{itemize}
+  \item 利用 biblatex，一个典型示例如下
+  \begin{verbatim}
+    \documentclass{ctexart}
+      \usepackage[backend=biber,style=gb7714-2015]{biblatex}
+      \addbibresource{bibfilename.bib}
+      \begin{document}
+        引用文献\cite{bibkey1,bibkey2}
+        \printbibliography
+      \end{document}
+    \end{verbatim}
+  \item 利用 biblatex，一个典型示例如下
+  \begin{verbatim}
+    \documentclass{ctexart}
+      \usepackage{gbt7714}
+      \begin{document}
+        引用文献\cite{bibkey1,bibkey2}
+        \bibliography{bibfilename}
+      \end{document}
+  \end{verbatim}
+\end{itemize}
+
+
+\faq{专家邮件列表}{}
+
+  
+\faq{Pic\TeX{} 手册}{}
+
+
+\faq{基于 \TeX{} 系统的教程}{}
+
+
+\faq{排版教程}{}
+
+
+\faq{关于 \TeX{} 的 Wiki 书籍}{tex-wiki-books}
+
+\LaTeX{} wikibook 是 \url{https://www.latex-project.org/} 中列出的 \TeX{} and \LaTeX{} Books 之一，用户
+可访问 \url{https://en.wikibooks.org/wiki/LaTeX} 进行查阅。
+
+
+\faq{如何找到\ldots{}符号:}{how-to-find-symbols}
 %  
 %  
-%在LaTeX中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于XeTeX引擎，目前使用的多为Unicode编码的字体，直接加载Unicode字体，插入Unicode符号也是一种很好的办法。下面分别介绍：
-%  * 加载符号宏包　\emph{The Comprehensive LATEX Symbol List}
-%  收录了上万文本或数学符号，在命令行中键入
-%  
-%  \begin{verbatim}
-%  texdoc symbols-a4
-%  \end{verbatim}
-%  
-%  即可打开该文档。此外，\url{http://detexify.kirelabs.org/classify.html}
-%  提供了手写识别前述文档中所有符号的功能，十分便捷，它可直接符号所在宏包.
-%  
-%在MacOS下可以直接使用detexify的app。另外\url{https://webdemo.myscript.com/views/main/math.html}可将手写公式转化为LaTeX或MathML代码
-%  *
-%  % 插入Unicode符号　
-%  
-%%%可以从各种Unicode码表或字符映射表中找到所需要的符号，查出其编码，加载支持该码位的字体，直接在编辑器中输入该符号即可。如果符号在源代码编辑器中无法正常显示，还可以使用LaTeX的
-%  % \cs{symbol} 命令输入。
-%  % \cs{symbol} 命令的具体用法是 
-%  %\cs{symbol}\marg{十进制编码}、\symbol{"<十六进制编码>}、\symbol{'<八进制编码>}、\symbol{`<字符形式（特殊符号须加转义符
-%  % \ ）>}。
-%  
-%  如果使用的TeXstudio软件想要查找某个符号，那么还可以拓展以下2个便捷的方式：
-%  * 如下图点开1处的符号，再在2处选择符号类型，缩小查找范围，有
-%  运算符、关系、箭头、分隔符、Greek、Cyrillic等，再点击需要的符号加入到数学环境中去这样就插入完成了。
-%  
-%  % \includegraphics{https://images-cdn.shimo.im/LOSHDQ2baCooqfNu/5.png!thumbnail}
-%  *
-%  也可以手动输入，识别率不是特别高，可能需要多输入几次才会出来。设置如下：
-%  
-%  向导=\textgreater{}数学助手 手写输入完之后插入即可。
-%  % \includegraphics{https://images-cdn.shimo.im/StDWQgBPj9YmY4U1/image.png!thumbnail}
-%\end{faq}
-%
-%
-%\begin{faq}{如何找到FAQs}
-%  
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%    
-%    \item
-%    如何控制章节编号的深度
-%  \end{enumerate}
-%  
-%  LaTeX 标准文档类对章节划分了层级： * 在 article 文档类里 part 为
-%  0，section 为1，依此类推； * 在 report/book 文档类里 part 为-1，chapter
-%  为0，section 为1，等等。
-%  
-%  secnumdepth 计数器控制章节编号的深度，如果章节的层级大于
-%  secnumdepth，那么章节的标题、在目录和页眉页脚的标题都不编号（照常生成目录和页眉页脚），章节计数器也不计数。可以用
-%  \cs{setcounter} 命令设置 secnumdepth
-%  为较大的数使得层级比较深的章节也编号，如设置为4 令
-%  \cs{paragraph}
-%  也编号；或者设置一个较小的数以取消编号，如设置为-1 令
-%  \cs{chapter}
-%  不编号。后者是生成不编号的章节的一个妙招，免去了手动使用
-%  \cs{addcontentsline}
-%  和
-%  \cs{markboth}
-%  
-%  的麻烦。 secnumdepth 计数器在article 文档类里默认为3（subsubsection
-%  一级）；在 report 和 book 文档类里默认为2 （subsection 一级）。
-%  下面给出一个具体的例子：
-%  
-%  \begin{verbatim}
-%  \documentclass{book}
-%  \setcounter{secnumdepth}{4}
-%  \begin{document}
-%  \part{part}
-%  \chapter{chapter}
-%  \section{section}
-%  \subsection{subsection}
-%  \subsubsection{subsubsection}
-%  \paragraph{paragraph}
-%  \end{document}
-%  \end{verbatim}
-%  
-%  
-%控制目录页排版显示深度可以使用\setcounter{tocdepth}{2}，此命令表示显示到三级标题。关于此问题的具体介绍可以参考\href{https://blog.csdn.net/RobertChenGuangzhi/article/details/50480856}{网址}。
-%\end{faq}
-%
-%
-%\begin{faq}{如何下载 arXiv 上面的 TeX 源文件}
-%  
-%  先访问 arXiv 上面的文章，在右边找到 Downloads -\textgreater{} Other
-%  formats，点击进入下载页，点击 Download
-%  source。将文件下载到本地后，重命名文件，文件后缀名是
-%  .tar.gz。接下来解压缩 .tar.gz 文件，即可获得 tex 源文件。
-%\end{faq}
-%
-%
+在 \LaTeX{} 中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于 \XeTeX{} 引擎，目前使用的
+多为 Unicode 编码的字体，直接加载 Unicode 字体，插入 Unicode 符号也是一种很好的办法。下面分别介绍：
+\begin{itemize}
+  \item 加载符号宏包：\emph{The Comprehensive LATEX Symbol List} 收录了上万文本或数学符号，在命令行中键入
+  \begin{verbatim}
+    texdoc symbols-a4
+  \end{verbatim}
+  即可打开该文档。此外，\url{http://detexify.kirelabs.org/classify.html}提供了手写识别前述文档中所有符号的功能，
+  十分便捷，它可直接符号所在宏包。在 macOS 下可以直接使用 detexify 的 app。另外
+  \url{https://webdemo.myscript.com/views/main/math.html}可将手写公式转化为 \LaTeX{} 或 MathML 代码
+  \item 插入Unicode符号：可以从各种Unicode码表或字符映射表中找到所需要的符号，查出其编码，加载支持该码位的字体，
+  直接在编辑器中输入该符号即可。如果符号在源代码编辑器中无法正常显示，还可以使用\LaTeX{}的 |symbol| 命令输入。
+  |symbol| 命令的具体用法是
+  \begin{verbatim}
+    \symbol{<十进制编码>}
+    \symbol{"<十六进制编码>}
+    \symbol{'<八进制编码>}
+    \symbol{`<字符形式（特殊符号须加转义符 \ ）>}
+  \end{verbatim}
+\end{itemize}
+
+如果使用的TeXstudio软件想要查找某个符号，那么还可以拓展以下2个便捷的方式：
+\begin{itemize}
+  \item 如下图点开1处的符号，再在2处选择符号类型，缩小查找范围，有运算符、关系、箭头、分隔符、Greek、Cyrillic等，再点击需要的符号加入到数学环境中去这样就插入完成了。
+
+  \includegraphics[width=0.9\textwidth]{include/images/5.png}
+  \item 也可以手动输入，识别率不是特别高，可能需要多输入几次才会出来。设置如下：向导$\rightarrow$数学助手，手写输入完之后插入即可。
+
+  \includegraphics[width=0.9\textwidth]{include/images/image.png}
+\end{itemize}
+
+
+\faq{如何找到 FAQs}{}
+
+
+\faq{如何控制章节编号的深度}{how-to-control-section-depth}
+
+\LaTeX{} 标准文档类对章节划分了层级：
+\begin{itemize}
+  \item 在 article 文档类里 part 为0，section 为1，依此类推；
+  \item 在 report/book 文档类里 part 为 $-1$，chapter 为0，section 为1，等等。
+\end{itemize}
+
+secnumdepth 计数器控制章节编号的深度，如果章节的层级大于secnumdepth，那么章节的标题、在目录和页眉页脚的标题都不编号（照常生成目录和页眉页脚），
+章节计数器也不计数。可以用 |setcounter| 命令设置 secnumdepth 为较大的数使得层级比较深的章节也编号，
+如设置为4令 |paragraph| 也编号；或者设置一个较小的数以取消编号，如设置为-1 令 |chapter| 不编号。
+后者是生成不编号的章节的一个妙招，免去了手动使用 |addcontentsline| 和 |markboth| 的麻烦。
+secnumdepth 计数器在 article 文档类里默认为3（subsubsection一级）；在 report 和 book 文档类里默认为2（subsection 一级）。
+
+下面给出一个具体的例子：
+
+\begin{verbatim}
+  \documentclass{book}
+  \setcounter{secnumdepth}{4}
+  \begin{document}
+    \part{part}
+    \chapter{chapter}
+    \section{section}
+      \subsection{subsection}
+      \subsubsection{subsubsection}
+        \paragraph{paragraph}
+  \end{document}
+\end{verbatim}
+
+控制目录页排版显示深度可以使用 |\setcounter{tocdepth}{2}|，此命令表示显示到三级标题。关于此问题的具体介绍可以参考
+\href{https://blog.csdn.net/RobertChenGuangzhi/article/details/50480856}{该网页}。
+
+
+\faq{如何下载 arXiv 上面的 \TeX{} 源文件}{how-to-download-arxiv-tex}
+先访问 arXiv 上面的文章，在右边找到 Downloads $\rightarrow$ Other formats，点击进入下载页，点击 Download source。
+将文件下载到本地后，重命名文件，文件后缀名是 .tar.gz。接下来解压缩 .tar.gz 文件，即可获得 \TeX{} 源文件。
+
+
 %\begin{faq}{windows 系统下用 texstudio 打开中文编写的源文件遇到乱码怎么办}
 %  
 %  最简单的方法是借助 notepad++ 等编辑器将文件转码为 UTF-8。如果没有

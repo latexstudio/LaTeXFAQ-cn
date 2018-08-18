@@ -42,13 +42,16 @@
 % 载入相关宏包
 \RequirePackage
   {
+    amsmath,
+    dirtree,
     enumitem,
     fancyvrb,
     geometry,
+    graphicx,
     hologo,
     unicode-math,
     xurl,
-    zref-base,
+    zref-abspage,
     hyperref
   }
 
@@ -277,3 +280,52 @@
   { \DefineShortVerb   { \| } }
 \AtEndDocument
   { \UndefineShortVerb { \| } }
+
+% 为 dirtree 宏包打补丁，使得跨页时可以正常显示
+% 见 https://tex.stackexchange.com/q/6103/136923
+%    https://gist.github.com/flaviotoribio/e35402f9220835a998e444ec5b2adfd4
+\ctex_preto_cmd:NnnTF \dirtree
+  {
+    \ExplSyntaxOff
+    \char_set_catcode_letter:n { 64 }
+  }
+  { \global\advance\DT@treenum by\@ne }
+  { } { \ctex_patch_failure:N \dirtree }
+\ctex_patch_cmd:Nnn \dirtree
+  { \count@=\z@ }
+  {
+    \count@=\z@
+    \DT@splitfalse
+  }
+\ctex_patch_cmd:Nnn \dirtree
+  { \ifnum\count@=\z@ }
+  {
+      \ifnum0\zref@extract{DT\the\DT@treenum.\the\DT@countiv}{abspage} =
+        0\zref@extract{DT\the\DT@treenum.\the\DT@countii}{abspage}\relax
+      \else
+        \advance\DT@countiv\@ne
+        \count@=\@ne
+        \DT@splittrue
+      \fi
+    \ifnum\count@=\z@
+  }
+\ctex_patch_cmd:Nnn \dirtree
+  { \kern-0.5\DT@rulewidth }
+  {
+    \ifDT@split
+      \advance\dimen\z@ by.4\baselineskip
+    \fi
+    \kern-0.5\DT@rulewidth
+  }
+\ctex_patch_cmd:Nnn \DT@readarg
+  { \@namedef{DT@body@\the\DT@counti}{\strut{\DTstyle{#2}\strut}} }
+  {
+    \edef\DT@label{DT\the\DT@treenum.\the\DT@counti}
+    \expandafter\def\csname DT@body@\the\DT@counti\expandafter\endcsname
+        \expandafter{\expandafter\strut\expandafter\zref@label\expandafter{
+        \DT@label}
+      {\DTstyle{#2}\strut}
+    }
+  }
+\newcount\DT@treenum \DT@treenum=0
+\newif\ifDT@split
