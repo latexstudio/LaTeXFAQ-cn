@@ -205,7 +205,11 @@
     headheight = 15 pt
   }
 
-\hypersetup { colorlinks }
+\hypersetup
+  {
+    bookmarksnumbered=true,
+    colorlinks,
+  }
 
 % 问答环境
 % #1: 选项
@@ -272,8 +276,30 @@
 \cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
 
 % 宏包与文档类
-\cs_set_protected:Npn \pkg #1 { \textsf {#1} }
-\cs_set_protected:Npn \cls #1 { \textsf {#1} }
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\DeclareRobustCommand\meta[1]{%
+     \ensuremath\langle
+     \ifmmode \expandafter \nfss@text \fi
+     {%
+      \meta@font@select
+      \edef\meta@hyphen@restore
+        {\hyphenchar\the\font\the\hyphenchar\font}%
+      \hyphenchar\font\m@ne
+      \language\l@nohyphenation
+      #1\/%
+      \meta@hyphen@restore
+     }\ensuremath\rangle
+}
+\def\meta@font@select{\itshape}
+\newcommand\Arg[1]
+  { \texttt{\char`\{} \meta{#1} \texttt{\char`\}} }
+\providecommand\marg[1]{ \Arg{#1} }
+\providecommand\oarg[1]{ \texttt[ \meta{#1} \texttt] }
+\providecommand\parg[1]{ \texttt( \meta{#1} \texttt) }
+\DeclareRobustCommand \file {\nolinkurl}
+\DeclareRobustCommand \env {\texttt}
+\DeclareRobustCommand \pkg {\textsf}
+\DeclareRobustCommand \cls {\textsf}
 
 % 允许使用 |...| 作为行内抄录
 \AtBeginDocument

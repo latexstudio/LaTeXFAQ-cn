@@ -15,129 +15,121 @@
 %
 
 \section{用法惯例}
-%
-%
-%\begin{faq}{TeX编辑器中的魔法注释}
-%
-%在TeX中有单行注释命令为\%，其后的文本主要是对源代码进行一些说明，它们会被TeX，LaTeX等排版引擎所忽略。但有些注释对专门的TeX相关编辑器来说，可能用特别的意义。在不同的TeX编辑器中，这魔法注释(magic
-% comments）可能是不同的。 下面是一些例子： * 指定TeX编译器
-%
-%\begin{verbatim}
-%TeXStudio，TeXworks, Sublime Text
-%% !TeX program = xelatex
-%
-%TeXShop
-%%！TEX TS-program = xelatex
-%\end{verbatim}
-%
-%同理，将 xelatex 变为 pdflatex，就可以强制调用 pdfLaTeX 编译器。
-%在代码中需要使用ifxetex宏包进行条件判断。 * 指定文档为 utf-8 编码
-%
-%\begin{verbatim}
-%TeXworks，TeXStudio, Sublime Text
-%% !TeX encoding = utf8
-%\end{verbatim}
-%
-%Winedt(由于Winedt对编码自动识别能力较弱，使用此注释比较必要，不然要手动设置)
-%
-%\begin{verbatim}
-%% !Mode:: "TeX:UTF-8"
-%或者
-%% -*- coding: utf-8 -*-
-%
-%TeXShop
-%%!TEX encoding = UTF-8 Unicode
-%\end{verbatim}
-%
-%\begin{itemize}
-%  
-%  \item
-%  指定主文档
-%\end{itemize}
-%
-%\begin{verbatim}
-%TeXStudio, Sublime Text
-%% !TeX root = filename
-%\end{verbatim}
-%
-%若需要指定上一层次的文件，则应该使用以下命令
-%
-%\begin{verbatim}
-%TeXStudio, Sublime Text
-%% !TeX root = ../main.tex
-%\end{verbatim}
-%
-%用两点表示返回上一层次，如果还需要再返回一个层次，则需要
-%
-%\begin{verbatim}
-%TeXStudio, Sublime Text
-%% !TeX root = ../../main.tex
-%\end{verbatim}
-%
-%\begin{itemize}
-%  
-%  \item
-%  指定bib处理程序
-%\end{itemize}
-%
-%用biber处理bib文件，可在文件头添加如下代码
-%
-%\begin{verbatim}
-%TeXStudio
-%% !TeX TXS-program:bibliography = txs:///biber
-%\end{verbatim}
-%
-%将biber改为bibtex，就可指定bibtex处理bib文件。 * 为TeX编译器指定参数
-%
-%有时在使用某些宏包时我们需要额外调用一些编译参数，例如 minted
-%宏包需要使用 --shell-escape，这时可用如下魔法注释实现该功能
-%
-%\begin{verbatim}
-%TeXStudio
-%% !TeX TXS-program:compile = txs://xelatex/[--shell-escape]
-%
-%sublime text - latextools
-%%!TEX options = --shell-escape
-%
-%texshop
-%\end{verbatim}
-%
-%MathJax是一个JavaScript引擎，用来显示网络上的数学公式。它支持LaTeX、MathML、AsciiMath符号。查阅MathJax支持的LaTeX命令请参考\href{http://http//onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm}{http//onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm}
-%
-%\begin{verbatim}
-%-shell-escape
-%\end{verbatim}
-%
-%下面是各种编辑器对魔法注释的支持情况
-%\textbar{}Encoding\textbar{}Program\textbar{}Root\textbar{}Spellcheck\textbar{}
-%:----\textbar{}:----\textbar{}:----\textbar{}:----\textbar{}:----\textbar{}
-%TeXShop\textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
-%TeXStudio\textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
-%TextMate\textbar{}?\textbar{}x\textbar{}x\textbar{}?\textbar{}
-%TeXworks\textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
-%SublimeText \textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
-%VSCode\textbar{}x\textbar{}x\textbar{}?\textbar{}?\textbar{}
-%Atom\textbar{}o\textbar{}x\textbar{}x\textbar{}o\textbar{} Vim
-%(vimtex)\textbar{}o\textbar{}x\textbar{}x\textbar{}o\textbar{}
-%Texpad\textbar{}o\textbar{}o\textbar{}?\textbar{}?\textbar{} 注意：
-%x：支持特性 o：不支持特性
-%?：不确定\textbar{}\textbar{}\textbar{}\textbar{}\textbar{}
-%
-%\begin{itemize}
-%  
-%  \item
-%  其它
-%\end{itemize}
-%\end{faq}
-%
-%
-%\begin{faq}{LaTeX与数学软件(Mathematica,
-%  Maple,Sagemath等)}
-%\end{faq}
-%
-%
-%\begin{faq}{LaTeX与公式编辑器}
-%\end{faq}
-%
-%
 
+
+\faq{TeX编辑器中的魔法注释}{}
+
+在TeX中有单行注释命令为\%，其后的文本主要是对源代码进行一些说明，它们会被TeX，LaTeX等排版引擎所忽略。但有些注释对专门的TeX相关编辑器来说，可能用特别的意义。在不同的TeX编辑器中，这魔法注释(magic comments）可能是不同的。 下面是一些例子： * 指定TeX编译器
+
+\begin{verbatim}
+TeXStudio，TeXworks, Sublime Text
+% !TeX program = xelatex
+
+TeXShop
+%！TEX TS-program = xelatex
+\end{verbatim}
+
+同理，将 xelatex 变为 pdflatex，就可以强制调用 pdfLaTeX 编译器。
+在代码中需要使用ifxetex宏包进行条件判断。 * 指定文档为 utf-8 编码
+
+\begin{verbatim}
+TeXworks，TeXStudio, Sublime Text
+% !TeX encoding = utf8
+\end{verbatim}
+
+Winedt(由于Winedt对编码自动识别能力较弱，使用此注释比较必要，不然要手动设置)
+
+\begin{verbatim}
+% !Mode:: "TeX:UTF-8"
+或者
+% -*- coding: utf-8 -*-
+
+TeXShop
+%!TEX encoding = UTF-8 Unicode
+\end{verbatim}
+
+\begin{itemize}
+
+\item
+  指定主文档
+\end{itemize}
+
+\begin{verbatim}
+TeXStudio, Sublime Text
+% !TeX root = filename
+\end{verbatim}
+
+若需要指定上一层次的文件，则应该使用以下命令
+
+\begin{verbatim}
+TeXStudio, Sublime Text
+% !TeX root = ../main.tex
+\end{verbatim}
+
+用两点表示返回上一层次，如果还需要再返回一个层次，则需要
+
+\begin{verbatim}
+TeXStudio, Sublime Text
+% !TeX root = ../../main.tex
+\end{verbatim}
+
+\begin{itemize}
+
+\item
+  指定bib处理程序
+\end{itemize}
+
+用biber处理bib文件，可在文件头添加如下代码
+
+\begin{verbatim}
+TeXStudio
+% !TeX TXS-program:bibliography = txs:///biber
+\end{verbatim}
+
+将biber改为bibtex，就可指定bibtex处理bib文件。 * 为TeX编译器指定参数
+
+有时在使用某些宏包时我们需要额外调用一些编译参数，例如 minted
+宏包需要使用 --shell-escape，这时可用如下魔法注释实现该功能
+
+\begin{verbatim}
+TeXStudio
+% !TeX TXS-program:compile = txs://xelatex/[--shell-escape]
+
+sublime text - latextools
+%!TEX options = --shell-escape
+
+texshop
+\end{verbatim}
+
+MathJax是一个JavaScript引擎，用来显示网络上的数学公式。它支持LaTeX、MathML、AsciiMath符号。查阅MathJax支持的LaTeX命令请参考\href{http://http//onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm}{http//onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm}
+
+\begin{verbatim}
+-shell-escape
+\end{verbatim}
+
+下面是各种编辑器对魔法注释的支持情况
+\textbar{}Encoding\textbar{}Program\textbar{}Root\textbar{}Spellcheck\textbar{}
+:----\textbar{}:----\textbar{}:----\textbar{}:----\textbar{}:----\textbar{}
+TeXShop\textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
+TeXStudio\textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
+TextMate\textbar{}?\textbar{}x\textbar{}x\textbar{}?\textbar{}
+TeXworks\textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
+SublimeText \textbar{}x\textbar{}x\textbar{}x\textbar{}x\textbar{}
+VSCode\textbar{}x\textbar{}x\textbar{}?\textbar{}?\textbar{}
+Atom\textbar{}o\textbar{}x\textbar{}x\textbar{}o\textbar{} Vim
+(vimtex)\textbar{}o\textbar{}x\textbar{}x\textbar{}o\textbar{}
+Texpad\textbar{}o\textbar{}o\textbar{}?\textbar{}?\textbar{} 注意：
+x：支持特性 o：不支持特性
+?：不确定\textbar{}\textbar{}\textbar{}\textbar{}\textbar{}
+
+\begin{itemize}
+
+\item
+  其它
+\end{itemize}
+
+
+\faq{LaTeX与数学软件(Mathematica, Maple,Sagemath等)}{}
+
+
+\faq{LaTeX与公式编辑器}{}
