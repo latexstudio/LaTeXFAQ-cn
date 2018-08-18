@@ -157,16 +157,34 @@
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
       { Source~ Han~ Sans~ SC }
       {
-        UprightFont    = *-Medium,
-        BoldFont       = *-Bold,
+        UprightFont    = *-Light,
+        BoldFont       = *-Medium,
         AutoFakeSlant  = 0.2
       }
+  }
+
+% 其他字体
+\bool_if:NTF \g_faqcn_use_customized_fonts_bool
+  {
+    \newfontfamily \FETAMONT { ffm }
+      [
+        % 只选择 10 号
+        Extension      = .otf,
+        UprightFont    = * r10,
+        BoldFont       = * b10,
+        ItalicFont     = * o10,
+        BoldItalicFont = * bo10
+      ]
+  }
+  {
+    \cs_set_eq:NN \FETAMONT \sffamily
   }
 
 % 中文版式设置
 \ctexset
   {
-    section / number = \Alph { section }
+    section / number = \Alph { section },
+    section / format = \Large\normalfont\sffamily\centering
   }
 
 % 列表环境
@@ -221,7 +239,6 @@
     % TODO: 选项准备仿照 l3doc，如 added、updated 选项
     \faqcn_faq:nn {#2} {#3}
   }
-
 \cs_new_protected:Npn \faqcn_faq:nn #1#2
   {
     \tl_set:Nn \l__faqcn_faq_title_tl { \textbf { \int_use:N \g_faqcn_count_int \quad #1 } }
@@ -233,7 +250,7 @@
     \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
     % PDF 书签
     \pdfbookmark [ 2 ]
-      { \int_use:N \g_faqcn_count_int \tex_space:D #1 }
+      { \int_use:N \g_faqcn_count_int \ #1 }
       { \tl_use:N \l__faqcn_faq_name_tl }
     \int_gincr:N \g_faqcn_count_int
     \par
@@ -270,12 +287,11 @@
 \clist_map_inline:nn
   { METAFONT, METAPOST }
   {
-    % TODO
     \cs_set_protected:cpn {#1}
       {
-        \bool_if:NTF \g_faqcn_use_customized_fonts_bool
-          { \group_begin: \fontspec { ffmr10.otf } #1 \group_end: }
-          {#1}
+        \group_begin:
+          \FETAMONT #1
+        \group_end:
       }
   }
 
@@ -284,7 +300,6 @@
 \cs_set_protected:Npn \ApTeX    { Ap\TeX        }
 \cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
 \cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
-\cs_set_protected:Npn \MiKTeX   { MiK\kern-.025em \TeX }
 \cs_set_protected:Npn \MacTeX   { Mac\TeX       }
 \cs_set_protected:Npn \proTeXt  { pro\TeX t     }
 \cs_set_protected:Npn \PlainTeX { Plain~ \TeX   }
