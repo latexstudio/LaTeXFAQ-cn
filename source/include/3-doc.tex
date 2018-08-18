@@ -1,3 +1,4 @@
+% !TEX root = ../latex-faq-cn.tex
 % Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
 %
 % This program is free software: you can redistribute it and/or modify
@@ -172,8 +173,8 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
 \faq{如何找到\ldots{}符号:}{how-to-find-symbols}
 %
 %
-在 \LaTeX{} 中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于 \XeTeX{} 引擎，目前使用的
-多为 Unicode 编码的字体，直接加载 Unicode 字体，插入 Unicode 符号也是一种很好的办法。下面分别介绍：
+在 \LaTeX{} 中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于 \XeTeX{} 引擎，目前
+使用的多为 Unicode 编码的字体，直接加载 Unicode 字体，插入 Unicode 符号也是一种很好的办法。下面分别介绍：
 \begin{itemize}
   \item 加载符号宏包：\emph{The Comprehensive LATEX Symbol List} 收录了上万文本或数学符号，在命令行中键入
   \begin{verbatim}
@@ -195,10 +196,12 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
 
 如果使用的TeXstudio软件想要查找某个符号，那么还可以拓展以下2个便捷的方式：
 \begin{itemize}
-  \item 如下图点开1处的符号，再在2处选择符号类型，缩小查找范围，有运算符、关系、箭头、分隔符、Greek、Cyrillic等，再点击需要的符号加入到数学环境中去这样就插入完成了。
+  \item 如下图点开1处的符号，再在2处选择符号类型，缩小查找范围，有运算符、关系、箭头、分隔符、Greek、Cyrillic等，再
+  点击需要的符号加入到数学环境中去这样就插入完成了。
 
   \includegraphics[width=0.9\textwidth]{include/images/5.png}
-  \item 也可以手动输入，识别率不是特别高，可能需要多输入几次才会出来。设置如下：向导$\rightarrow$数学助手，手写输入完之后插入即可。
+  \item 也可以手动输入，识别率不是特别高，可能需要多输入几次才会出来。设置如下：向导$\rightarrow$数学助手，手写输入完
+  之后插入即可。
 
   \includegraphics[width=0.9\textwidth]{include/images/image.png}
 \end{itemize}
@@ -215,11 +218,12 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
   \item 在 report/book 文档类里 part 为 $-1$，chapter 为0，section 为1，等等。
 \end{itemize}
 
-secnumdepth 计数器控制章节编号的深度，如果章节的层级大于secnumdepth，那么章节的标题、在目录和页眉页脚的标题都不编号（照常生成目录和页眉页脚），
-章节计数器也不计数。可以用 |setcounter| 命令设置 secnumdepth 为较大的数使得层级比较深的章节也编号，
-如设置为4令 |paragraph| 也编号；或者设置一个较小的数以取消编号，如设置为-1 令 |chapter| 不编号。
+secnumdepth 计数器控制章节编号的深度，如果章节的层级大于secnumdepth，那么章节的标题、在目录和页眉页脚的标题都不编号
+（照常生成目录和页眉页脚），章节计数器也不计数。可以用 |setcounter| 命令设置 secnumdepth 为较大的数使得层级比较深的
+章节也编号，如设置为4令 |paragraph| 也编号；或者设置一个较小的数以取消编号，如设置为-1 令 |chapter| 不编号。
 后者是生成不编号的章节的一个妙招，免去了手动使用 |addcontentsline| 和 |markboth| 的麻烦。
-secnumdepth 计数器在 article 文档类里默认为3（subsubsection一级）；在 report 和 book 文档类里默认为2（subsection 一级）。
+secnumdepth 计数器在 article 文档类里默认为3（subsubsection一级）；在 report 和 book 文档类里默认为
+2（subsection 一级）。
 
 下面给出一个具体的例子：
 
@@ -245,179 +249,187 @@ secnumdepth 计数器在 article 文档类里默认为3（subsubsection一级）
 将文件下载到本地后，重命名文件，文件后缀名是 .tar.gz。接下来解压缩 .tar.gz 文件，即可获得 \TeX{} 源文件。
 
 
-%\begin{faq}{windows 系统下用 texstudio 打开中文编写的源文件遇到乱码怎么办}
-%
-%  最简单的方法是借助 notepad++ 等编辑器将文件转码为 UTF-8。如果没有
-%  noteapd++，也可以直接使用 texstudio。这里我们默认文件的编码是 GB2312。
-%  首先打开文件，在 texstudio 右下角找到 encoding
-%  位置的内容，有时系统显示为 ISO-8859-1。点击那里，进入 More
-%  encodings，在列表中点击 GB2312，然后点击按钮 view
-%  with。正常来讲，乱码应该都会消失。 接下来，继续进入 More
-%  encodings，在列表中点击 UTF-8，然后点击按钮 change to。
-%  经过这些操作，源文件就重新变成了 UTF-8 编码。
-%\end{faq}
-%
-%
-%\begin{faq}{69.如何在listing抄录环境中显示公式}
-%
-%  有时对抄录环境中的代码进行说明时，要用显示公式，
-%  这时只要进选项texcl设为true即可，或者设置mathescape~选项为true。
-%
-%  \begin{verbatim}
-%  \begin{lstlisting}[
-%  numbers=left,
-%  upquote=true,
-%  basicstyle=\ttfamily,
-%  texcl=true,
-%  language=Python
-%  ]
-%  #Generates Graphs $G^{(12)} ---  G^{(17)}$
-%  sGL6=['E@QW', 'EHQW', 'E@`w', 'E@]o', 'E@Rw', 'EAMw']
-%  GL=[Graph(s) for s in sGL6]
-%  \end{lstlisting}
-%  \end{verbatim}
-%
+\faq{Windows 系统下用 TeXstudio 打开中文编写的源文件遇到乱码怎么办}{windows-texstudio-chinese-GBK}
+
+最简单的方法是借助 Notepad++ 等编辑器将文件转码为 UTF-8。如果没有 noteapd++，也可以直接使用 TeXstudio。
+这里我们默认文件的编码是 GB2312。首先打开文件，在 TeXstudio 右下角找到 encoding 位置的内容，
+有时系统显示为 ISO-8859-1。点击那里，进入 More encodings，在列表中点击 GB2312，然后点击按钮 view with。
+正常来讲，乱码应该都会消失。 接下来，继续进入 More encodings，在列表中点击 UTF-8，然后点击按钮 change to。
+经过这些操作，源文件就重新变成了 UTF-8 编码。
+
+
+\faq{如何在listing抄录环境中显示公式}{how-to-listing-show-equations}
+
+有时对抄录环境中的代码进行说明时，要用显示公式，这时只要进选项texcl设为true即可。
+
+\begin{verbatim}
+  \begin{lstlisting}[
+    numbers=left,
+    upquote=true,
+    basicstyle=\ttfamily,
+    texcl=true,
+    language=Python
+    ]
+    #Generates Graphs $G^{(12)} ---  G^{(17)}$
+    sGL6=['E@QW', 'EHQW', 'E@`w', 'E@]o', 'E@Rw', 'EAMw']
+    GL=[Graph(s) for s in sGL6]
+    \end{lstlisting}
+\end{verbatim}
+%  
 %  % \begin{figure}
 %  % \centering
 %  % \includegraphics{https://images-cdn.shimo.im/LttXT6sECbcak9Qi/image.png!thumbnail}
 %  % \caption{图片}
 %  % \end{figure}
-%
-%  \begin{verbatim}
-%  \begin{lstlisting}[mathescape=true]
-%  if foo
-%  list= { $S_1,S_2,S_3$ }
-%  \end{lstlisting}
-%  \end{verbatim}
-%\end{faq}
-%
-%
-%\begin{faq}{能不能介绍一下排版试卷的方法与技巧，比如选择题，密封线设置等。}
-%
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%
-%    \item
-%    一个文档，如何在不同部分使用不同的页眉页脚
-%  \end{enumerate}
-%
-%  参考 geometry 宏包的自定义命令。大概就是 \cs{newgeometry}\marg{options}
-%  和\cs{restoregeometry} 以及 \cs{savegeometry}\marg{name}
-%  和loadgeometry\{\}这四个命令了。具体可参见该宏包的说明文档。 3.
-%  如何给中文文本加注音符号?
-%
-%  xpinyin 宏包 4. 在book类文档中边注用什么宏包?边注的宽度能调整吗？ 5.
-%  如何使用ctex相关类或者宏包制定章节样式，目录样式？
-%
-%  一言难尽啊 6. 如何给章节标题，目录列表加盒子边框？ 7. 如何使用带圈数字？
-%
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{7}
-%
-%    \item
-%    如何改变列表标签样式，行距，缩进等各种相关间距？
-%  \end{enumerate}
-%
-%  enumitem 宏包 9. 换行与换段的区别，有几种方式？
-%
-%  换行是\ 换段是
-%
-%  \par
-%
-%  ，或者空一行
-%
-%换行与分段最大的区别在于语义上是否形成一段完整的阐述、叙述，多读两遍你写的文字，如果你觉得问题没有叙述完，那么应该用换行，反之则应该用分段。
-%\end{faq}
-%
-%
-%\begin{faq}{在使用较早版本的CTeX里面附带的 winedt 出现打不开utf8编码文档的情况，如何处理？}
-%
-%  使用记事本之类文本编辑器打开，转换编码方式另存一份即可。有时候需要注意BOM问题，一般没啥问题。
-%\end{faq}
-%
-%
-%\begin{faq}{如何改变计数器样式为 中文数字 罗马数字 阿拉伯数字 拉丁字母？}
-%
-%  可以通过重定义命令的方式修改默认的计数器样式，例如：
-%
-%  \begin{verbatim}
-%  \renewcommand{\thechapter}{\Roman{chapter}}
-%  \end{verbatim}
-%
-%  如上指令将章序号计数器改为大写罗马数字计数形式。
-%  % \arabic\textbar{}阿拉伯数字\textbar{} :----\textbar{}:----\textbar{}
-%  % \alph\textbar{}小写英文字母，数值应小于27\textbar{}
-%  % \Alph\textbar{}大写英文字母，数值应小于27\textbar{}
-%  % \chinese\textbar{}中文小写数字，需要调用ctex宏包\textbar{}
-%  % \roman\textbar{}小写罗马数字\textbar{}
-%  % \Roman\textbar{}大写罗马数字\textbar{}
-%  % \fnsymbol\textbar{}脚注标识符，数值应小于10\textbar{}
-%
-%  详情可以参阅刘海洋、胡伟等编写的相应书籍，也可以查阅wiki百科。 2.
-%  列表环境 (enumerate/itemize/description)
-%  的条目间距太大了，怎么改小一些？
-%
-%  可以使用 paralist
-%  宏包，它提供了一系列压缩了行间距的列表。对应的环境名称分别是
-%  compactenum/compactitem/compactdesc ，也可以使用 enumitem
-%  宏包修改三个列表环境的格式。 3.
-%  列表的条目项内容很短，可以让他们在一行内排版么？
-%
-%  可以使用 paralist 宏包，这个宏包提供了 inparenum/inparitem/inpardesc
-%  环境，可以在行内输出列表内容；也可以带上 inline 选项使用 enumitem
-%  宏包，可以使用带*形式的三个列表环境，即在行内输出列表内容。 4. enumerate
-%  宏包修改列表标签格式很方便，但是这个宏包和 enumitem
-%  宏包冲突，有什么解决办法么？
-%
-%  如果只是需要使用这种短标签表示方法，利用 enumitem
-%  宏包同样能够做到，只需要带上 shortlabels 选项加载 enumitem
-%  宏包即可。同时，enumitem
-%  宏包提供了自定义短标签名称和格式的宏命令，你也可以自己定义一些有趣的标签形式。
-%  5. 如何使用带圈数字作为 enumerate 列表的标签？
-%
-%  LaTeX 自带一个带圈字符的命令
-%  \textcircled，不过，这个命令的排版效果非常差，几乎很少有人会直接使用。带圈数字可以通过unicode字符实现，也可通过
-%  pifont 宏包中 \cs{ding} 命令实现（但是只能用到10以内的数字），甚至可以通过
-%  tikz 自己绘制一个。使用带圈数字做enumerate的标签，可以通过 enumitem
-%  宏包设置。这里给出一个使用 unicode 字符实现带圈数字的方法，并将其应用于
-%  enumerate 的标签。
-%
-%  \begin{verbatim}
-%  \documentclass{article}
-%  \usepackage{xeCJK,xunicode,calc}
-%  \usepackage[shortlabels]{enumitem}
-%  \newcommand{\Cnum}[1]{%
-%  \ifnum #1<21
-%  \edef\a{\the\numexpr #1+9311}
-%  \else
-%  \ifnum #1<36
-%  \edef\a{\the\numexpr #1+12860}
-%  \else
-%  \ifnum #1<51
-%  \edef\a{\the\numexpr #1+12941}
-%  \else
-%  \PackageError{your package}{Number too large}{}
-%  \fi
-%  \fi
-%  \fi
-%  {\CJKfontspec{Noto Serif CJK SC}\fontspec{Noto Serif CJK SC}\symbol\a}}
-%  \SetEnumerateShortLabel{o}{\protect\Cnum{\arabic*}}
-%  \begin{document}
-%  \Cnum{12} \Cnum{32} \Cnum{46}
-%
-%  \begin{enumerate}[o]
-%  \item The first item.
-%  \item The second item.
-%  \item The Third One.
-%  \end{enumerate}
-%  \end{document}
-%  \end{verbatim}
-%\end{faq}
-%
-%
-%\begin{faq}{如何给目录中的章节都带上引导点来连接页码？}
+%  
+
+或者设置mathescape~选项为true。
+
+\begin{verbatim}
+  \begin{lstlisting}[mathescape=true]
+    if foo
+    list= { $S_1,S_2,S_3$ }
+  \end{lstlisting}
+\end{verbatim}
+
+
+\faq{能不能介绍一下排版试卷的方法与技巧，比如选择题，密封线设置等。}{how-to-latex-papers}
+
+
+\faq{一个文档，如何在不同部分使用不同的页眉页脚}{how-to-set-different-geometry}
+
+参考 geometry 宏包的自定义命令。比较常用的有如下四个命令
+\begin{verbatim}
+  \newgeometry{<options>}
+  \restoregeometry
+  \savegeometry{<name>}
+  \loadgeometry{<name>}
+\end{verbatim}
+具体可参见该宏包的说明文档。
+
+
+\faq{如何给中文文本加注音符号?}{how-to-pinyin}
+
+xpinyin 宏包。
+
+
+\faq{在book类文档中边注用什么宏包?边注的宽度能调整吗？}{book-geometry}
+
+
+\faq{如何使用ctex相关类或者宏包制定章节样式，目录样式？}{ctex-tableofcontents}
+
+
+\faq{如何给章节标题，目录列表加盒子边框？}{}
+
+
+\faq{如何使用带圈数字？}{how-to-use-circle-number}
+
+\begin{verbatim}
+  \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \setcounter{enumi}{7}
+\end{verbatim}
+
+
+\faq{如何改变列表标签样式，行距，缩进等各种相关间距？}{how-to-change-list-style}
+
+enumitem 宏包
+
+
+\faq{换行与换段的区别，有几种方式？}{change-line-paragraph}
+
+换行是 |\\| 换段是 |\par|，或者空一行。
+换行与分段最大的区别在于语义上是否形成一段完整的阐述、叙述，多读两遍你写的文字，如果你觉得问题没有叙述完，那么应该用换行，
+反之则应该用分段。
+
+
+\faq{在使用较早版本的CTeX里面附带的WinEdit出现打不开UTF-8编码文档的情况，如何处理？}{early-version-ctex-winedit-utf8}
+
+使用记事本之类文本编辑器打开，转换编码方式另存一份即可。有时候需要注意BOM问题，一般没啥问题。
+
+
+\faq{如何改变计数器样式为中文数字、罗马数字、阿拉伯数字或拉丁字母？}{how-to-change-listing-number}
+
+可以通过重定义命令的方式修改默认的计数器样式，例如
+\begin{verbatim}
+  \renewcommand{\thechapter}{\Roman{chapter}}
+\end{verbatim}
+会将章序号计数器改为大写罗马数字计数形式。更多对应关系如下所示：
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{cc}
+    |\arabic| & 阿拉伯数字 \\
+    |\alph| & 小写英文字母，数值应小于27 \\
+    |\Alph| & 大写英文字母，数值应小于27 \\
+    |\chinese| & 中文小写数字，需要调用\CTeX{}宏包 \\
+    |\roman| & 小写罗马数字 \\
+    |\Roman| & 大写罗马数字 \\
+    |\fnsymbol| & 脚注标识符，数值应小于10
+  \end{tabular}
+\end{table}
+
+详情可以参阅刘海洋、胡伟等编写的相应书籍，也可以查阅Wiki百科。
+
+
+\faq{列表环境 (enumerate/itemize/description)的条目间距太大了，怎么改小一些？}{how-to-change-listing-linespace}
+
+可以使用 paralist 宏包，它提供了一系列压缩了行间距的列表。对应的环境名称分别是 compactenum/compactitem/compactdesc，
+也可以使用 enumitem 宏包修改三个列表环境的格式。
+
+
+\faq{列表的条目项内容很短，可以让他们在一行内排版么？}{listing-short-oneline}
+
+可以使用 paralist 宏包，这个宏包提供了 inparenum/inparitem/inpardesc 环境，可以在行内输出列表内容；
+也可以带上 inline 选项使用 enumitem 宏包，可以使用带*形式的三个列表环境，即在行内输出列表内容。
+
+
+\faq{enumerate宏包修改列表标签格式很方便，但是这个宏包和enumitem宏包冲突，有什么解决办法么？}{enumerate-fight-enumitem}
+
+如果只是需要使用这种短标签表示方法，利用enumitem宏包同样能够做到，只需要带上shortlabels选项加载enumitem宏包即可。
+同时，enumitem宏包提供了自定义短标签名称和格式的宏命令，你也可以自己定义一些有趣的标签形式。
+
+
+\faq{如何使用带圈数字作为 enumerate 列表的标签？}{circle-number-enumerate}
+
+\LaTeX{} 自带一个带圈字符的命令|\textcircled|，不过，这个命令的排版效果非常差，几乎很少有人会直接使用。
+带圈数字可以通过unicode字符实现，也可通过pifont宏包中|ding|命令实现（但是只能用到10以内的数字），
+甚至可以通过tikz 自己绘制一个。使用带圈数字做enumerate的标签，可以通过 enumitem 宏包设置。
+这里给出一个使用 unicode 字符实现带圈数字的方法，并将其应用于enumerate 的标签。
+
+\begin{verbatim}
+  \documentclass{article}
+    \usepackage{xeCJK,xunicode,calc}
+    \usepackage[shortlabels]{enumitem}
+    \newcommand{\Cnum}[1]{%
+    \ifnum #1<21
+      \edef\a{\the\numexpr #1+9311}
+    \else
+      \ifnum #1<36
+        \edef\a{\the\numexpr #1+12860}
+      \else
+        \ifnum #1<51
+         \edef\a{\the\numexpr #1+12941}
+        \else
+          \PackageError{your package}{Number too large}{}
+        \fi
+      \fi
+    \fi
+    {\CJKfontspec{Noto Serif CJK SC}\fontspec{Noto Serif CJK SC}\symbol\a}}
+    \SetEnumerateShortLabel{o}{\protect\Cnum{\arabic*}}
+    \begin{document}
+    \Cnum{12} \Cnum{32} \Cnum{46} 
+    
+    \begin{enumerate}[o]
+      \item The first item.
+      \item The second item.
+      \item The Third One.
+    \end{enumerate}
+    \end{document}
+\end{verbatim}
+
+
+\faq{如何给目录中的章节都带上引导点来连接页码？}{tableofcontents-dotdotdot}
 %
 %  其实级别较高的章节结构，如 book/report
 %  中的chapter和arcticle中的section，是不需要这种引导点来连接页码的，有这种需求的多是受MS
