@@ -171,8 +171,7 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
 
 
 \faq{如何找到\ldots{}符号:}{how-to-find-symbols}
-%
-%
+
 在 \LaTeX{} 中插入符号主要有两种思路。一种方式是加载符号宏包，利用宏包提供的命令插入符号；而对于 \XeTeX{} 引擎，目前
 使用的多为 Unicode 编码的字体，直接加载 Unicode 字体，插入 Unicode 符号也是一种很好的办法。下面分别介绍：
 \begin{itemize}
@@ -180,9 +179,9 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
   \begin{verbatim}
     texdoc symbols-a4
   \end{verbatim}
-  即可打开该文档。此外，\url{http://detexify.kirelabs.org/classify.html}提供了手写识别前述文档中所有符号的功能，
+  即可打开该文档。此外，\url{http://detexify.kirelabs.org/classify.html} 提供了手写识别前述文档中所有符号的功能，
   十分便捷，它可直接符号所在宏包。在 macOS 下可以直接使用 detexify 的 app。另外
-  \url{https://webdemo.myscript.com/views/main/math.html}可将手写公式转化为 \LaTeX{} 或 MathML 代码
+  \url{https://webdemo.myscript.com/views/main/math.html} 可将手写公式转化为 \LaTeX{} 或 MathML 代码
   \item 插入Unicode符号：可以从各种Unicode码表或字符映射表中找到所需要的符号，查出其编码，加载支持该码位的字体，
   直接在编辑器中输入该符号即可。如果符号在源代码编辑器中无法正常显示，还可以使用\LaTeX{}的 |symbol| 命令输入。
   |symbol| 命令的具体用法是
@@ -343,7 +342,7 @@ enumitem 宏包
 反之则应该用分段。
 
 
-\faq{在使用较早版本的CTeX里面附带的WinEdit出现打不开UTF-8编码文档的情况，如何处理？}{early-version-ctex-winedit-utf8}
+\faq{在使用较早版本的CTeX里面附带的WinEdt出现打不开UTF-8编码文档的情况，如何处理？}{early-version-ctex-winedit-utf8}
 
 使用记事本之类文本编辑器打开，转换编码方式另存一份即可。有时候需要注意BOM问题，一般没啥问题。
 
@@ -458,155 +457,303 @@ enumitem 宏包
 当然，最后一句应根据实际的文档类型来重定义 |\l@chapter| 或 |\l@section|。
 
 
-%\begin{faq}{如何临时切换页面大小？}
-%
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%
-%    \item
-%    没有编号的章节标题如何添加到目录里？
-%  \end{enumerate}
-%
-%  使用
-%  \begin{verbatim}
-%  \addcontentsline{toc}{⟨level⟩}{⟨title⟩}
-%  \end{verbatim}
-%
-%  ；举个例子：
-%  \begin{verbatim}
-%  \section*{译者序}\addcontentsline{toc}{section}{译者序}
-%  \end{verbatim}
-%
-%  这样在目录中译者序是没有编号的，对应等级是section，标题是译者序
-%  参考：《lshort》目录章节 3. 怎样定义 第几页/共几页 的页码样式？
-%
-%  可以调用末页标签宏包lastpage，并将页码设置如下：
-%
-%  \begin{verbatim}
-%  第 \thepage 页 / 共 \pageref{LastPage} 页
-%  \end{verbatim}
-%
-%  如果不想调用这个宏包，还可以自己DIY，虽然ugly，但是可以达到目的 ）：
-%  在文档末尾设置一个标签，例如在 \verb|\end{doucument}| 前加一句
-%  \verb|\label{AllPage}|，然后将页码设置为：
-%
-%  \begin{verbatim}
-%  第 \thepage 页 / 共 \pageref{AllPage} 页
-%  \end{verbatim}
-%
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{3}
-%
-%    \item
-%    超链接如何断行？
-%  \end{enumerate}
-%
-%  先写
-%
-%  \begin{verbatim}
-%  \PassOptionsToPackage{hyphens}{url}
-%  \end{verbatim}
-%
-%  再写
-%
-%  \begin{verbatim}
-%  \usepackage{hyperref}
-%  \end{verbatim}
-%\end{faq}
-%
-%
-%\begin{faq}{在使用较早版本的CTeX里面附带的winedt出现打不开utf8编码文档的情况，如何处理？}
-%
-%  使用记事本之类文本编辑器打开，转换编码方式另存一份即可。有时候需要注意BOM问题，一般没啥问题。
-%  2. 如何在axmath转换代码到texstudio?
-%
-%  点击下图中第10个按钮，即可将数学公式转换为LaTeX代码，复制即可。
-%  % \includegraphics{https://images-cdn.shimo.im/oMh77ZPr7iIsh2tB/image.png!thumbnail}
-%  3.
-%  双栏文档中，如何可以让左边先写完，然后再切换到右边，而不是左右一样长？
-%
-%  如果是采用文档类 twocolumn
-%  选项实现的双栏模式，正文的排版就是先将左边排完，再从右边开始排。而采用
-%  multicol 宏包的 muticols 环境则是左右两边底部对齐的。 4.
-%  如何输入中文破折号？
-%
-%  输入法输入咯，英文的破折号 --- 用于中文不合适。 5.
-%  \cs{input} 和 \cs{include} 有何区别？ * \cs{include}
-%  在读入文件之前会另起一页。\cs{input}
-%  命令纯粹是把文件里的内容插入 * \cs{include}不可用于导言区
-%\end{faq}
-%
-%
-%\begin{faq}{subfiles有什么用？}
-%
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%
-%    \item
-%    ~如何使用latexmk编译文档？
-%    \item
-%    定理环境要怎么使用？
-%    \item
-%    算法环境如何使用？
-%    \item
-%    在lstlisting环境中如何输出破折号？
-%    \item
-%    minted里面tab键为什么会输出成\^{}\^{}T，如何解决？
-%    \item
-%    一段代码粘贴到texstudio里面就没有了缩进，如何解决？
-%    \item
-%    在LaTeX或Tikz中，能否输入随机且字数随机可控的文字？
-%    \item
-%    如何输入罗马数字等？
-%    \item
-%    如何在等号中插入问号？
-%  \end{enumerate}
-%
-%  \begin{verbatim}
-%  \stackrel{?}{=}.
-%  \end{verbatim}
-%\end{faq}
-%
-%
-%\begin{faq}{如何在插入的图片上标记引注？}
-%
-%  \begin{enumerate}
-%    \def\labelenumi{\arabic{enumi}.}
-%    \setcounter{enumi}{1}
-%
-%    \item
-%    如何让一个很长很长的字符串（中间不带空格）自动换行？
-%    \item
-%    \cs{bf} \cs{sf} \cs{it} \cs{sl} 这些命令都很短小，为什么不建议继续使用了？
-%    \item
-%    如何自动化打包 LaTeX
-%    文档发送给别人以确保宏包、字体是完整的，便于他人顺利编译、减少麻烦。
-%    \item
-%    如何编译网站上下载的他人的模板，一般是不知道对应的编译器应该选择什么，还有编译顺序是什么，希望在提供模板的同时说明应该如何编译。
-%    \item
-%    我以book文档类为基础新写一个文档类，book文档类的选项会自动适用于我新建的文档类么？
-%    \item
-%    \cs{def} 和 \cs{newcommand}
-%    有什么区别，我创建新命令的时候究竟应该用哪个？
-%    \item
-%    怎样创建一个带*的命令？
-%    \item
-%    ~类似 \verb|\macro[<option1>][<option2>]{<arg>}|
-%    这样的宏命令，当我只使用一个可选参数时，LaTeX
-%    把它看做哪个参数？LaTeX会自动判断么？
-%    \item
-%    \cs{newcommand}
-%    创建的命令，仅有第一个命令可以成为可选参数，如果我想创建具有两个可选参数的命令，应该如何去写？
-%    \item
-%    有些命令的参数是使用( ) 扩起来的，这类命令是如何定义的？
-%    \item
-%    我想新建一个带有可选参数的命令，可选参数的缺省值与必选参数值一样，这样的命令如何创建？
-%    \item
-%    想用minted包写文档，怕别人用不来不会设置-shell --escepe咋办
-%    \item
-%    .latex如何给整个页面加边框？
-%  \end{enumerate}
-%\end{faq}
+\faq{如何临时切换页面大小？}{}
+
+
+\faq{没有编号的章节标题如何添加到目录里？}{no-number-chapter-tableofcontents}
+
+使用 |\addcontentsline{toc}{<level>}{<title>}|；举个例子：
+\begin{verbatim}
+  \section*{译者序}\addcontentsline{toc}{section}{译者序}
+\end{verbatim}
+这样在目录中译者序是没有编号的，对应等级是section，标题是译者序。参考：《lshort》目录章节。
+
+
+\faq{怎样定义“第几页/共几页”的页码样式？}{how-to-define-pagenumber}
+
+可以调用末页标签宏包 lastpage，并将页码设置如下：
+\begin{verbatim}
+  第 \thepage 页 / 共 \pageref{LastPage} 页
+\end{verbatim}
+
+如果不想调用这个宏包，还可以自己DIY，虽然ugly，但是可以达到目的 ）：在文档末尾设置一个标签，
+例如在 |\end{doucument}| 前加一句 |\label{AllPage}|，然后将页码设置为：
+\begin{verbatim}
+  第 \thepage 页 / 共 \pageref{AllPage} 页
+\end{verbatim}
+
+
+\faq{超链接如何断行？}{url-how-to-multilines}
+
+先写
+\begin{verbatim}
+  \PassOptionsToPackage{hyphens}{url}
+\end{verbatim}
+
+再写
+\begin{verbatim}
+  \usepackage{hyperref}
+\end{verbatim}
+
+
+\faq{如何在axmath转换代码到TeXstudio?}{how-to-axmath-exchange-to-texstudio}
+
+点击下图中第10个按钮，即可将数学公式转换为\LaTeX{}代码，复制即可。
+
+\includegraphics[width=0.9\textwidth]{include/images/amxmath_texstudio}
+
+
+\faq{双栏文档中，如何可以让左边先写完，然后再切换到右边，而不是左右一样长？}{twocolumn-left-first}
+
+如果是采用文档类 twocolumn 选项实现的双栏模式，正文的排版就是先将左边排完，再从右边开始排。而采用
+multicol 宏包的 muticols 环境则是左右两边底部对齐的。 
+
+
+\faq{如何输入中文破折号？}{input-chinese---}
+
+输入法输入咯，英文的破折号 --- 用于中文不合适。
+
+
+\faq{input和include有何区别？}{input-include-difference}
+
+\begin{itemize}
+  \item |\include| 在读入文件之前会另起一页。|\input| 命令纯粹是把文件里的内容插入
+  \item |\include| 不可用于导言区，而且导言区使用了 |\includeonly| 命令后，
+  |\include| 仅会引入由 |\includeonly| 指定的文件。
+  \item |\include| 引入的文件中，不可以再次使用 |\include| 命令。
+\end{itemize}
+
+
+\faq{subfiles有什么用？}{subfiles-usage}
+
+详细功能可以查看此宏包自带的文档。编辑由一个主文档若干个子文档构成的多文档项目时使用此宏包会更方便。用户可以正常编译使用
+|\input| 导入子文档的主文档，也可以直接编译子文档本身，此时子文档使用跟主文档相同的导言区而成为完整的一份\TeX{}文档。
+
+
+\faq{如何使用latexmk编译文档？}{}
+
+
+\faq{定理环境要怎么使用？}{}
+
+
+\faq{算法环境如何使用？}{}
+
+
+\faq{在lstlisting环境中如何输出破折号？}{}
+
+
+\faq{minted里面Tab键为什么会输出成\^{}\^{}T，如何解决？}{}
+
+
+\faq{一段代码粘贴到TeXstudio里面就没有了缩进，如何解决？}{}
+
+
+\faq{在\LaTeX{}或Tikz中，能否输入随机且字数随机可控的文字？}{}
+
+
+\faq{如何输入罗马数字等？}{how-to-input-roman-numbers}
+
+一种方式是定义宏显示罗马数字，代码如下：
+\begin{verbatim}
+  \newcommand{\Myroman}[1]{\romannumeral #1}
+  \newcommand{\MyRoman}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\end{verbatim}
+正文中使用
+\begin{verbatim}
+  \MyRoman{3} \Myroman{5}
+\end{verbatim}
+
+另一种投机取巧的方式是你可以先定义一个counter，然后给这个counter的数值设置成需要表达的数值，
+再用 |\Roman| 或 |\roman| 显示这个计数器。举例如下：
+\begin{verbatim}
+  \newcounter{romannum}
+  \newcommand{\MyRoman}[1]{\setcounter{romannum}{#1}\Roman{romannum}}
+  \newcommand{\Myroman}[1]{\setcounter{romannum}{#1}\roman{romannum}}
+\end{verbatim}
+使用方法相同。
+
+
+\faq{如何在等号中插入问号？}{how-to-input-.-in-questionmark}
+
+\begin{verbatim}
+  \stackrel{?}{=}
+\end{verbatim}
+
+
+\faq{如何在插入的图片上标记引注？}{input-mark-in-pictures}
+
+可以看看overpic之类的宏包。
+
+
+\faq{如何让一个很长很长的字符串（中间不带空格）自动换行？}{how-to-disable-long-string-multilines}
+
+了解下分词断行机制就不会有此问题了。
+
+
+\faq{\cs{bf}、\cs{sf}、\cs{it}、\cs{sl}这些命令都很短小，为什么不建议继续使用了？}{}
+
+
+\faq{如何自动化打包 \LaTeX{} 文档发送给别人以确保宏包、字体是完整的，便于他人顺利编译、减少麻烦。}{}
+
+
+\faq{如何编译网站上下载的他人的模板，一般是不知道对应的编译器应该选择什么，还有编译顺序是什么，
+希望在提供模板的同时说明应该如何编译。}{}
+
+
+\faq{我以book文档类为基础新写一个文档类，book文档类的选项会自动适用于我新建的文档类么？}{}
+
+
+\faq{\cs{def} 和 \cs{newcommand} 有什么区别，我创建新命令的时候究竟应该用哪个？}{}
+
+
+\faq{怎样创建一个带*的命令？}{newcommand-with-*}
+
+有以下几种方法：
+\begin{itemize}
+  \item 最基本的方法，使用 \LaTeX{} 内部命令 |\@ifstar| 判断
+  \begin{verbatim}
+    \makeatletter
+    \newcommand{\mycommand}{%
+      \@ifstar
+        \mycommandStar%
+        \mycommandNoStar%
+    }
+    \makeatother
+    \newcommand{\mycommandStar}{starred version}
+    \newcommand{\mycommandNoStar}{normal version}
+  \end{verbatim}
+  \item 比较简单的方法，使用 ifthen 宏包
+  \begin{verbatim}
+    \usepackage{ifthen}
+    \newcommand{\mycommand}[1]{\ifthenelse{\equal{#1}{*}}%
+      {\mycommandStar}%
+      {\mycommandNoStar{#1}}%
+    }
+    \newcommand{\mycommandStar}{starred version}
+    \newcommand{\mycommandNoStar}[1]{normal version}  
+  \end{verbatim}
+  \item 使用\LaTeX{3}的机制
+  \begin{verbatim}
+    \usepackage{xparse}
+    \NewDocumentCommand\mycommand{s}{%
+      \IfBooleanTF#1%
+        {starred version}%
+        {normal version}%
+    }
+  \end{verbatim}
+\end{itemize}
+
+
+\faq{类似 \cs{macro[<option1>][<option2>]\{<arg>\}} 这样的宏命令，当我只使用一个可选参数时，\LaTeX{}把它看做哪个参数？\LaTeX{}会自动判断么？}{}
+
+
+\faq{\cs{newcommand} 创建的命令，仅有第一个命令可以成为可选参数，如果我想创建具有两个可选参数的命令，应该如何去写？}
+{newcommand-multi-optional}
+
+可以用一个小把戏实现：
+\begin{verbatim}
+  \newcommand{\mycmd}[1][option1]{%
+    \def\ArgI{{#1}}%
+    \mycmdoptii
+  }
+  \newcommand\mycmdoptii[1][option2]{%
+    ...
+  }
+\end{verbatim}
+
+或者使用\LaTeX{3}的机制：
+\begin{verbatim}
+  \usepackage{xparse}
+  \NewDocumentCommand\mycmd{O{option1} O{option2} m}{%
+    #1#2#3
+  }
+\end{verbatim}
+
+
+\faq{有些命令的参数是使用 () 扩起来的，这类命令是如何定义的？}{}
+
+
+\faq{我想新建一个带有可选参数的命令，可选参数的缺省值与必选参数值一样，这样的命令如何创建？}{}
+
+第一种方法：
+\begin{verbatim}
+  \newcommand{\mycmd}[2][\DefaultOpt]{%
+    \def\DefaultOpt{#2}%
+    optional arg: #1,  mandatory arg: #2%
+  }
+\end{verbatim}
+
+第二种方法：
+\begin{verbatim}
+  \def\mycmd{\futurelet\testchar\WithOptCmd}
+  \def\WithOptCmd{%
+    \ifx[\testchar 
+      \let\next\OptCmd 
+    \else 
+      \let\next\NoOptCmd 
+    \fi\next}
+  \def\OptCmd[#1]#2{optional arg: #1,  mandatory arg: #2}
+  \def\NoOptCmd#1{optional arg: #1,  mandatory arg: #1}
+\end{verbatim}
+
+
+\faq{想用minted包写文档，怕别人用不来不会设置-shell --escepe咋办}{}
+
+教给别人怎么用，或者不用这个宏包。
+
+
+\faq{如何给整个页面加边框？}{}
+
+
+\faq{每一部分第一段段首如何空两格，区别于下面段落的自动换行。}{}
+
+使用 |\usepackage{indentfirst}|
+
+
+\faq{如何在section中使用box}{}
+
+
+\faq{\cs{lstinputlisting}在\XeLaTeX{}下如何支持中文？}{}
+
+
+\faq{Excel里的矢量图怎么存为eps并插入\TeX{}中？\& Matlab 导出图片无白边？}{}
+
+
+\faq{如何结合使用 Pandoc 和 \LaTeX{}，提高文档编写效率？（或如何结合使用 Markdown 和 LaTeX？）}{}
+
+
+\faq{\cs{label\{key\}}可以用中文吗，如\cs{label\{第一章\}}}{}
+
+
+\faq{如何将算法代码的行编号放到外边框的里面？}{}
+
+
+\faq{如何编辑页眉和页脚，添加页码}{}
+
+
+\faq{\LaTeX{}写毕业论文时，直接写编译速度慢，用dvi会不会简便些？}{}
+
+
+\faq{文字用 \cs{underlined} 加了下划线后为什么没法换行？}{}
+
+
+\faq{如何使用带圈数字做脚注编号？}{}
+
+
+\faq{怎样判断当前页是奇数页还是偶数页？}{}
+
+
+\faq{如何加粗Listing中的一行文本？}{}
+
+
+\faq{如何根据不同的编译引擎选择执行不同的宏命令？}{}
+
+
+\faq{我怎么能把页码改成以三位数字（前导的0也显示出来）表示？}{}
+
+
+\faq{標點符號如何分類設置樣式？比如逗號、句號、頓號等設爲一類，歎號、問號設爲一類，引號、書名號設爲一類，等等。}{}
+
+
+\faq{请问交叉引用用\cs{ref\{\}}引用的表格，图片，在PDF上点击数字时没有反应，不能跳转到相应的表格、图片位置，
+生成的目录点击时也跳转不到指定的页码，在书上没有查到原因，我用的\TeXLive{} 2017+TeXstudio,是设置的问题还是其他问题？}{}
