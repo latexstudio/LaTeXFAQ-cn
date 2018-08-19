@@ -2,11 +2,10 @@
 
 **建设 LaTeX 史上最宏伟的中文 FAQ 工程，见证我们 LaTeX 中文社区的新生力量，大家都是功勋卓著的功臣，也是历史创造者。**
 
-感谢大家的参与，请大家加入我们的微信群！定期沟通！
+感谢大家的参与，请大家多多提交问题给我们：
 
-<div align="center">
-    <img src="images/weixin.jpg" width="40%"/>
-</div>
+请到[腾讯文档](https://docs.qq.com/doc/BI4qNM3UFv7K0tipXG0gEFLJ2sCo0D3JFU1Z2x4lLY2p7FD621ISRa4mvd8F1eb2vz1ljHxM4)提交您的问题，每天一个小问题，学习不再有问题。
+
 
 ## 编译
 
