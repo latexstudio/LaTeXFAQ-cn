@@ -17,7 +17,8 @@
 \section{最常出现的问题}
 \label{sec:starter}
 
-\faq{论文 / 比赛的 deadline 要到了，如何在一天 / 两天 / 三天之内入门 \LaTeX{}？}{get-started}
+\faq{论文 / 比赛的 deadline 要到了，如何在一天 / 两天 / 三天之内入门 \LaTeX{}？}%
+  {get-started-in-a-short-time}
 
 非常遗憾，这几乎是不可能完成的任务。在时间紧张、压力巨大的情形下，入门 \LaTeX{} 对您来说没有意义。
 作为排版工具，\LaTeX{} 实现的效果远没有文章的内容重要，所以请不要在这种情况下把您的精力投入在学习
@@ -30,19 +31,45 @@
 不靠谱的，所以这一点实际上很难办到。
 
 
+\faq{我是新手，学习 \LaTeX{} 应该怎么入门？}{get-started}
+
+首先，您需要确保自己有较为充裕的时间。接下来，我们推荐您阅读一些 \LaTeX{} 入门材料，比较知名的有
+\href{http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf}{《一份不太简短的 \LaTeXe{} 介绍》}
+（\href{http://mirrors.ctan.org/info/lshort/english/lshort.pdf}{\book{The Not So Short In­tro­duc­tion to \LaTeXe{}}}），
+即 \pkg{lshort}。此外，您还需要在电脑上安装一套发行版（见\faqref{install-latex}），或使用在线服务，
+如 \href{https://www.overleaf.com/}{Overleaf}、\href{https://www.sharelatex.com}{ShareLaTeX} 等。
+
+进一步的学习还需要阅读更多的书籍和文档，例如刘海洋《\LaTeX{} 入门》
+\footnote{如作者所言，“虽然书名是《入门》，不过其实我并非完全是按新手入门的节奏在写，除了第一章是
+  零基础入门，后面的内容编排并不完全是从基础到深入的顺序，而是按主题划分；实际内容上也包含一些比较
+  专门的东西”，这本书内容丰富、讲解深入，但对新手未必友好。而且需注意，关于中文处理的部分可能略显
+  过时。}。
+此外，善用搜索引擎
+\footnote{对于技术方面的问题，我们不很推荐百度。谷歌在大多数时候都可以获得更好的搜索结果；当然，
+  如果您身处国内，必应很可能是更好的选择。}
+也是必备技能。最后，我们强烈建议您提高英语水平，因为 \LaTeX{} 的相关材料，除了中文排版相关，几乎
+都是英文的。
+
+\begin{reference}
+  \item 刘海洋．自学 \LaTeX{} 可以读什么书入门？．
+    \url{https://www.zhihu.com/question/26645810/answer/33515971}
+  \item milksea．新手请先读我．\url{http://bbs.ctex.org/forum.php?mod=viewthread&tid=48244}
+\end{reference}
+
+
 \faq{如何“安装 \LaTeX{}”？}{install-latex}
 
-如果您也有这一问题，首先需要澄清一些概念，见~\faqref{tex-terms}。简短来说，\LaTeX{} 本身是一种标记
-语言，而不是 Microsoft Word 一样现成的软件。因此，社区将相关的支持文件、可执行程序、文档等打包在了
-一起，形成了可供用户下载、安装的发行版（distribution）。一般而言，“安装 \LaTeX{}”指的就是安装
-发行版。
+如果您也有这一问题，首先需要澄清一些概念，见\faqref{tex-related-things}。简短来说，\LaTeX{} 本身是
+一种标记语言，而不是 Microsoft Word 一样现成的软件。因此，社区将相关的支持文件、可执行程序、文档等
+打包在了一起，形成了可供用户下载、安装的发行版（distribution）。一般而言，“安装 \LaTeX{}”指的就是
+安装发行版。
 
 目前，根据平台不同，可供使用的主流发行版有以下这些：
 
 \begin{itemize}
-  \item \TeXLive{}，见~\faqref{install-texlive}
-  \item \MiKTeX{}，见~\faqref{install-miktex}
-  \item \MacTeX{}，适用于 macOS，见~\faqref{install-mactex}
+  \item \TeXLive{}，见\faqref{install-texlive}
+  \item \MiKTeX{}，见\faqref{install-miktex}
+  \item \MacTeX{}，适用于 macOS，见\faqref{install-mactex}
   % TODO: 更多的发行版介绍
   \item 【有待整理】
 \end{itemize}
@@ -51,9 +78,57 @@
 \faq{我的 \CTeX{} 为什么……}{why-ctex}
 
 您在这里提到的“\CTeX{}”，指的很可能是由中国 \TeX{} 社区（即 \CTeX{} 社区）所发布的、以 \MiKTeX{}
-为基础的一个发行版，全称为“\href{http://www.ctex.org/CTeX}{\CTeX{} 套装}”。这一发行版目前已停止
+为基础的一个发行版，全称为 \href{http://www.ctex.org/CTeX}{\CTeX{} 套装}。这一发行版目前已停止
 维护，所以除非必要，请不要再使用。\TeXLive{} 以及 \MiKTeX{} 都是可靠的替代方案。
 
-\CTeX{} 社区另发布了一个同样称为 \href{https://www.ctan.org/pkg/ctex}{\CTeX{} 的宏集}（宏包），
-这是目前在 \LaTeX{} 中使用中文排版的推荐方案。如果您需要获取相关信息，请查阅其文档。\CTeX{} 宏集
-的有关问题，在本文之后也有涉及。
+\CTeX{} 社区另发布了一个同样称为 \CTeX{} 的宏集（宏包），即
+\href{https://www.ctan.org/pkg/ctex}{\CTeX{} 宏集}，这是目前在 \LaTeX{} 中使用中文排版的推荐方案。
+如果您需要获取相关信息，请查阅其文档。\CTeX{} 宏集的有关问题，在本文之后也有涉及。
+
+
+\faq{那些含有 \TeX{}、\LaTeX{} 的都是什么东西？}{tex-related-things}
+
+\TeX{} 本身是由 Knuth 发明的一套排版系统，同时也指相应的排版语言（见\faqref{what-is-tex}）。
+Knuth 还设计了一个名为 \PlainTeX{} 的格式。所谓“\strong{格式}”，是指对原始 \TeX{} 命令的封装，是
+一种更高层次的抽象。它可以让用户在一定程度上摆脱排版中的繁琐细节，从而专注于文章写作。\LaTeX{} 就是
+应用最为广泛的一种格式，它由 Leslie Lamport 发明，提供了 \TeX{} 的强大排版能力，但又足够易用，因此
+深得人们的认可。现代比较流行的格式除 \PlainTeX{} 与 \LaTeX{} 之外，还有 \ConTeXt{}。
+
+作为应用程序的 \TeX{} 也称之为“\strong{排版引擎}”。随着技术的发展，原始的 \TeX{} 程序逐渐不能满足
+人们的需要。于是，新的引擎便被发明了出来，包括 \eTeX{}、\pdfTeX{}、\XeTeX{}、\LuaTeX{} 等。它们增加
+了许多新的功能，比如 PDF 生成、Unicode 支持、OpenType 支持等。
+
+\TeX{} 以及 \LaTeX{} 的使用涉及很多的应用程序；另一方面，社区又通过\strong{宏包}的形式引入了许多
+额外功能。为了方便安装与使用，\strong{\TeX{} 发行版}将程序、宏包以及相应的文档等打包在了一起，并以
+特定的结构（TDS，见\faqref{what-its-tds}）进行管理。常见的发行版有 \TeXLive{}
+（\faqref{install-texlive}）、\MiKTeX{}（\faqref{install-miktex}）、\MacTeX{}
+（\faqref{install-mactex}） 等。
+
+
+排版引擎通常会与特定的格式组合起来，我们有时也简单地把它们叫做“编译器”。前面所介绍的的 \pdfTeX{}、
+\XeTeX{}、\LuaTeX{} 等默认都使用 \PlainTeX{} 格式，而使用 \LaTeX{} 的则相应地写为 \pdfLaTeX{}、
+\XeLaTeX{}、\LuaLaTeX{} 等。
+
+在 \TeX{} 发行版中，实际上我们使用的都是一些可执行程序，具体见表~\ref{tab:engine-format-exe}。
+
+\begin{table}[htb]
+% TODO: 表格格式需要在 cls 中定义
+  \caption{各类引擎、格式及相应的可执行程序（命令）}
+  \label{tab:engine-format-exe}
+  \centering
+  \begin{tabular}{cccccc}
+    格式 / 命令 / 引擎 & \TeX  & \pdfTeX              & \XeTeX    & \LuaTeX    \\
+    \PlainTeX          & |tex| & |pdftex|             & |xetex|   & |luatex|   \\
+    \LaTeX             & ---   & |latex| / |pdflatex| & |xelatex| & |lualatex| \\
+    \ConTeXt           & ---   & |texexec|            & TODO      & |context|
+  \end{tabular}
+\end{table}
+
+
+\faq{怎样实现我想要的样式？}{get-my-style}
+
+\LaTeX{} 推崇的原则称为“内容与样式分离”，如果您是刚入门的新手，请先专注于内容的编辑，而不是考虑如何
+更改文章的样貌。一般而言，您所使用的模板都会预先实现所需的样式，而无需您自己想办法解决。
+
+如果您对 \LaTeX{} 已经比较熟悉，并且需要自定义样式乃至制作新的模板，此问题自然也就不适用了。本文
+之后的内容也许会对您有所帮助。

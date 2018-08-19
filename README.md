@@ -6,7 +6,6 @@
 
 请到[腾讯文档](https://docs.qq.com/doc/BI4qNM3UFv7K0tipXG0gEFLJ2sCo0D3JFU1Z2x4lLY2p7FD621ISRa4mvd8F1eb2vz1ljHxM4)提交您的问题，每天一个小问题，学习不再有问题。
 
-
 ## 编译
 
 如果您需要在本地自行编译本文档，请参考 [编译指南](BUILD.md)。

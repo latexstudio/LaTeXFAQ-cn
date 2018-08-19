@@ -185,6 +185,7 @@
 % 中文版式设置
 \ctexset
   {
+    punct = kaiming,
     section / number = \Alph { section },
     section / format = \Large\normalfont\sffamily\centering
   }
@@ -263,25 +264,26 @@
 \int_set_eq:NN \g_faqcn_count_int \c_one
 
 \zref@newlist { faqcn }
-\zref@newprop { faq@num } { 问题 \int_use:N \g_faqcn_count_int }
+\zref@newprop { faq@num } { \int_use:N \g_faqcn_count_int }
 \zref@addprop { faqcn } { faq@num }
 
 % 问答环境交叉引用
 \NewDocumentCommand \faqref { m }
-  { \faqcn_ref:n {#1} }
+  { 问题 \nobreakspace \faqcn_ref:n {#1} }
 \cs_new_protected:Npn \faqcn_ref:n #1
   { \hyperlink { faq @ #1 } { \zref@extract { faq: #1 } { faq@num } } }
 
 % 问答环境参考文献
 \NewDocumentEnvironment { reference } { }
-  { \textbf { 参考： } \enumerate }
+  { \textbf { 参考： } \enumerate [ topsep = 0pt ] }
   { \endenumerate }
 
 % TeX logo 命令
 \clist_map_inline:nn
   {
-    TeX, LaTeX, LaTeXe, LaTeXTeX, plainTeX, ConTeXt,
-    pdfTeX, pdfLaTeX, LuaTeX, LuaLaTeX, XeTeX, XeLaTeX,
+    TeX, eTeX, pdfTeX, XeTeX, LuaTeX,
+    LaTeX, LaTeXe, LaTeXTeX, ConTeXt,
+    pdfLaTeX, LuaLaTeX, XeLaTeX,
     BibTeX, MetaFun,
     MiKTeX
   }
@@ -332,6 +334,9 @@
 \DeclareRobustCommand \env {\texttt}
 \DeclareRobustCommand \pkg {\textsf}
 \DeclareRobustCommand \cls {\textsf}
+
+% 英文书名，应该用意大利体
+\cs_new_eq:NN \book \emph
 
 % 允许使用 |...| 作为行内抄录
 \AtBeginDocument
