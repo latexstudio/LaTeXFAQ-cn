@@ -43,12 +43,14 @@
 \RequirePackage
   {
     amsmath,
+    diagbox,
     dirtree,
     enumitem,
     fancyvrb,
     geometry,
     graphicx,
     hologo,
+    tabularx,
     unicode-math,
     xurl,
     zref-abspage,
@@ -126,14 +128,13 @@
           }
       }
   }
+\bool_new:N \l__source_han_super_otc_bool
 \cs_new_protected:Npn \__faqcn_source_super_otc:Nnn #1#2#3
   {
     \IfFontExistsTF {#2}
       { #1 {#2} [#3] }
       { \BOOM }
   }
-\bool_new:N \l__source_han_super_otc_bool
-
 \bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
     \faqcn_set_cjk_font:Nnnnnnn \setCJKmainfont
@@ -158,15 +159,59 @@
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
       { Source~ Han~ Sans~ SC }
       {
-        UprightFont    = *-Medium,
-        BoldFont       = *-Bold,
+        UprightFont    = *-Light,
+        BoldFont       = *-Medium,
         AutoFakeSlant  = 0.2
       }
   }
 
+% 其他字体
+\bool_if:NTF \g_faqcn_use_customized_fonts_bool
+  {
+    \newfontfamily \FETAMONT { ffm }
+      [
+        % 只选择 10 号
+        Extension      = .otf,
+        UprightFont    = * r10,
+        BoldFont       = * b10,
+        ItalicFont     = * o10,
+        BoldItalicFont = * bo10
+      ]
+  }
+  {
+    \cs_set_eq:NN \FETAMONT \sffamily
+  }
+
+% 中文版式设置
 \ctexset
   {
-    section / number = \Alph { section }
+    punct = kaiming,
+    section / number = \Alph { section },
+    section / format = \Large\normalfont\sffamily\centering
+  }
+
+% 列表环境
+\setlist
+  {
+    itemsep       = 0 pt,
+    parsep        = 0 pt,
+    listparindent = \parindent
+  }
+
+% 页面尺寸
+\geometry
+  {
+    paper      = a4paper,
+    vmargin    = 2.54 cm,
+    hmargin    = 3.18 cm,
+    headheight = 15 pt
+  }
+
+% hyperref 有关设置
+\hypersetup
+  {
+    bookmarksnumbered = true,
+    colorlinks        = true
   }
 
 % 脚注
@@ -188,64 +233,57 @@
     #1
   }
 
-% 列表环境
-\setlist
-  {
-    itemsep       = 0 pt,
-    parsep        = 0 pt,
-    listparindent = \parindent
-  }
-
-% 页面尺寸
-\geometry
-  {
-    paper      = a4paper,
-    vmargin    = 2.54 cm,
-    hmargin    = 3.18 cm,
-    headheight = 15 pt
-  }
-
-\hypersetup { colorlinks }
-
 % 问答环境
 % #1: 选项
 % #2: 长名称
 % #3: 短名称
 \NewDocumentCommand \faq { o m m }
   {
+    % TODO: 选项准备仿照 l3doc，如 added、updated 选项
     \faqcn_faq:nn {#2} {#3}
   }
-
 \cs_new_protected:Npn \faqcn_faq:nn #1#2
   {
-    \hypertarget { faq @ #2 } { \textbf { \int_use:N \g_faqcn_count_int \quad #1} }
-    \tl_if_novalue:nF {#2} { \zref@labelbylist { faq: #2 } { faqcn } }
+    \tl_set:Nn \l__faqcn_faq_title_tl { \textbf { \int_use:N \g_faqcn_count_int \quad #1 } }
+    \tl_set:Nn \l__faqcn_faq_name_tl  { faq: #2 }
+    % 问题之间留空
+    \skip_vertical:n { 2 ex }
+    % 排版标题，以及交叉引用
+    \hypertarget { faq @ #2 } { \tl_use:N \l__faqcn_faq_title_tl }
+    \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
+    % PDF 书签
+    \pdfbookmark [ 2 ]
+      { \int_use:N \g_faqcn_count_int \ #1 }
+      { \tl_use:N \l__faqcn_faq_name_tl }
     \int_gincr:N \g_faqcn_count_int
     \par
   }
+\tl_new:N \l__faqcn_faq_title_tl
+\tl_new:N \l__faqcn_faq_name_tl
 \int_new:N \g_faqcn_count_int
 \int_set_eq:NN \g_faqcn_count_int \c_one
 
 \zref@newlist { faqcn }
-\zref@newprop { faq@num } { 问题 \int_use:N \g_faqcn_count_int }
+\zref@newprop { faq@num } { \int_use:N \g_faqcn_count_int }
 \zref@addprop { faqcn } { faq@num }
 
 % 问答环境交叉引用
 \NewDocumentCommand \faqref { m }
-  { \faqcn_ref:n {#1} }
+  { 问题 \nobreakspace \faqcn_ref:n {#1} }
 \cs_new_protected:Npn \faqcn_ref:n #1
   { \hyperlink { faq @ #1 } { \zref@extract { faq: #1 } { faq@num } } }
 
 % 问答环境参考文献
 \NewDocumentEnvironment { reference } { }
-  { \textbf { 参考： } \enumerate }
+  { \textbf { 参考： } \enumerate [ topsep = 0pt ] }
   { \endenumerate }
 
 % TeX logo 命令
 \clist_map_inline:nn
   {
-    TeX, LaTeX, LaTeXe, LaTeXTeX, plainTeX, ConTeXt,
-    pdfTeX, pdfLaTeX, LuaTeX, LuaLaTeX, XeTeX, XeLaTeX,
+    TeX, eTeX, pdfTeX, XeTeX, LuaTeX,
+    LaTeX, LaTeXe, LaTeXTeX, ConTeXt,
+    pdfLaTeX, LuaLaTeX, XeLaTeX,
     BibTeX, MetaFun,
     MiKTeX
   }
@@ -253,12 +291,11 @@
 \clist_map_inline:nn
   { METAFONT, METAPOST }
   {
-    % TODO
     \cs_set_protected:cpn {#1}
       {
-        \bool_if:NTF \g_faqcn_use_customized_fonts_bool
-          { \group_begin: \fontspec { ffmr10.otf } #1 \group_end: }
-          {#1}
+        \group_begin:
+          \FETAMONT #1
+        \group_end:
       }
   }
 
@@ -268,12 +305,38 @@
 \cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
 \cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
 \cs_set_protected:Npn \MacTeX   { Mac\TeX       }
+\cs_set_protected:Npn \proTeXt  { pro\TeX t     }
 \cs_set_protected:Npn \PlainTeX { Plain~ \TeX   }
 \cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
 
 % 宏包与文档类
-\cs_set_protected:Npn \pkg #1 { \textsf {#1} }
-\cs_set_protected:Npn \cls #1 { \textsf {#1} }
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\DeclareRobustCommand\meta[1]{%
+     \ensuremath\langle
+     \ifmmode \expandafter \nfss@text \fi
+     {%
+      \meta@font@select
+      \edef\meta@hyphen@restore
+        {\hyphenchar\the\font\the\hyphenchar\font}%
+      \hyphenchar\font\m@ne
+      \language\l@nohyphenation
+      #1\/%
+      \meta@hyphen@restore
+     }\ensuremath\rangle
+}
+\def\meta@font@select{\itshape}
+\newcommand\Arg[1]
+  { \texttt{\char`\{} \meta{#1} \texttt{\char`\}} }
+\providecommand\marg[1]{ \Arg{#1} }
+\providecommand\oarg[1]{ \texttt[ \meta{#1} \texttt] }
+\providecommand\parg[1]{ \texttt( \meta{#1} \texttt) }
+\DeclareRobustCommand \file {\nolinkurl}
+\DeclareRobustCommand \env {\texttt}
+\DeclareRobustCommand \pkg {\textsf}
+\DeclareRobustCommand \cls {\textsf}
+
+% 英文书名，应该用意大利体
+\cs_new_eq:NN \book \emph
 
 % 允许使用 |...| 作为行内抄录
 \AtBeginDocument

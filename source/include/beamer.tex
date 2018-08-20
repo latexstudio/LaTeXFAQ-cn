@@ -1,0 +1,121 @@
+% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
+\section{Beamer篇}
+
+
+\faq{129.隐藏导航栏}{}
+
+Beamer
+自带的导航符号看起来很不错，但是实际上使用的并不多，为了让文稿的显示面积增加，减少干扰元素，我们可以隐藏下方的导航栏符号，两个方法如下：
+
+\begin{verbatim}
+\setbeamertemplate{navigation symbols}{}
+\beamertemplatenavigationsymbolsempty % both ok
+\end{verbatim}
+
+如果需要去掉下方 title，Author 等信息的话，可以用
+
+\begin{verbatim}
+\setbeamertemplate{footline}
+\end{verbatim}
+
+
+\faq{向 Beamer 中添加参考文献}{}
+
+我们可以使用下面的命令添加参考文献，最好放在 `appendix' 后面。
+
+\begin{verbatim}
+\begin{frame}[allowframebreaks]{References}
+\def\newblock{}
+\bibliographystyle{plain}
+\bibliography{mybib}
+\end{frame}
+\end{verbatim}
+
+
+\faq{每节显示目录}{}
+
+在我们做一个比较长的报告时，我们可能会想在每一节添加一个目录，让听众清楚内容讲到哪了，我们可以在导言区添加如下的命令。
+
+\begin{verbatim}
+\setbeamerfont{myTOC}{series=\bfseries,size=\Large}
+\AtBeginSection[]{\frame{\frametitle{Outline}%
+                  \usebeamerfont{myTOC}\tableofcontents[current]}}
+\end{verbatim}
+
+为了得到节的标题信息，我们会在帧与帧之间添加
+`\textbackslash{}section{[}short\_title{]}\{long\_title\}', 其中
+short\_title 是短标题，用于 ``页眉''
+信息（header）显示。如果你不想要显示每帧的页眉信息（header），可以使用下面的命令。
+
+\begin{verbatim}
+\setbeamertemplate{headline}{}
+\end{verbatim}
+
+
+\faq{多栏显示}{}
+
+有时候我们有图需要并排摆放，一个好方法是使用分栏，尤其是当两个图不同的高度的时候，然后在每一栏插入我们需要的图片。代码如下：
+
+\begin{verbatim}
+\begin{columns}[c] % Columns centered vertically.
+\column{5.5cm}     % Adjust column width to taste.
+\includegraphics ...
+\column{5cm}
+\includegraphics ...
+\end{columns}
+\end{verbatim}
+
+
+\faq{添加 LOGO}{}
+
+在右下方添加 logo，直接用系统默认的命令就可以。
+
+\begin{verbatim}
+\logo{\includegraphics[width=0.08\textwidth]{logo500}}
+\end{verbatim}
+
+如果需要在右上方添加 logo，可以用 TikZ 命令（需要用到 tikz 宏包）在
+Frametitle 上添加。
+
+\begin{verbatim}
+\addtobeamertemplate{frametitle}{}{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[width=0.09\textwidth]{logo500}};
+\end{tikzpicture}}
+\end{verbatim}
+
+
+\faq{想在 beamer 中新建一个包含 frame 的环境 question，该怎么做？}{}
+
+直接给代码
+
+\begin{verbatim}
+\newenvironment{question}
+{\begin{frame}[environment=question,fragile]
+ \begin{theorem}
+}
+{\end{theorem}
+ \end{frame}
+}
+\end{verbatim}
+
+
+\faq{如何在默认模板的基础上，定制自己的beamer模板}{}
+
+
+\faq{如何更改beamer中logo的位置，在使用default的模板和主题下，使用\cs{logo}，发现不能更改logo所在位置}{}

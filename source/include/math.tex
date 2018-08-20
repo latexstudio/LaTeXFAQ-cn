@@ -1,0 +1,216 @@
+% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
+\section{介绍公式的常见问题}
+
+
+\faq{\cs{[} \ldots \cs{]} 与 \texttt{\$\$\ldots \$\$} 有什么区别？}{}
+
+重定义的难度不同、造成的间距也不同。推荐使用 \cs{[} \ldots \cs{]}。 见
+\url{https://www.zhihu.com/question/27589739/answer/37255728}
+
+
+\faq{如何让长公式自动断行？}{}
+
+长公式自动断行要看情况，如果是在行内模式，合理使用空格，一般可以在二元运算符处断行，如果是行间模式，推荐使用align类环境，在需要断行处添加
+\textbackslash{} 手动断行。
+
+
+\faq{公式希腊字符如何加粗？}{}
+
+希腊字母没有粗体，可以选择合适的数学字体。 可以使用 bm
+宏包将希腊字母加粗。
+
+
+\faq{极限符号下面有两个趋近该怎么写}{}
+
+直接给出例子：
+
+\begin{verbatim}
+\documentclass{article}
+\begin{document}
+ \[ \lim_{n\to\infty\atop m\to\infty} \]
+\end{document}
+\end{verbatim}
+
+或者使用 \cs{substack}，代码如下：
+
+\begin{verbatim}
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
+\end{document}
+\end{verbatim}
+
+效果如下：
+% \includegraphics{https://images-cdn.shimo.im/FCY4A1SeBIcwBCGT/双重极限.PNG!thumbnail}
+
+
+\faq{怎样在 LaTeX 中输入引号}{}
+
+左引号用 `（键盘1旁边那个键），右引号用 `。双引号也一样，``''。
+中文条件下可以直接用中文引号（这个与编码方式和中文支持方式有关的），会有自动配对（这个和编辑器以及输入法有关的），但是如果需要用到不配对引号的情况，需要使用通用方法。
+
+
+\faq{align环境默认是居中对齐吗？我在使用时，发现公式开始是居中的，后来却一直靠右断对齐，这是什么原因？}{}
+
+%\sout{align 默认靠右对齐，所以通常加 \&
+%符号，让代码左对齐。验证一下以下代码：}
+
+\begin{verbatim}
+\begin{align}
+& \nabla \times H = J,\\
+& \nabla \times E = - \partial _t B,\\
+& \nabla \cdot B = 0.
+\end{align}
+\end{verbatim}
+
+再试试把 \& 去掉什么样。
+align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，两列之间用\&分隔。
+
+
+\faq{中英文标点使用规则不是很明白，尤其在公式环境里，字体和间距差别都比较大。怎样才能让正文和公式的标点统一（形状和间隔）？}{}
+
+详见：
+\url{https://link.zhihu.com/?target=http\%3A//www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113092346124.pdf}
+在导言区加类似命令可实现全文替换：
+
+\begin{verbatim}
+\catcode`\。=\active\newcommand{。}{. }
+\end{verbatim}
+
+或者使用 xeCJK 宏包的字符映射功能，调用 fullwidth-stop
+这一映射文件，将中文空心句号映射为实心句点：
+
+\begin{verbatim}
+\documentclass{article}
+\usepackage{xeCJK}
+\setCJKmainfont[Mapping= fullwidth-stop]{STSong}
+\begin{document}
+句号。
+\end{document}
+\end{verbatim}
+
+
+\faq{公式如何居左对齐,居右对齐？}{}
+
+公式居左对齐在基础文档类中由 fleqn
+选项控制，选择该选项后，正文公式均居左对齐，至于居右对齐，嗯，我没见过这么奇怪的格式。
+
+
+\faq{公式之后解释公式符号的文字，通常是 ``符号 ------ 解释'' 这样的格式，我希望这段文字的格式是按破折号对齐，并且解释文字折行后悬挂缩进，怎样实现这样的格式？}{}
+
+方法很多，可以列表，可以align等环境。 这里给出一个使用自定义列表的例子：
+
+\begin{verbatim}
+\usepackage{ifthen}
+\newcounter{qlst}
+\newenvironment{EqDesc}[2][式中]{%
+\begin{list}{}
+    {%
+  \usecounter{qlst}
+  \settowidth{\labelwidth}{#1，#2\ --- \ }
+  \setlength{\labelsep}{0pt}
+     \setlength{\leftmargin}{\labelwidth}
+     \setlength{\rightmargin}{0em}
+     \setlength{\parsep}{0ex}
+     \setlength{\itemsep}{0ex}
+     \setlength{\itemindent}{0em}
+     \setlength{\listparindent}{0em}
+     \renewcommand{\makelabel}[1]{\stepcounter{qlst}\ifthenelse{\value{qlst}>1}{\hfill ##1\ --- \ }{#1，\hfill ##1\ --- \ }}
+     }}%
+{\end{list}}%
+\end{verbatim}
+
+EqDesc
+环境有两个参数，第一个为可选参数，是解释公式符号前的引导词，默认是``式中''，第二个参数是样本符号，可以选择一个列表中宽度最大的符号。条目 \cs{item} 有一个可选参数（实际使用是必选参数），内容是要说明的符号。使用如下：
+
+\begin{verbatim}
+\[ a^2+b^2=c^2 \]
+\begin{EqDesc}[其中]{$a$}
+   \item[$a$] 三角形的一条直角边；
+   \item[$b$] 三角形的另一条直角边；
+   \item[$c$] 三角形的斜边。
+\end{EqDesc}
+\end{verbatim}
+
+
+\faq{行内公式的情况下如何让sum prod这些运算符的上下标在头上和脚下？}{}
+
+这样处理行内公式的上下标会导致段落行距不整齐，不符合 LaTeX
+的审美。如果彻底放弃审美，可以使用 \cs{limits} 命令，如：
+
+\begin{verbatim}
+$\sum\limits_{i=1}^n \quad
+\prod\limits_\epsilon$
+\end{verbatim}
+
+
+\faq{如何将积分的上限标放在积分号的上下两侧？}{}
+
+积分号的上下限放置在积分号的右侧是英美国家和 LaTeX
+的排版习惯，通常无需处理。如果你很确定需要按照 ISO 80000-2:2009 或者 GB
+3102.11-93 的规定排版积分号，可以：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+
+\item
+  在调用 amsmath 宏包时添加 intlimits 选项；
+\item
+  \texttt{\textbackslash{}def\textbackslash{}int\{\textbackslash{}intop\}}
+\item
+  如果使用 unicode-math 宏包，
+\end{enumerate}
+
+\begin{verbatim}
+\removenolimits{%
+  \int\iint\iiint\iiiint\oint\oiint\oiiint
+  \intclockwise\varointclockwise\ointctrclockwise\sumint
+  \intbar\intBar\fint\cirfnint\awint\rppolint
+  \scpolint\npolint\pointint\sqint\intlarhk\intx
+  \intcap\intcup\upint\lowint
+}
+\end{verbatim}
+
+
+\faq{如何自定义数学运算符，然后让下标放在脚下？}{}
+
+借助 amsmath 包的
+\cs{DeclareMathOperator*} 命令即可（需要注意加不加*是有区别的）。例如
+
+\begin{verbatim}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\end{verbatim}
+
+
+\faq{在数学公式中，编辑等式时，每一行需要等号和等号对其，这时使用了\textbackslash{}begin\{displaymath\} \textbackslash{}begin\{split\}环境，但是呢，这些整体都是居中的，我想让式子靠左，怎么实现呢？}{}
+
+
+\faq{行列式变换过程中，我们一般是在中间的箭头上表示出变换的方式，如何才能在长箭头上打出多行内容？}{}
+
+
+\faq{如何输出反斜杠？}{}
+
+\begin{verbatim}
+\textbackslash \verb|\|
+\end{verbatim}
+
+
+\faq{对equation环境下的公式、图片编号按章节、小节进行重新定义}{}
+
+公式编号使用amsmath宏包的numberwithin设定关联即可。图片编号可以使用caption宏包自定义格式。

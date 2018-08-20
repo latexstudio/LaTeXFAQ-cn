@@ -1,0 +1,128 @@
+% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
+\section{用法惯例}
+
+
+\faq{TeX编辑器中的魔法注释}{}
+
+在TeX中有单行注释命令为\%，其后的文本主要是对源代码进行一些说明，它们会被TeX，LaTeX等排版引擎所忽略。但有些
+注释对专门的TeX相关编辑器来说，可能用特别的意义。在不同的TeX编辑器中，这魔法注释(magic comments）可能是不同
+的。 下面是一些例子：
+\begin{itemize}
+  \item 指定\TeX{}编译器
+  \begin{verbatim}
+  TeXStudio，TeXworks, Sublime Text
+  % !TeX program = xelatex
+  
+  TeXShop
+  %！TEX TS-program = xelatex
+  \end{verbatim}
+  同理，将 xelatex 变为 pdflatex，就可以强制调用 pdfLaTeX 编译器。
+  在代码中需要使用ifxetex宏包进行条件判断。 
+  \item 指定文档为 |UTF-8| 编码
+  \begin{verbatim}
+  TeXworks，TeXStudio, Sublime Text
+  % !TeX encoding = utf8
+  
+  Winedt
+  % !Mode:: "TeX:UTF-8"
+  or
+  % -*- coding: utf-8 -*-
+  
+  TeXShop
+  %!TEX encoding = UTF-8 Unicode
+  \end{verbatim}
+  由于Winedt对编码自动识别能力较弱，使用此注释比较必要，不然要手动设置。
+  \item 指定主文档
+  \begin{verbatim}
+  TeXStudio, Sublime Text
+  % !TeX root = filename
+  \end{verbatim}
+  若需要指定上一层次的文件，则应该使用以下命令
+  \begin{verbatim}
+  TeXStudio, Sublime Text
+  % !TeX root = ../main.tex
+  \end{verbatim}
+  用两点表示返回上一层次，如果还需要再返回一个层次，则需要
+  \begin{verbatim}
+  TeXStudio, Sublime Text
+  % !TeX root = ../../main.tex
+  \end{verbatim}
+  \item 指定bib处理程序
+  \begin{verbatim}
+  TeXStudio
+  % !TeX TXS-program:bibliography = txs:///biber
+  \end{verbatim}
+  源文件添加如上代码即可用biber处理bib文件。将biber改为bibtex，即可指定\BibTeX{}处理bib文件。
+  \item 
+  为\TeX{}编译器指定参数
+  \begin{verbatim}
+  TeXStudio
+  % !TeX TXS-program:compile = txs://xelatex/[--shell-escape]
+  
+  sublime text - latextools
+  %!TEX options = --shell-escape
+  
+  texshop
+  -shell-escape
+  \end{verbatim}
+  有时在使用某些宏包时我们需要额外调用一些编译参数，例如 minted 宏包需要使用 --shell-escape，这时可用以上魔法注释实现该功能
+\end{itemize}
+
+各种编辑器对魔法注释的支持情况见表~\ref{magiccommands}
+\begin{table}
+  \centering
+  \caption{各种编辑器对魔法注释的支持情况。x表示支持；o表示不支持；?表示不确定}\label{magiccommands}
+  \begin{tabular}{|l|*{4}{c|}}
+    \hline
+    & Encoding & Program & Root & Spellcheck \\
+    \hline
+    TeXShop & x  & x & x & x \\
+    \hline
+    TeXStudio & x & x & x & x \\
+    \hline
+    TextMate & ? & x & x & ? \\
+    \hline
+    TeXworks & x & x & x & x \\
+    \hline
+    SublimeText  & x & x & x & x \\ 
+    \hline
+    VSCode & x & x & ? & ? \\
+    \hline
+    Atom & o & x & x & o \\
+    \hline
+    Vim
+    (vimtex) & o & x & x & o \\ 
+    \hline
+    Texpad & o & o & ? & ? \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{其它}
+
+\faq{LaTeX与数学软件(Mathematica, Maple,Sagemath等)}{}
+
+
+\faq{LaTeX与公式编辑器}{}
+
+公式编辑器MathType设置下就可以输入TeX指令得到公式，也可以复制公式得到TeX指令，但是得到的指令是所谓的机器代
+码，可读性实在不敢恭维。
+
+\faq{MathJax}{}
+MathJax是一个JavaScript引擎，用来显示网络上的数学公式。它支持LaTeX、MathML、AsciiMath符号。查阅MathJax支
+持的LaTeX命令请参考\url{http://onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm}

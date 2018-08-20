@@ -1,0 +1,283 @@
+% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
+\section{图片篇}
+
+
+\faq{LaTeX可以插图哪些类型的图片？}{}
+
+我们通常使用LaTeX、PDFTeX、XeTeX编译源文件。各种编译方式下图形格式支持如下
+* LaTeX直接支持EPS、PS图形文件，间接支持JPEG、PNG等格式； *
+PDFTeX直接支持PNG、PDF、JPEG格式图形文件，间接支持EPS； *
+XeLaTeX直接支持BMP、JPEG、PNG、EPS、PDF图形格式. 如果你使用MacOS，那么
+XeLaTeX 还会支持 GIF、PICT、PSD、SGA、TGA、TIFF 等格式 .
+
+【注意】在使用PDFLaTeX时，如果要插入EPS，可以先把EPS转化为其他格式（比如PDF、JPEG、PNG、EPS），或者在导言区加载epstopdf，此宏包需要在graphicx宏包之后调用。更改图片格式可以使用ImageMagick或者类似\href{http://www.gaitubao.com}{改图宝}等在线改图软件。
+eps 和 pdf 两种格式。eps 是一种在 TeX 中很常用的矢量绘图格式。支持导出
+eps 格式的绘图软件包括:MATLAB、Mathematica、GNUPlot、 Asymptote 等。
+如果需要使用 pdf 文档中的现成的矢量图，不要使用截屏软件截取，否则
+会生成位图，造成失真。可以用 Acrobat 等软件进行提取，剪切。如果使 用
+MacOS 系统，可以通过 Skim 阅览器选取,
+复制，从剪切板生成笔记的方法导出图像。
+
+
+\faq{图片的路径如何自动设置，不用正文一个个设置路径？}{}
+
+可以使用指令graphicspath来设置图片路径，如：
+\begin{verbatim}
+\graphicspath{{./figures/}}
+\end{verbatim}
+
+即设定图片路径为当前目录下子文件夹figures。
+
+
+\faq{在子文档中想用主文档所在文件夹下的子文件夹内的图片？}{}
+
+关键在于找到图片，直接暴力使用指定路径的方法，MWE如下。
+
+\begin{verbatim}
+main----subfile
+     |--figure
+
+main.tex in main folder, figure.png in figure folder, sub.tex in subfile folder.
+
+main.tex:
+% !TeX program = pdflatex
+\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+  \include{./subfile/sub1}
+\end{document}
+
+sub.tex:
+% !TeX root = ../file.tex
+\section{test}
+hello! \LaTeX{}!
+\includegraphics[width=\linewidth]{../figure/figure.png}
+\end{verbatim}
+
+但是此种情况有问题，就是不能够使用 \textbackslash{}graphicspath
+指定插图路径。这个就留给后来人去解决吧。
+
+
+\faq{图片浮动如何控制？各自参数如何使用？}{}
+
+插图(figure)、表格(table)等浮动体浮动位置有四个选项可以控制，分别是 h --
+here（当前位置）, t -- top （页面顶部）, b -- bottom（页面底部）和 p --
+page（单独一个浮动页）。这四个位置选项的输入顺序是无所谓的，也就是说
+{[}htbp{]} 和 {[}btph{]} 的效果是一样的。LaTeX
+总是按照h-t-b-p的顺序依次尝试浮动，直到找到合适的位置。LaTeX
+标准文档类中对位置参数的默认值是{[}tbp{]}，可以通过重定义内部命令
+\cs{fps@figure} 和\cs{fps@table} 来修改。
+
+\begin{verbatim}
+\makeatletter
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
+\makeatother
+\end{verbatim}
+
+LaTeX 放置浮动体时，浮动体不能造成页面溢出（overfull
+page），且只能放置于当前页或后面的页面中，浮动体根据其类型必须按源码内出现的顺序出现，也就是说，只有当之前的插图都被处理之后才能对下一幅插图进行处理，那么，只要前面有未处理的插图，当前位置就不会放置插图，一幅不可放置的插图将阻碍其后的图形放置，直到文件结束或出现\clearpage 等处理所有未处理浮动体的命令出现之处。
+
+需要说明的是，对于两种浮动体类型，表格的排版和插图的排版是相互独立处理的，未处理的表格不会影响插图的布置。一般来说，给出的参数越多，排版的结果就越好，单个参数选项极容易引发问题，一旦浮动体不适合指定位置，将被搁置并阻碍接下来其他浮动体的处理，一旦被阻塞的浮动体超过LaTeX允许的最大值，还将产生错误。
+
+LaTeX还设定了一些计数器来限制页面上浮动体的数量，这些包括：
+dbltopnumber\textbar{}twocolumn
+模式下可以位于页面顶部的浮动体最大数目（缺省为2）\textbar{}
+:----\textbar{}:----\textbar{} topnumber
+\textbar{}可以位于页面顶部的浮动体最大数目（缺省为2）\textbar{}
+bottomnumber\textbar{}可以位于页面底部的浮动体最大数目（缺省为1）\textbar{}
+totalnumber\textbar{}可以位于文本页中的浮动体最大数目（缺省为3）\textbar{}
+
+LaTeX 还设定了一些比例参数控制浮动体的放置，包括
+\textfraction\textbar{}文本页上文本最小比例（默认0.2）\textbar{}
+:----\textbar{}:----\textbar{}
+\topfraction\textbar{}页面顶部浮动体高度比例（默认0.7）\textbar{}
+\bottomfraction\textbar{}页面底部浮动体高度比例（默认0.3）\textbar{}
+\floatpagefraction\textbar{}浮动页浮动体高度比例（默认0.5）\textbar{}
+\dbltopfraction\textbar{}twocolumn
+模式下页面顶部浮动体高度比例（默认0.7）\textbar{}
+\dblfloatpagefraction\textbar{}twocolumn
+模式下浮动页浮动体高度比例（默认0.5）\textbar{}
+
+这些计数器和比例值可以通过 \cs{setcounter} 和\cs{renewcommand}
+分别进行调整。但调整时应特别小心，不适当的比例值会导致非常糟糕的排版或大量未处理的浮动体。如果只是需要LaTeX在处理某一浮动体时忽略以上这些限制条件，可以在浮动体位置选项参数中加!即可。注意，!
+对 浮动页限制条件的忽略无效。
+
+\begin{verbatim}
+\begin{table}[!hbt]
+  the contents of the table ...
+\end{table}
+\end{verbatim}
+
+
+\faq{图文混排用什么方法实现？}{}
+
+大概有好几个宏包：picinpar、wrapfig，以及过时了的 picins
+宏包。但是都有或多或少的问题，都不能够做得比较智能。等着后来人的修订以及更好的实现方式吧。
+* wrapfig 用法
+
+\begin{verbatim}
+\begin{wrapfigure}{行数}{位置}{超出长度}{宽度}
+  <图形>
+\end{wrapfigure}
+\end{verbatim}
+
+1.行数 是指图形高度所占的文本行的数目，如果不给出此选项， wrapfig
+会自动计算。 2.位置 是指图形相对于文本的位置，须给定下面四项的一个。 r,R
+表示图形位于文本的左边。 l,L 表示图形位于文本的右边。 i,R
+表示图形位于页面靠里的一边（用在双面格式里）。 o,O
+表示图形位于页面靠外的一边。 3.超出长度
+是指图形超出文本边界的长度，缺省为 0pt。 4.宽度 指图形的宽度。 wrapfig
+会自动计算 图形的高度。不过，我们也可设定图形的高度，具体可见
+wrapfig.sty 内 的说明。 * picinpar 用法
+
+picinpar 宏包定义了一个基本的环境 window，还有两个变体 figwindow 和
+tabwindow。允许在文本段落中打开一个\texttt{窗口\ \textquotesingle{}\textquotesingle{}，\ 在其中放入图形、文字和表格等。这里我们主要讨论将图形放入文本段落\ 的用法，其它的用法可参考\ picinpar\ 的说明。\ \textasciigrave{}\textasciigrave{}\textasciigrave{}\ \textbackslash{}begin\{window\}\ {[}行数，对齐方式，内容，内容说明{]}\textbackslash{}end\{window\}\ \textbackslash{}begin\{figwindow\}\ {[}行数，对齐方式，图形，标题{]}\textbackslash{}end\{figwindow\}\ \textasciigrave{}\textasciigrave{}\textasciigrave{}\ **\ **1.是指“窗口”开始前的行数。\ \ 2.对齐方式是指在段落中“窗口\textquotesingle{}“的对齐方式。缺省为\ l，\ 即左对齐。\ 另外两种是\ c\ ：居中和\ r\ ：右对齐。\ \ 3.第三个参数是出现在“窗口”中的“内容”，这在\ figwindow\ 中就是\ 要插入的图形。第四个参数则是对}窗口''内容的说明性文字，这在
+figwindow 中就是图形的标题。
+
+
+\faq{并列插图如何进行排版}{}
+
+并列插图有3种情况： * 并排摆放，各有标题。
+
+可以在figure环境中使用两个minipage环境，每个里面插入一幅插图。
+
+\begin{verbatim}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}{60pt}
+\centering \includegraphics[scale=0.4]{leftfigure.png} \caption{左边的图片}
+\end{minipage}
+\hspace{10pt}%用来调整图片中间的间距
+\begin{minipage}{60pt}
+\centering
+\includegraphics[scale=0.4]{rightfigure.png} \caption{右边的图片}
+\end{minipage}
+\end{figure}
+\end{verbatim}
+
+\begin{itemize}
+
+\item
+  并排摆放，共享标题
+\end{itemize}
+
+通过使用两个 \cs{includegraphics} 命令
+
+\begin{verbatim}
+\begin{figure}[htbp]
+\centering
+\includegraphics{leftfig.png}
+\includegraphics{rightfig.png}
+\caption{总标题}
+\end{figure}
+\end{verbatim}
+
+\begin{itemize}
+
+\item
+  并排摆放，共享标题，并且有各自的子标题
+\end{itemize}
+
+如果想要两幅并排的图片共享一个标题，并且各有自己的子标题， 可以使用
+Steven D. Cochran 开发的 subfig 宏包。它提供的 \cs{subfloat} 命
+令，并且总图和子图可以分别有标题和引用。
+
+\begin{verbatim}
+\begin{figure}[htbp]
+\centering
+\subfloat[左边图片的标题]{
+\label{fig:subfig_a} \includegraphics[scale=0.4]{leftfig.png}
+}
+\hspace{10pt}% 用来调整两图中间的间距
+\subfloat[右边图片的标题]{
+ \label{fig:subfig_b}
+ \includegraphics[scale=0.4]{rightfig.png}
+} \caption{总标题} \label{fig:subfig} \end{figure}
+\end{verbatim}
+
+此外，如果是并列的是两个有各自标题的插图，可以使用floatrow系列浮动体宏包，该宏包提供的floatrow环境可以并列图表等浮动体。
+
+
+\faq{并列子图如何进行排版}{}
+
+并列子图可以看看subfigure，subfloat、subcaption等宏包。
+
+
+\faq{如果想让图片的题注在图片右侧，应该怎么做}{}
+
+可以利用盒子来实现这个功能。下面给出一个例子
+
+\begin{verbatim}
+\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{figure.png}
+    \parbox[b]{0.45\linewidth}{\caption{the content of caption}}
+  \end{figure}
+\end{document}
+\end{verbatim}
+
+若要让题注在图片左侧，只需将 \textbackslash{}parbox 那段代码移到
+\textbackslash{}includegraphics 之前。
+
+
+\faq{在插图较多，文字较少的情况下，正文会产生较多空白，或者单个图片占一页的情况，如何处理？}{}
+
+尽量避免这样的行文方式，比如可以将图片以附录形式集中排版。单个图片占一页在绝大多数情况下都不需要处理，浮动体页是很常见的形式。只有当图片恰好出现在一章的结尾，正文正好排满一页后换页，而图表本身尺寸又不大的时候，图表以浮动页排版方式排在页面正中有些突兀，这时可以通过浮动选项设置{[}!ht{]}要求其在页面顶部排版，并忽略latex从美学角度出发对浮动体做出的一些限制。
+
+
+\faq{在双栏文档中，如何插入单栏图片，表格？}{}
+
+要看双栏文档是如何实现的。若双栏文档的实现方式是文档类的 twocolumn
+选项实现的，那么用带*形式的浮动体环境替代原浮动体环境即可，这时的浮动选项只有tp有效；若双栏文档是以
+multicol 宏包的 multicols 环境实现的，那么，在 multicols
+环境内不支持浮动体，当需要插入单栏图片表格时，可结束multicols环境，待插入图片、表格后，重新开启multicols
+环境。
+
+
+\faq{不想让图片浮动，又想使用caption，如何二者兼得？}{}
+
+caption宏包提供了一个
+\cs{captionof}
+命令，可以在浮动体环境外使用，命令的语法格式是：\cs{captionof}\oarg{float
+type}\oarg{list entry}\marg{heading}，举例如下：
+
+\begin{verbatim}
+\begin{center}
+\includegraphics{example-image.pdf}
+\captionof{figure}{the example}
+\end{center}
+\end{verbatim}
+
+不过非常不建议使用这种方式，浮动体是一种很好的处理图表的方式。
+
+
+\faq{有没有办法把图片固定在某位置}{}
+
+不使用浮动体就会在你指定的位置出现了，但是非常非常不可取，一般不建议这么搞。
+
+
+\faq{如何可以写一段话，放张图片，再写一段话，再放图片。}{}
+
+
+\faq{如何在一张图片上再叠放另外一张图片？如下图，在图中小孩的白板上分别加一个对号和叉号。}{}
+
+% \includegraphics{https://qqadapt.qpic.cn/txdocpic/0/cb8fb575407168ba7c289778e7f7c526/0}
