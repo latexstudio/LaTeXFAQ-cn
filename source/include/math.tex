@@ -25,8 +25,9 @@
 
 \faq{如何让长公式自动断行？}{}
 
-长公式自动断行要看情况，如果是在行内模式，合理使用空格，一般可以在二元运算符处断行，如果是行间模式，推荐使用align类环境，在需要断行处添加
-\textbackslash{} 手动断行。
+长公式自动断行要看情况，如果是在行内模式，合理使用空格，一般可以在二元运算符处断行，如果是行间模式，推荐使用align类环境，在需要断行处添加|\\|%
+%\textbackslash{} 
+手动断行。
 
 
 \faq{公式希腊字符如何加粗？}{}
@@ -45,6 +46,9 @@
  \[ \lim_{n\to\infty\atop m\to\infty} \]
 \end{document}
 \end{verbatim}
+效果如下：
+
+\[ \lim_{n\to\infty\atop m\to\infty} \]
 
 或者使用 \cs{substack}，代码如下：
 
@@ -57,6 +61,9 @@
 \end{verbatim}
 
 效果如下：
+
+\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
+ 
 % \includegraphics{https://images-cdn.shimo.im/FCY4A1SeBIcwBCGT/双重极限.PNG!thumbnail}
 
 
@@ -80,6 +87,7 @@
 \end{verbatim}
 
 再试试把 \& 去掉什么样。
+
 align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，两列之间用\&分隔。
 
 
@@ -87,6 +95,7 @@ align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐
 
 详见：
 \url{https://link.zhihu.com/?target=http\%3A//www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113092346124.pdf}
+
 在导言区加类似命令可实现全文替换：
 
 \begin{verbatim}
@@ -121,19 +130,23 @@ align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐
 \newcounter{qlst}
 \newenvironment{EqDesc}[2][式中]{%
 \begin{list}{}
-    {%
+ {%
   \usecounter{qlst}
-  \settowidth{\labelwidth}{#1，#2\ --- \ }
+  \settowidth{\labelwidth}{#1，\ \ #2\ --- \ }
   \setlength{\labelsep}{0pt}
-     \setlength{\leftmargin}{\labelwidth}
-     \setlength{\rightmargin}{0em}
-     \setlength{\parsep}{0ex}
-     \setlength{\itemsep}{0ex}
-     \setlength{\itemindent}{0em}
-     \setlength{\listparindent}{0em}
-     \renewcommand{\makelabel}[1]{\stepcounter{qlst}\ifthenelse{\value{qlst}>1}{\hfill ##1\ --- \ }{#1，\hfill ##1\ --- \ }}
-     }}%
-{\end{list}}%
+  \setlength{\leftmargin}{\labelwidth}
+  \setlength{\rightmargin}{0em}
+  \setlength{\parsep}{0ex}
+  \setlength{\itemsep}{0ex}
+  \setlength{\itemindent}{0em}
+  \setlength{\listparindent}{0em}
+  \renewcommand{\makelabel}[1]
+    {\stepcounter{qlst}
+     \ifthenelse{\value{qlst}>1}{\hfill ##1\ --- \ }{#1，\hfill ##1\ --- \ }
+    }
+ }%
+}%
+{\end{list}}
 \end{verbatim}
 
 EqDesc
@@ -148,23 +161,25 @@ EqDesc
 \end{EqDesc}
 \end{verbatim}
 
+{\centerline{\includegraphics[width=0.8\linewidth]{include/images/hang}}}
+
 
 \faq{行内公式的情况下如何让sum prod这些运算符的上下标在头上和脚下？}{}
 
-这样处理行内公式的上下标会导致段落行距不整齐，不符合 LaTeX
+这样处理行内公式的上下标会导致段落行距不整齐，不符合 \LaTeX{}
 的审美。如果彻底放弃审美，可以使用 \cs{limits} 命令，如：
 
 \begin{verbatim}
-$\sum\limits_{i=1}^n \quad
-\prod\limits_\epsilon$
+$\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
 \end{verbatim}
 
+效果是这样的：$\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
 
 \faq{如何将积分的上限标放在积分号的上下两侧？}{}
 
-积分号的上下限放置在积分号的右侧是英美国家和 LaTeX
-的排版习惯，通常无需处理。如果你很确定需要按照 ISO 80000-2:2009 或者 GB
-3102.11-93 的规定排版积分号，可以：
+积分号的上下限放置在积分号的右侧是英美国家和 \LaTeX{}
+的排版习惯，通常无需处理。
+如果你很确定需要按照 ISO 80000-2:2009 或者 GB 3102.11-93 的规定排版积分号，可以：
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -172,7 +187,7 @@ $\sum\limits_{i=1}^n \quad
 \item
   在调用 amsmath 宏包时添加 intlimits 选项；
 \item
-  \texttt{\textbackslash{}def\textbackslash{}int\{\textbackslash{}intop\}}
+  \texttt{\cs{def}\cs{int}\{\cs{intop}\}}
 \item
   如果使用 unicode-math 宏包，
 \end{enumerate}
@@ -190,27 +205,52 @@ $\sum\limits_{i=1}^n \quad
 
 \faq{如何自定义数学运算符，然后让下标放在脚下？}{}
 
-借助 amsmath 包的
-\cs{DeclareMathOperator*} 命令即可（需要注意加不加*是有区别的）。例如
+借助 amsmath 包（实际上是amsmath自动调用的amsopn宏包）的
+\cs{DeclareMathOperator*} 命令，可以在导言区定义需要的数学运算符（需要注意加不加*是有区别的）。例如
 
 \begin{verbatim}
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \end{verbatim}
 
+\[
+\esssup_{x\in {R}}
+\]
+
+对于只是偶尔用到的运算符，也可以直接在数学模式中使用新算符定义命令。
+
+例如
+|\operatorname*{ess\,sup}_{x\in {R}}|
+
+\[
+\operatorname*{ess\,sup}_{x\in {R}}
+\]
 
 \faq{在数学公式中，编辑等式时，每一行需要等号和等号对其，这时使用了\textbackslash{}begin\{displaymath\} \textbackslash{}begin\{split\}环境，但是呢，这些整体都是居中的，我想让式子靠左，怎么实现呢？}{}
-
+这种情况可以考虑在文档类选项中使用fleqn选项。需要对齐的多行公式，推荐使用amsmath宏包的align等环境。
 
 \faq{行列式变换过程中，我们一般是在中间的箭头上表示出变换的方式，如何才能在长箭头上打出多行内容？}{}
+可以看看amsmath宏包提供的长箭头命令。
 
+|\xleftarrow[下方公式]{上方公式}|   |\xrightarrow[下方公式]{上方公式}|。
 
 \faq{如何输出反斜杠？}{}
+方式很多，例如
 
 \begin{verbatim}
-\textbackslash \verb|\|
+    \textbackslash 或者 \verb|\|
 \end{verbatim}
 
 
 \faq{对equation环境下的公式、图片编号按章节、小节进行重新定义}{}
 
 公式编号使用amsmath宏包的numberwithin设定关联即可。图片编号可以使用caption宏包自定义格式。
+
+\faq{带括号的公式有哪些折行方式？在括号中间折行。}{}
+使用| \left( \right) |括起来的内容不能直接折行，但是可以变通，比如使用| \left( \right. | 和 | \left. \right) |，
+这时候需要借助幻影、支柱等方法处理各行内容高度不同带来的括号大小不同问题。
+
+\faq{怎么在极限符号下面打出x→0 }{}
+很简单的基本指令就行，例如|\lim\limits_{x \to 0}|得到$\lim\limits_{x \to 0}$
+
+\faq{\LaTeX{}敲的公式可以插入word吗？}{}
+可以，但是不推荐。
