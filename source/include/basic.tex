@@ -209,8 +209,8 @@ pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件）
 单词没能自动断词，我们可以在单词内手动使用 |\-| 命令指定断词的位置，如：
 
 \begin{verbatim}
-I think this is: su\-per\-cal\-\%
-i\-frag\-i\-lis\-tic\-ex\-pi\-\%
+I think this is: su\-per\-cal\-%
+i\-frag\-i\-lis\-tic\-ex\-pi\-%
 al\-i\-do\-cious.
 \end{verbatim}
 
@@ -265,10 +265,6 @@ TDS 全称 \TeX{} Directory Structure，意为 \TeX{} 目录结构，即 \TeX{} 
 如图~\ref{fig:texmf-dir}。
 
 \begingroup
-  % TODO: 有页面溢出的问题
-  \makeatletter
-  \def\@captype{figure}
-  \makeatother
   \dirtree {%
     .1 TEXMF树.
     .2 bibtex/\DTcomment{\BibTeX{} 相关文件}.
@@ -324,7 +320,7 @@ TDS 全称 \TeX{} Directory Structure，意为 \TeX{} 目录结构，即 \TeX{} 
     .4 xecjk/\DTcomment{\pkg{xeCJK} 宏包相关文件}.
     .5 xeCJK.sty.
   }
-  \caption{TEXMF 树目录结构}
+  \captionof{figure}{TEXMF 树目录结构}
   \label{fig:texmf-dir}
 \endgroup
 （来自刘海洋《LaTeX 入门》）
