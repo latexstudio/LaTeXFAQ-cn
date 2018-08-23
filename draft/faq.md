@@ -1152,12 +1152,42 @@ xelatex demo
 xelatex demo
 ```
 
+### 编译参考文献后在文献引用处出现问号，或者文献的引用关键字，或者文献表不显示？
+
+这些信息都显示参文献并没有编译正确。可以从以下几个步骤进行检查和排除:
+是否正确完成了编译步骤？编译方法见上一问题
+检查.blg文件内容，看是否存在如下问题:
+bibtex或biber是否找到样式文件？
+bibtex或biber是否找到文献数据库及bib文件？
+数据文件是否存在问题？其中是否包含引用的文献？
+引用的文献的数据是否有效？
+排除上述问题后，清楚辅助文件，重新进行完整编译。
+
+
+
+
+### 有没有什么关于参考文献生成的入门资料？
+
+传统的基于bibtex的参考文献生成方法的资料包括:
+lshort(从ctan下载)
+lshort-zh-cn(从github下载)
+btxdoc(从ctan的bibtex宏包下载)
+btxFAQ(从ctan的bibtex宏包下载)
+刘海洋和胡伟的书(可购)
+
+基于biblatex的参考文献生成方法的资料包括:
+biblatex(从ctan下载)
+biblatex-zh-cn(从github下载)
+biblatex-tutorial(从github下载)
+biblatex-solution-to-latex-bibliography-master(从github下载)
+
+此外tex exchange上面有大量关于bibtex，biblatex方面的提问和回答，很多都是前辈大佬们的精心总结，很值得一看。国内latexstudio和ctex论坛上面也有很多好的资料和内容可以详细学习。
 
 
 
 ### 是否可以处理非英文的参考文献？
 
-传统的基于bibtex参考文献生成方法，中文的参考文献条目，与英文条目并没有什么差别，只是注意编码。目前处理中文推荐用xelatex 编译 utf8 编码的文件。因此中文的 bib 条目也应该用 utf8 编码。bibkey也能用中文，处理好编码格式，无殊。
+传统的基于bibtex的参考文献生成方法，中文的参考文献条目，与英文条目并没有什么差别，只是注意编码。目前处理中文推荐用xelatex 编译 utf8 编码的文件。因此中文的 bib 条目也应该用 utf8 编码。bibkey也能用中文，处理好编码格式，无殊。
 
 基于biblatex的参考文献生成方法，支持多语言参考文献。可以利用babel等宏包实现西文文献的无缝切换，可以实现多语言共存的文献表。东亚语言的参考文献，可以利用英文文献的机制生成，基于参考文献样式的设计，可以实现中英文对照的文献表。biblatex完全既支持unicode编码，也支持其他编码，因此可以处理任何语言的参考文献。
 
@@ -1168,6 +1198,25 @@ BibTeX 的 bib 文件是一个记录已阅文献的数据库，但是通常不�
 1. 使用 JabRef 或 Zotero 等文献管理工具导出 bib 文件创
 2. 使用 [Google Scholar](https://scholar.google.com/) 或 [Bing 学术](https://cn.bing.com/academic)导出 bib 条目。
 
+引文的信息还有很多国内外网站可以获取包括:
+
+百度学术
+搜狗学术
+CNKI
+万方
+维普
+Citeulike
+amazon
+nelson beebe's collection
+bibsonomy
+mathscinet
+acm catalog
+ieee catalog
+collection of CS bibliographies
+DBLP
+SPIRES
+CITING Wikepedia itself
+texmed
 
 
 ### **BibTeX**** 文献手写很困难，有没有什么工具能够生成？**
@@ -1175,7 +1224,7 @@ BibTeX 的 bib 文件是一个记录已阅文献的数据库，但是通常不�
 多数时候，我们无需自己手写 BibTeX 文献条目。从 [https://scholar.google.com/](https://scholar.google.com/)、[https://academic.microsoft.com/](https://academic.microsoft.com/)、 [https://cn.bing.com/academic?mkt=zh-CN](https://cn.bing.com/academic?mkt=zh-CN) 或者期刊、数据库的网站上都能够导出 BibTeX 文献条目。
 老牌的文献管理软件 EndNote 也支持生成 BibTeX 格式的数据库，详情见 官网[https://endnote.com/](https://endnote.com/)。
 开源软件 JabRef 甚至支持 BibTeX 文献条目的导入、导出和管理，详情见 官网[http://www.jabref.org/](http://www.jabref.org/)。
-Zetero 使用起来也非常方便，详情见官网 [https://www.zotero.org/](https://www.zotero.org/)。
+Zetero 使用起来也非常方便，详情见官网 [https://www.zotero.org/](https://www.zotero.org/)。另外还有Mendeley，bibliophile等软件可用。
 
 
 
@@ -1206,13 +1255,24 @@ Zetero 使用起来也非常方便，详情见官网 [https://www.zotero.org/](h
 注：百度学术、万方数据库也支持导出 .bib 文件。
 
 
+### 如何从一个大的bib数据库中导出一个小的由当前文档引用的文献构成的bib文件？
+
+传统的基于bibtex的参考文献生成方法，可以使用`bibtool`这一命令行工具，可以根据`.AUX`文件中的引用信息导出一个bib文件。
+
+基于biblatex的参考文献生成方法，直接使用biber可以导出当前文档引用文献的bib文件，命令为:
+```
+biber jobname --output-format=bibtex
+```
+
+
+
 ### bib文件中的特殊字符或命令
 
 参考文献信息中大体可能有几类特殊的字符或字母：
 
-一是 %&#这里键盘上直接能输入的字符，那么使用tex对特殊字符的输入方法，比如`\%`，`\&`，`\#`
+一是 %&#这里键盘上直接能输入的字符，那么使用tex对特殊字符的输入方法，比如`\%`，`\&`，`\#`。类似带重音符号的字符，也可以用花括号进行保护。
 
-二是数学类的字符，那么使用数学环境来输入，比如$\mathbf{R}$，$\mathbb{L}$
+二是数学类的字符，那么使用数学环境来输入，比如`$\mathbf{R}$，$\mathbb{L}$`
 
 三是单纯的unicode字符，那么直接输入它，比如φ。但要注意要显示这些unicode字符，需要能显示该字符的字体的支持，比如 CMU Serif等。
 
@@ -1251,10 +1311,37 @@ title = {Finite Element Methods for {Maxwell's} Equations},
 基于biblatex的参考文献生成方法，同样支持这种用花括号保护字母大小写的机制。一般情况下，文献各部分内容的大小写，会由参考文献样式来决定，当有特殊要求的时候，比如使用专有名词等，才需要采用这种保护机制。
 
 
+### bib文件中怎么进行注释？
 
-### 131. 如何选择参考文献的风格
+对于条目来说，去掉条目类型前的`@`符号就可以将整个条目注释掉。
+对于域来说，将域的名称修改为bibtex不认识的域名，就可以将该域注释掉。
 
-传统的基于bibtex参考文献生成方法，参考文献的风格一般是期刊或会议模板指定 bst 的，作者应仔细阅读投稿要求和模板使用说明，根据规定使用合适的 bst。通常有以下方式：
+
+### bibtex中的多字母缩写
+
+如果需要tex从多个词构成的字符串中自动提取各个词的首字母并大写以构成一个缩写的信息。基于bibtex或biblatex的方面目前还没有提供这种现成工具。但是用户可以手动提供的一个缩写信息，比如；
+```
+author ={{National Aeronautics and Space Administration}},
+shortauthor={NASA},
+```
+其中shortauthor就是author的缩写信息。缩写信息的使用则由参考文献样式决定，一般情况下，标注、缩略信息表中使用shortauthor，而参考文献表中使用author，但这些并不是绝对的，因为样式都是可以定制的。
+
+
+### bib文件怎么转换为HTML？
+
+可以使用如下工具:
+bibutils
+bibteXML
+bib2xhtml
+bib2html
+bibtex2html
+bibtex-xml-html
+
+
+
+### 如何选择参考文献的风格
+
+传统的基于bibtex的参考文献生成方法，参考文献的风格一般是期刊或会议模板指定 bst 的，作者应仔细阅读投稿要求和模板使用说明，根据规定使用合适的 bst。通常有以下方式：
 1. 在文档中声明 `\bibliographystyle{ieeetran}
 
 在模板的文档类选项中使用合适的参数，如“\documentclass[authoryear]{ustcthesis}”。 
@@ -1268,7 +1355,7 @@ title = {Finite Element Methods for {Maxwell's} Equations},
 其中，选择的`style=ieee`样式，实质上是使用了ieee.bbx和ieee.cbx两个样式文件。
 
 
-### 133. 创建参考文献样式
+### 创建参考文献样式
 
 BibTeX 的样式(风格)文件 bst 是使用一种后缀语言写的代码，如果对编程能力比较自信的话，可以阅读 BibTeX 的文档 btxdoc 和 btxhak，btxbst.doc 文件提供了标准 bst 风格的代码注释，另外还可以阅读 ttb 和 The LaTeX Companion 等资料。
 
@@ -1311,7 +1398,10 @@ citation for chapter two\cite{bibkey2}
 
 ### 插入参考文献列表有几种方式？如何定义其样式？如何定义正文引用样式？
 
-基于biblatex的参考文献生成方法，使用printbibliography打印参考文献的完整信息列表，利用printbiblist打印参考文献的缩略信息列表。列表内部各条目的著录格式以及整个列表的段落格式由参考文献样式决定。其中整个列表的段落格式由\defbibenvironment 定义的环境控制。
+
+传统的基于bibtex参考文献生成方法，文献表样式由bst文件决定，定义它就是要设计bst文件，引用样式通常由使用的latex宏包决定，比如natbib等。
+
+基于biblatex的参考文献生成方法，使用printbibliography打印参考文献的完整信息列表，利用printbiblist打印参考文献的缩略信息列表。列表内部各条目的著录格式以及整个列表的段落格式由参考文献样式决定。其中整个列表的段落格式由\defbibenvironment 定义的环境控制。而正文的引用样式由cbx样式文件决定。
 
 
 
@@ -1320,6 +1410,10 @@ citation for chapter two\cite{bibkey2}
 科技论文通常要求参考文献表中的文献必须在正文中引用，但是在某些特殊情况下仅需要列出 bib 数据库中的文献，可以使用 \nocite{*} 命令列出调用的bib中所有条目，或者使用类似\nocite{ref1,ref2,ref3}命令列出需要显示的条目。
 
 基于biblatex的参考文献生成方法同样支持这种机制，可以利用 \nocite 命令将未在正文引用的文献引入到文献表中。
+
+### 如何分开打印文档中引用和未引用的文献表
+
+基于biblatex的参考文献生成方法可以利用分类筛选机制来完成，比如利用category来实现。
 
 
 
@@ -1491,12 +1585,21 @@ second time:\footnote{\cite{bernanke1989agency}}
 其中，标注样式verbose-note实现了在脚注中给出完整参考文献信息的方法，而如果将其换成verbose，那么将在正文中引入完整的文献信息。
 
 
+### 如何将参考文献引入到目录中？
+
+传统的基于bibtex的参考文献生成方法，可以使用tocbibind宏包进行控制。
+
+基于biblatex的参考文献生成方法，可以使用printbibliography命令的选项来设定:
+```
+\printbibliography[heading=bibliography] %不加入目录
+\printbibliography[heading=bibintoc] %加入目录
+```
 
 
 
 ### 参考文献中的数字编号标签格式
 
-传统的基于bibtex参考文献生成方法，参考文献表中的数字格式是由 \@biblabel 控制的，可以通过重定义该命令来修改格式。比如将数字修改为左对齐：
+传统的基于bibtex的参考文献生成方法，参考文献表中的数字格式是由 \@biblabel 控制的，可以通过重定义该命令来修改格式。比如将数字修改为左对齐：
 ```
 \makeatletter
 \renewcommand\@biblabel[1]{[#1]\hfill}
@@ -1521,18 +1624,14 @@ second time:\footnote{\cite{bernanke1989agency}}
 需要注意：通常标签的格式是由参考文献样式决定的，用户一般不需要做修改。
 
 
-### BibTeX中的多字母缩写
-
-这个问题的真正需求不明确。
-
-如果是要tex自动提取多个词构成字符串中各个词的首字母并大写，构成一个缩写的信息。biblatex目前还没有提供这种工具。但是用户可以手动提供的一个缩写信息，比如；
-```
-author ={{National Aeronautics and Space Administration}},
-shortauthor={NASA},
-```
-其中shortauthor就是author的缩写信息。缩写信息的使用由参考文献样式使用，一般情况下，标注、缩略信息表中使用shortauthor，而参考文献表中使用author，但这些并不是绝对的，因为样式都是可以定制的。
 
 
+
+### 如何控制参考文献表中文献作者的数量？
+
+传统的基于bibtex的参考文献生成方法，需要修改样式，即修改bst文件。
+
+基于biblatex的参考文献生成方法，可以通过设置宏包选项来实现，maxbibnames=3设置最多出现的作者数为3，minbibnames=3设置当作者数超过maxbibnames值时，数量需减少至minbibnames。
 
 
 ### 如何减少参考文献条目行间距
@@ -1540,6 +1639,11 @@ shortauthor={NASA},
 传统基于bibtex的参考文献生成方法，文献条目间距为\itemsep，默认值4.5pt plus 2pt minus 1pt，可通过指令\addtolength{\itemsep}{距离}调整。当使用natbib包时，也可以利用设置间距\bibsep来调整。
 
 基于biblatex的参考文献生成方法，由\bibitemsep 控制各条目的垂直间距，此外还有\bibnamesep，\bibinitsep 用于控制插入在两条姓名不同的条目之间的垂直间距和插入在两条首字母不同的条目之间的垂直间距。三个尺寸遵守\addvspace 的规则所得到的垂直间距取为三个间距中的最大值。
+
+
+### 参考文献列表行距如何设置？
+
+基于biblatex的参考文献生成方法，参考文献列表的行距与正文是一致的。由于文献表本质上与正文是一致的，因此所有正文中设置行距的方法均对其有效，而且可以将这些设置用编组局部化，避免影响文档的其它内容。关于各条目的垂直间距问题见前面的问题“如何减少参考文献条目行间距”。
 
 
 
@@ -1550,11 +1654,11 @@ shortauthor={NASA},
 而基于biblatex的参考文献生成方法，只要加载biblatex时，使用backref=true选项，那么就能使用反向超链接。
 
 
-### BibTeX参考文献中的URL
+### BibTeX参考文献中的URL和doi
 
-传统的基于bibtex的参考文献生成方法，调用url或者xurl宏包即可正常使用url，也可以看看href宏包。
+传统的基于bibtex的参考文献生成方法，调用url或者xurl宏包即可正常使用url，也可以看看href宏包。对于doi也可以使用doi宏包。
  
-基于biblatex的参考文献生成方法，由于biblatex自动载入url宏包，并利用biburlnumpenalty、biburlucpenalty、biburllcpenalty 三个计数器的值来控制url在数字/大写字母/小写字母处进行断行。计数器取值大于等于0但小于10000，等于0表示不断行。而是否在文献表中输出url由宏包选项url控制，url的格式则由所选样式中设置的域格式控制，url的字体由url宏包的字体控制命令设置。
+基于biblatex的参考文献生成方法，由于biblatex自动载入url宏包，并利用biburlnumpenalty、biburlucpenalty、biburllcpenalty 三个计数器的值来控制url在数字/大写字母/小写字母处进行断行。计数器取值大于等于0但小于10000，等于0表示不断行。而是否在文献表中输出url由宏包选项url控制，url的格式则由所选样式中设置的域格式控制，url的字体由url宏包的字体控制命令设置。biblatex 中 doi格式与url格式相同。
 
 
 ### 使用超链接，如何去除颜色边框？
@@ -1570,19 +1674,86 @@ shortauthor={NASA},
 
 
 
-### 参考文献列表行距如何设置？
-
-基于biblatex的参考文献生成方法，参考文献列表的行距与正文是一致的。由于文献表本质上与正文是一致的，因此所有正文中设置行距的方法均对其有效，而且可以将这些设置用编组局部化，避免影响文档的其它内容。关于各条目的垂直间距问题见前面的问题“如何减少参考文献条目行间距”。
-
-
 
 ### 参考文献列表的字体字号如何设置？
+
+传统的基于bibtex的参考文献生成方法，有两种方法，一是直接加命令，比如:
+```
+{
+\small
+\bibliography{bibfile}
+
+}
+```
+
+而是使用natbib宏包，比如:
+```
+\def\bibfont{\small}
+```
+
+
 
 基于biblatex的参考文献生成方法，字体字号由命令bibfont控制，重定义该命令即做出设置，比如：
 ```
 \renewcommand{\bibfont}{\fangsong\zihao{6}}
 ```
 其中设置参考文献表内容的默认字体为仿宋，字号为6.
+
+
+### 基于bibtex的方法和基于biblatex的方法各有哪些特点和优点？
+
+基于bibtex的方法和基于biblatex的方法都是成熟的latex的参考文献生成方法，两者各有特点，要了解最好的方法是去看作者给出的资料，比如btxdoc和biblatex。当然前辈们给出意见也可以参考，下面综合一下tex exchange上各位大佬说法。首先理清一下术语。
+
+bibtex有两种意思，一种是BibTeX格式，即参考文献数据库bib文件的格式。另一种是处理参考文献数据的程序bibtex。其中BibTeX格式由于bibtex程序的发明而得名。由于biblatex也支持bibtex格式，因此默认情况下我们讨论的bibtex通常是bibtex程序。因此需要比较两种方法其实是bibtex程序和biblatex宏包使用的biber程序，以及常与bibtex程序配合使用的natbib宏包与biblatex宏包之间的比较:
+
+
+natbib是长期维护的latex宏包，使用广泛，稳定可靠。具有如下优缺点:
+* 可以配合很多期刊和出版商开发的bst样式使用
+* natbib作者提供的makebst工具可以用于bst样式开发
+* 生产的参考文献列表代码可以直接拷贝进文档使用
+* 由于依赖于bibtex，使用bst文件，其编程语言学习困难
+* 引用标准主要包括作者年制和数字顺序编码制缺乏人文社科类文献常用的作者标题制或者脚注样式
+* 文档中打印多各文献表需要使用其它宏包
+* 由于依赖于bibtex，因此也继承了bibtex的所有缺点
+当要提交的文档需要使用给定bst时或者当有要求使用natbib时可以使用该宏包。
+
+biblatex则是包含biber程序的一个大型宏包，其优缺点有:
+* 包含人文社科类常用的样式
+* 支持更多更广的条目类型和域
+* 更便捷的参考文献格式控制
+* 提供了覆盖natbib的功能
+* 所有的样式都是有tex宏控制容易学习和修改
+* 多文献表，分类筛选非常容易
+* 但一些期刊和出版商可能不接收使用biblatex的文档
+
+bibtex的优缺点:
+* 稳定且使用广泛
+* 但修改样式困难，因为需要学习一门不同于tex的语言
+* 能支持utf-8编码的bib文件，但不支持非ASCII字符的排序
+
+biber的优缺点:
+* 能处理bib文件中更多样的条目类型和域
+* 可以处理utf-8编码的bib文件，也支持unicode字符的排序，更支持本地语言的排序调整，比如中文的按笔画数排序等
+* 支持处bibtex格式外的更多格式的文献数据库文件
+* 支持远程的数据库
+* 支持其他格式的文献数据的输出
+* 完全的unicode支持
+* 可定制的排序机制
+* 自动的姓名和姓名列表歧义处理
+* 可定制的数据集成规则
+* 自动的编码转换
+* 非常灵活的数据映射(动态处理)
+* 但只能与biblatex配合使用
+
+
+
+
+
+### 要从基于bibtex的方法转换到基于biblatex的方法，需要做哪些改变？
+
+1. 源文档中的命令需要改变，见前面的第一个问题。
+2. bib文件一般不用改变，biblatex完全支持bibtex格式的bib文件。但如果需要应用一些biblatex特有的功能，可以做一些改动，比如:多语言处理是的langid域，比如列表形式的域比如出版地列表中各个出版地之间用and连接，比如使用date代替year，month，day，比如新的域如subtitle，titleaddon，maintitle，editortype等，比如使用bookauthor代替会议文件的editor等。
+3. 编译命令需要改变从bibtex转换到biber，见前面的第一个问题。但如果使用latexmk编译，那么用户操作无任何变化。
 
  
 ### 常用的biblatex参考文献样式有哪些？
@@ -1632,9 +1803,7 @@ biblatex除了可以应用自带的标准样式外，还可以使用其他作者
 这个问题没有遇到过，不懂。
 
 
-### 制作参考文献的HTML
 
-这个问题的真正需求不明确。
 
 ### BibTeX中过长的字符串
 

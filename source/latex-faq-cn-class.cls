@@ -392,3 +392,77 @@
   }
 \newcount\DT@treenum \DT@treenum=0
 \newif\ifDT@split
+
+
+\RequirePackage{xcolor,listings}
+\definecolor{gbblue}{RGB}{23,74,117}
+\lstnewenvironment{texlist}%
+{\lstset{% general command to set parameter(s)
+%name=#1,
+%label=#2,
+%caption=\lstname,
+xleftmargin=3em,%\parindent
+linewidth=\linewidth,
+breaklines=true,
+%showspaces=true,
+extendedchars=false,
+columns=fullflexible,%flexible,
+%aboveskip=2pt,
+boxpos=t,
+rulesep=0pt,
+frame=tb,
+framesep=0pt,
+rulecolor=\color{gbblue},
+fontadjust=true,
+language=[LaTeX]TeX,
+%backgroundcolor=\color{yellow}, %背景颜色
+numbers=left,
+numberstyle=\tiny\color{gbblue},
+basicstyle=\footnotesize\ttfamily, % print whole listing small
+keywordstyle=\color{blue}\bfseries,%\underbar,
+% underlined bold black keywords
+identifierstyle=, % nothing happens
+commentstyle=\color{green!50!black}, % white comments
+stringstyle=\ttfamily, % typewriter type for strings
+showstringspaces=false}% no special string spaces
+}{}
+
+\lstnewenvironment{texinlist}%
+{\lstset{% general command to set parameter(s)
+%name=#1,
+%label=#2,
+%caption=\lstname,
+%xleftmargin=\parindent,
+linewidth=\linewidth,
+breaklines=true,
+%showspaces=true,
+extendedchars=false,
+columns=fullflexible,%flexible,
+%aboveskip=2pt,
+boxpos=t,
+rulesep=0pt,
+frame=tb,
+framesep=0pt,
+rulecolor=\color{gbblue},
+fontadjust=true,
+language=[LaTeX]TeX,
+%backgroundcolor=\color{yellow}, %背景颜色
+numbers=left,
+numberstyle=\tiny\color{gbblue},
+basicstyle=\footnotesize\ttfamily, % print whole listing small
+keywordstyle=\color{blue}\bfseries,%\underbar,
+% underlined bold black keywords
+identifierstyle=, % nothing happens
+commentstyle=\color{green!50!black}, % white comments
+stringstyle=\ttfamily, % typewriter type for strings
+showstringspaces=false}% no special string spaces
+}{}
+
+
+\setlist[enumerate]{
+    itemsep       = 0 pt,
+    parsep        = 0 pt,
+    listparindent = \parindent,
+    leftmargin=\parindent,
+    itemindent=0pt
+    }
