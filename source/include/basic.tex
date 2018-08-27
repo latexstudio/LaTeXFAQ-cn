@@ -175,9 +175,9 @@ creation of beautiful books---and especially for books that contain a lot of mat
 后者是前者的改进。从文件内容上看，两者最显著的不同在于 \LaTeX2.09 使用 |\documentstyle| 命令定义
 文档类以及所包含宏包，如：
 
-\begin{verbatim}
+\begin{texinlist}
 \documentstyle[twoside,epsfig]{article}
-\end{verbatim}
+\end{texinlist}
 
 而 \LaTeX2e{} 使用 |\documentclass| 命令设置文档类型，用 |\usepackage| 命令调用宏包。
 
@@ -208,11 +208,11 @@ pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件）
 中间断开。对于绝大部分单词，\LaTeX{} 能够找到合适的断词位置，在断开的行尾加上连字符 |-|。如果一些
 单词没能自动断词，我们可以在单词内手动使用 |\-| 命令指定断词的位置，如：
 
-\begin{verbatim}
+\begin{texinlist}
 I think this is: su\-per\-cal\-%
 i\-frag\-i\-lis\-tic\-ex\-pi\-%
 al\-i\-do\-cious.
-\end{verbatim}
+\end{texinlist}
 
 
 \faq{Unicode 和 \TeX{}}{unicode-and-tex}
