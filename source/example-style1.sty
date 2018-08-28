@@ -1,0 +1,78 @@
+% 选自lshort-zh-cn的方法
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{example-style1}
+
+\RequirePackage{colortbl,verbatim}
+
+% 
+% 示例环境 example
+% 环境中的代码写入临时文件 \jobname-example.aux
+% 再从临时文件中读取，分别生成代码盒子和示例盒子
+% 
+\newwrite\example@out
+\newlength\savefboxrule
+\newlength\savefboxsep
+\edef\example@name{\jobname-example.aux}
+\newenvironment{example}%
+{\begingroup\@bsphack
+  \immediate\openout\example@out=\example@name
+  \let\do\@makeother\dospecials\catcode`\^^M\active
+  \def\verbatim@processline{\immediate\write\example@out{\the\verbatim@line}}%
+  \verbatim@start}%
+{\immediate\closeout\example@out\@esphack\endgroup%
+  \trivlist\item\relax
+  \setlength{\savefboxrule}{\fboxrule}%
+  \setlength{\savefboxsep}{\fboxsep}%
+  \setlength{\fboxsep}{0.015\textwidth}%
+  \setlength{\fboxrule}{0.4pt}%
+  \fcolorbox[gray]{0}{0.95}{%
+    \begin{minipage}[c]{0.55\textwidth}%
+      \setlength{\fboxrule}{\savefboxrule}%
+      \setlength{\fboxsep}{\savefboxsep}%
+      \small\verbatiminput{\example@name}%
+    \end{minipage}%
+  }%
+  \hfill%
+  \fbox{%
+    \begin{minipage}[c]{0.35\textwidth}%
+      \setlength{\fboxrule}{\savefboxrule}%
+      \setlength{\fboxsep}{\savefboxsep}%
+      \setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}%
+      \normalsize\input{\example@name}%
+    \end{minipage}%
+  }%
+  \endtrivlist
+}
+
+\newenvironment{Example}%
+{\begingroup\@bsphack
+	\immediate\openout\example@out=\example@name
+	\let\do\@makeother\dospecials\catcode`\^^M\active
+	\def\verbatim@processline{\immediate\write\example@out{\the\verbatim@line}}%
+	\verbatim@start}%
+{\immediate\closeout\example@out\@esphack\endgroup%
+	\trivlist\item\relax
+	\setlength{\savefboxrule}{\fboxrule}%
+	\setlength{\savefboxsep}{\fboxsep}%
+	\setlength{\fboxsep}{0.015\textwidth}%
+	\setlength{\fboxrule}{0.4pt}%
+	\fbox{%
+		\begin{minipage}[c]{0.35\textwidth}%
+			\setlength{\fboxrule}{\savefboxrule}%
+			\setlength{\fboxsep}{\savefboxsep}%
+			\setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}%
+			\normalsize\input{\example@name}%
+		\end{minipage}%
+	}%
+	\hfill%
+	\fcolorbox[gray]{0}{0.95}{%
+		\begin{minipage}[c]{0.55\textwidth}%
+			\setlength{\fboxrule}{\savefboxrule}%
+			\setlength{\fboxsep}{\savefboxsep}%
+			\small\verbatiminput{\example@name}%
+		\end{minipage}%
+	}%
+	\endtrivlist
+}
+
+\endinput
