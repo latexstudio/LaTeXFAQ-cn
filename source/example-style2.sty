@@ -1,0 +1,87 @@
+% 选自mathfaq-1-2的方法
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{example-style2}
+
+% 
+% 示例环境 example
+% 环境中的代码写入临时文件 \example.out
+% 
+
+\RequirePackage{xcolor}
+%\RequirePackage{minted}
+\RequirePackage{boites}
+\RequirePackage{fancyvrb,verbatim}
+
+\definecolor{niceblue}{rgb}{0,0.4,0.7}
+
+\newenvironment{example}
+{\VerbatimEnvironment
+	\begin{VerbatimOut}{example.out}}
+	{\end{VerbatimOut}
+	\par\vspace{1ex}
+	\setlength{\parindent}{0pt}
+	\noindent\color{red!50!green!20!blue}%
+	\framebox[\linewidth][c]{
+		\begin{minipage}{0.525\linewidth}
+			%\footnotesize\input{example.out}
+			%\small\inputminted{latex}{example.out}
+			\small\verbatiminput{example.out}
+		\end{minipage}
+		\hspace{5pt}
+		\begin{minipage}{0.425\linewidth}
+			\small\input{example.out}
+	\end{minipage}}\par%
+	\vspace{1ex}}
+
+\makeatletter
+\newenvironment{Example}
+{\relax\VerbatimEnvironment
+	\begin{VerbatimOut}{example.out}}
+	{\end{VerbatimOut}
+	\begingroup%
+	\fboxrule0.4pt%
+	\let\breakboxparindent\z@%
+	\def\bkvz@bottom{\hrule\@height\fboxrule}%
+	\let\bkvz@before@breakbox\relax%
+	\def\bkvz@set@linewidth{\advance\linewidth\dimexpr-2\fboxrule-2\fboxsep}%
+	\def\bkvz@left{\vrule\@width\fboxrule\hskip\fboxsep}%
+	\def\bkvz@right{\hskip\fboxsep\vrule\@width\fboxrule}%
+	\color{niceblue}\vskip 5pt%
+	\breakbox
+	$\vcenter{\hsize\dimexpr0.6\linewidth-\fboxsep-\fboxrule\relax%
+		\kern3pt\parskip0pt{\normalcolor\small\verbatiminput{example.out}}}%
+	\vcenter{\kern3pt\hsize\dimexpr\linewidth-0.6\linewidth-\fboxsep-\fboxrule\relax
+		\everypar{{\color{lightgray}\rlap{\vrule height0.1pt width\dimexpr\linewidth-\linewidth-\fboxsep-\fboxrule depth0.1pt}}}%
+		\normalcolor\small\newlinechar`\^^M\everyeof{\noexpand}\input{example.out}}$
+	\endbreakbox
+	\endgroup}
+
+\newenvironment{Example*}
+{\VerbatimEnvironment\par
+	\begin{VerbatimOut}{example.out}}
+	{\end{VerbatimOut}
+	\begingroup%
+	\fboxrule0.4pt%
+	\let\breakboxparindent\z@%
+	\def\bkvz@bottom{\hrule\@height\fboxrule}%
+	\let\bkvz@before@breakbox\relax%
+	\def\bkvz@set@linewidth{\advance\linewidth\dimexpr-2\fboxrule-2\fboxsep}%
+	\def\bkvz@left{\vrule\@width\fboxrule\hskip\fboxsep}%
+	\def\bkvz@right{\hskip\fboxsep\vrule\@width\fboxrule}%
+	\vskip 5pt%
+	\breakbox%
+	\kern.5ex\relax
+	\ttfamily{\small\verbatiminput{example.out}}\par%
+	\normalfont%
+	\kern3pt%
+	\hrule height0.1pt width\linewidth depth0.1pt%
+	\vskip5pt%
+	\rightskip0pt plus 1fill%
+	\everypar{{\color{lightgray}\rlap{\vrule height0.1pt width\linewidth depth0.1pt}}}%
+	\newlinechar`\^^M\everyeof{\noexpand}\input{example.out}\par%
+	\endbreakbox
+	\endgroup}
+
+
+\makeatother
+\endinput

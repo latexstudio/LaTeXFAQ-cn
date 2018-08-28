@@ -19,7 +19,9 @@
 
 \faq{\cs{[} \ldots \cs{]} 与 \texttt{\$\$\ldots \$\$} 有什么区别？}{}
 
-重定义的难度不同、造成的间距也不同。推荐使用 \cs{[} \ldots \cs{]}。 见
+重定义的难度不同、造成的间距也不同。推荐使用 \cs{[} \ldots \cs{]}。 
+
+参见
 \url{https://www.zhihu.com/question/27589739/answer/37255728}
 
 
@@ -40,29 +42,44 @@
 
 直接给出例子：
 
-\begin{verbatim}
-\documentclass{article}
-\begin{document}
- \[ \lim_{n\to\infty\atop m\to\infty} \]
-\end{document}
-\end{verbatim}
-效果如下：
-
+%\begin{verbatim}
+\begin{example}
 \[ \lim_{n\to\infty\atop m\to\infty} \]
+\end{example}
+%\end{verbatim}
+%效果如下：
+%
+%\[ \lim_{n\to\infty\atop m\to\infty} \]
+%\begin{Example}
+%	\[ \lim_{n\to\infty\atop m\to\infty} \]
+%\end{Example}
+
+%\begin{example}
+%	$\frac{1}{\pi}$,\quad
+%	$\sqrt[5]{1+k^2+k^4}$
+%\end{example}
+
+%\begin{Example}
+%	$\frac{1}{\pi}$,\quad
+%	$\sqrt[5]{1+k^2+k^4}$
+%\end{Example}
 
 或者使用 \cs{substack}，代码如下：
 
-\begin{verbatim}
-\documentclass{article}
-\usepackage{amsmath}
-\begin{document}
+%\begin{verbatim}
+%\documentclass{article}
+%\usepackage{amsmath}
+%\begin{document}
+%\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
+%\end{document}
+%\end{verbatim}
+%
+%效果如下：
+%
+%\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
+\begin{example}
 \[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
-\end{document}
-\end{verbatim}
-
-效果如下：
-
-\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
+\end{example}
  
 % \includegraphics{https://images-cdn.shimo.im/FCY4A1SeBIcwBCGT/双重极限.PNG!thumbnail}
 
@@ -78,13 +95,20 @@
 %\sout{align 默认靠右对齐，所以通常加 \&
 %符号，让代码左对齐。验证一下以下代码：}
 
-\begin{verbatim}
+%\begin{verbatim}
+%\begin{align}
+%& \nabla \times H = J,\\
+%& \nabla \times E = - \partial _t B,\\
+%& \nabla \cdot B = 0.
+%\end{align}
+%\end{verbatim}
+\begin{example}
 \begin{align}
 & \nabla \times H = J,\\
 & \nabla \times E = - \partial _t B,\\
 & \nabla \cdot B = 0.
 \end{align}
-\end{verbatim}
+\end{example}
 
 再试试把 \& 去掉什么样。
 
@@ -152,16 +176,18 @@ align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐
 EqDesc
 环境有两个参数，第一个为可选参数，是解释公式符号前的引导词，默认是``式中''，第二个参数是样本符号，可以选择一个列表中宽度最大的符号。条目 \cs{item} 有一个可选参数（实际使用是必选参数），内容是要说明的符号。使用如下：
 
-\begin{verbatim}
+%\begin{verbatim}
+\begin{example}
 \[ a^2+b^2=c^2 \]
 \begin{EqDesc}[其中]{$a$}
    \item[$a$] 三角形的一条直角边；
    \item[$b$] 三角形的另一条直角边；
    \item[$c$] 三角形的斜边。
 \end{EqDesc}
-\end{verbatim}
+\end{example}
+%\end{verbatim}
 
-{\centerline{\includegraphics[width=0.8\linewidth]{include/images/hang}}}
+%{\centerline{\includegraphics[width=0.8\linewidth]{include/images/hang}}}
 
 
 \faq{行内公式的情况下如何让sum prod这些运算符的上下标在头上和脚下？}{}
@@ -169,11 +195,13 @@ EqDesc
 这样处理行内公式的上下标会导致段落行距不整齐，不符合 \LaTeX{}
 的审美。如果彻底放弃审美，可以使用 \cs{limits} 命令，如：
 
-\begin{verbatim}
-$\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
-\end{verbatim}
+%\begin{verbatim}
+\begin{example}
+$\sum\limits_{i=1}^n, \prod\limits_\epsilon$
+\end{example}
+%\end{verbatim}
 
-效果是这样的：$\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
+%效果是这样的：$\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
 
 \faq{如何将积分的上限标放在积分号的上下两侧？}{}
 
@@ -192,6 +220,7 @@ $\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
   如果使用 unicode-math 宏包，
 \end{enumerate}
 
+%\begin{latexcode}
 \begin{verbatim}
 \removenolimits{%
   \int\iint\iiint\iiiint\oint\oiint\oiiint
@@ -201,6 +230,7 @@ $\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
   \intcap\intcup\upint\lowint
 }
 \end{verbatim}
+%\end{latexcode}
 
 
 \faq{如何自定义数学运算符，然后让下标放在脚下？}{}
@@ -212,45 +242,261 @@ $\sum\limits_{i=1}^n \quad \prod\limits_\epsilon$
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \end{verbatim}
 
-\[
-\esssup_{x\in {R}}
+\begin{example}
+\[ 
+  \esssup_{x\in {R}} 
 \]
+\end{example}
 
-对于只是偶尔用到的运算符，也可以直接在数学模式中使用新算符定义命令。
 
-例如
-|\operatorname*{ess\,sup}_{x\in {R}}|
+对于只是偶尔用到的运算符，也可以无需定义而直接在数学模式中使用新算符定义命令。
+%
+%例如
+%|\operatorname*{ess\,sup}_{x\in {R}}|
 
+\begin{example}
 \[
-\operatorname*{ess\,sup}_{x\in {R}}
+  \operatorname*{ess\,sup}_{x\in {R}}
 \]
+\end{example}
 
 \faq{在数学公式中，编辑等式时，每一行需要等号和等号对其，这时使用了\textbackslash{}begin\{displaymath\} \textbackslash{}begin\{split\}环境，但是呢，这些整体都是居中的，我想让式子靠左，怎么实现呢？}{}
 这种情况可以考虑在文档类选项中使用fleqn选项。需要对齐的多行公式，推荐使用amsmath宏包的align等环境。
 
 \faq{行列式变换过程中，我们一般是在中间的箭头上表示出变换的方式，如何才能在长箭头上打出多行内容？}{}
 可以看看amsmath宏包提供的长箭头命令。
+\begin{example}
+\[
+  A \xleftarrow[formula-1]{formula-2} B,
+  C \xrightarrow[formula-1]{formula-2} D
+\]
 
-|\xleftarrow[下方公式]{上方公式}|   |\xrightarrow[下方公式]{上方公式}|。
+\end{example}
 
 \faq{如何输出反斜杠？}{}
 方式很多，例如
-
-\begin{verbatim}
-    \textbackslash 或者 \verb|\|
-\end{verbatim}
+\begin{example}
+  \textbackslash \quad 或者 \quad \verb|\|
+\end{example}
+%
+%\begin{verbatim}
+%    \textbackslash 或者 \verb|\|
+%\end{verbatim}
 
 
 \faq{对equation环境下的公式、图片编号按章节、小节进行重新定义}{}
 
-公式编号使用amsmath宏包的numberwithin设定关联即可。图片编号可以使用caption宏包自定义格式。
+公式编号使用amsmath宏包的numberwithin设定关联即可。
+图片编号可以使用caption宏包自定义格式。
 
 \faq{带括号的公式有哪些折行方式？在括号中间折行。}{}
-使用| \left( \right) |括起来的内容不能直接折行，但是可以变通，比如使用| \left( \right. | 和 | \left. \right) |，
+使用| \left( \right) |括起来的内容不能直接折行，但是可以变通，比如使用| \left( | 匹配 | \right. | 和 | \left. | 匹配 | \right) |，
 这时候需要借助幻影、支柱等方法处理各行内容高度不同带来的括号大小不同问题。
 
 \faq{怎么在极限符号下面打出x→0 }{}
 很简单的基本指令就行，例如|\lim\limits_{x \to 0}|得到$\lim\limits_{x \to 0}$
+\begin{example}
+\[
+  \lim\limits_{x \to 0}
+\]
+\end{example}
 
 \faq{\LaTeX{}敲的公式可以插入word吗？}{}
 可以，但是不推荐。
+
+\faq{公式中的文本怎么输入？}{}
+公式中的文本输入，可以用 \verb|\mbox{...}|。使用率较高的是 \texttt{amstext} 宏包中提供了\verb|\text|命令，示例如下：
+\begin{example}
+\begin{center}
+  This is $_{\text{subscript}}$\\
+  This is $_{\mbox{subscript}}$
+\end{center}
+\[a = b, \text{\qquad by assumption}\]
+\end{example}
+
+%\begin{note}\small \itshape
+	我们加载 amsmath 宏包的时候，系统会自动调用amstext， amsbsy， amsopn，
+	amsintx包，所以无需我们额外加载包。
+%\end{note}
+%\begin{note}
+%	\small \itshape
+
+ 这里需要注意的是若是我们的文本部分与其他字符有间隔，需要在\verb|\text{}|里面进行添加。
+%\end{note}
+%\fancybreak
+\faq{如何输入连分数？}{}
+\verb|amsmath| 宏包提供的命令 \verb|cfrac| 用于排版连分数，比我们直接使用 \verb|\frac| 排版的效果要好。如：
+\begin{example}
+\[
+  \cfrac{1}{\sqrt 2 + \cfrac{1}{\sqrt 2 +\dotsb}},\quad
+  \frac{1}{\sqrt 2 + \frac{1}{\sqrt 2 +\dotsb}}
+\]
+\end{example}
+
+
+\faq{如何输入带方框的公式？}{}
+
+
+可以使用命令 \verb|boxed| 将公式放在方框中，这个命令类似 \verb|\fbox| 如
+\begin{example}
+\[
+  \boxed{\eta \leq C \text{ and } C \leq \Delta}
+\]
+\end{example}
+
+另外，\verb|fancybox| 宏包提供的几个环境和命令会把公式的编号和公式一起放在方框中。
+
+\faq{实数域 $\mathbb{R}$ 或复数域 $\mathbb{C}$ 等的字体该用什么命令？}{}
+使用 amsfonts 宏包提供的\verb|\mathbb{字母}|命令， 例如：
+\begin{example}
+ $x \in \mathbb{R}$ and $c \in \mathbb{C}$
+\end{example}
+
+
+
+通常，排版时有些符号需要特殊字体，这里简单列举常用的几个字体。
+
+%\begin{center}
+%\includegraphics{fig2}
+%\end{center}
+
+{\small\begin{tabular}{ll}
+		\hline
+		命令&样例\\
+		\hline
+		默认&${ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+		&${abcdefghijklmnopqrstuvwxyz}$\\
+		\verb|\mathit|&$\mathit{ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+		&$\mathit{abcdefghijklmnopqrstuvwxyz}$\\
+		\verb|\mathbf|&$\mathbf{ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+		&$\mathbf{abcdefghijklmnopqrstuvwxyz}$\\
+		\verb|\mathrm|&$\mathrm{ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+		&$\mathrm{abcdefghijklmnopqrstuvwxyz}$\\
+		\verb|\mathsf|&\textsf{ABCDEFGHIJKLMNOPQRSTUV WXYZ}\\
+		&\textsf{abcdefghijklmnopqrstuvwxyz}\\
+%        |\bm|$^a$ & $\bm{ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+%        & $\bm{abcdefghijklmnopqrstuvwxyz}$\\
+		\verb|\mathscr|$^a$&{\usefont{U}{rsfs}{m}{n}ABCDEFGHIJKLMNOPQRSTUV WXYZ}\\
+		\verb|\mathfrak|$^b$&{\fontencoding{U}\fontfamily{euf}\selectfont ABCDEFGHIJKLMNOPQRSTUV WXYZ}\\
+		&{\fontencoding{U}\fontfamily{euf}\selectfont abcdefghijklmnopqrstuvwxyz}\\
+		\verb|\mathcal|&$\mathcal{ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+		\verb|\mathbb|$^c$&$\mathbb{ABCDEFGHIJKLMNOPQRSTUV WXYZ}$\\
+		\hline
+%		$^a$ 需要 \verb|bm|宏包&\\
+		$^a$ 需要 \verb|mathrsfs|宏包&\\$^b$ 需要 \verb|amsfonts|宏包&\\$^c$ 需要 \verb|amsfonts|宏包&\\
+\end{tabular}}
+
+\faq{$n$次根式 $\sqrt[n]{\text{Roots}}$ 的位置调整}{}
+通常，我们用 \verb|\sqrt[...]{...}| 来输入公式。
+\begin{example}
+$\sqrt2$, $\sqrt2y$, $\sqrt{2y}$\\
+$\sqrt[3]{2}$, $\sqrt[n+1]{x+y}$
+\end{example}
+
+按照如上的输入方式，我们输入如下公式 \verb|$\sqrt[\frac{1}{n}]{a}$| 会输出 $\sqrt[\frac{1}{n}]{a}$ ，而 \verb|$\sqrt[\beta]{a}$| 输出为 $\sqrt[\beta]{a}$。
+我们需要这样调整：
+\begin{example}
+$\sqrt[\leftroot{2}\uproot{4}\beta]{k}$,
+$\sqrt[\leftroot{1}\uproot{3}\beta]{k}$,
+$\sqrt[\leftroot{2}\uproot{4}\frac{1}{n}]{k}$,
+$\sqrt[\leftroot{1}\uproot{3}\frac{1}{n}]{k}$
+\end{example}
+\noindent 这两个命令 \verb|leftroot| 和 \verb|uproot| 分别表示将方根向左向上移动 $n$ 个单位，若为负数表示向反方向移动。
+
+
+\faq{如何输入在等号上输入如 def 等文字？}{}
+
+对于这种特殊的重叠符号，可通过使用 \verb|amsmath| 宏包的 \verb|overset|
+命令来实现。具体用法见下面的例子。
+\begin{example}
+\begin{equation}a\overset{?}{=}b\end{equation}
+\end{example}
+
+若等号上文字较多时，这时我们可以用 \verb|extarrows| 宏包的自适应长度的等号，简单示例如下：
+\begin{example}
+\begin{equation}
+  a\xlongequal[abc]{def}b
+\end{equation}
+\end{example}
+
+\faq{公式中大写希腊字母怎么改成粗斜体？}{}
+希腊字母大写均为正体，若需要改成斜体，用下面的命令就好：
+\begin{example}
+$\Gamma$, $\varGamma$. $\Delta$, $\varDelta$.
+$\Theta$, $\varTheta$. $\Lambda$, $\varLambda$.
+$\Xi$, $\varXi$, $\Sigma$,  $\varSigma$.
+$\Upsilon$, $\varUpsilon$. $\Phi$, $\varPhi$.
+$\Psi$, $\varPsi$.
+\end{example}
+
+\faq{公式中小写希腊字母怎么改成正体？}{}
+
+使用 \verb|upgreek| 包提供的直立的希腊字母，这里简单列举部分符号如下：
+\begin{center}
+	\begin{tabular}{*4{ll}}
+		\K{\upalpha}      & \K{\uptheta}      & \K{\uppi}         & \K{\upphi}        \\
+		\K{\upbeta}       & \K{\upvartheta}   & \K{\upvarpi}      & \K{\upvarphi}     \\
+		\K{\upgamma }     & \K{\upiota}       & \K{\uprho}        & \K{\upchi}        \\
+		\K{\updelta}      & \K{\upkappa}      & \K{\upvarrho}     & \K{\uppsi}        \\
+		%\K{\upepsilon}    & \K{\uplambda}     & \K{\upsigma}      & \K{\upomega}      \\
+		%\K{\upvarepsilon} & \K{\upmu}         & \K{\upvarsigma}                     \\
+		%\K{\upzeta}       & \K{\upnu}         & \K{\uptau}                          \\
+		%\K{\upeta}        & \K{\upxi}         & \K{\upupsilon}                      \\
+		%                                                                      \\
+		%\K\Upgamma      & \K\Uplambda     & \K\Upsigma      & \K\Uppsi        \\
+		%\K\Updelta      & \K\Upxi         & \K\Upupsilon    & \K\Upomega      \\
+		%\K\Uptheta      & \K\Uppi         & \K\Upphi                          \\
+	\end{tabular}
+\end{center}
+
+\faq{如何输入数学公式里面的矢量？}{}
+
+
+\fbox{第一种方法}，使用 \verb|harpoon| 宏包，
+\begin{example}
+\overrightharp{this}
+\end{example}
+
+
+
+\fbox{第二种方法}，
+自己定义一个命令。如下：
+%\begin{Verbatim}[frame=single,rulecolor=\color{niceblue},fontsize=\small]
+%\newcommand{\myvec}[1]%
+%  {\stackrel{\raisebox{-2pt}[0pt][0pt]{\small$\rightharpoonup$}}{#1}}
+%\end{Verbatim}
+\begin{example}
+\newcommand{\myvec}[1]%
+{\stackrel{\raisebox{-2pt}[0pt][0pt]
+		{\small$\rightharpoonup$}}{#1}}
+\[
+	\myvec{A}
+\]
+\end{example}
+
+\faq{常见矩阵的输入方法。}{}
+我们经常会见到如下矩阵：
+\begin{example}
+\begin{gather*}
+ \begin{matrix}  0 &  1 \\ 1 &  0 \end{matrix}\quad
+ \begin{pmatrix} 0 & -i \\ i &  0 \end{pmatrix}\\
+ \begin{bmatrix} 0 & -1 \\ 1 &  0 \end{bmatrix}\quad
+ \begin{Bmatrix} 1 &  0 \\ 0 & -1 \end{Bmatrix}\\
+ \begin{vmatrix} a &  b \\ c &  d \end{vmatrix}\quad
+ \begin{Vmatrix} i &  0 \\ 0 & -i \end{Vmatrix}
+\end{gather*}
+\end{example}
+
+很多用户刚开始的时候用 \verb|array| 环境来输入矩阵，示例如下：
+\begin{latexcode}
+\begin{gather*}
+ \begin{array}{cc}  0 &  1 \\ 1 &  0 \end{array}  \quad
+ \left(\begin{array}{cc}  0 & -i \\ i &  0 \end{array}\right) \\
+ \left[\begin{array}{cc} 0 & -1 \\ 1 &  0 \end{array}\right] \quad
+ \left\{\begin{array}{cc} 1 &  0 \\ 0 & -1 \end{array}\right\} \\
+ \left|\begin{array}{cc} a &  b \\ c &  d \end{array}\right| \quad
+ \left\|\begin{array}{cc} i &  0 \\ 0 & -i \end{array}\right\|
+\end{gather*}
+\end{latexcode}
+
+当然，大家可比较两个输出结果，择其一使用。
