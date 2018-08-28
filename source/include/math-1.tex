@@ -1,0 +1,23 @@
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\usepackage{ifthen}
+\newcounter{qlst}
+\newenvironment{EqDesc}[2][式中]{%
+	\begin{list}{}
+		{%
+			\usecounter{qlst}
+			\settowidth{\labelwidth}{#1，\ \ #2\ --- \ }
+			\setlength{\labelsep}{0pt}
+			\setlength{\leftmargin}{\labelwidth}
+			\setlength{\rightmargin}{0em}
+			\setlength{\parsep}{0ex}
+			\setlength{\itemsep}{0ex}
+			\setlength{\itemindent}{0em}
+			\setlength{\listparindent}{0em}
+			\renewcommand{\makelabel}[1]
+			{\stepcounter{qlst}
+				\ifthenelse{\value{qlst}>1}{\hfill ##1\ --- \ }{#1，\hfill ##1\ --- \ }
+			}
+		}%
+	}%
+	{\end{list}}

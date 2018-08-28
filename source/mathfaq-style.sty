@@ -1,0 +1,270 @@
+% 选自mathfaq-1-2的方法
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathfaq-style}
+
+%
+% 示例环境 example
+% 环境中的代码写入临时文件 \example.out
+%
+
+%\RequirePackage{amssymb}
+\RequirePackage{xspace}
+\RequirePackage{fancyhdr}
+%\RequirePackage{tipa,metalogo,paralist}
+\RequirePackage{array}
+\RequirePackage{amsmath,nicefrac,units}
+\RequirePackage{amsthm}
+
+\RequirePackage{empheq}
+\RequirePackage{harpoon}
+\RequirePackage{delarray}
+\RequirePackage[titletoc]{appendix}
+\RequirePackage{graphicx}
+\RequirePackage{multirow}
+\RequirePackage{texnames}
+\RequirePackage{etoolbox}
+
+
+\RequirePackage{mathtools}
+\RequirePackage{yhmath}
+\RequirePackage{upgreek}
+
+\RequirePackage{amsfonts,mathrsfs,bm}
+\let\Finv\relax
+%\RequirePackage{textcomp}
+%\RequirePackage{times}
+%\RequirePackage[table,dvipsnames]{xcolor}
+
+\RequirePackage{framed}
+\RequirePackage{wallpaper}
+
+\RequirePackage{cases}
+%\RequirePackage{url}
+\RequirePackage{arydshln,amscd}
+\RequirePackage{supertabular}
+%\RequirePackage{breqn}
+\RequirePackage{tikz}
+\RequirePackage{xurl}
+\RequirePackage{blkarray}
+
+%\newif\ifAMS
+%\IfFileExists{amssymb.sty}
+%{\AMStrue\RequirePackage{amssymb}}{}
+%\RequirePackage{latexsym}
+%
+%\newif\ifST
+%\IfFileExists{stmaryrd.sty}
+%{\STtrue\RequirePackage{stmaryrd}\newcommand\ST{\textsf{stmaryrd}}}
+%{}
+%
+%\newif\ifEU
+%\IfFileExists{euscript.sty}
+%{\EUtrue\RequirePackage[mathcal]{euscript}}
+%{\let\CMcal\mathcal}
+%%\theoremstyle{nonumberplain}
+%%\theoremheaderfont{\bfseries}
+%%\theorembodyfont{\normalfont}
+%%\theoremsymbol{$\blacksquare$}
+%%\newtheorem{Proof}{证明}
+
+\RequirePackage{extarrows}
+
+\makeatletter
+\newcommand\K[1]{\ensuremath{#1} &\ttfamily\string#1}
+\makeatother
+
+\newcommand*{\fancybreak}{%
+	\par
+	\nopagebreak\medskip\nopagebreak
+	\noindent\null\hfill$*\quad*\quad*\quad$\hfill\null\par
+	\nopagebreak\medskip\pagebreak[0]%
+}
+
+%===========color define=========
+
+\definecolor{themecolor}{RGB}{236,66,53}
+\definecolor{hypercolor}{rgb}{0.5,0.0,0.5} % purplish external links.
+
+
+\RequirePackage{xeCJK}
+%\defaultfontfeatures{Mapping=tex-text}
+%%    \setmainfont { Source Serif Pro }
+%%    \setsansfont { Source Sans Pro }
+%%    \setmonofont { Source Code Pro }
+%\setCJKmainfont
+%[BoldFont=Source Han Sans CN Medium]{Source Han Serif CN}
+%\setCJKsansfont{Source Han Sans CN}
+%\newCJKfontfamily\songti[BoldFont=* Heavy]{Source Han Serif CN}
+%%    \newCJKfontfamily\mingchao{Source Han Serif JP}
+%\NewDocumentCommand \kaishu { } { \normalfont }
+
+%\setCJKfamilyfont{qt}{FZQiTi-S14T}
+\font\ursymbol=psyr at 10pt
+% You also use other font sizes.
+\def\urpartial{\mbox{\ursymbol\char"B6}}
+\definecolor{darkgrey}{cmyk}{0,0,0,0.63}%{0,0,0,63}
+\definecolor{lightgrey}{cmyk}{0,0,0,0.32}%{0,0,0,32}
+
+\newcommand*{\wb}[2]{\fontsize{#1}{#2}\usefont{U}{webo}{xl}{n}}
+\newlength{\tpheight}\setlength{\tpheight}{\textheight}
+\newlength{\txtheight}\setlength{\txtheight}{0.9\tpheight}
+\newlength{\tpwidth}\setlength{\tpwidth}{0.9\textwidth}
+\newlength{\txtwidth}\setlength{\txtwidth}{0.9\tpwidth}
+\newlength{\drop}
+
+\definecolor{hellmagenta}{rgb}{1,0.75,0.9}
+\definecolor{hellcyan}{rgb}{0.75,1,0.9}
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+\definecolor{darkyellow}{rgb}{1,0.9,0}
+\definecolor{lightblue}{rgb}{.2,.5,1}
+
+
+\RequirePackage{minted}
+%\RequirePackage{boites}
+%\RequirePackage{fancyvrb}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\RequirePackage{pifont}
+\definecolor{niceblue}{rgb}{0,0.4,0.7}
+\definecolor{preblue}{rgb}{0,0,0.4}
+\definecolor{niceblue1}{rgb}{0.17,0.78,0.58}
+
+\RequirePackage{titlesec,titletoc}
+%\RequirePackage{times}%
+\renewcommand\thesubsection{\arabic{subsection}}
+\renewcommand\thesection{\Roman{section}}
+
+\titleformat{\section}[display]{\normalfont}
+{\filcenter\Large\bfseries --\enspace \thesection
+\enspace--}{6pt}{\Large\bfseries\filcenter}
+
+\titleformat{\subsection}[hang]
+{\normalfont%
+\sffamily\filright}
+{\color{blue}\ding{45}\ \thesubsection}
+{.5em}
+{}[\titlerule{\hbox{\vrule height 3pt}}]
+
+
+\newlength{\halfpagewidth}
+\setlength{\halfpagewidth}{\textwidth}
+\divide\halfpagewidth by 2
+
+\newcommand{\leftsep}{%
+\noindent\raisebox{4mm}[0ex][0ex]{%
+	\makebox[\halfpagewidth]{\hrulefill}\hbox{\vrule height 3pt}}%
+\vspace*{-2mm}%
+}
+
+\newcommand{\rightsep}{%
+\noindent\hspace*{\halfpagewidth}%
+\rlap{\raisebox{-3pt}[0ex][0ex]{\hbox{\vrule height 3pt}}}%
+\makebox[\halfpagewidth]{\hrulefill}%
+}
+
+\DeclareRobustCommand{\AllTeX}{(L%
+{\setbox0\hbox{T}%
+	\setbox\@tempboxa\hbox{$\m@th$%
+		\csname S@\f@size\endcsname
+		\fontsize\sf@size\z@
+		\math@fontsfalse\selectfont
+		A}%
+	\@tempdima\ht0
+	\advance\@tempdima-\ht\@tempboxa
+	\@tempdima\strip@pt\fontdimen1\font\@tempdima
+	\advance\@tempdima-.36em
+	\kern\@tempdima
+	\vbox to\ht0{\box\@tempboxa
+		\vss}%
+}\kern-.075em)%
+\kern-.075em\TeX}
+
+\newenvironment{latexcode}
+{\VerbatimEnvironment\par
+\begin{VerbatimOut}{example.out}}
+{\end{VerbatimOut}
+\begingroup%
+\fboxrule0.4pt%
+\let\breakboxparindent\z@%
+\def\bkvz@bottom{\hrule\@height\fboxrule}%
+\let\bkvz@before@breakbox\relax%
+\def\bkvz@set@linewidth{\advance\linewidth\dimexpr-2\fboxrule-2\fboxsep}%
+\def\bkvz@left{\vrule\@width\fboxrule\hskip\fboxsep}%
+\def\bkvz@right{\hskip\fboxsep\vrule\@width\fboxrule}%
+\color{niceblue}\vskip 5pt%
+\breakbox%
+{\normalcolor\small\inputminted{latex}{example.out}}%
+\endbreakbox%
+\endgroup}
+\providerobustcmd*{\bigcupdot}{%
+\mathop{%
+	\mathpalette\bigop@dot\bigcup
+}%
+}
+\newrobustcmd*{\bigop@dot}[2]{%
+\setbox0=\hbox{$\m@th#1#2$}%
+\vbox{%
+	\lineskiplimit=\maxdimen
+	\lineskip=-0.7\dimexpr\ht0 \dp0\relax
+	\ialign{%
+		\hfil##\hfil\cr
+		$\m@th\cdot$\cr
+		\box0\cr
+	}%
+}%
+}
+
+
+%%\let\Cross\relax
+%\RequirePackage{manfnt,amscd}
+%
+%\RequirePackage{extarrows}
+%\definecolor{qianhong}{rgb}{1, 0.6, 0.75}
+%\newcounter{notectr}[subsection]
+%%\newenvironment{note}
+%%{\par\addtocounter{notectr}{1}\setlength{\parindent}{0pt}\hskip -\leftmargin {\color{gray!30}\rule{3cm}{3pt}}\vskip-5pt
+%%{\fboxsep1pt\hskip -\leftmargin \itshape{\color{qianhong}\lhdbend} \ \colorbox{qianhong}{小注\ \thenotectr}}%
+%%\vskip 1pt\small\itshape}
+%%{\vskip -15pt\noindent\color{gray!30}\rule{\linewidth}{3pt}}
+%\newcommand{\jieshi}{\par
+%\nopagebreak\medskip\nopagebreak
+%\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor 解释说明}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
+%\nopagebreak\medskip\pagebreak[0]}
+%\newcommand{\jiejue}{\par
+%\nopagebreak\medskip\nopagebreak
+%\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor 解决方案}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
+%\nopagebreak\medskip\pagebreak[0]}
+%\newcommand{\jieyong}[1]{\par
+%\nopagebreak\medskip\nopagebreak
+%\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor #1}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
+%\nopagebreak\medskip\pagebreak[0]}
+
+%\RequirePackage[many]{tcolorbox}
+%\RequirePackage{fontawesome}
+%
+%%% Note
+%\newtcolorbox{note}{%
+%enhanced,
+%arc=2pt,
+%boxrule=.5pt,
+%left=5pt, right=5pt, top=3pt, bottom=3pt,
+%boxsep=2pt,
+%colframe=NavyBlue,
+%colback=NavyBlue!5!White,
+%colbacktitle=NavyBlue!5!White,
+%coltext=black,
+%title={\textcolor{black}{\small\faStickyNoteO\hspace{.5em}\bfseries{\textsc{小注}}}},
+%halign=left,
+%fontupper=\ttfamily\small
+%}
+
+\DeclareMathOperator{\doublesum}{\sum\sum}
+
+\makeatother
+
+\endinput
