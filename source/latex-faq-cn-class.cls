@@ -54,7 +54,8 @@
     unicode-math,
     xurl,
     zref-abspage,
-    hyperref
+    hyperref,
+    longtable
   }
 
 % 西文字体
@@ -427,35 +428,36 @@ stringstyle=\ttfamily, % typewriter type for strings
 showstringspaces=false}% no special string spaces
 }{}
 
-\lstnewenvironment{texinlist}%
-{\lstset{% general command to set parameter(s)
-%name=#1,
-%label=#2,
-%caption=\lstname,
-%xleftmargin=\parindent,
-linewidth=\linewidth,
-breaklines=true,
-%showspaces=true,
-extendedchars=false,
-columns=fullflexible,%flexible,
-%aboveskip=2pt,
-boxpos=t,
-rulesep=0pt,
-frame=tb,
-framesep=0pt,
-rulecolor=\color{gbblue},
-fontadjust=true,
-language=[LaTeX]TeX,
-%backgroundcolor=\color{yellow}, %背景颜色
-numbers=left,
-numberstyle=\tiny\color{gbblue},
-basicstyle=\footnotesize\ttfamily, % print whole listing small
-keywordstyle=\color{blue}\bfseries,%\underbar,
-% underlined bold black keywords
-identifierstyle=, % nothing happens
-commentstyle=\color{green!50!black}, % white comments
-stringstyle=\ttfamily, % typewriter type for strings
-showstringspaces=false}% no special string spaces
+\lstnewenvironment{texinlist}{%
+    \lstset{% general command to set parameter(s)
+        %name=#1,
+        %label=#2,
+        %caption=\lstname,
+        %xleftmargin=\parindent,
+        linewidth=\linewidth,
+        breaklines=true,
+        %showspaces=true,
+        extendedchars=false,
+        columns=fullflexible,%flexible,
+        %aboveskip=2pt,
+        boxpos=t,
+        rulesep=0pt,
+        frame=tb,
+        framesep=0pt,
+        rulecolor=\color{gbblue},
+        fontadjust=true,
+        language=[LaTeX]TeX,
+        %backgroundcolor=\color{yellow}, %背景颜色
+        numbers=left,
+        numberstyle=\tiny\color{gbblue},
+        basicstyle=\footnotesize\ttfamily, % print whole listing small
+        keywordstyle=\color{blue}\bfseries,%\underbar,
+        % underlined bold black keywords
+        identifierstyle=, % nothing happens
+        commentstyle=\color{green!50!black}, % white comments
+        stringstyle=\ttfamily, % typewriter type for strings
+        showstringspaces=false% no special string spaces
+    }
 }{}
 
 
