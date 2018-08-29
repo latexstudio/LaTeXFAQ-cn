@@ -1,20 +1,21 @@
-% 选自mathfaq-1-2的方法
+% 选自mathfaq-1-2的一些设置
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mathfaq-style}
 
 %
-% 示例环境 example
-% 环境中的代码写入临时文件 \example.out
 %
 
 %\RequirePackage{amssymb}
 \RequirePackage{xspace}
 \RequirePackage{fancyhdr}
-%\RequirePackage{tipa,metalogo,paralist}
+%\RequirePackage{tipa}
+%\RequirePackage{metalogo}
+%\RequirePackage{paralist}
+%\RequirePackage{enumerate}
 \RequirePackage{array}
 \RequirePackage{amsmath,nicefrac,units}
 \RequirePackage{amsthm}
-
+%\RequirePackage{pmat}
 \RequirePackage{empheq}
 \RequirePackage{harpoon}
 \RequirePackage{delarray}
@@ -23,7 +24,7 @@
 \RequirePackage{multirow}
 \RequirePackage{texnames}
 \RequirePackage{etoolbox}
-
+%\RequirePackage[thmmarks,amsmath]{ntheorem}
 
 \RequirePackage{mathtools}
 \RequirePackage{yhmath}
@@ -34,6 +35,8 @@
 %\RequirePackage{textcomp}
 %\RequirePackage{times}
 %\RequirePackage[table,dvipsnames]{xcolor}
+
+%\PassOptionsToPackage { table,dvipsnames } { xcolor   }
 
 \RequirePackage{framed}
 \RequirePackage{wallpaper}
@@ -198,7 +201,8 @@
 \def\bkvz@right{\hskip\fboxsep\vrule\@width\fboxrule}%
 \color{niceblue}\vskip 5pt%
 \breakbox%
-{\normalcolor\small\inputminted{latex}{example.out}}%
+{\normalcolor\small\inputminted{latex}{example.out}}% 如果不使用minted宏包，可以改用下一行代码
+%{\normalcolor\small\verbatiminput{example.out}}%
 \endbreakbox%
 \endgroup}
 \providerobustcmd*{\bigcupdot}{%
@@ -231,37 +235,37 @@
 %%{\fboxsep1pt\hskip -\leftmargin \itshape{\color{qianhong}\lhdbend} \ \colorbox{qianhong}{小注\ \thenotectr}}%
 %%\vskip 1pt\small\itshape}
 %%{\vskip -15pt\noindent\color{gray!30}\rule{\linewidth}{3pt}}
-%\newcommand{\jieshi}{\par
-%\nopagebreak\medskip\nopagebreak
-%\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor 解释说明}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
-%\nopagebreak\medskip\pagebreak[0]}
-%\newcommand{\jiejue}{\par
-%\nopagebreak\medskip\nopagebreak
-%\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor 解决方案}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
-%\nopagebreak\medskip\pagebreak[0]}
-%\newcommand{\jieyong}[1]{\par
-%\nopagebreak\medskip\nopagebreak
-%\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor #1}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
-%\nopagebreak\medskip\pagebreak[0]}
+\newcommand{\jieshi}{\par
+\nopagebreak\medskip\nopagebreak
+\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor 解释说明}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
+\nopagebreak\medskip\pagebreak[0]}
+\newcommand{\jiejue}{\par
+\nopagebreak\medskip\nopagebreak
+\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor 解决方案}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
+\nopagebreak\medskip\pagebreak[0]}
+\newcommand{\jieyong}[1]{\par
+\nopagebreak\medskip\nopagebreak
+\noindent\null{\color{gray!30}\rule[3pt]{1cm}{3pt}\fbox{\itshape \normalcolor #1}\color{gray!30}\rule[3pt]{1cm}{3pt}}\null\par
+\nopagebreak\medskip\pagebreak[0]}
 
-%\RequirePackage[many]{tcolorbox}
-%\RequirePackage{fontawesome}
-%
-%%% Note
-%\newtcolorbox{note}{%
-%enhanced,
-%arc=2pt,
-%boxrule=.5pt,
-%left=5pt, right=5pt, top=3pt, bottom=3pt,
-%boxsep=2pt,
-%colframe=NavyBlue,
-%colback=NavyBlue!5!White,
-%colbacktitle=NavyBlue!5!White,
+\RequirePackage[many]{tcolorbox}
+\RequirePackage{fontawesome}
+
+%% Note
+\newtcolorbox{note}{%
+enhanced,
+arc=2pt,
+boxrule=.5pt,
+left=5pt, right=5pt, top=3pt, bottom=3pt,
+boxsep=2pt,
+colframe=lightblue,
+%colback=lightblue!5!colComments,
+%colbacktitle=lightblue!5!colString,
 %coltext=black,
-%title={\textcolor{black}{\small\faStickyNoteO\hspace{.5em}\bfseries{\textsc{小注}}}},
-%halign=left,
-%fontupper=\ttfamily\small
-%}
+title={\textcolor{black}{\small\faStickyNoteO\hspace{.5em}\bfseries{\textsc{小注}}}},
+halign=left,
+fontupper=\ttfamily\small
+}
 
 \DeclareMathOperator{\doublesum}{\sum\sum}
 

@@ -394,8 +394,8 @@
 \newcount\DT@treenum \DT@treenum=0
 \newif\ifDT@split
 
-
-\RequirePackage{xcolor,listings}
+\RequirePackage[table,dvipsnames]{xcolor}
+\RequirePackage{listings}
 \definecolor{gbblue}{RGB}{23,74,117}
 \lstnewenvironment{texlist}{%
     \lstset{% general command to set parameter(s)
