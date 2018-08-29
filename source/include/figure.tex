@@ -266,7 +266,7 @@ LaTeX 还设定了一些比例参数控制浮动体的放置，见表 \ref{figur
 
 可以利用盒子来实现这个功能。下面给出一个例子
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{article}
 \usepackage{graphicx}
 \begin{document}
@@ -276,7 +276,7 @@ LaTeX 还设定了一些比例参数控制浮动体的放置，见表 \ref{figur
     \parbox[b]{0.45\linewidth}{\caption{the content of caption}}
   \end{figure}
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 若要让题注在图片左侧，只需将 \textbackslash{}parbox 那段代码移到
 \textbackslash{}includegraphics 之前。
@@ -298,17 +298,14 @@ multicol 宏包的 multicols 环境实现的，那么，在 multicols
 
 \faq{不想让图片浮动，又想使用caption，如何二者兼得？}{fig-cap}
 
-caption宏包提供了一个
-\cs{captionof}
-命令，可以在浮动体环境外使用，命令的语法格式是：\cs{captionof}\oarg{float
-type}\oarg{list entry}\marg{heading}，举例如下：
+caption宏包提供了一个\cs{captionof}命令，可以在浮动体环境外使用，命令的语法格式是：\cs{captionof}\oarg{floattype}\oarg{list entry}\marg{heading}，举例如下：
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{center}
 \includegraphics{example-image.pdf}
 \captionof{figure}{the example}
 \end{center}
-\end{verbatim}
+\end{texinlist}
 
 不过非常不建议使用这种方式，浮动体是一种很好的处理图表的方式。
 

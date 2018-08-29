@@ -70,6 +70,7 @@
   \item \TeXLive{}，见\faqref{install-texlive}
   \item \MiKTeX{}，见\faqref{install-miktex}
   \item \MacTeX{}，适用于 macOS，见\faqref{install-mactex}
+  \item pro\TeX{}t，见\faqref{download-protext}
   % TODO: 更多的发行版介绍
   \item 【有待整理】
 \end{itemize}
@@ -116,11 +117,14 @@ Knuth 还设计了一个名为 \PlainTeX{} 的格式。所谓“\strong{格式}�
   \caption{各类引擎、格式及相应的可执行程序（命令）}
   \label{tab:engine-format-exe}
   \centering
-  \begin{tabular}{cccccc}
+  \begin{tabular}{*{5}{c}}
+    \hline
     格式 / 命令 / 引擎 & \TeX  & \pdfTeX              & \XeTeX    & \LuaTeX    \\
+    \hline
     \PlainTeX          & |tex| & |pdftex|             & |xetex|   & |luatex|   \\
     \LaTeX             & ---   & |latex| / |pdflatex| & |xelatex| & |lualatex| \\
-    \ConTeXt           & ---   & |texexec|            & TODO      & |context|
+    \ConTeXt           & ---   & |texexec|            & TODO      & |context| \\
+    \hline
   \end{tabular}
 \end{table}
 

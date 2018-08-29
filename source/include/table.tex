@@ -17,18 +17,18 @@
 \section{表格篇}
 
 
-\faq{如何指定表格的总宽度}{}
+\faq{如何指定表格的总宽度}{tab-width}
 
 可以看看tabularx、tabu等宏包。
 
 
-\faq{指定列宽度的表格如何使单元格内容居中}{}
+\faq{指定列宽度的表格如何使单元格内容居中}{tabc}
 
-指定宽度的表格列一般采用 p\{\}
+指定宽度的表格列一般采用 |p{}|
 形式的列格式，这种列格式下，表格内容是两端对齐的，如果想使其成为居中对齐需要借助
 array 宏包提供的功能，示例如下：
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{tabular}{c|>{\centering\arraybackslash}p{4cm}}
   \hline
   1  &  3.530  \\
@@ -37,19 +37,19 @@ array 宏包提供的功能，示例如下：
   4  &  3.65   \\
   \hline
 \end{tabular}
-\end{verbatim}
+\end{texinlist}
 
-而 |>{}p{}|
+而 |p{}>{}|
 这样的格式在文档的应用过程中是非常不方便的，array 宏包同时提供了
 \cs{newcolumntype} 宏命令可以将其定义为一个较为简短的格式，如：
 
-\begin{verbatim}
+\begin{texinlist}
 \newcolumntype{z}[1]{>{\centering\arraybackslash}p{#1}}
-\end{verbatim}
+\end{texinlist}
 
 从而可以在正文中使用
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{tabular}{c|z{4cm}}
 \hline
 
@@ -59,18 +59,18 @@ array 宏包提供的功能，示例如下：
 4  &  3.65   \\
 \hline
 \end{tabular}
-\end{verbatim}
+\end{texinlist}
 
 类似的，采用 \cs{raggedright} 或
 \cs{raggedleft} 替换\cs{centering} 可以使得单元格内容变成左对齐或右对齐。
 
 
-\faq{tabularx 中的 X 列格式如何居中对齐}{}
+\faq{tabularx 中的 X 列格式如何居中对齐}{tabularx-x}
 
 同样采用 array 宏包的 |>|\marg{format} 方法，并利用
 \cs{newcolumntype} 定义新的列格式，如：
 
-\begin{verbatim}
+\begin{texinlist}
 \usepackage{array,tabularx}  % this line in preamble
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % this line in preamble
 \begin{tabularx}{\linewidth}{ZZ}
@@ -82,43 +82,44 @@ array 宏包提供的功能，示例如下：
 4  &  3.65   \\
 \hline
 \end{tabularx}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{tabularx 中的 X 列格式，当单元格内容发生换行时，如何使同一行其他列的单元格垂直居中对齐？}{}
+\faq{tabularx 中的 X 列格式，当单元格内容发生换行时，如何使同一行其他列的单元格垂直居中对齐？}{tabularx-x-format}
 
 对于指定宽度的表格列格式
-p\{\}，单元格内一旦进行换行，该单元格同一行内其他列的单元格内容均为垂直方向上顶端对齐，我们可以使用
+|p{}|，单元格内一旦进行换行，该单元格同一行内其他列的单元格内容均为垂直方向上顶端对齐，我们可以使用
 array 宏包，以 m\{\} 列格式或者 b\{\} 列格式 替代 p\{\}
 格式即可实现垂直居中对齐或垂直底部对齐。对于 tabularx 中的 X
 列格式，也是采用同样的思路实现，只是这里需要对
 \cs{tabularxcolumn} 宏进行重定义如下：
 
-\begin{verbatim}
+\begin{texinlist}
 \usepackage{array,tabularx}   % this line in preamble
 \renewcommand{\tabularxcolumn}[1]{m{#1}}  % this line in preamble
-\end{verbatim}
+\end{texinlist}
 
 以上则将同行的其他列单元格设置为垂直居中对齐。显然的，垂直底部对齐的设置方法是将重定义宏命令中的
 m\{\#1\} 替换为 b\{\#1\} 即可。
 
 
-\faq{booktabs的三线表，竖线为什么是不连续的？}{}
+\faq{booktabs的三线表，竖线为什么是不连续的？}{booktabs}
 
 宏包的作者为表格线的前后都增加了额外的sep，而且，宏包的作者认为三线表是不应该有竖线的。当然，如果你一定想要使用竖线，不妨以下面两个命令将表格线前后的sep设置为0pt。
 
-\begin{verbatim}
+\begin{texinlist}
 \usepackage{booktabs} % this line in preamble
 \setlength{\belowrulesep}{0pt}
 \setlength{\aboverulesep}{0pt}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{表格的一列全是公式，有什么办法能输入简单些？}{}
+\faq{表格的一列全是公式，有什么办法能输入简单些？}{table-formula}
 
 可以使用 array 宏包，|>{}| 与|<{}|
 可以为一列数据前后加上特定的宏命令。在一列数据前后均加上 |$| 则把这列数据放入数学模式中，举例如下：
-\begin{verbatim}
+
+\begin{texinlist}
 \usepackage{array} % this line in preamble
 \begin{tabular}{>{$}c<{$} c}
   \hline
@@ -128,31 +129,31 @@ m\{\#1\} 替换为 b\{\#1\} 即可。
   \sin(x)                      & 14.7  \\
   \hline
 \end{tabular}
-\end{verbatim}
+\end{texinlist}
 
 第一列数据省去了输入数学模式起止符号 |$| 的痛苦。对于不需要放入数学模式的单元格，比如表头，需要用 |\multicolumn{1}{c}{xxx}| 的方式来保护一下，重新指定对齐方式。
 
 
-\faq{我的表格单元格内容是一个列表环境 (enumerate/itemize)，它和表格横线之间间距好大啊，怎么能把这些间距去掉？}{}
+\faq{我的表格单元格内容是一个列表环境 (enumerate/itemize)，它和表格横线之间间距好大啊，怎么能把这些间距去掉？}{enumerate-itemize}
 
 把列表环境放入到 minipage 环境中即可，即使表格列格式采用的是p{<width>}格式。
 
 
-\faq{如果想让表格中数字小数点对齐要怎么做}{}
+\faq{如果想让表格中数字小数点对齐要怎么做}{tab-num-align}
 
 可以借助 @ 的功能，如
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{tabular}{r@{.}l}
   \hline
   1 & 0 \\
   23 & 1 \\
   \hline
 \end{tabular}
-\end{verbatim}
+\end{texinlist}
 
 或者借助 warpcol 宏包提供的功能，如
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{article}
 \usepackage{warpcol}
 \begin{document}
@@ -166,11 +167,11 @@ m\{\#1\} 替换为 b\{\#1\} 即可。
   \hline
 \end{tabular}
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 还可以借助 array 和 dcolumn 的配合，如
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{article}
 \usepackage{array,dcolumn}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
@@ -183,12 +184,12 @@ m\{\#1\} 替换为 b\{\#1\} 即可。
   \hline
 \end{tabular}
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 
 还可以借助 array 和 dcolumn 的配合，如
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{article}
 \usepackage{array,dcolumn}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
@@ -201,12 +202,12 @@ m\{\#1\} 替换为 b\{\#1\} 即可。
   \hline
 \end{tabular}
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{表格竖排}{}
+\faq{表格竖排}{tab-Vert}
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{ctexart}
 \usepackage[usestackEOL]{stackengine}
 
@@ -221,41 +222,38 @@ Foo bar & {\Centerstack{ 这 \\ 一 \\ 列 \\ 竖 \\ 排 }} & Foo bar \\
 \end{tabular}
 
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{跨页长表格}{}
+\faq{跨页长表格}{longtable}
 
-\begin{verbatim}
+\begin{texinlist}
 \usepackage{longtable}
-\end{verbatim}
+\end{texinlist}
 
 ，做好对长表格跨页时的设置
 
 
-\faq{双栏中表格过大怎么调整?}{}
+\faq{双栏中表格过大怎么调整?}{twocol-big}
 
 \begin{itemize}
 
-\item
-  方法一：用 graphicx 宏包提供的 \cs{resizebox} 命令：
+  \item 方法一：用 graphicx 宏包提供的 \cs{resizebox} 命令：
+  \begin{texinlist}
+  \resizebox{width}{height}{function}
+  \end{texinlist}
+  resizebox 会放缩 function 中的内容到 width 宽度、height
+  高度。需要注意的是，同时指定宽度和高度，一般会导致缩放的内容变形，你也可以指定其中一项，\sout{另一个用!占位，}这样系统会自适应另一个参数，即相当于scale命令。
+  \item 方法二：用 \texttt{table*} 取代 table 环境，针对的是单栏表格。
+  \item 方法三：将表格中的字体缩小。
+  \item 方法四：使用横排：使用 rotating 宏包
 \end{itemize}
 
-\begin{verbatim}
-\resizebox{width}{height}{function}
-\end{verbatim}
-
-resizebox 会放缩 function 中的内容到 width 宽度、height
-高度。需要注意的是，同时指定宽度和高度，一般会导致缩放的内容变形，你也可以指定其中一项，\sout{另一个用!占位，}这样系统会自适应另一个参数，即相当于scale命令。
-* 方法二：用 \texttt{table*} 取代 table 环境，针对的是单栏表格。 *
-方法三：将表格中的字体缩小。 * 方法四：使用横排：使用 rotating 宏包
-
-
-\faq{如何制作列数可变的表格，例如试卷的计分表？}{}
+\faq{如何制作列数可变的表格，例如试卷的计分表？}{col-tab-variable}
 
 主要是使用 makecell 和 interfaces-makecell 宏包。下面给出一个 MWE。
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{standalone}
 \usepackage{ctex,calc,makecell,interfaces-makecell,CJKnumb,tabularx,multirow}
 
@@ -298,7 +296,7 @@ resizebox 会放缩 function 中的内容到 width 宽度、height
 \ScoreTable
 
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 CJKnumb 宏包是为了把阿拉伯数字转换为小写汉字序号。 calc
 宏包是为了做四则运算。 tabularx 宏包是为了做列宽自动扩展的表格。
@@ -307,18 +305,18 @@ interfaces-makecell
 宏包提供了一系列命令，使得制作可变表格称为可能，同时简化了表格制作。
 
 
-\faq{如何固定表格的总宽度？}{}
+\faq{如何固定表格的总宽度？}{table-col-fixed}
 
 使用 tabular* 环境或 tabularx
 宏包提供的同名环境即可固定表格的总宽度，宏包 tabu
 功能更为强大，用法也更为复杂，可参见相应宏包文档说明。
 
 
-\faq{表格在单元格内如何换行？}{}
+\faq{表格在单元格内如何换行？}{tab-newline}
 
 可以通过限制列宽实现，例如下面的例子
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{tabular}{|c|c|m{50mm}|}%这里用m则必须调用array宏包
   \hline
   a & b & \LaTeX{}表格固定列宽自动换行自动换行自动换行自动换行自动换行\\
@@ -328,58 +326,58 @@ interfaces-makecell
   a & b & \LaTeX{}表格固定列宽自动换行自动换行自动换行自动换行自动换行\\
   \hline
 \end{tabular}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{如何插入子图/表，各自分别带子标题，不带子标题？}{}
+\faq{如何插入子图/表，各自分别带子标题，不带子标题？}{tab-subfigure-insert}
 
 可参见并列图形、并列子图的排列
 
 
-\faq{如何减小表格，插图，公式，列表等前后空白？}{}
+\faq{如何减小表格，插图，公式，列表等前后空白？}{tab-blank}
 
 表格、插图、公式、列表的前后空白很多是由于不良的文本结构引起的，比如太短篇幅的正文，接连几级标题之间没有正文内容，甚至标题之间只有插图和表格等浮动体而没有任何说明的正文，这些都是不好的行文习惯，应杜绝这样的行文方式。此外，一些不良的代码写法也会引入较大的空白，如：
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{center}
   \begin{figure}
   ...
   \end{figure}
 \end{center}
-\end{verbatim}
+\end{texinlist}
 
 或者
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{figure}
   \begin{center}
   \includegraphics{x.pdf}
   \caption{the title}
   \end{center}
 \end{figure}
-\end{verbatim}
+\end{texinlist}
 
 而应该采用的方式是：
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{figure}
 \centering
 \includegraphics{x.pdf}
 \caption{the title}
 \end{figure}
-\end{verbatim}
+\end{texinlist}
 
 这是因为 center 环境本身就是一个 list
 列表环境，其与上下文之间就有垂直间距，加上figure
 浮动体与正文之间的间距，插图与正文之间的间距自然就变大了。
 
 
-\faq{表格如何分页？}{}
+\faq{表格如何分页？}{tab-newpage}
 
 这个问题可见跨页长表格。
 
 
-\faq{表格怎样可以旋转90度？}{}
+\faq{表格怎样可以旋转90度？}{tab-90}
 
 希望旋转90度的表格多半是由于过宽而需要进行横排，这里一个方法是使用
 rotating 宏包，使用方法非常简单，用 sidewaytable 替代 table
@@ -388,40 +386,42 @@ rotating 宏包，使用方法非常简单，用 sidewaytable 替代 table
 环境，进入横排状态，在其中使用相应的环境即可，这种方法可以实现跨页表格，但进入和退出landscape环境时总是会新开一页再进行排版，因此，在其之前的页面可能会留有大量的空白。两种方法各有利弊，可以根据实际需要进行选择。
 
 
-\faq{如何使用图表目录？}{}
+\faq{如何使用图表目录？}{tab-toc}
 
-\cs{listoftables}
-\cs{listoffigures}
+\begin{itemize}
+  \item \cs{listoftables}
+  \item \cs{listoffigures}
+\end{itemize}
 
 
-\faq{图表如何使用双语标题}{}
+\faq{图表如何使用双语标题}{tab-fig-two-lang}
 
 使用 bicaption 宏包或 ccaption 宏包。
 
 
-\faq{如何产生表格的竖线，在模板的三线表中产生竖线？}{}
+\faq{如何产生表格的竖线，在模板的三线表中产生竖线？}{tab-vertical-line}
 
 竖线的产生与否与表格的环境无关，在定义表格列时以 \textbar{}
 分隔列格式即可产生竖线。
-\begin{verbatim}
+\begin{texinlist}
 \begin{tabular}{l|c|r|}
   ...
 \end{tabular}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{如何在长表格\{longtable\}环境中设置文字自动换行或者固定列宽？}{}
+% \faq{如何在长表格\{longtable\}环境中设置文字自动换行或者固定列宽？}{}
 
 
-\faq{如何实现表格的奇偶行不同的颜色，长表格也要适用。}{}
+% \faq{如何实现表格的奇偶行不同的颜色，长表格也要适用。}{}
 
 
-\faq{如何使表格单元的左对齐？}{}
+\faq{如何使表格单元的左对齐？}{table-left}
 
 不知道这个问题是啥意思。。。
 难道不是在列格式中选择lcr分别表示左中右么？
 
-\faq{表格中如何划对角线？}{}
+\faq{表格中如何划对角线？}{table-diag}
 
 有宏包 slashbox 或 diagbox 可以制作表格对角线，不过slashbox
 由于没有明确的自由许可信息，已经不为 TeXLive
