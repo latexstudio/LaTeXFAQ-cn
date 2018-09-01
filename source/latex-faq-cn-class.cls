@@ -186,7 +186,7 @@
 % 中文版式设置
 \ctexset
   {
-    punct = kaiming,
+    % punct = kaiming,
     section / number = \Alph { section },
     section / format = \Large\normalfont\sffamily\centering
   }
@@ -246,11 +246,16 @@
 \cs_new_protected:Npn \faqcn_faq:nn #1#2
   {
     \tl_set:Nn \l__faqcn_faq_title_tl { \textbf { \int_use:N \g_faqcn_count_int \quad #1 } }
-    \tl_set:Nn \l__faqcn_faq_name_tl  { faq: #2 }
+    \tl_if_empty:nTF {#2}
+      {
+        \tl_set:Nn \l__faqcn_faq_name_tl  { faq: no-tag- \int_use:N \g_faqcn_no_tag_count_int }
+        \int_gincr:N \g_faqcn_no_tag_count_int
+      }
+      { \tl_set:Nn \l__faqcn_faq_name_tl  { faq: #2 } }
     % 问题之间留空
     \skip_vertical:n { 2 ex }
     % 排版标题，以及交叉引用
-    \hypertarget { faq @ #2 } { \tl_use:N \l__faqcn_faq_title_tl }
+    \hypertarget {  \tl_use:N \l__faqcn_faq_name_tl } { \tl_use:N \l__faqcn_faq_title_tl }
     \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
     % PDF 书签
     \pdfbookmark [ 2 ]
@@ -262,7 +267,9 @@
 \tl_new:N \l__faqcn_faq_title_tl
 \tl_new:N \l__faqcn_faq_name_tl
 \int_new:N \g_faqcn_count_int
-\int_set_eq:NN \g_faqcn_count_int \c_one
+\int_new:N \g_faqcn_no_tag_count_int
+\int_set_eq:NN \g_faqcn_count_int        \c_one
+\int_set_eq:NN \g_faqcn_no_tag_count_int \c_one
 
 \zref@newlist { faqcn }
 \zref@newprop { faq@num } { \int_use:N \g_faqcn_count_int }
