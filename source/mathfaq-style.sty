@@ -6,7 +6,7 @@
 %
 
 %\RequirePackage{amssymb}
-\RequirePackage{xspace}
+% \RequirePackage{xspace}
 \RequirePackage{fancyhdr}
 %\RequirePackage{tipa}
 %\RequirePackage{metalogo}
@@ -22,7 +22,7 @@
 \RequirePackage[titletoc]{appendix}
 \RequirePackage{graphicx}
 \RequirePackage{multirow}
-\RequirePackage{texnames}
+% \RequirePackage{texnames}
 \RequirePackage{etoolbox}
 %\RequirePackage[thmmarks,amsmath]{ntheorem}
 
@@ -170,22 +170,22 @@
 \makebox[\halfpagewidth]{\hrulefill}%
 }
 
-\DeclareRobustCommand{\AllTeX}{(L%
-{\setbox0\hbox{T}%
-	\setbox\@tempboxa\hbox{$\m@th$%
-		\csname S@\f@size\endcsname
-		\fontsize\sf@size\z@
-		\math@fontsfalse\selectfont
-		A}%
-	\@tempdima\ht0
-	\advance\@tempdima-\ht\@tempboxa
-	\@tempdima\strip@pt\fontdimen1\font\@tempdima
-	\advance\@tempdima-.36em
-	\kern\@tempdima
-	\vbox to\ht0{\box\@tempboxa
-		\vss}%
-}\kern-.075em)%
-\kern-.075em\TeX}
+% \DeclareRobustCommand{\AllTeX}{(L%
+% {\setbox0\hbox{T}%
+% 	\setbox\@tempboxa\hbox{$\m@th$%
+% 		\csname S@\f@size\endcsname
+% 		\fontsize\sf@size\z@
+% 		\math@fontsfalse\selectfont
+% 		A}%
+% 	\@tempdima\ht0
+% 	\advance\@tempdima-\ht\@tempboxa
+% 	\@tempdima\strip@pt\fontdimen1\font\@tempdima
+% 	\advance\@tempdima-.36em
+% 	\kern\@tempdima
+% 	\vbox to\ht0{\box\@tempboxa
+% 		\vss}%
+% }\kern-.075em)%
+% \kern-.075em\TeX}
 
 \newenvironment{latexcode}
 {\VerbatimEnvironment\par

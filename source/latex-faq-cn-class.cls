@@ -40,6 +40,7 @@
   { \LoadClass { ctexart } }
 
 % 载入相关宏包
+% \PassOptionsToPackage { table } { xcolor }
 \RequirePackage
   {
     amsmath,
@@ -50,12 +51,14 @@
     geometry,
     graphicx,
     hologo,
+    listings,
+    longtable,
     tabularx,
     unicode-math,
+    xcolor,
     xurl,
     zref-abspage,
-    hyperref,
-    longtable
+    hyperref
   }
 
 % 西文字体
@@ -169,9 +172,19 @@
 % 其他字体
 \bool_if:NTF \g_faqcn_use_customized_fonts_bool
   {
-    \newfontfamily \FETAMONT { ffm }
+    % 用于代码环境
+    \newfontfamily \CodeFont { RobotoMono }
       [
-        % 只选择 10 号
+        Extension      = .ttf,
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
+      ]
+    % 用于 METAFONT logo 等
+    % 只选择 10 号
+    \newfontfamily \LogoFont { ffm }
+      [
         Extension      = .otf,
         UprightFont    = * r10,
         BoldFont       = * b10,
@@ -180,7 +193,8 @@
       ]
   }
   {
-    \cs_set_eq:NN \FETAMONT \sffamily
+    \cs_set_eq:NN \CodeFont \ttfamily
+    \cs_set_eq:NN \LogoFont \sffamily
   }
 
 % 中文版式设置
@@ -188,7 +202,7 @@
   {
     % punct = kaiming,
     section / number = \Alph { section },
-    section / format = \Large\normalfont\sffamily\centering
+    section / format = \Large \normalfont \sffamily \centering
   }
 
 % 列表环境
@@ -196,7 +210,9 @@
   {
     itemsep       = 0 pt,
     parsep        = 0 pt,
-    listparindent = \parindent
+    listparindent = \parindent,
+    leftmargin    = \parindent,
+    itemindent    = 0 pt
   }
 
 % 页面尺寸
@@ -302,7 +318,7 @@
     \cs_set_protected:cpn {#1}
       {
         \group_begin:
-          \FETAMONT #1
+          \LogoFont #1
         \group_end:
       }
   }
@@ -318,6 +334,7 @@
 \cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
 
 % 宏包与文档类
+% TODO
 \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
 \DeclareRobustCommand\meta[1]{%
      \ensuremath\langle
@@ -401,9 +418,124 @@
 \newcount\DT@treenum \DT@treenum=0
 \newif\ifDT@split
 
-\RequirePackage[table,dvipsnames]{xcolor}
-\RequirePackage{listings}
+
+% TODO
+% \RequirePackage[table,dvipsnames]{xcolor}
+% \RequirePackage{listings}
+
+\cs_set:Npn \htmlcolor #1
+  { \color [ HTML ] {#1} }
+
+\lstdefinelanguage { JSON }
+  {
+    keywords    = { true, false, null },
+    sensitive   = false,
+    comment     = [l] { // },
+    morecomment = [s] { /* } { */ },
+    morestring  = [b] ',
+    morestring  = [b] "
+  }
+
+\lstdefinestyle { style@base }
+  {
+    extendedchars   = true,
+    gobble          = 1,
+    % lineskip        = 2 pt,
+    frame           = l,
+    framerule       = 1 pt,
+    framesep        = 0 pt,
+    escapeinside    = {(*}{*)},
+    basicstyle      =     \htmlcolor { 657B83 } \small \CodeFont \CJKfamily { tt },
+    keywordstyle    = [1] \htmlcolor { 859900 },
+    keywordstyle    = [2] \htmlcolor { 073642 } \bfseries,
+    commentstyle    =     \htmlcolor { 93A1A1 } \itshape,
+    stringstyle     =     \htmlcolor { 2AA198 },
+    backgroundcolor =     \htmlcolor { FDF6E3 },
+  }
+
+% tex
+% lua
+% sh
+% bat
+% py
+
+\lstdefinestyle { style@tex }
+  {
+    style       = style@base,
+    rulecolor   = \htmlcolor { 859900 },
+    language    = [LaTeX] TeX,
+    alsoletter  = { * },
+    texcsstyle  = * [1] \htmlcolor { 268BD2 },
+    texcsstyle  = * [2] \htmlcolor { 859900 },
+    texcsstyle  = * [3] \htmlcolor { D30102 },
+    texcsstyle  = * [4] \htmlcolor { 073642 } \bfseries,
+    deletetexcs =
+      { begin, end, documentclass, usepackage, def, fi, if, let, newcommand, renewcommand },
+    moretexcs   = [1] { part, chapter, section, subsection, subsubsection, paragraph, subparagraph },
+    moretexcs   = [2] { begin, end },
+    moretexcs   = [3] { documentclass, usepackage },
+    moretexcs   = [4] { def, fi, if, let, newcommand, renewcommand },
+    literate    =
+      * { \\!  } { { \textcolor {red} { \textbackslash!              } } } 2
+        { \\,  } { { \textcolor {red} { \textbackslash,              } } } 2
+        { \\\\ } { { \textcolor {red} { \textbackslash\textbackslash } } } 2,
+  }
+\lstdefinestyle { style@lua }
+  {
+    style        = style@base,
+    rulecolor    = \htmlcolor { 073642 },
+    language     = [5.2] Lua,
+  }
+\lstdefinestyle { style@sh }
+  {
+    style        = style@base,
+    rulecolor    = \htmlcolor { D30102 },
+    language     = sh,
+    alsoletter   = { - / \$ },
+    keywords     = [1] { fi, if, then },
+    keywords     = [2] { cd, export, ls, rm, rmdir }
+  }
+\lstdefinestyle { style@bat }
+  {
+    style        = style@base,
+    rulecolor    = \htmlcolor { D33682 },
+    language     = command.com,
+  }
+\lstdefinestyle { style@py }
+  {
+    style        = style@base,
+    rulecolor    = \htmlcolor { 268BD2 },
+    language     = Python,
+  }
+\lstdefinestyle { style@json }
+  {
+    style        = style@base,
+    rulecolor    = \htmlcolor { 268BD2 },
+    language     = JSON,
+  }
+
+% 连字符 - 原本以数学模式输出，此处改为普通文本。
+% 见 https://tex.stackexchange.com/q/33185/136923。
+\lst@CCPutMacro
+  \lst@ProcessOther { "2D } { \lst@ttfamily { -{} } { -{} } }
+  \@empty \z@ \@empty
+
+\clist_map_inline:nn
+  { tex, sh, bat, py, lua, json }
+  {
+    \lstnewenvironment { #1 code } [1] [ ]
+      { \lstset { style = style @ #1, ##1 } }
+      { }
+  }
+
+
+
+
+
+
 \definecolor{gbblue}{RGB}{23,74,117}
+
+
 \lstnewenvironment{texlist}{%
     \lstset{% general command to set parameter(s)
     %name=#1,
@@ -467,11 +599,7 @@
     }
 }{}
 
-
-\setlist[enumerate]{
-    itemsep       = 0 pt,
-    parsep        = 0 pt,
-    listparindent = \parindent,
-    leftmargin=\parindent,
-    itemindent=0pt
-    }
+\lst@AddToHook{SelectCharTable}
+    {\ifx\lst@literate\@empty\else
+         \expandafter\lst@Literate\lst@literate{}\relax\z@
+     \fi}

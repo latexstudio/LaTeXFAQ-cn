@@ -13,6 +13,7 @@
         "command": "latexmk",
         "args": [
             "-xelatex",
+            "-shell-escape",
             "-synctex=1",
             "-interaction=nonstopmode",
             "-halt-on-error",

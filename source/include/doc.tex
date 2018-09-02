@@ -185,12 +185,24 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
   \item 插入Unicode符号：可以从各种Unicode码表或字符映射表中找到所需要的符号，查出其编码，加载支持该码位的字体，
   直接在编辑器中输入该符号即可。如果符号在源代码编辑器中无法正常显示，还可以使用\LaTeX{}的 |symbol| 命令输入。
   |symbol| 命令的具体用法是
-  \begin{verbatim}
-    \symbol{<十进制编码>}
-    \symbol{"<十六进制编码>}
-    \symbol{'<八进制编码>}
-    \symbol{`<字符形式（特殊符号须加转义符 \ ）>}
-  \end{verbatim}
+\begin{texcode}
+  \symbol{<十进制编码>}
+  \symbol{"<十六进制编码>}
+  \symbol{'<八进制编码>}
+  \symbol{`<字符形式（特殊符号须加转义符 \ ）>}
+  % hello 你好
+\end{texcode}
+
+\begin{texcode}
+  \[
+  P_{r,j}=\left\{\begin{array}{ll}
+    0 & \text{$r-j$ 为奇数},\\
+    r!\,(-1)^{(r-j)/2} &
+    \text{$r-j$ 为偶数}.
+  \end{array}\right.
+  \]
+\end{texcode}
+
 \end{itemize}
 
 如果使用的TeXstudio软件想要查找某个符号，那么还可以拓展以下2个便捷的方式：
@@ -226,18 +238,18 @@ secnumdepth 计数器在 article 文档类里默认为3（subsubsection一级）
 
 下面给出一个具体的例子：
 
-\begin{verbatim}
+\begin{texcode}
   \documentclass{book}
   \setcounter{secnumdepth}{4}
   \begin{document}
-    \part{part}
-    \chapter{chapter}
-    \section{section}
-      \subsection{subsection}
-      \subsubsection{subsubsection}
-        \paragraph{paragraph}
+    \part{Part}
+    \chapter{Chapter}
+    \section{Section}
+    \subsection{Subsection}
+    \subsubsection{Subsubsection}
+    \paragraph{Paragraph}
   \end{document}
-\end{verbatim}
+\end{texcode}
 
 控制目录页排版显示深度可以使用 |\setcounter{tocdepth}{2}|，此命令表示显示到三级标题。关于此问题的具体介绍可以参考
 \href{https://blog.csdn.net/RobertChenGuangzhi/article/details/50480856}{该网页}。

@@ -17,6 +17,31 @@
 \section{安装与配置问题}
 \label{sec:install}
 
+% TEST
+% \begin{pycode}
+%   def Ids2Words(ids_list, vocab):
+%     """Get words from ids.
+
+%     Args:
+%       ids_list: list of int32
+%       vocab: TextVocabulary object
+
+%     Returns:
+%       List of words corresponding to ids.
+%     """
+%     assert isinstance(ids_list, list), '%s  is not a list' % ids_list
+%     return [vocab.IdToWord(i) for i in ids_list]
+% \end{pycode}
+
+% \begin{luacode}
+%   function rm(file)
+%       if os.type == "windows" then
+%           return os.execute("DEL /Q " .. file)
+%       else
+%           return os.execute("rm -f " .. file)
+%       end
+%   end
+% \end{luacode}
 
 %\faq{如何安装 \LaTeX{}}{install-latex}
 %
@@ -122,14 +147,14 @@ path=%path%;C:\Windows\system32
 Windows 用户一般不必担忧这个问题。因为 \TeXLive{} 已经自动将环境变量写入，用户不必自己手动修改。
 
 Linux 用户需要手动配置环境变量。例如，将
-\begin{verbatim}
-TEXDIR=/usr/local/texlive/2018
-if [ -d $TEXDIR ]; then
-  export PATH="$TEXDIR/bin/x86_64-linux:$PATH";
-  export MANPATH="$TEXDIR/texmf-dist/doc/man:$MANPATH";
-  export INFOPATH="$TEXDIR/texmf-dist/doc/info:$INFOPATH";
-fi;
-\end{verbatim}
+\begin{shcode}
+  TEXDIR=/usr/local/texlive/2018
+  if [ -d $TEXDIR ]; then
+    export PATH="$TEXDIR/bin/x86_64-linux:$PATH";
+    export MANPATH="$TEXDIR/texmf-dist/doc/man:$MANPATH";
+    export INFOPATH="$TEXDIR/texmf-dist/doc/info:$INFOPATH";
+  fi;
+\end{shcode}
 写入 \file{~/.profile}。注意本例中的 2018 可以根据需要修改。
 例如部分用户还在使用 \TeXLive{} 2017，就可将 2018 改为 2017 等等。
 
@@ -148,12 +173,11 @@ tex -v
 Windows 用户请找卸载批命令文件，如 |C:\texlive\2018\tlpkg\installer\uninst.bat|
 
 Linux 用户请直接删除文件夹，如执行
-\begin{verbatim}
-rm -rf /usr/local/texlive/2018
-rm -rf ~/.texlive2018
-\end{verbatim}
+\begin{shcode}
+  rm -rf /usr/local/texlive/2018
+  rm -rf ~/.texlive2018
+\end{shcode}
 并且手动清理环境变量。
-
 
 \faq{\TeXLive{} 如何升级宏包？}{texlive-update}
 
@@ -258,46 +282,46 @@ tlmgr repository set path[#tag] [path[#tag] ...]
 \href{http://htharoldht.com/texlive-package-automatically-upgrades-every-month/}{这里是该脚本的说明}。
 * 脚本源码
 
-\begin{verbatim}
-@echo off
+\begin{batcode}
+  @echo off
 
-if exist "C:\Windows\Tasks\AutoTeXLivePackageUpdaterMonthly.bat" goto run
+  if exist "C:\Windows\Tasks\AutoTeXLivePackageUpdaterMonthly.bat" goto run
 
-move /y %0 "C:\Windows\Tasks"
-schtasks /delete /tn "TeXLivePackage Updater Task" /f
-schtasks /create /tn "TeXLivePackage Updater Task" /sc monthly /d /st 15:00:00 /tr "C:\Windows\Tasks\AutoTeXLivePackageUpdaterMonthly.bat"
+  move /y %0 "C:\Windows\Tasks"
+  schtasks /delete /tn "TeXLivePackage Updater Task" /f
+  schtasks /create /tn "TeXLivePackage Updater Task" /sc monthly /d /st 15:00:00 /tr "C:\Windows\Tasks\AutoTeXLivePackageUpdaterMonthly.bat"
 
-:run
-echo ============================开始============================
-echo Writen By 有龙则灵_USTB
+  :run
+  echo ============================开始============================
+  echo Writen By 有龙则灵_USTB
 
-echo 是否更新TeXLive Package？
-set Choice=
-set /p Choice=请输入：y/n?
-IF "%Choice%"=="y" (goto ya) else (goto n)
+  echo 是否更新TeXLive Package？
+  set Choice=
+  set /p Choice=请输入：y/n?
+  IF "%Choice%"=="y" (goto ya) else (goto n)
 
-:ya
-call tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
-echo ============================更新tlmgr============================
-echo Writen By 有龙则灵_USTB
-call tlmgr update --self
-echo ============================显示待更新的宏包以及可自动安装的项============================
-call tlmgr update --list
-echo Writen By 有龙则灵_USTB
+  :ya
+  call tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+  echo ============================更新tlmgr============================
+  echo Writen By 有龙则灵_USTB
+  call tlmgr update --self
+  echo ============================显示待更新的宏包以及可自动安装的项============================
+  call tlmgr update --list
+  echo Writen By 有龙则灵_USTB
 
-echo 是否更新TeXLive Package？
-set Choice=
-set /p Choice=请输入：y/n?
-IF "%Choice%"=="y" (goto yb) else (goto n)
+  echo 是否更新TeXLive Package？
+  set Choice=
+  set /p Choice=请输入：y/n?
+  IF "%Choice%"=="y" (goto yb) else (goto n)
 
-:yb
-echo ============================更新所有宏包============================
-call tlmgr update --all
-echo ============================结束============================
-echo Writen By 有龙则灵_USTB
-pause
-:n
-\end{verbatim}
+  :yb
+  echo ============================更新所有宏包============================
+  call tlmgr update --all
+  echo ============================结束============================
+  echo Writen By 有龙则灵_USTB
+  pause
+  :n
+\end{batcode}
 
 \begin{itemize}
 
@@ -422,11 +446,11 @@ options $\to$ configure texstudio $\to$ shortcuts
 \begin{itemize}
   \item
     手写编译命令：
-\begin{verbatim}
-{
-    "shell_cmd": "xelatex -synctex=1 \"${file}\" && evince \"$file_base_name.pdf\"",
-}
-\end{verbatim}
+\begin{jsoncode}
+  {
+      "shell_cmd": "xelatex -synctex=1 \"${file}\" && evince \"$file_base_name.pdf\"",
+  }
+\end{jsoncode}
     说明： 添加 |-synctex=1| 参数生成 \file{synctex.gz} 文件，以支持正反向搜索。
     |evince "$file_base_name.pdf"| 用 Evince 文档查看器打开生成的 PDF 文档，
     或者你可以换成其它 PDF 查看器。
