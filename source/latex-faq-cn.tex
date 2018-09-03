@@ -14,8 +14,11 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 %
 
-\documentclass[use-customized-fonts=false]{latex-faq-cn-class}
-\usepackage{caption}
+\def\faqTitle{\LaTeX{} 常见问题}
+\def\faqAuthor{\LaTeX{} Studio 团队}
+\def\faqVersion{v0.1}
+
+\documentclass{latex-faq-cn-class}
 
 % 如果遇到字体问题，可以选择不使用自定义字体：
 % \documentclass[use-customized-fonts=false]{latex-faq-cn-class}
@@ -25,25 +28,18 @@
 % \def\@captype{figure}
 % \makeatother
 
-% example-style1使用了lshort中示例样式
-%\usepackage{example-style1}
-
-% example-style2使用了mathfaq中示例样式
-\usepackage{example-style2}
-
-% mathfaq-style使用了mathfaq中一些设置
-\usepackage{mathfaq-style}
-
-% math-1包含了math部分需要在导言区设置的内容
-\input{include/math-1}
-
-\title{\LaTeX{} 常见问题}
-\author{\LaTeX{} Studio 团队}
-
+% % example-style1使用了lshort中示例样式
+% %\usepackage{example-style1}
+% % example-style2使用了mathfaq中示例样式
+% \usepackage{example-style2}
+% % mathfaq-style使用了mathfaq中一些设置
+% \usepackage{mathfaq-style}
+% % math-1包含了math部分需要在导言区设置的内容
+% \input{include/math-1}
 
 \begin{document}
 
-\maketitle
+% \tableofcontents
 
 % \def\FONTTEST{字体测试骨头 ABC fi fl\ }
 % \FONTTEST \textit{\FONTTEST} \textbf{\FONTTEST \textit{\FONTTEST}}          \par
@@ -51,18 +47,18 @@
 % \texttt{\FONTTEST \textit{\FONTTEST} \textbf{\FONTTEST \textit{\FONTTEST}}}
 
 \input{include/starter}
-\input{include/basic}
-\input{include/install}
+% \input{include/basic}
+% \input{include/install}
 % \input{include/doc}
- \input{include/math}
- \input{include/bib}
+% \input{include/math}
+% \input{include/bib}
 % \input{include/font}
- \input{include/figure}
- \input{include/table}
+% \input{include/figure}
+% \input{include/table}
 % \input{include/beamer}
 % \input{include/graphics}
 % \input{include/dev}
 % \input{include/error}
-% \input{include/usage.tex}
+% \input{include/usage}
 
 \end{document}

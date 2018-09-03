@@ -41,13 +41,16 @@
 
 % 载入相关宏包
 % \PassOptionsToPackage { table } { xcolor }
+\PassOptionsToPackage { hyphens } { url }
 \RequirePackage
   {
     amsmath,
+    caption,
     diagbox,
     dirtree,
     enumitem,
     fancyvrb,
+    fontawesome,
     geometry,
     graphicx,
     hologo,
@@ -210,6 +213,7 @@
   {
     itemsep       = 0 pt,
     parsep        = 0 pt,
+    topsep        = 0 pt,
     listparindent = \parindent,
     leftmargin    = \parindent,
     itemindent    = 0 pt
@@ -221,14 +225,29 @@
     paper      = a4paper,
     vmargin    = 2.54 cm,
     hmargin    = 3.18 cm,
-    headheight = 15 pt
+    headheight = 15 pt,
+    % showframe
+  }
+
+% 浮动体标题样式
+\captionsetup [ figure ]
+  {
+    font     = small,
+    labelsep = quad
+  }
+\captionsetup [ table  ]
+  {
+    font     = { small, sf },
+    labelsep = quad
   }
 
 % hyperref 有关设置
 \hypersetup
   {
     bookmarksnumbered = true,
-    colorlinks        = true
+    colorlinks        = true,
+    pdftitle          = \faqTitle,
+    pdfauthor         = \faqAuthor
   }
 
 % 脚注
@@ -271,7 +290,7 @@
     % 问题之间留空
     \skip_vertical:n { 2 ex }
     % 排版标题，以及交叉引用
-    \hypertarget {  \tl_use:N \l__faqcn_faq_name_tl } { \tl_use:N \l__faqcn_faq_title_tl }
+    \hypertarget {  \tl_use:N \l__faqcn_faq_name_tl } { \noindent \tl_use:N \l__faqcn_faq_title_tl }
     \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
     % PDF 书签
     \pdfbookmark [ 2 ]
@@ -299,8 +318,24 @@
 
 % 问答环境参考文献
 \NewDocumentEnvironment { reference } { }
-  { \textbf { 参考： } \enumerate [ topsep = 0pt ] }
+  {
+    \skip_vertical:n { 2 ex }
+    \noindent \textsf{ 参考文献 } \marginpar { \raggedleft \faBook }
+    \enumerate [ topsep = 0pt ]
+    % \ignorespaces
+  }
   { \endenumerate }
+
+\NewDocumentEnvironment { note } { }
+  {
+    \skip_vertical:n { 2 ex }
+    \noindent \textsf{ 注意 } \marginpar { \raggedleft \faWarning }
+    \par
+    % \ignorespaces
+  }
+  { }
+
+\reversemarginpar
 
 % TeX logo 命令
 \clist_map_inline:nn
@@ -360,6 +395,9 @@
 \DeclareRobustCommand \pkg {\textsf}
 \DeclareRobustCommand \cls {\textsf}
 
+% 强调
+\cs_set_eq:NN \strong \textsf
+
 % 英文书名，应该用意大利体
 \cs_new_eq:NN \book \emph
 
@@ -418,14 +456,9 @@
 \newcount\DT@treenum \DT@treenum=0
 \newif\ifDT@split
 
-
-% TODO
-% \RequirePackage[table,dvipsnames]{xcolor}
-% \RequirePackage{listings}
-
+% 代码高亮环境
 \cs_set:Npn \htmlcolor #1
   { \color [ HTML ] {#1} }
-
 \lstdefinelanguage { JSON }
   {
     keywords    = { true, false, null },
@@ -435,12 +468,10 @@
     morestring  = [b] ',
     morestring  = [b] "
   }
-
 \lstdefinestyle { style@base }
   {
     extendedchars   = true,
     gobble          = 1,
-    % lineskip        = 2 pt,
     frame           = l,
     framerule       = 1 pt,
     framesep        = 0 pt,
@@ -452,13 +483,6 @@
     stringstyle     =     \htmlcolor { 2AA198 },
     backgroundcolor =     \htmlcolor { FDF6E3 },
   }
-
-% tex
-% lua
-% sh
-% bat
-% py
-
 \lstdefinestyle { style@tex }
   {
     style       = style@base,
@@ -475,10 +499,10 @@
     moretexcs   = [2] { begin, end },
     moretexcs   = [3] { documentclass, usepackage },
     moretexcs   = [4] { def, fi, if, let, newcommand, renewcommand },
-    literate    =
-      * { \\!  } { { \textcolor {red} { \textbackslash!              } } } 2
-        { \\,  } { { \textcolor {red} { \textbackslash,              } } } 2
-        { \\\\ } { { \textcolor {red} { \textbackslash\textbackslash } } } 2,
+    % literate    =
+    %   * { \\!  } { { \textcolor {red} { \textbackslash!              } } } 2
+    %     { \\,  } { { \textcolor {red} { \textbackslash,              } } } 2
+    %     { \\\\ } { { \textcolor {red} { \textbackslash\textbackslash } } } 2,
   }
 \lstdefinestyle { style@lua }
   {
@@ -513,13 +537,17 @@
     rulecolor    = \htmlcolor { 268BD2 },
     language     = JSON,
   }
-
 % 连字符 - 原本以数学模式输出，此处改为普通文本。
 % 见 https://tex.stackexchange.com/q/33185/136923。
 \lst@CCPutMacro
   \lst@ProcessOther { "2D } { \lst@ttfamily { -{} } { -{} } }
   \@empty \z@ \@empty
-
+% 高亮 \\、\! 等
+% 见 https://tex.stackexchange.com/q/267481/136923。
+% \lst@AddToHook{SelectCharTable}
+%   {\ifx\lst@literate\@empty\else
+%        \expandafter\lst@Literate\lst@literate{}\relax\z@
+%    \fi}
 \clist_map_inline:nn
   { tex, sh, bat, py, lua, json }
   {
@@ -528,78 +556,27 @@
       { }
   }
 
-
-
-
-
-
-\definecolor{gbblue}{RGB}{23,74,117}
-
-
-\lstnewenvironment{texlist}{%
-    \lstset{% general command to set parameter(s)
-    %name=#1,
-    %label=#2,
-    %caption=\lstname,
-    xleftmargin=3em,%\parindent
-    linewidth=\linewidth,
-    breaklines=true,
-    %showspaces=true,
-    extendedchars=false,
-    columns=fullflexible,%flexible,
-    %aboveskip=2pt,
-    boxpos=t,
-    rulesep=0pt,
-    frame=tb,
-    framesep=0pt,
-    rulecolor=\color{gbblue},
-    fontadjust=true,
-    language=[LaTeX]TeX,
-    %backgroundcolor=\color{yellow}, %背景颜色
-    numbers=left,
-    numberstyle=\tiny\color{gbblue},
-    basicstyle=\footnotesize\ttfamily, % print whole listing small
-    keywordstyle=\color{blue}\bfseries,%\underbar,
-    % underlined bold black keywords
-    identifierstyle=, % nothing happens
-    commentstyle=\color{green!50!black}, % white comments
-    stringstyle=\ttfamily, % typewriter type for strings
-    showstringspaces=false}% no special string spaces
-}{}
-
-\lstnewenvironment{texinlist}{%
-    \lstset{% general command to set parameter(s)
-        %name=#1,
-        %label=#2,
-        %caption=\lstname,
-        %xleftmargin=\parindent,
-        linewidth=\linewidth,
-        breaklines=true,
-        %showspaces=true,
-        extendedchars=false,
-        columns=fullflexible,%flexible,
-        %aboveskip=2pt,
-        boxpos=t,
-        rulesep=0pt,
-        frame=tb,
-        framesep=0pt,
-        rulecolor=\color{gbblue},
-        fontadjust=true,
-        language=[LaTeX]TeX,
-        %backgroundcolor=\color{yellow}, %背景颜色
-        numbers=left,
-        numberstyle=\tiny\color{gbblue},
-        basicstyle=\footnotesize\ttfamily, % print whole listing small
-        keywordstyle=\color{blue}\bfseries,%\underbar,
-        % underlined bold black keywords
-        identifierstyle=, % nothing happens
-        commentstyle=\color{green!50!black}, % white comments
-        stringstyle=\ttfamily, % typewriter type for strings
-        showstringspaces=false% no special string spaces
-    }
-}{}
-
-\lst@AddToHook{SelectCharTable}
-    {\ifx\lst@literate\@empty\else
-         \expandafter\lst@Literate\lst@literate{}\relax\z@
-     \fi}
+% 标题页
+\AtBeginDocument
+  {
+    \begin{titlepage}
+      \hbox:n { } \vfil
+      \skip_vertical:n { 60 pt }
+      \begin{center}
+        \group_begin:
+          \Huge \sffamily \faqTitle \quad \faqVersion \par
+        \group_end:
+        \skip_vertical:n { 3 em }
+        \group_begin:
+          \Large \faqAuthor \par
+        \group_end:
+        \skip_vertical:n { 1.5 em }
+        \group_begin:
+          \Large \@date \par
+        \group_end:
+        \vfill
+        \includegraphics [ width = 10 cm] { images/hummingbird.pdf }
+        \vfill
+      \end{center}
+    \end{titlepage}
+  }

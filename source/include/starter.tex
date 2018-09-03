@@ -27,8 +27,11 @@
 通常来说，我们建议您至少通过三个月的时间来入门 \LaTeX{}，并在之后的工作、学习中不断深入理解、
 积累经验。
 
-如果确有必要在短时间内掌握 \LaTeX{} 的使用方法，请联系靠谱且有经验的人。注：很多“学长”、“老师”都是
-不靠谱的，所以这一点实际上很难办到。
+如果确有必要在短时间内掌握 \LaTeX{} 的使用方法，请联系靠谱且有经验的人。
+
+\begin{note}
+  很多“学长”、“老师”都是不靠谱的。
+\end{note}
 
 
 \faq{我是新手，学习 \LaTeX{} 应该怎么入门？}{get-started}
@@ -39,21 +42,18 @@
 即 \pkg{lshort}。此外，您还需要在电脑上安装一套发行版（见\faqref{install-latex}），或使用在线服务，
 如 \href{https://www.overleaf.com/}{Overleaf}、\href{https://www.sharelatex.com}{ShareLaTeX} 等。
 
-进一步的学习还需要阅读更多的书籍和文档，例如刘海洋《\LaTeX{} 入门》
-\footnote{如作者所言，“虽然书名是《入门》，不过其实我并非完全是按新手入门的节奏在写，除了第一章是
-  零基础入门，后面的内容编排并不完全是从基础到深入的顺序，而是按主题划分；实际内容上也包含一些比较
-  专门的东西”，这本书内容丰富、讲解深入，但对新手未必友好。而且需注意，关于中文处理的部分可能略显
-  过时。}。
-此外，善用搜索引擎
-\footnote{对于技术方面的问题，我们不很推荐百度。谷歌在大多数时候都可以获得更好的搜索结果；当然，
-  如果您身处国内，必应很可能是更好的选择。}
-也是必备技能。最后，我们强烈建议您提高英语水平，因为 \LaTeX{} 的相关材料，除了中文排版相关，几乎
-都是英文的。
+进一步的学习还需要阅读更多的书籍和文档，例如刘海洋《\LaTeX{} 入门》~\footnote{如作者所言，“虽然书名
+是《入门》，不过其实我并非完全是按新手入门的节奏在写，除了第一章是零基础入门，后面的内容编排并不
+完全是从基础到深入的顺序，而是按主题划分；实际内容上也包含一些比较专门的东西”，这本书内容丰富、
+讲解深入，但对新手未必友好。而且需注意，关于中文处理的部分可能略显过时。}。此外，善用
+搜索引擎~\footnote{对于技术方面的问题，我们不很推荐百度。谷歌在大多数时候都可以获得更好的搜索结果；
+当然，如果您身处国内，必应很可能是更好的选择。} 也是必备技能。最后，我们强烈建议您提高英语水平，
+因为 \LaTeX{} 的相关材料，除了中文排版相关，几乎都是英文的。
 
 \begin{reference}
   \item 刘海洋．自学 \LaTeX{} 可以读什么书入门？．
     \url{https://www.zhihu.com/question/26645810/answer/33515971}
-  \item milksea．新手请先读我．\url{http://bbs.ctex.org/forum.php?mod=viewthread&tid=48244}
+  \item 刘海洋．新手请先读我．\url{http://bbs.ctex.org/forum.php?mod=viewthread&tid=48244}
 \end{reference}
 
 
@@ -61,19 +61,39 @@
 
 如果您也有这一问题，首先需要澄清一些概念，见\faqref{tex-related-things}。简短来说，\LaTeX{} 本身是
 一种标记语言，而不是 Microsoft Word 一样现成的软件。因此，社区将相关的支持文件、可执行程序、文档等
-打包在了一起，形成了可供用户下载、安装的发行版（distribution）。一般而言，“安装 \LaTeX{}”指的就是
-安装发行版。
+打包在了一起，形成了可供用户下载、安装的\strong{发行版（distribution）}。一般而言，“安装 \LaTeX{}”
+指的就是安装发行版。
 
-目前，根据平台不同，可供使用的主流发行版有以下这些：
+目前，可供使用的主流发行版有以下这些：
 
 \begin{itemize}
-  \item \TeXLive{}，见\faqref{install-texlive}
-  \item \MiKTeX{}，见\faqref{install-miktex}
-  \item \MacTeX{}，适用于 macOS，见\faqref{install-mactex}
-  \item pro\TeX{}t，见\faqref{download-protext}
-  % TODO: 更多的发行版介绍
-  \item 【有待整理】
+  \item \TeXLive{}
+  \item \MacTeX{}，它实际上是 \TeXLive{} 的再次封装
+  \item \MiKTeX{}
 \end{itemize}
+% 见\faqref{install-texlive}
+% \item \MiKTeX{}，见\faqref{install-miktex}
+% \item \MacTeX{}，适用于 macOS，见\faqref{install-mactex}
+% \item pro\TeX{}t，见\faqref{download-protext}
+% % TODO: 更多的发行版介绍
+% \item 【有待整理】
+
+
+\faq{我应该在哪里编写 \LaTeX{} 文档？}{where-to-write-latex}
+
+\LaTeX{} 文档是纯文本文件，因此原则上可以在任意的\strong{文本编辑器}中编写。支持 \LaTeX{} 的常见
+编辑器有以下这些：
+
+\begin{itemize}
+  \item TeXworks、TeXstudio、Texpad、WinEdt 等，它们是专门为编写 \LaTeX{} 设计的；
+  \item Visual Studio Code、Sublime Text、Atom 等，它们是基于 Web 技术的现代编辑器，依靠插件支持
+    \LaTeX{} 语言；
+  \item Vim、Emacs，它们是短小精悍的编程利器，同样依靠插件支持。
+\end{itemize}
+
+\begin{note}
+  由于 Windows 系统中记事本（Notepad）的编码问题，请不要在其中编辑任何含有非 ASCII 字符的文件。
+\end{note}
 
 
 \faq{我的 \CTeX{} 为什么……}{why-ctex}
@@ -90,40 +110,36 @@
 \faq{那些含有 \TeX{}、\LaTeX{} 的都是什么东西？}{tex-related-things}
 
 \TeX{} 本身是由 Knuth 发明的一套排版系统，同时也指相应的排版语言（见\faqref{what-is-tex}）。
-Knuth 还设计了一个名为 \PlainTeX{} 的格式。所谓“\strong{格式}”，是指对原始 \TeX{} 命令的封装，是
+Knuth 还设计了一个名为 \PlainTeX{} 的格式。所谓\strong{格式}，是指对原始 \TeX{} 命令的封装，是
 一种更高层次的抽象。它可以让用户在一定程度上摆脱排版中的繁琐细节，从而专注于文章写作。\LaTeX{} 就是
 应用最为广泛的一种格式，它由 Leslie Lamport 发明，提供了 \TeX{} 的强大排版能力，但又足够易用，因此
 深得人们的认可。现代比较流行的格式除 \PlainTeX{} 与 \LaTeX{} 之外，还有 \ConTeXt{}。
 
-作为应用程序的 \TeX{} 也称之为“\strong{排版引擎}”。随着技术的发展，原始的 \TeX{} 程序逐渐不能满足
+作为应用程序的 \TeX{} 也称之为\strong{排版引擎}。随着技术的发展，原始的 \TeX{} 程序逐渐不能满足
 人们的需要。于是，新的引擎便被发明了出来，包括 \eTeX{}、\pdfTeX{}、\XeTeX{}、\LuaTeX{} 等。它们增加
 了许多新的功能，比如 PDF 生成、Unicode 支持、OpenType 支持等。
 
 \TeX{} 以及 \LaTeX{} 的使用涉及很多的应用程序；另一方面，社区又通过\strong{宏包}的形式引入了许多
-额外功能。为了方便安装与使用，\strong{\TeX{} 发行版}将程序、宏包以及相应的文档等打包在了一起，并以
-特定的结构（TDS，见\faqref{what-its-tds}）进行管理。常见的发行版有 \TeXLive{}
-（\faqref{install-texlive}）、\MiKTeX{}（\faqref{install-miktex}）、\MacTeX{}
-（\faqref{install-mactex}） 等。
+额外功能。正如\faqref{install-latex} 中所介绍的那样，为了方便安装与使用，\strong{\TeX{} 发行版}将
+程序、宏包以及相应的文档等打包在了一起，并以特定的结构（TDS，见\faqref{what-its-tds}）进行管理。
 
-
-排版引擎通常会与特定的格式组合起来，我们有时也简单地把它们叫做“编译器”。前面所介绍的的 \pdfTeX{}、
-\XeTeX{}、\LuaTeX{} 等默认都使用 \PlainTeX{} 格式，而使用 \LaTeX{} 的则相应地写为 \pdfLaTeX{}、
-\XeLaTeX{}、\LuaLaTeX{} 等。
+排版引擎通常会与特定的格式组合起来，我们有时也简单地把它们叫做\strong{编译器}。前面所介绍的
+\pdfTeX{}、\XeTeX{}、\LuaTeX{} 等默认都使用 \PlainTeX{} 格式，而使用 \LaTeX{} 格式的则相应地写为
+\pdfLaTeX{}、\XeLaTeX{}、\LuaLaTeX{} 等。
 
 在 \TeX{} 发行版中，实际上我们使用的都是一些可执行程序，具体见表~\ref{tab:engine-format-exe}。
 
 \begin{table}[htb]
-% TODO: 表格格式需要在 cls 中定义
   \caption{各类引擎、格式及相应的可执行程序（命令）}
   \label{tab:engine-format-exe}
   \centering
-  \begin{tabular}{*{5}{c}}
+  \begin{tabular}{*{5}{|c}|}
     \hline
-    格式 / 命令 / 引擎 & \TeX  & \pdfTeX              & \XeTeX    & \LuaTeX    \\
+    \diagbox{格式}{命令}{引擎} & \TeX & \pdfTeX & \XeTeX & \LuaTeX \\
     \hline
-    \PlainTeX          & |tex| & |pdftex|             & |xetex|   & |luatex|   \\
-    \LaTeX             & ---   & |latex| / |pdflatex| & |xelatex| & |lualatex| \\
-    \ConTeXt           & ---   & |texexec|            & TODO      & |context| \\
+    \PlainTeX & |tex| & |etex|  / |pdftex|   & |xetex|   & |luatex|   \\
+    \LaTeX    & ---   & |latex| / |pdflatex| & |xelatex| & |lualatex| \\
+    \ConTeXt  & ---   & |texexec|            & !TODO!    & |context|  \\
     \hline
   \end{tabular}
 \end{table}
@@ -136,3 +152,29 @@ Knuth 还设计了一个名为 \PlainTeX{} 的格式。所谓“\strong{格式}�
 
 如果您对 \LaTeX{} 已经比较熟悉，并且需要自定义样式乃至制作新的模板，此问题自然也就不适用了。本文
 之后的内容也许会对您有所帮助。
+
+
+\faq{\LaTeX{} 生成的是什么文件？}{latex-generated-file}
+
+现代 \TeX{} 引擎生成的都是 PDF 文件。在 Knuth 和 Lamport 的年代，PDF 还未被发明，因而传统上 \TeX{}
+以 DVI 文件~\footnote{全称为 Device independent file format，注意与 DVI 数字视频接口（Digital
+Visual Interface）区分。} 作为输出。曾经的一段时间里，PostScript（PS）格式也很流行，因而有 DVI
+转换到 PS 的程序；当 PDF 流行起来之后，又出现了 PS 到 PDF 的转换程序。不过目前，这种复杂的工具链
+都被淘汰了。
+
+
+\faq{我应该用什么模板？}{how-to-use-template}
+
+“模板”这个词往往带有歧义。我们说的模板，通常有以下几个意思：
+
+\begin{itemize}
+  \item 论文或者期刊文章的模板，如 \cls{thuthesis}、\cls{REVTeX} 等。它们已经定义好了样式，用户只
+    需要填写内容。有些甚至提供了比较完善的示例，可以直接在此基础上修改、编辑。
+  \item 表格模板、公式模板，这种并不很长的代码片段其实更应该叫做“示例”。我们鼓励新手学习、参考别人
+    已有的代码，但并不鼓励直接照抄。一方面无助于提高自己水平，另一方面别人的代码片段可能与其他部分
+    冲突，而且往往很难解决。
+  \item 也有人用模板指代宏包或者文档类，不过这属于滥用术语，与别人交流还是用“某某宏包”、“某某文档
+    类”比较合适。
+  \item \cls{beamer} 文档类与 \LaTeX3 中的 \pkg{xtemplate} 宏包提供了更为抽象的模板机制，但这并不
+    是给普通用户使用的。
+\end{itemize}
