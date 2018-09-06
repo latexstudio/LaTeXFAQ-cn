@@ -40,8 +40,8 @@
   { \LoadClass { ctexart } }
 
 % 载入相关宏包
-% \PassOptionsToPackage { table } { xcolor }
-\PassOptionsToPackage { hyphens } { url }
+\PassOptionsToPackage { table   } { xcolor }
+\PassOptionsToPackage { hyphens } { url    }
 \RequirePackage
   {
     amsmath,
@@ -575,8 +575,76 @@
           \Large \@date \par
         \group_end:
         \vfill
-        \includegraphics [ width = 10 cm] { images/hummingbird.pdf }
+        \includegraphics [ width = 10 cm] { ../images/hummingbird.pdf }
         \vfill
       \end{center}
     \end{titlepage}
   }
+
+% TODO
+\definecolor{gbblue}{RGB}{23,74,117}
+\lstnewenvironment{texlist}{%
+    \lstset{% general command to set parameter(s)
+    %name=#1,
+    %label=#2,
+    %caption=\lstname,
+    xleftmargin=3em,%\parindent
+    linewidth=\linewidth,
+    breaklines=true,
+    %showspaces=true,
+    extendedchars=false,
+    columns=fullflexible,%flexible,
+    %aboveskip=2pt,
+    boxpos=t,
+    rulesep=0pt,
+    frame=tb,
+    framesep=0pt,
+    rulecolor=\color{gbblue},
+    fontadjust=true,
+    language=[LaTeX]TeX,
+    %backgroundcolor=\color{yellow}, %背景颜色
+    numbers=left,
+    numberstyle=\tiny\color{gbblue},
+    basicstyle=\footnotesize\ttfamily, % print whole listing small
+    keywordstyle=\color{blue}\bfseries,%\underbar,
+    % underlined bold black keywords
+    identifierstyle=, % nothing happens
+    commentstyle=\color{green!50!black}, % white comments
+    stringstyle=\ttfamily, % typewriter type for strings
+    showstringspaces=false}% no special string spaces
+}{}
+\lstnewenvironment{texinlist}{%
+    \lstset{% general command to set parameter(s)
+        %name=#1,
+        %label=#2,
+        %caption=\lstname,
+        %xleftmargin=\parindent,
+        linewidth=\linewidth,
+        breaklines=true,
+        %showspaces=true,
+        extendedchars=false,
+        columns=fullflexible,%flexible,
+        %aboveskip=2pt,
+        boxpos=t,
+        rulesep=0pt,
+        frame=tb,
+        framesep=0pt,
+        rulecolor=\color{gbblue},
+        fontadjust=true,
+        language=[LaTeX]TeX,
+        %backgroundcolor=\color{yellow}, %背景颜色
+        numbers=left,
+        numberstyle=\tiny\color{gbblue},
+        basicstyle=\footnotesize\ttfamily, % print whole listing small
+        keywordstyle=\color{blue}\bfseries,%\underbar,
+        % underlined bold black keywords
+        identifierstyle=, % nothing happens
+        commentstyle=\color{green!50!black}, % white comments
+        stringstyle=\ttfamily, % typewriter type for strings
+        showstringspaces=false% no special string spaces
+    }
+}{}
+\lst@AddToHook{SelectCharTable}
+    {\ifx\lst@literate\@empty\else
+         \expandafter\lst@Literate\lst@literate{}\relax\z@
+     \fi}
