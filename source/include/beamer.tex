@@ -17,94 +17,94 @@
 \section{Beamer篇}
 
 
-\faq{129.隐藏导航栏}{}
+\faq{129.隐藏导航栏}{high-NavigationBar}
 
 Beamer
 自带的导航符号看起来很不错，但是实际上使用的并不多，为了让文稿的显示面积增加，减少干扰元素，我们可以隐藏下方的导航栏符号，两个方法如下：
 
-\begin{verbatim}
+\begin{texinlist}
 \setbeamertemplate{navigation symbols}{}
 \beamertemplatenavigationsymbolsempty % both ok
-\end{verbatim}
+\end{texinlist}
 
 如果需要去掉下方 title，Author 等信息的话，可以用
 
-\begin{verbatim}
+\begin{texinlist}
 \setbeamertemplate{footline}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{向 Beamer 中添加参考文献}{}
+\faq{向 Beamer 中添加参考文献}{beamer-add-bib}
 
 我们可以使用下面的命令添加参考文献，最好放在 `appendix' 后面。
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{frame}[allowframebreaks]{References}
 \def\newblock{}
 \bibliographystyle{plain}
 \bibliography{mybib}
 \end{frame}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{每节显示目录}{}
+\faq{每节显示目录}{show-toc}
 
 在我们做一个比较长的报告时，我们可能会想在每一节添加一个目录，让听众清楚内容讲到哪了，我们可以在导言区添加如下的命令。
 
-\begin{verbatim}
+\begin{texinlist}
 \setbeamerfont{myTOC}{series=\bfseries,size=\Large}
 \AtBeginSection[]{\frame{\frametitle{Outline}%
                   \usebeamerfont{myTOC}\tableofcontents[current]}}
-\end{verbatim}
+\end{texinlist}
 
 为了得到节的标题信息，我们会在帧与帧之间添加
 `\textbackslash{}section{[}short\_title{]}\{long\_title\}', 其中
 short\_title 是短标题，用于 ``页眉''
 信息（header）显示。如果你不想要显示每帧的页眉信息（header），可以使用下面的命令。
 
-\begin{verbatim}
+\begin{texinlist}
 \setbeamertemplate{headline}{}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{多栏显示}{}
+\faq{多栏显示}{beamer-mulicol}
 
 有时候我们有图需要并排摆放，一个好方法是使用分栏，尤其是当两个图不同的高度的时候，然后在每一栏插入我们需要的图片。代码如下：
 
-\begin{verbatim}
+\begin{texinlist}
 \begin{columns}[c] % Columns centered vertically.
 \column{5.5cm}     % Adjust column width to taste.
 \includegraphics ...
 \column{5cm}
 \includegraphics ...
 \end{columns}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{添加 LOGO}{}
+\faq{添加 LOGO}{beamer-add-logo}
 
 在右下方添加 logo，直接用系统默认的命令就可以。
 
-\begin{verbatim}
+\begin{texinlist}
 \logo{\includegraphics[width=0.08\textwidth]{logo500}}
-\end{verbatim}
+\end{texinlist}
 
 如果需要在右上方添加 logo，可以用 TikZ 命令（需要用到 tikz 宏包）在
 Frametitle 上添加。
 
-\begin{verbatim}
+\begin{texinlist}
 \addtobeamertemplate{frametitle}{}{%
 \begin{tikzpicture}[remember picture,overlay]
 \node[anchor=north east,yshift=2pt] at (current page.north east) {\includegraphics[width=0.09\textwidth]{logo500}};
 \end{tikzpicture}}
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{想在 beamer 中新建一个包含 frame 的环境 question，该怎么做？}{}
+\faq{想在 beamer 中新建一个包含 frame 的环境 question，该怎么做？}{beamer-frame-question}
 
 直接给代码
 
-\begin{verbatim}
+\begin{texinlist}
 \newenvironment{question}
 {\begin{frame}[environment=question,fragile]
  \begin{theorem}
@@ -112,10 +112,10 @@ Frametitle 上添加。
 {\end{theorem}
  \end{frame}
 }
-\end{verbatim}
+\end{texinlist}
 
 
-\faq{如何在默认模板的基础上，定制自己的beamer模板}{}
+% \faq{如何在默认模板的基础上，定制自己的beamer模板}{beamer-default-Customized}
 
 
-\faq{如何更改beamer中logo的位置，在使用default的模板和主题下，使用\cs{logo}，发现不能更改logo所在位置}{}
+% \faq{如何更改beamer中logo的位置，在使用default的模板和主题下，使用\cs{logo}，发现不能更改logo所在位置}{}
