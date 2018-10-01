@@ -15,6 +15,10 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 %
 
+% !TEX root = ../latex-faq-cn.tex
+% !TEX program = xelatex
+% !TEX options = --shell-escape
+
 \section{文档编辑}
 
 
@@ -140,7 +144,7 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
         \printbibliography
       \end{document}
     \end{verbatim}
-  \item 利用 biblatex，一个典型示例如下
+  \item 利用 BiB\TeX，一个典型示例如下
   \begin{verbatim}
     \documentclass{ctexart}
       \usepackage{gbt7714}
@@ -335,11 +339,26 @@ xpinyin 宏包。
 
 \faq{如何使用带圈数字？}{how-to-use-circle-number}
 
-\begin{verbatim}
-  \begin{enumerate}
-    \def\labelenumi{\arabic{enumi}.}
-    \setcounter{enumi}{7}
-\end{verbatim}
+注：百分号后的内容在导言区使用。
+\begin{itemize}
+  \item 有序列表
+  \begin{texcode}
+    % \usepackage{enumerate,pifont}
+    \begin{enumerate}[label={\ding{\value*}},start=172]
+      \item 第一
+      \item 第二
+    \end{enumerate}
+  \end{texcode}
+  \item 脚注中使用
+  \begin{texcode}
+    % \usepackage{pifont}
+    % \RenewDocumentCommand{\thefootnote}{}{
+    %   \ding{numexpr171+\value{footnote}}
+    % }
+
+    \footnote{text}
+  \end{texcode}
+\end{itemize}
 
 
 \faq{如何改变列表标签样式，行距，缩进等各种相关间距？}{how-to-change-list-style}
@@ -508,9 +527,9 @@ enumitem 宏包
 \end{verbatim}
 
 
-\faq{如何在axmath转换代码到TeXstudio?}{how-to-axmath-exchange-to-texstudio}
+\faq{如何在axmath转换代码到 \LaTeX ?}{how-to-axmath-exchange-to-latex}
 
-点击下图中第10个按钮，即可将数学公式转换为\LaTeX{}代码，复制即可。
+点击下图中第10个按钮，或者键入Ctrl+Tab即可将数学公式转换为\LaTeX{}代码，复制即可。
 
 \includegraphics[width=0.9\textwidth]{include/images/amxmath_texstudio}
 
@@ -518,7 +537,7 @@ enumitem 宏包
 \faq{双栏文档中，如何可以让左边先写完，然后再切换到右边，而不是左右一样长？}{twocolumn-left-first}
 
 如果是采用文档类 twocolumn 选项实现的双栏模式，正文的排版就是先将左边排完，再从右边开始排。而采用
-multicol 宏包的 muticols 环境则是左右两边底部对齐的。 
+multicol 宏包的 muticols 环境则是左右两边底部对齐的。
 
 
 \faq{如何输入中文破折号？}{input-chinese---}

@@ -14,6 +14,10 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 %
 
+% !TEX root = ../latex-faq-cn.tex
+% !TEX program = xelatex
+% !TEX options = --shell-escape
+
 \section{开发篇-含LaTeX3}
 
 介绍宏开发技巧，宏包和模板类开发的常见问题。
@@ -22,3 +26,77 @@
 \faq{在阅读已有的宏包或者文类时，遇到未知的命令应如何处理}{}
 
 可以参照胡伟的《LaTeX2e文类和宏包学习手册》中的第四章-命令集注。
+
+
+\faq{文档类中键值对的实现}{}
+
+使用 xkeyval 宏包。
+该宏包主要定义了以下四个命令
+\begin{itemize}
+  \item Ordinary keys
+
+    最基础的键值对定义方式。说明文档中，这部分主要介绍的是 xkeyval 定义出来的宏的参数和命令。
+
+  \item Command keys
+
+    用于定义存放数据的宏，如美赛模板中运用了该命令来存放参赛队伍编号。
+
+  \item Choice keys
+
+    用于定义一个具有选择性的宏，例如以下宏
+\begin{texcode}
+  \define@choicekey{HTNotes.cls}{cvcolor}%
+  [\val\ar]{green,orange,violet,blue}[blue]{
+    \ifcase\ar\relax
+      \definecolor{themecolor}{HTML}{92D14F}
+      \definecolor{cvtext}{HTML}{92909B}
+    \or
+      \definecolor{themecolor}{RGB}{230,140,20}
+      \definecolor{cvtext}{RGB}{100,100,100}
+    \or
+      \definecolor{themecolor}{RGB}{178,10,142}
+      \definecolor{cvtext}{RGB}{100,100,100}
+    \else
+      \definecolor{themecolor}{RGB}{0,164,215}
+      \definecolor{cvtext}{RGB}{100,100,100}
+    \fi
+  }
+\end{texcode}
+  该宏实现的是cvcolor的选择性，可以选择 green, orange, violet, blue 等参数，且 blue 为默认参数。
+
+  \item Boolean keys
+
+    用于定义布尔宏，用于设置开关代码。美赛模板中大部分使用的是该宏。
+\end{itemize}
+
+  具体用法请参考其说明文档。
+
+  使用了 xkeyval 后，如何进行参数传递之类的呢？
+\begin{texcode}
+  \DeclareOptionX*{\PassOptionsToClass{\CurrentOption}{book}}
+  \ProcessOptionsX\relax
+  \LoadClass[twoside,11pt]{book}
+\end{texcode}
+
+  那么，如何定义默认参数呢？
+\begin{texcode}
+  \ExecuteOptionsX{
+    cvcolor = {blue},
+    ...
+  }
+\end{texcode}
+
+  如何设置接口呢？
+\begin{texcode}
+  \newcommand{\HTset}[1]{\setkeys{HTNotes.cls}{#1}}
+\end{texcode}
+
+  如何检测宏是否有内容呢？并依次为基础设置开关命令？
+\begin{texcode}
+  % 宏定义为
+  % \define@cmdkey{HTNotes.cls}[Book@]{Writer}
+  \ifdefempty{\Book@Writer}{\@author}{\Book@Writer}
+\end{texcode}
+  该命令实现的是检测 \verb|\Book@Writer| 宏是否有内容，如果有则使用其存储的内容，无则使用 \verb|\@author| 存储的参数。
+
+  用 xkeyval 提供的键值对实现方式，基本不会出现宏包冲突的问题，因为其前缀是由其特定的包含方式的，前提是选取适当。

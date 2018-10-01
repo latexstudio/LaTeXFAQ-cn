@@ -14,6 +14,10 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 %
 
+% !TEX root = ../latex-faq-cn.tex
+% !TEX program = xelatex
+% !TEX options = --shell-escape
+
 \let\fancybreak\relax
 
 \section{介绍公式的常见问题}
@@ -145,6 +149,27 @@ align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐
 
 公式居左对齐在基础文档类中由 fleqn
 选项控制，选择该选项后，正文公式均居左对齐，至于居右对齐，嗯，我没见过这么奇怪的格式。
+
+如果想考虑部分左对齐，可以考虑以下代码
+\begin{texcode}
+\begin{flalign}
+  \int_a^b {\left|x - \frac{{a + b}}{2}\right|} d x
+  = \frac{1}{2}(b - a)f(a)
+  = \dfrac{{{{(b - a)}^2}}}{4}
+\end{flalign}
+\end{texcode}
+\begin{texcode}
+\begin{flalign*}
+  \begin{split}
+    \text{1.解: }(1) & \displaystyle\iint \limits_D \left( x^2+y^2 \right) d \sigma
+    = 4 \int_0^1 d x \int_0^1 \left( x^2+y^2 \right) d y \\
+    = & 4 \int_0^1 \left( \left. x^2+\dfrac{1}{3} y^3 \right|_0^1 \right) d x
+    = 4 \int_0^1 \left( x^2+\dfrac{1}{3} \right) d x \\
+    = & 4 \times \left( \dfrac{1}{3}+\dfrac{1}{3} \right)
+    = \dfrac{8}{3}.
+  \end{split}&
+\end{flalign*}
+\end{texcode}
 
 
 \faq{公式之后解释公式符号的文字，通常是 ``符号 ------ 解释'' 这样的格式，我希望这段文字的格式是按破折号对齐，并且解释文字折行后悬挂缩进，怎样实现这样的格式？}{}
