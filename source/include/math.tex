@@ -1931,16 +1931,18 @@ y\textcolor{blue}{-\frac{31}{8}}
 
 通常，我们的使用 \verb|ntheorem| 宏包来定制定理的样式，例如：
 \begin{latexcode}
-\usepackage[thmmarks,amsmath]{ntheorem}
-...
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{amssymb}
+\usepackage[thmmarks]{ntheorem}
 \theoremstyle{nonumberplain}
-\theoremheaderfont{\bfseries}
-\theorembodyfont{\normalfont}
-\theoremsymbol{$\square$}
+\theoremsymbol{$ \square $}
 \newtheorem{Proof}{\hskip 2em 证明}
-\begin{Proof}
-  一个证明环境。
-\end{Proof}
+\begin{document}
+  \begin{Proof}
+    一个证明环境。
+  \end{Proof}
+\end{document}
 \end{latexcode}
 %\begin{example}
 %\newtheorem{Proof}{\hskip 2em 证明}
