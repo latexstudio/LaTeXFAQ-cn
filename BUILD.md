@@ -26,7 +26,7 @@ latexmk -xelatex latex-faq-cn
   - 思源黑体：<https://mirrors.tuna.tsinghua.edu.cn/adobe-fonts/source-han-sans>
 
 - 本模板所需的**部分**思源字体也可通过百度网盘获取：
-  - <https://pan.baidu.com/s/1-9P_UWsV7GF5vEbjdBGlHw>，密码：ji3i
+  - <https://pan.baidu.com/s/1-4AL24521fT553w7JOpMeA>，密码：yv5y
 
 通过 GitHub 或者 tuna 下载时，OTC 和 OTF 版本分别位于 `OTC/` 和 `OTF/` 目录下。对于 OTF 版本，我们只需要简体中文部分（带有 `SC` 标识）。本文档只需要思源宋体的 Regular 和 Bold 以及思源黑体的 Medium 和 Bold 字重，但若空间允许，请尽量安装所有 7 个字重。
 
