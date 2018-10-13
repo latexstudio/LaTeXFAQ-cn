@@ -21,44 +21,24 @@
 \section{安装与配置问题}
 \label{sec:install}
 
-% TEST
-% \begin{pycode}
-%   def Ids2Words(ids_list, vocab):
-%     """Get words from ids.
+\faq{如何下载 \TeXLive{}？}{download-texlive}
 
-%     Args:
-%       ids_list: list of int32
-%       vocab: TextVocabulary object
+\TeXLive{} 分为在线安装和 ISO 镜像安装两种方式。在线安装时，需保证网络连接良好，一旦网络异常，很有
+可能前功尽弃。因此对于普通用户，我们建议先行下载 \TeXLive{} 的 ISO 镜像至本地，再进行安装。
 
-%     Returns:
-%       List of words corresponding to ids.
-%     """
-%     assert isinstance(ids_list, list), '%s  is not a list' % ids_list
-%     return [vocab.IdToWord(i) for i in ids_list]
-% \end{pycode}
+\TeXLive{} 的 ISO 镜像文件可以在这一网址找到：\url{http://mirror.ctan.org/systems/texlive/Images/}。
+打开链接后，您可能会找到若干个 ISO 文件，如 \file{texlive.iso}、\file{texlive2018.iso}、
+\file{texlive2018-20180414.iso} 等，除了名称的差别，它们是完全一样的。
 
-% \begin{luacode}
-%   function rm(file)
-%       if os.type == "windows" then
-%           return os.execute("DEL /Q " .. file)
-%       else
-%           return os.execute("rm -f " .. file)
-%       end
-%   end
-% \end{luacode}
+如果需要进行在线安装，可以打开这一网址：\url{http://mirror.ctan.org/systems/texlive/tlnet/}。
+其中包含的这些文件可用于安装 \TeXLive{}：
 
-%\faq{如何安装 \LaTeX{}}{install-latex}
-%
-%很多用户所谓的如何安装 \LaTeX{}，实际上是一个无解的问题，因为 \LaTeX{} 不是一款软件，
-%相关概念不再赘述。
-%用户可以直接安装 LaTeX 发行版，如 proTeXt , \TeXLive{} 和 \MacTeX{}
-%（\TeXLive{} 在 macOS 的一个再次发行版）。
+\begin{itemize}
+  \item \file{install-tl-windows.exe}：适用于 Windows 系统下的安装程序，可直接双击打开；
+  \item \file{install-tl-unx.tar.gz}：适用于类 Unix 系统，解压后需要以脚本方式执行安装；
+  \item \file{install-tl.zip}：同时支持 Windows 和类 Unix 系统，解压后同样需要以脚本方式安装。
+\end{itemize}
 
-
-\faq{如何下载 \TeXLive{} 安装包}{download-texlive}
-
-访问以下网址获取 \TeXLive{} 安装包镜像文件：
-\url{http://mirror.ctan.org/systems/texlive/Images/texlive.iso}
 
 \faq{如何安装 \TeXLive{}}{install-texlive}
 
