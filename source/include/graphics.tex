@@ -25,7 +25,7 @@
 
 下面解答来自\url{https://tex.stackexchange.com/questions/60295/drawing-angles-greater-than-360\%C2\%BA-intikz}
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass[11pt]{scrartcl}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -42,7 +42,7 @@ plot ({(\t+#2)*cos(\t)/(#2)},
 \bigangle[blue,dashed]{400}
 \end{tikzpicture}
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
 % \includegraphics{https://i.stack.imgur.com/4RO8Y.png}{图片图片}
 
@@ -55,7 +55,7 @@ plot ({(\t+#2)*cos(\t)/(#2)},
 可以使用 overpic 宏包，在 overpic 环境内进行图形绘制，环境内可以使用
 latex 自生 picture 环境的绘图语句进行绘制。以下面给出一个例子：
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{overpic}
@@ -67,23 +67,23 @@ latex 自生 picture 环境的绘图语句进行绘制。以下面给出一个�
   \put(80,0){\includegraphics[width=0.16\textwidth]{1.png}}
 \end{overpic}
 \end{document}
-\end{verbatim}
+\end{texinlist}
 
-下面左边是原图，右边是代码处理后的图片：
+%下面左边是原图，右边是代码处理后的图片：
 % \includegraphics{https://images-cdn.shimo.im/VFe2jSxjmoMZpr2B/1.png!thumbnail}
 % \includegraphics{https://images-cdn.shimo.im/4qswwF2P4u44JNYB/2.png!thumbnail}
 
 当然还有一种方法可以使用 tikz 宏包，在 tikzpicture
 环境引入图片，并在此基础上进行绘图，这样的优点是绘图语句更为丰富，功能更强大。下面举个例子：
 
-\begin{verbatim}
-       ![图片](https://images-cdn.shimo.im/LrJDsfrVZIAerfPW/image.png!thumbnail)  ![图片](https://images-cdn.shimo.im/sVlNCmljor0SctYs/image.png!thumbnail)
-\end{verbatim}
+%\begin{texinlist}
+%       ![图片](https://images-cdn.shimo.im/LrJDsfrVZIAerfPW/image.png!thumbnail)  ![图片](https://images-cdn.shimo.im/sVlNCmljor0SctYs/image.png!thumbnail)
+%\end{texinlist}
 
 第一个为原图，第二个是在原图基础上添加一个标号和边.
 其中的格线是用来辅助做图的。
 
-\begin{verbatim}
+\begin{texinlist}
 \documentclass{article}
 \usepackage{tikz}
 \begin{document}
@@ -105,4 +105,14 @@ latex 自生 picture 环境的绘图语句进行绘制。以下面给出一个�
 \end{pgfonlayer}
 \end{tikzpicture}
 \end{document}
-\end{verbatim}
+\end{texinlist}
+
+\faq{如何让 \cs{tikz} 绘制的图像缩放}{tikz scale}
+
+可以使用 \cs{transform shape} 和 \cs{scale}，例如我要让图缩至0.6倍，可以用以下代码：
+\begin{texinlist}
+  \begin{tikzpicture}[transform shape,scale=0.6]
+  ...
+  \end{tikzpicture}
+\end{texinlist}
+\cs{transform shape} 保证了图中按坐标指定位置的点也可以同时缩放相对距离
