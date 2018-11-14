@@ -480,16 +480,16 @@
   {
     extendedchars   = true,
     gobble          = 1,
-    frame           = l,
-    framerule       = 1 pt,
+    % frame           = l,
+    % framerule       = 1 pt,
     framesep        = 0 pt,
     escapeinside    = {(*}{*)},
-    basicstyle      =     \htmlcolor { 657B83 } \small \CodeFont \CJKfamily { tt },
-    keywordstyle    = [1] \htmlcolor { 859900 },
-    keywordstyle    = [2] \htmlcolor { 073642 } \bfseries,
-    commentstyle    =     \htmlcolor { 93A1A1 } \itshape,
-    stringstyle     =     \htmlcolor { 2AA198 },
-    backgroundcolor =     \htmlcolor { FDF6E3 },
+    basicstyle      =     \htmlcolor { 37474F } \small \CodeFont \CJKfamily { tt },
+    keywordstyle    = [1] \htmlcolor { 3B78E7 },
+    keywordstyle    = [2] \htmlcolor { 9C27B0 } \bfseries,
+    commentstyle    =     \htmlcolor { ADADAD } \itshape,
+    stringstyle     =     \htmlcolor { 0D904F },
+    backgroundcolor =     \htmlcolor { F7F7F7 },
   }
 \lstdefinestyle { style@tex }
   {
@@ -497,10 +497,10 @@
     rulecolor   = \htmlcolor { 859900 },
     language    = [LaTeX] TeX,
     alsoletter  = { * },
-    texcsstyle  = * [1] \htmlcolor { 268BD2 },
-    texcsstyle  = * [2] \htmlcolor { 859900 },
-    texcsstyle  = * [3] \htmlcolor { D30102 },
-    texcsstyle  = * [4] \htmlcolor { 073642 } \bfseries,
+    texcsstyle  = * [1] \htmlcolor { 3B78E7 },
+    texcsstyle  = * [2] \htmlcolor { 9C27B0 },
+    texcsstyle  = * [3] \htmlcolor { D81B60 },
+    texcsstyle  = * [4] \htmlcolor { C53929 } \bfseries,
     deletetexcs =
       { begin, end, documentclass, usepackage, def, fi, if, let, newcommand, renewcommand },
     moretexcs   = [1] { part, chapter, section, subsection, subsubsection, paragraph, subparagraph },
@@ -515,13 +515,13 @@
 \lstdefinestyle { style@lua }
   {
     style        = style@base,
-    rulecolor    = \htmlcolor { 073642 },
+    % rulecolor    = \htmlcolor { 073642 },
     language     = [5.2] Lua,
   }
 \lstdefinestyle { style@sh }
   {
     style        = style@base,
-    rulecolor    = \htmlcolor { D30102 },
+    % rulecolor    = \htmlcolor { D30102 },
     language     = sh,
     alsoletter   = { - / \$ },
     keywords     = [1] { fi, if, then },
@@ -530,19 +530,19 @@
 \lstdefinestyle { style@bat }
   {
     style        = style@base,
-    rulecolor    = \htmlcolor { D33682 },
+    % rulecolor    = \htmlcolor { D33682 },
     language     = command.com,
   }
 \lstdefinestyle { style@py }
   {
     style        = style@base,
-    rulecolor    = \htmlcolor { 268BD2 },
+    % rulecolor    = \htmlcolor { 268BD2 },
     language     = Python,
   }
 \lstdefinestyle { style@json }
   {
     style        = style@base,
-    rulecolor    = \htmlcolor { 268BD2 },
+    % rulecolor    = \htmlcolor { 268BD2 },
     language     = JSON,
   }
 % 连字符 - 原本以数学模式输出，此处改为普通文本。
