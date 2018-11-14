@@ -18,6 +18,9 @@
 \RequirePackage{expl3}
 \ProvidesExplClass{latex-faq-cn-class}{2018/08/09}{0.1}{Chinese LaTeX FAQ document class}
 
+% 见 https://github.com/CTeX-org/ctex-kit/issues/286
+\tex_XeTeXgenerateactualtext:D = 1
+
 \PassOptionsToPackage { log-declarations = false } { xparse   }
 \PassOptionsToPackage { no-math                  } { fontspec }
 \RequirePackage { xparse, xtemplate, l3keys2e }
@@ -55,10 +58,11 @@
     graphicx,
     hologo,
     listings,
-    longtable,
-    tabularx,
+    % longtable,
+    % tabularx,
     unicode-math,
     xcolor,
+    xunicode,
     xurl,
     zref-abspage,
     hyperref
@@ -105,7 +109,7 @@
 % 中文字体
 
 % 设置思源字体系列。由于命名比较复杂，这里需要做多次判断
-% ttc 格式封装的思源字体中，简体中文位于第 3 个，因此 FontIndex = 2
+% TTC 格式封装的思源字体中，简体中文位于第 3 个，因此 FontIndex = 2
 % #1: \setCJK...font 命令
 % #2, #3, #4, #5: OTC/OTF 文件名
 % #6: Super OTC 字体名
@@ -320,6 +324,7 @@
 \NewDocumentEnvironment { reference } { }
   {
     \skip_vertical:n { 2 ex }
+    \small
     \noindent \textsf{ 参考文献 } \marginpar { \raggedleft \faBook }
     \enumerate [ topsep = 0pt ]
     % \ignorespaces
@@ -329,6 +334,7 @@
 \NewDocumentEnvironment { note } { }
   {
     \skip_vertical:n { 2 ex }
+    \small
     \noindent \textsf{ 注意 } \marginpar { \raggedleft \faWarning }
     \par
     % \ignorespaces
@@ -346,7 +352,7 @@
     BibTeX, MetaFun,
     MiKTeX
   }
-  { \cs_set_protected:cpn {#1} { \hologo {#1} } }
+  { \cs_set:cpn {#1} { \hologo {#1} } }
 \clist_map_inline:nn
   { METAFONT, METAPOST }
   {
@@ -358,15 +364,15 @@
       }
   }
 
-\cs_set_protected:Npn \pTeX     { p\TeX         }
-\cs_set_protected:Npn \pLaTeX   { p\LaTeX       }
-\cs_set_protected:Npn \ApTeX    { Ap\TeX        }
-\cs_set_protected:Npn \ApLaTeX  { Ap\LaTeX      }
-\cs_set_protected:Npn \TeXLive  { \TeX{}~ Live  }
-\cs_set_protected:Npn \MacTeX   { Mac\TeX       }
-\cs_set_protected:Npn \proTeXt  { pro\TeX t     }
-\cs_set_protected:Npn \PlainTeX { Plain~ \TeX   }
-\cs_set_protected:Npn \TikZ     { Ti\textit{k}Z }
+\cs_set:Npn \pTeX     { p\TeX         }
+\cs_set:Npn \pLaTeX   { p\LaTeX       }
+\cs_set:Npn \ApTeX    { Ap\TeX        }
+\cs_set:Npn \ApLaTeX  { Ap\LaTeX      }
+\cs_set:Npn \TeXLive  { \TeX{}~ Live  }
+\cs_set:Npn \MacTeX   { Mac\TeX       }
+\cs_set:Npn \proTeXt  { pro\TeX t     }
+\cs_set:Npn \PlainTeX { Plain~ \TeX   }
+\cs_set:Npn \TikZ     { Ti\textit{k}Z }
 
 % 宏包与文档类
 % TODO
@@ -406,6 +412,8 @@
   { \DefineShortVerb   { \| } }
 \AtEndDocument
   { \UndefineShortVerb { \| } }
+% 公式中仍会用到（vl = vertical line）
+\cs_set_eq:NN \vl |
 
 % 为 dirtree 宏包打补丁，使得跨页时可以正常显示
 % 见 https://tex.stackexchange.com/q/6103/136923

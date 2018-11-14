@@ -20,22 +20,87 @@
 
 \let\fancybreak\relax
 
-\section{介绍公式的常见问题}
+\section{数学公式（一）}
+\label{sec:math-i}
+
+%TODO: General
+
+\faq{不带编号的行间公式为什么推荐使用 \cs{[}\ldots\cs{]} 而不是
+  \texttt{\$\$}\ldots\texttt{\$\$}？}{display-math-env}
+
+|$$|\ldots|$$| 是 \TeX{} 的用法，不适合在 \LaTeX{} 中使用。在 \LaTeX{} 中，\cs{[}\ldots\cs{]} 虽然
+底层仍然依靠 |$$|\ldots|$$| 实现，但显然更加容易控制，也更容易实现特殊效果（例如靠左对齐）。
+
+在 \pkg{amsmath} 宏包中，\cs{[}\ldots\cs{]} 被重定义为 \env{equation*} 环境的简写，它的实现比
+\LaTeX{} 本身更好。所以我们建议，排版数学公式时始终调用 \pkg{amsmath} 宏包。
+
+\begin{reference}
+  \item 李清．\LaTeX{} 中不带编号的行间公式为什么推荐用 \cs{[}\ldots\cs{]} 而不是 |$$|\ldots|$$|？．
+    \url{https://www.zhihu.com/question/27589739/answer/37255728}
+  \item \url{https://tex.stackexchange.com/q/503}
+  \item \url{https://tex.stackexchange.com/q/40492}
+\end{reference}
 
 
-\faq{\cs{[} \ldots \cs{]} 与 \texttt{\$\$\ldots \$\$} 有什么区别？}{}
+\faq{如何让长公式自动断行？}{break-long-equation}
 
-重定义的难度不同、造成的间距也不同。推荐使用 \cs{[} \ldots \cs{]}。 
+对于行内公式，一般来说 \LaTeX{} 会倾向于在二元运算符（$+$、$-$ 等）和二元关系符（$=$、$>$ 等）之后
+断行，因此可以用 $F(x) \cdot G(x) \cdot H(x)$ 来代替 $F(x)G(x)H(x)$ 以允许换行。另外，我们建议把
+列表项写成如 |$a$, $b$, $c$| 的形式而非 |$a, b, c$|，这样也可以避免出现糟糕的效果。
 
-参见
-\url{https://www.zhihu.com/question/27589739/answer/37255728}
+对于行间公式，可以使用 \pkg{amsmath} 宏包提供的一系列环境来手动断行：
+\begin{itemize}
+  \item \env{gather} 和 \env{gather*}：居中对齐
+  \item \env{align} 和 \env{align*}：在 |&| 指定的位置对齐
+  \item \env{multiline} 和 \env{multiline*}：首行左对齐，末行右对齐，中间居中
+  \item \env{split}：类似 \env{align}，在 |&| 指定的位置对齐，但需放在其他数学环境中使用
+\end{itemize}
+这里带 |*| 的版本表示不加编号。以上这些环境用法都是类似的，即在断行处加 |\\|。
+
+公式的断行往往需要考虑语义因素，需要正确处理间距、对齐等，因此自动断行比较困难。\pkg{breqn} 宏包
+提供了自动断行的可能，但有时候会出现兼容性问题，需要小心使用。
+
+\begin{reference}
+  \item 刘海洋．《\LaTeX{} 入门》 4.4~节、4.5.3~小节
+\end{reference}
 
 
-\faq{如何让长公式自动断行？}{}
+\faq{公式如何靠左（靠右）对齐？}{equation-left-right-align}
 
-长公式自动断行要看情况，如果是在行内模式，合理使用空格，一般可以在二元运算符处断行，如果是行间模式，推荐使用align类环境，在需要断行处添加|\\|%
-%\textbackslash{} 
-手动断行。
+公式靠左对齐在基础文档类中由 |fleqn| 选项控制。选择该选项后，正文公式均靠左对齐，并且具有固定缩进
+（由 \cs{mathindent} 控制）。至于（全局）靠右对齐，并没有直接的解决方案。
+
+如果只需要部分公式靠左或靠右对齐，可以用 \env{flalign} 或者 \env{flalign*} 环境：
+
+\begin{texcode}
+  \begin{flalign}
+    \int \sin x \, \mathrm{d} x = -\cos x + C & &
+  \end{flalign}
+  \begin{flalign}
+    \int \cos x \, \mathrm{d} x = \sin x + C & &
+  \end{flalign}
+  \begin{flalign}
+    & & \int \tan x \, \mathrm{d} x =  \ln |\sec x| + C
+  \end{flalign}
+\end{texcode}
+
+\env{flalign} 环境本身用来实现分散对齐。因此用 |&&| 构成空列，就可以实现靠左或靠右对齐的效果：
+\begin{flalign}
+  \int \sin x \, \mathrm{d} x = -\cos x + C & &
+\end{flalign}
+\begin{flalign}
+  \int \cos x \, \mathrm{d} x = \sin x + C & &
+\end{flalign}
+\begin{flalign}
+  & & \int \tan x \, \mathrm{d} x =  \ln \vl\sec x\vl + C
+\end{flalign}
+
+\begin{reference}
+  \item \url{https://tex.stackexchange.com/q/16840}
+\end{reference}
+
+
+\iffalse
 
 
 \faq{公式希腊字符如何加粗？}{}
@@ -143,33 +208,6 @@ align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐
 句号。
 \end{document}
 \end{verbatim}
-
-
-\faq{公式如何居左对齐,居右对齐？}{}
-
-公式居左对齐在基础文档类中由 fleqn
-选项控制，选择该选项后，正文公式均居左对齐，至于居右对齐，嗯，我没见过这么奇怪的格式。
-
-如果想考虑部分左对齐，可以考虑以下代码
-\begin{texcode}
-\begin{flalign}
-  \int_a^b {\left|x - \frac{{a + b}}{2}\right|} d x
-  = \frac{1}{2}(b - a)f(a)
-  = \dfrac{{{{(b - a)}^2}}}{4}
-\end{flalign}
-\end{texcode}
-\begin{texcode}
-\begin{flalign*}
-  \begin{split}
-    \text{1.解: }(1) & \displaystyle\iint \limits_D \left( x^2+y^2 \right) d \sigma
-    = 4 \int_0^1 d x \int_0^1 \left( x^2+y^2 \right) d y \\
-    = & 4 \int_0^1 \left( \left. x^2+\dfrac{1}{3} y^3 \right|_0^1 \right) d x
-    = 4 \int_0^1 \left( x^2+\dfrac{1}{3} \right) d x \\
-    = & 4 \times \left( \dfrac{1}{3}+\dfrac{1}{3} \right)
-    = \dfrac{8}{3}.
-  \end{split}&
-\end{flalign*}
-\end{texcode}
 
 
 \faq{公式之后解释公式符号的文字，通常是 ``符号 ------ 解释'' 这样的格式，我希望这段文字的格式是按破折号对齐，并且解释文字折行后悬挂缩进，怎样实现这样的格式？}{}
@@ -287,8 +325,6 @@ $\sum\limits_{i=1}^n, \prod\limits_\epsilon$
 \]
 \end{example}
 
-\faq{在数学公式中，编辑等式时，每一行需要等号和等号对其，这时使用了\textbackslash{}begin\{displaymath\} \textbackslash{}begin\{split\}环境，但是呢，这些整体都是居中的，我想让式子靠左，怎么实现呢？}{}
-这种情况可以考虑在文档类选项中使用fleqn选项。需要对齐的多行公式，推荐使用amsmath宏包的align等环境。
 
 \faq{行列式变换过程中，我们一般是在中间的箭头上表示出变换的方式，如何才能在长箭头上打出多行内容？}{}
 可以看看amsmath宏包提供的长箭头命令。
@@ -845,52 +881,6 @@ In display mode:
 \end{equation*}
 \end{example}
 
-\fancybreak
-
-\faq{怎样让公式左对齐？}{}
-
-\fbox{第一种情况}，如果我们想要全文行间公式(display)均左对齐，我们有两个方法如下：
-\begin{itemize}
-	\item 使用 \verb|\documentclass[fleqn]{article}| 对整篇文章有效。
-	\item 加载宏包 amsmath 时，设置 fleqn 参数\verb|\usepackage[fleqn]{amsmath}|。
-\end{itemize}
-
-上述方法选其一即可实现左对齐，但这个情况有需要注意的地方，参看小注。
-
-
-
-\fbox{第二种情况}，若是我们仅仅希望部分公式左对齐。
-
-\begin{example}
-\begin{flalign}
- &\text{your equation}&
-\end{flalign}
-\end{example}
-
-上面的也可这样来写
-\begin{example}
-\begin{flalign}
- \text{your equation}&&
-\end{flalign}
-\end{example}
-
-多行公式的左对齐，我们给出几个示例：
-\begin{example}
-\begin{flalign}
- \begin{split}
-  your equation (1)\\
-  your equation (2)
- \end{split}&
-\end{flalign}
-\begin{flalign*}
- \text{your equation (1)}&&\\
- \text{your equation (2)}&&
-\end{flalign*}
-\end{example}
-\begin{note}\itshape \small
-	在第一种情况下，我们使用了 \verb|fleqn|,当且仅当使用这一参数的时候，行间公式默认有一个缩进 mathindent，其值系统定义为 \verb|27.37506pt minus 27.37506pt| 若是我们不想要这个缩进，可以用 \verb|\setlength{\mathindent}{0pt}| 将其缩进设置为0pt。
-\end{note}
-
 
 \fancybreak \faq{如何排版公式的多行下标？}{}
 多行下标或者上标较为实用的技巧，我们可以使用命令 \verb|\substack|，这条命令的上标或者下标均是中心对齐的。
@@ -990,91 +980,6 @@ In display mode:
 \noindent 每次当 \verb|section| 计数器加1时，\verb|equation| 会自动置零。
 这样就可以方便地实现公式编号与章节之间的关联了。
 
-\fancybreak \faq{公式太长如何换行？}{}
-\jieyong{问题描述}
-
-当我们输入的公式较长时，会出现越界的情况，如何换行，强制换行 \verb|\\| 根本不好使。
-
-\jiejue
-
-
-通常，我们行间公式的换行可使用 \verb|split| 环境来实现。如
-\begin{example}
-\[
-\begin{split}
- x &= \sqrt   {1-y^2}\\
- x &= \sqrt[3]{1-y^3}
-\end{split}
-\]
-\end{example}
-
-\begin{note}
-	\verb|split| 只可用在 \LaTeX{} 定义 的数学模式中，即\verb|\[...\]|，\verb|displaymath|，\verb|equation|。需要说明的是 \verb|$$...$$|中是不能使用这一环境的。所以，我们不推荐大家使用 \verb|$$...$$| 来输入行间公式(display)。
-\end{note}
-\begin{note}
-	\verb|split| 环境使用外部公式环境的编号，所以分行的公式共用一个编号。\verb|&| 符号的作用是设置对齐点。
-	其次，\verb|split| 是不能跨页的。\verb|split| 适合单个公式换行，即一个公式较长需要拆开。
-	我个人的习惯是，通常一个公式只需拆分三行左右，公式仅含有三个以内的等号，我会用 \verb|split| 环境。当然，以上仅仅我个人浅见，大家根据自己的需要，依照使用环境来裁定。
-\end{note}
-
-\jieyong{其他方法}
-
-上面的方法是也还是有些地方不能满足我们需要的，若是我们是需要每行都要编号，该用哪个环境呢？下面我们再介绍些
-其他排版多行公式的环境。
-
-第一个是 \verb|align| 环境，这个环境的使用需要注意：它不需要放在数学模式中，它自身会进入数学模式，我们可以简单理解为 \verb|align| 是把 \verb|equation| 和 \verb|split| 这两个环境合并成一个环境，并扩展了编号和跨页的功能。
-这也是 \TeX{} 常青至今的原因之一，他自身有很强的扩展性，开发者可以随意扩展不断强大其功能。当然，也带来另一个问题，即宏冲突，这里不再赘述。
-我们看看 \verb|align| 的一个实例。
-\begin{example}
-\begin{align}
- x &= \sqrt   {1-y^2}\\
- x &= \sqrt[3]{1-y^3}
-\end{align}
-\end{example}
-
-第二个环境是 \verb|gather| 环境，从我的使用上来讲，我用得不很多，\verb|gathered| 环境使用率相对高一点。
-\verb|gather| 输入的好处是每一行，他都会按照前文的编号计数器进行向下计数，这样保证了公式编号的连贯性。但是它不能设置对齐点。
-我们可以认为，它只是扩展了\verb|equation|换行功能。
-\begin{example}
-\begin{gather}
- D(a,r) \equiv \{ z \in \mathbf{C}
- \colon \vert z - a\vert < r \}    \notag \\
- C (E, \theta, r) \equiv
- \bigcup_{e \in E} c (e, \theta, r)
-\end{gather}
-\end{example}
-
-第三个环境是 \verb|multiline| 环境，这个环境走得更远了一步，它自身预设好了对齐格式，用户无需关心对齐点的问题。这里给出一个文本实例：
-\begin{example}
-\begin{multline}
- \text{First line of a multline}    \\
- \text{Centered Middle line}        \\
- \shoveright{\text{A right Middle}} \\
- \text{Another centered Middle}     \\
- \text{Yet another centered Middle} \\
- \shoveleft{\text{A left Middle}}   \\
- \text{Last line of the multline}
-\end{multline}
-\end{example}
-
-如上这些环境各有特点，有的功能还较单一，又衍生了新的环境，如\verb|gathered|、\verb|flalign|、\verb|aligned|、
-\verb|alignedat| 等等，您可以去阅读
-相关电子书看看其使用的差异，会有更多惊喜带给您。
-
-
-第四个环境是 \verb|eqnarray| 环境，我不很推荐用户使用这个环境\footnote{参看：\url{http://www.tug.org/pracjourn/2006-4/madsen/madsen.pdf}}，当然，有些情况下，没有其他选择，需要使用这一环境，简单示例如下：
-\begin{example}
-\begin{eqnarray}
- X_1+\cdots+X_p & = & m,\\
- Y_1+\cdots+Y_q & = & n.
-\end{eqnarray}
-\begin{eqnarray*}
- X_1+\cdots+X_p & = & m,\\
- Y_1+\cdots+Y_q & = & n.
-\end{eqnarray*}
-\end{example}
-
-有些用户使用这些环境，遇到一个问题是：这些多行输入公式一部分行我不需要编号该怎么办，解决方法是：在\verb|\\| 之前使用\verb|\nonumber|即可。有些环境还有自己的命令，这里不多述。
 
 \fancybreak \faq{如何输入分段函数？}{}
 
@@ -2181,3 +2086,5 @@ l.184 ...-0.0505 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 
 
 另外，mathptmx 宏包推荐改用 newtx，这是个比较新的宏包，字体沿用 Times 系列，效果比 mathptmx 好，对数学公式符号的支持也不错，比如直立的积分符号等。
+
+\fi

@@ -7,6 +7,7 @@
         "*.tex": "latex"
     },
     "files.encoding": "utf8",
+    "files.autoGuessEncoding": false,
     "files.eol": "\n",
     "latex-workshop.latex.tools": [{
         "name": "latexmk",
@@ -21,6 +22,12 @@
             "%DOC%"
         ]
     }],
+    "todohighlight.include": [
+        "**/*.cls",
+        "**/*.sty",
+        "**/*.tex",
+    ],
+    "todohighlight.keywordsPattern": "TODO|FIXME|\\\\faq\\{.+",
     "[latex]": {
         "editor.tabSize": 2,
         "files.insertFinalNewline": true,
