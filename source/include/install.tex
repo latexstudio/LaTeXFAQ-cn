@@ -39,6 +39,13 @@
   \item \file{install-tl.zip}：同时支持 Windows 和类 Unix 系统，解压后同样需要以脚本方式安装。
 \end{itemize}
 
+Linux各发行版的包管理系统中一般都包括\TeXLive{}，一些发行版更新速度也较快，可以用
+其自身的包管理命令安装而无需下载镜像文件。如Debian类系统（包括Ubuntu）可以通过以下命令安装
+texlive完全版本及与其相关的依赖包：
+\begin{verbatim}
+aptitude install ~n^texlive
+\end{verbatim}
+
 
 \faq{如何安装 \TeXLive{}}{install-texlive}
 
@@ -410,7 +417,7 @@ Visual Studio Code（vscode），是一款强大的跨平台编辑器。
 也可以参考 \url{https://blog.csdn.net/qazxswed807/article/details/51234834}。
 
 
-\faq{Sublime Text 下 \LaTeX{} 的高级应用？包括公式实时预览、快捷键设置、多发行版支持等等}{editors}
+\faq{Sublime Text 下 \LaTeX{} 的高级应用？包括公式实时预览、快捷键设置、多发行版支持等等}{sublimeditor}
 
 可以参考 \url{https://htharoldht.com/latex-and-advanced-applications-under-sublime-text/}，以及\url{http://www.latexstudio.net/archives/51449.html}
 
@@ -448,7 +455,7 @@ options $\to$ configure texstudio $\to$ shortcuts
 \begin{itemize}
   \item Windows 下可以使用 \href{https://www.sumatrapdfreader.org/free-pdf-reader.html}{SumatraPDF}
   \item Mac 下可以使用 \href{http://skim-app.sourceforge.net/}{Skim}。
-  \item Linux 下的 \href{https://gitlab.gnome.org/GNOME/evince}{Evince} 也支持实时更新 pdf。
+  \item Linux 下的 \href{https://gitlab.gnome.org/GNOME/evince}{Evince}和\href{https://okular.kde.org/}{Okular} 也支持实时更新 pdf。
 \end{itemize}
 
 
