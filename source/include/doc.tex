@@ -231,16 +231,18 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
 
 \LaTeX{} 标准文档类对章节划分了层级：
 \begin{itemize}
-  \item 在 article 文档类里 part 为0，section 为1，依此类推；
-  \item 在 report/book 文档类里 part 为 $-1$，chapter 为0，section 为1，等等。
+  \item 在 report/book 文档类里 part 为 $-1$，chapter 为 $0$，section 为 $1$，
+    subsection为 $2$，subsubsection为 $3$，paragraph为 $4$，subparagraph为 $5$。
+  \item 在 article 文档类里 part 为 $0$，section 为 $1$，依此类推。
 \end{itemize}
 
-secnumdepth 计数器控制章节编号的深度，如果章节的层级大于secnumdepth，那么章节的标题、在目录和页眉页脚的标题都不编号
-（照常生成目录和页眉页脚），章节计数器也不计数。可以用 |setcounter| 命令设置 secnumdepth 为较大的数使得层级比较深的
-章节也编号，如设置为4令 |paragraph| 也编号；或者设置一个较小的数以取消编号，如设置为-1 令 |chapter| 不编号。
-后者是生成不编号的章节的一个妙招，免去了手动使用 |addcontentsline| 和 |markboth| 的麻烦。
-secnumdepth 计数器在 article 文档类里默认为3（subsubsection一级）；在 report 和 book 文档类里默认为
-2（subsection 一级）。
+secnumdepth 计数器控制章节编号的深度，如果章节的层级大于 secnumdepth，那么章节的
+标题、在目录和页眉页脚的标题都不编号（照常生成目录和页眉页脚），章节计数器也不计
+数。可以用 |setcounter| 命令设置 secnumdepth 为较大的数使得层级比较深的章节也编号，
+如设置为4令 |paragraph| 也编号；或者设置一个较小的数以取消编号，如设置
+为-1 令 |chapter| 不编号。后者是生成不编号的章节的一个妙招，免去了手动使
+用 |addcontentsline| 和 |markboth| 的麻烦。secnumdepth 计数器在 article 文档类里
+默认为3（subsubsection 一级）；在 report 和 book 文档类里默认为2（subsection 一级）。
 
 下面给出一个具体的例子：
 
@@ -489,6 +491,13 @@ enumitem 宏包
 \end{verbatim}
 当然，最后一句应根据实际的文档类型来重定义 |\l@chapter| 或 |\l@section|。
 
+也可以借助于 tocloft 宏包简单实现这一功能。
+\begin{verbatim}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % article 的目录中，section也加点。
+% \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % book/report 的目录中，chapter也加点。
+\end{verbatim}
+
 
 %\faq{如何临时切换页面大小？}{}
 
@@ -730,7 +739,7 @@ multicol 宏包的 muticols 环境则是左右两边底部对齐的。
 \end{verbatim}
 
 
-\faq{想用minted包写文档，怕别人用不来不会设置-shell --escepe咋办}{}
+\faq{想用minted包写文档，怕别人用不来不会设置-shell-escape咋办}{}
 
 教给别人怎么用，或者不用这个宏包。
 
@@ -767,8 +776,17 @@ multicol 宏包的 muticols 环境则是左右两边底部对齐的。
 %\faq{\LaTeX{}写毕业论文时，直接写编译速度慢，用dvi会不会简便些？}{}
 
 
-%\faq{文字用 \cs{underlined} 加了下划线后为什么没法换行？}{}
+\faq{文字用 \cs{underline} 加了下划线后为什么没法换行？}{underlinebox}
 
+\cs{underline}与 \cs{hbox}、\cs{mbox}等均工作在\textit{受限的水平模式（Restricted
+horizontal mode）}下，不能自动换行。
+
+可以尝试使用 ulem 宏包的\cs{uline}或 XeCJK 宏包的\cs{CJKunderline}实现换行，但这
+两者目前对math mode（尤其是displaystyle的math mode）支持有限。
+
+\begin{reference}
+  \item \url{https://tex.stackexchange.com/questions/13177/what-are-vertical-and-horizontal-modes}
+\end{reference}
 
 %\faq{如何使用带圈数字做脚注编号？}{}
 
