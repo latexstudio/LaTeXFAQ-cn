@@ -44,7 +44,7 @@
   \item Choice keys
 
     用于定义一个具有选择性的宏，例如以下宏
-\begin{texcode}
+\begin{texlist}
   \define@choicekey{HTNotes.cls}{cvcolor}%
   [\val\ar]{green,orange,violet,blue}[blue]{
     \ifcase\ar\relax
@@ -61,7 +61,7 @@
       \definecolor{cvtext}{RGB}{100,100,100}
     \fi
   }
-\end{texcode}
+\end{texlist}
   该宏实现的是cvcolor的选择性，可以选择 green, orange, violet, blue 等参数，且 blue 为默认参数。
 
   \item Boolean keys
@@ -72,31 +72,31 @@
   具体用法请参考其说明文档。
 
   使用了 xkeyval 后，如何进行参数传递之类的呢？
-\begin{texcode}
+\begin{texlist}
   \DeclareOptionX*{\PassOptionsToClass{\CurrentOption}{book}}
   \ProcessOptionsX\relax
   \LoadClass[twoside,11pt]{book}
-\end{texcode}
+\end{texlist}
 
   那么，如何定义默认参数呢？
-\begin{texcode}
+\begin{texlist}
   \ExecuteOptionsX{
     cvcolor = {blue},
     ...
   }
-\end{texcode}
+\end{texlist}
 
   如何设置接口呢？
-\begin{texcode}
+\begin{texlist}
   \newcommand{\HTset}[1]{\setkeys{HTNotes.cls}{#1}}
-\end{texcode}
+\end{texlist}
 
   如何检测宏是否有内容呢？并依次为基础设置开关命令？
-\begin{texcode}
+\begin{texlist}
   % 宏定义为
   % \define@cmdkey{HTNotes.cls}[Book@]{Writer}
   \ifdefempty{\Book@Writer}{\@author}{\Book@Writer}
-\end{texcode}
+\end{texlist}
   该命令实现的是检测 \verb|\Book@Writer| 宏是否有内容，如果有则使用其存储的内容，无则使用 \verb|\@author| 存储的参数。
 
   用 xkeyval 提供的键值对实现方式，基本不会出现宏包冲突的问题，因为其前缀是由其特定的包含方式的，前提是选取适当。
