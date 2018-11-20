@@ -139,7 +139,49 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
   参考： Ishort-zh-cn LaTeX入门，刘海洋、\url{http://blog.sina.com.cn/s/blog_5e16f1770100nqwx.html}
 
 
+\faq{如何查看本机 \LaTeX{} 已找到的字体？}{local-fonts-list}
+
+按字体族名（font family name）输出本机 \LaTeX{} 已找到的字体：
+\begin{verbatim}
+ fc-list -f '%{family}\n' :lang=zh | sort > fontfamilylist.txt
+\end{verbatim}
+
+按字体文件名（font file name）输出本机 \LaTeX{} 已找到的字体：
+输出本机LaTeX能找到的字体（font file name）：
+\begin{verbatim}
+ fc-list -f '%{file}\n' :lang=zh | sort > fontfilelist.txt
+\end{verbatim}
+
+以上指定了|:lang=zh|过滤器只输出中文字体，可以去掉这一部分输出所有字体，或指定
+lang为其他语言。
+
 \faq{如何设置文档字体为本机已安装字体？}{set-up-local-fonts}
+
+\TeX{} 引擎多使用字体族名或字体文件名来调用字体，不同 \TeX{} 引擎调用方式有差别。
+在可行的情况下推荐使用字体族名进行字体设定，以防止同一字体因文件名有差异造成通用
+方面的问题。
+
+不同 \TeX{} 引擎 及字体调用宏包实现方式不一，|ctex|宏包默认根据不同系统选择不同
+的fontset文件来设定中文字体，详情请|texdoc ctex|。
+
+以下仅以启用了|ctex| 宏包的 \XeLaTeX{} 为例（大括号内均为字体族名 font family name）：
+\begin{verbatim}
+% 西文默认衬线字体、无衬线字体及等宽字体的设定
+\setmainfont{Libertinus Serif}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Libertinus Mono}
+
+% 中文默认衬线字体、无衬线字体及等宽字体的设定
+
+% 文档默认字体为思源宋体，默认字体|\itshape|时使用方正新楷体替代。
+\setCJKmainfont [ItalicFont = FZNewKai-Z03S]{Source Han Serif CN}
+% 普通无衬线字体为思源黑体的Normal字重，加粗时使用Medium字重。
+\setCJKsansfont [BoldFont=Source Han Sans CN Medium]{Source Han Sans CN Normal}
+% 中文等宽字体使用方正仿宋体。
+\setCJKmonofont {FZFangSong-Z02S}
+\end{verbatim}
+
+TODO：math mode的字体调用较为复杂多样，暂不赘述。
 
 
 \faq{如何通过字体文件名来调用未安装本机字体？}{call-local-fonts-by-chinese-name}
@@ -148,7 +190,16 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
 \faq{字体大小经常出现警告，该引用什么宏包解决？}{how-to-solve-warnnings-of-fonts-size}
 
 
-\faq{有些特殊文字怎么加入 \LaTeX{} 文档，例如 symbol\{"ff0e"\} 编译后为空白}{how-to-add-special-symbol}
+\faq{有些特殊文字怎么加入 \LaTeX{} 文档，为什么 \backslash symbol\{"FF0E\} 编译后为空白}{how-to-add-special-symbol}
+
+\LaTeX{} 提供了 |symbol| 命令，可以直接借助于字符编码插入字符，参考本书\ref{how-to-find-symbols}。
+
+|\symbol{"FF0E}| 编译后为空白是因你所使用的当前字体不包含这一字符，请指定包含这
+一字符的字体来显示。
+\begin{verbatim}
+\newCJKfontfamily\cjksans{Noto Sans CJK SC} 
+\cjksans \symbol{"FF0E} 
+\end{verbatim}
 
 
 \faq{如何查看字体和行间距，然后怎样修改}{how-to-check-and-modify-fonts-skip}
@@ -216,3 +267,8 @@ environment}
 \faq{在latex公式中如何将某一个字母或者希腊符号设置成某一个字体？}{}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../latex-faq-cn"
+%%% End:
