@@ -80,14 +80,18 @@
     \faq[<options>]{<question>}{<id>}
     ```
     这里的 `<id>` 需保证唯一性。
+    
+1. 对问题的交叉引用使用`\faqref{<id>}`命令。
 
 1. 每个问题之间留出 2 个空行
 
-1. 行间抄录（代码、命令等）使用 `|...|`
+1. 行间抄录（代码、命令等）使用 `|...|`（TODO：FAQ 标题中使用\cs{foocmd}和|foocmd|有可能引起编译错误。
 
 1. 宏包、文档类分别使用 `\pkg{...}`、`\cls{...}` 标记
 
 1. 书籍的中文名称使用 `《...》`，英文名称使用 `\book{...}`
+
+1. 录入TeX代码目前可使用texcode、texinlist、texlist环境；录入sh、bat、python、lua、json代码可分别使用shcode、batcode、pycode、luacode、jsoncode环境。
 
 ## 杂项
 

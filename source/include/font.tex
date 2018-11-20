@@ -69,34 +69,34 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
 
 \begin{itemize}
   \item |mathbf|：会将数学模式取消再来取用字型，因此它加粗的不是数学符号，而是公式里的一般文字。|mathbf| 只能在公式内部使用： 
-  \begin{verbatim}
+  \begin{texlist}
   \documentclass{article}
   \begin{document}
   $\mathbf{equation: f(x,y) = \alpha x^2 + \beta y^2}$
   \end{document}
-  \end{verbatim}
+  \end{texlist}
   效果如下：$ \mathbf{equation: f(x,y) = \alpha x^2 + \beta y^2} $
   \item |boldmath|：|boldmath| 可以将整套数学字体切换为粗体版本，这个命令只能在公式外使用：
-  \begin{verbatim}
+  \begin{texlist}
   \documentclass{article}
   \begin{document}
   \boldmath{$f(x,y) = \alpha x^2 + \beta y^2$}
   \end{document}
-  \end{verbatim}
+  \end{texlist}
   效果如下：
   \boldmath{$f(x,y) = \alpha x^2 + \beta y^2$}
   \item |boldsymbol|：\pkg{amsmath} 提供了一个 |boldsymbol| 命令（由调用的 \pkg{amsbsy} 宏包提供），用于打破 |boldmath| 的限制，在公式内部将一部分符号切换为粗体：
-  \begin{verbatim}
+  \begin{texlist}
   \documentclass{article}
   \usepackage{amsbsy} % 或者直接调用常用宏包 amsmath
   \begin{document}
   \[ f(x,y) = \boldsymbol{\alpha x^2 + \beta y^2} \]
   \end{document}
-  \end{verbatim}
+  \end{texlist}
   效果如下：
   \[ f(x,y) = \boldsymbol{\alpha x^2 + \beta y^2} \]
   \item |bm|：
-  \begin{verbatim}
+  \begin{texlist}
   \documentclass{article}
   \usepackage{bm}
   \begin{document}
@@ -104,7 +104,7 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
   $\bm{\sum x_i y_i}$,
   ${\bm \sum}{\bm x_i}{\bm y_i}$.
   \end{document}
-  \end{verbatim}
+  \end{texlist}
   效果如下：
   %TODO： bm 宏包和其他的 amsbsy 有冲突
 %  \[ \sum x_i y_i,
@@ -112,16 +112,16 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
 %  {\bm \sum}{\bm x_i}{\bm y_i} \]
   \item |pmb|：需使用 \pkg{amsmath} 宏包。
   \item |\textbf|：文本加粗
-  \begin{verbatim}
+  \begin{texlist}
   \documentclass{article}
   \begin{document}
   \textbf{equation: $f(x,y)=\alpha x^2+\beta y^2$}
   \end{document}
-  \end{verbatim}
+  \end{texlist}
   效果如下：
   \textbf{equation: $f(x,y)=\alpha x^2+\beta y^2$}
   \item |bfseries|：|bfseries| 影响之后所有的字符，如果想让它在局部生效，需使用花括号分组：
-  \begin{verbatim}
+  \begin{texlist}
   \documentclass{article}
   \begin{document}
   {\bfseries equation: $f(x,y) = \alpha x^2 + \beta y^2$}\\
@@ -129,7 +129,7 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
   \bfseries equation: $f(x,y) = \alpha x^2 + \beta y^2$\\
   equation: $f(x,y) = \alpha x^2 + \beta y^2$.\\
   \end{document}
-  \end{verbatim}
+  \end{texlist}
   效果如下：
   {\bfseries equation: $f(x,y) = \alpha x^2 + \beta y^2$}\\
   equation: $f(x,y) = \alpha x^2 + \beta y^2$.\\
@@ -139,7 +139,49 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
   参考： Ishort-zh-cn LaTeX入门，刘海洋、\url{http://blog.sina.com.cn/s/blog_5e16f1770100nqwx.html}
 
 
+\faq{如何查看本机 \LaTeX{} 已找到的字体？}{local-fonts-list}
+
+按字体族名（font family name）输出本机 \LaTeX{} 已找到的字体：
+\begin{shcode}
+ fc-list -f '%{family}\n' :lang=zh | sort > fontfamilylist.txt
+\end{shcode}
+
+按字体文件名（font file name）输出本机 \LaTeX{} 已找到的字体：
+输出本机LaTeX能找到的字体（font file name）：
+\begin{shcode}
+ fc-list -f '%{file}\n' :lang=zh | sort > fontfilelist.txt
+\end{shcode}
+
+以上指定了|:lang=zh|过滤器只输出中文字体，可以去掉这一部分输出所有字体，或指定
+lang为其他语言。
+
 \faq{如何设置文档字体为本机已安装字体？}{set-up-local-fonts}
+
+\TeX{} 引擎多使用字体族名或字体文件名来调用字体，不同 \TeX{} 引擎调用方式有差别。
+在可行的情况下推荐使用字体族名进行字体设定，以防止同一字体因文件名有差异造成通用
+方面的问题。
+
+不同 \TeX{} 引擎 及字体调用宏包实现方式不一，|ctex|宏包默认根据不同系统选择不同
+的fontset文件来设定中文字体，详情请|texdoc ctex|。
+
+以下仅以启用了|ctex| 宏包的 \XeLaTeX{} 为例（大括号内均为字体族名 font family name）：
+\begin{texlist}
+% 西文默认衬线字体、无衬线字体及等宽字体的设定
+\setmainfont{Libertinus Serif}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Libertinus Mono}
+
+% 中文默认衬线字体、无衬线字体及等宽字体的设定
+
+% 文档默认字体为思源宋体，默认字体|\itshape|时使用方正新楷体替代。
+\setCJKmainfont [ItalicFont = FZNewKai-Z03S]{Source Han Serif CN}
+% 普通无衬线字体为思源黑体的Normal字重，加粗时使用Medium字重。
+\setCJKsansfont [BoldFont=Source Han Sans CN Medium]{Source Han Sans CN Normal}
+% 中文等宽字体使用方正仿宋体。
+\setCJKmonofont {FZFangSong-Z02S}
+\end{texlist}
+
+TODO：math mode的字体调用较为复杂多样，暂不赘述。
 
 
 \faq{如何通过字体文件名来调用未安装本机字体？}{call-local-fonts-by-chinese-name}
@@ -148,7 +190,16 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
 \faq{字体大小经常出现警告，该引用什么宏包解决？}{how-to-solve-warnnings-of-fonts-size}
 
 
-\faq{有些特殊文字怎么加入 \LaTeX{} 文档，例如 symbol\{"ff0e"\} 编译后为空白}{how-to-add-special-symbol}
+\faq{有些特殊文字怎么加入 \LaTeX{} 文档，为什么 \backslash symbol\{"FF0E\} 编译后为空白}{how-to-add-special-symbol}
+
+\LaTeX{} 提供了 |symbol| 命令，可以直接借助于字符编码插入字符，参考本书\faqref{how-to-find-symbols}。
+
+|\symbol{"FF0E}| 编译后为空白是因你所使用的当前字体不包含这一字符，请指定包含这
+一字符的字体来显示。
+\begin{texlist}
+\newCJKfontfamily\cjksans{Noto Sans CJK SC} 
+\cjksans \symbol{"FF0E} 
+\end{texlist}
 
 
 \faq{如何查看字体和行间距，然后怎样修改}{how-to-check-and-modify-fonts-skip}
@@ -216,3 +267,8 @@ environment}
 \faq{在latex公式中如何将某一个字母或者希腊符号设置成某一个字体？}{}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../latex-faq-cn"
+%%% End:

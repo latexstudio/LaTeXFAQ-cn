@@ -28,17 +28,19 @@
 的。 下面是一些例子：
 \begin{itemize}
   \item 指定\TeX{}编译器
-  \begin{verbatim}
+  \begin{texlist}
   TeXStudio，TeXworks, Sublime Text
   % !TeX program = xelatex
   
   TeXShop
   %！TEX TS-program = xelatex
-  \end{verbatim}
-  同理，将 xelatex 变为 pdflatex，就可以强制调用 pdfLaTeX 编译器。
-  在代码中需要使用ifxetex宏包进行条件判断。 
+  \end{texlist}
+
+  同理，将 xelatex 变为 pdflatex，就可以强制调用 pdfLaTeX 编译器。在代码中需要使
+  用ifxetex宏包进行条件判断。
+
   \item 指定文档为 |UTF-8| 编码
-  \begin{verbatim}
+  \begin{texlist}
   TeXworks，TeXStudio, Sublime Text
   % !TeX encoding = utf8
   
@@ -49,32 +51,32 @@
   
   TeXShop
   %!TEX encoding = UTF-8 Unicode
-  \end{verbatim}
+  \end{texlist}
   由于Winedt对编码自动识别能力较弱，使用此注释比较必要，不然要手动设置。
   \item 指定主文档
-  \begin{verbatim}
+  \begin{texlist}
   TeXStudio, Sublime Text
   % !TeX root = filename
-  \end{verbatim}
+  \end{texlist}
   若需要指定上一层次的文件，则应该使用以下命令
-  \begin{verbatim}
+  \begin{texlist}
   TeXStudio, Sublime Text
   % !TeX root = ../main.tex
-  \end{verbatim}
+  \end{texlist}
   用两点表示返回上一层次，如果还需要再返回一个层次，则需要
-  \begin{verbatim}
+  \begin{texlist}
   TeXStudio, Sublime Text
   % !TeX root = ../../main.tex
-  \end{verbatim}
+  \end{texlist}
   \item 指定bib处理程序
-  \begin{verbatim}
+  \begin{texlist}
   TeXStudio
   % !TeX TXS-program:bibliography = txs:///biber
-  \end{verbatim}
+  \end{texlist}
   源文件添加如上代码即可用biber处理bib文件。将biber改为bibtex，即可指定\BibTeX{}处理bib文件。
   \item 
   为\TeX{}编译器指定参数
-  \begin{verbatim}
+  \begin{texlist}
   TeXStudio
   % !TeX TXS-program:compile = txs:///xelatex/[--shell-escape]
   
@@ -83,7 +85,7 @@
   
   texshop
   -shell-escape
-  \end{verbatim}
+  \end{texlist}
   有时在使用某些宏包时我们需要额外调用一些编译参数，例如 minted 宏包需要使用 --shell-escape，这时可用以上魔法注释实现该功能
 \end{itemize}
 

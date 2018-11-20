@@ -42,9 +42,9 @@
 Linux各发行版的包管理系统中一般都包括\TeXLive{}，一些发行版更新速度也较快，可以用
 其自身的包管理命令安装而无需下载镜像文件。如Debian类系统（包括Ubuntu）可以通过以下命令安装
 texlive完全版本及与其相关的依赖包：
-\begin{verbatim}
+\begin{shcode}
 aptitude install ~n^texlive
-\end{verbatim}
+\end{shcode}
 
 
 \faq{如何安装 \TeXLive{}}{install-texlive}
@@ -77,9 +77,9 @@ aptitude install ~n^texlive
 操作系统中，默认被双击后，镜像文件将会直接挂载。
 
 在 Linux 操作系统中，可使用命令行挂载镜像文件：
-\begin{verbatim}
+\begin{shcode}
 mount -o loop ~/download/texlive.iso ~/iso
-\end{verbatim}
+\end{shcode}
 
 
 \faq{挂载镜像文件后该如何做？}{after-mount}
@@ -95,17 +95,17 @@ Linux 用户请在命令行执行 |./install-tl| 进入 no gui 安装模式
 输入 cmd 打开命令行窗口（黑窗）。
 
 在黑窗内输入
-\begin{verbatim}
+\begin{shcode}
 cd /d ~
-\end{verbatim}
+\end{shcode}
 后按 Enter 键（即执行该命令），此处 |~| 代指 \file{install-tl-windows.bat} 
 所在目录，
 例如 \file{C:/Downloads} 等，注意命令中的空格。
 
 进入目录后继续执行
-\begin{verbatim}
+\begin{shcode}
 install-tl-windows.bat -no-gui
-\end{verbatim}
+\end{shcode}
 开启纯命令行安装模式。默认状态下，点击 I 键，安装便会开始。
 若用户想改变安装路径或其他设置，只需根据屏幕提示进行更改即可。
 特别强调，安装路径一定是不带空格的纯英文路径。
@@ -115,22 +115,22 @@ install-tl-windows.bat -no-gui
 
 主要是因为缺少环境变量。将 \verb|C:\Windows\system32| 添加到系统环境变
 量中即可。或者在命令行中执行
-\begin{verbatim}
+\begin{shcode}
 path=%path%;C:\Windows\system32
-\end{verbatim}
+\end{shcode}
 后再尝试安装。也可能由于下载文件损坏而造成安装失败，这时应重新下载。
 
 
 \faq{想在 Linux 系统中使用 GUI 模式安装该怎么做？}{linux-gui}
 
 自行安装 perl，详细办法请上网自行搜索。然后执行命令
-\begin{verbatim}
+\begin{shcode}
 ./install-tl -gui wizard
-\end{verbatim}
+\end{shcode}
 或
-\begin{verbatim}
+\begin{shcode}
 ./install-tl -gui perltk
-\end{verbatim}
+\end{shcode}
 
 
 \faq{如何配置 \TeXLive{} 的环境变量？}{texlive-path}
@@ -146,6 +146,7 @@ Linux 用户需要手动配置环境变量。例如，将
     export INFOPATH="$TEXDIR/texmf-dist/doc/info:$INFOPATH";
   fi;
 \end{shcode}
+
 写入 \file{~/.profile}。注意本例中的 2018 可以根据需要修改。
 例如部分用户还在使用 \TeXLive{} 2017，就可将 2018 改为 2017 等等。
 
@@ -153,9 +154,9 @@ Linux 用户需要手动配置环境变量。例如，将
 \faq{如何判断 \TeXLive{} 安装成功？}{texlive-success}
 
 在新打开的命令行窗口中执行
-\begin{verbatim}
+\begin{shcode}
 tex -v
-\end{verbatim}
+\end{shcode}
 若命令行窗口中显示“TeX Live 2018”等内容，即说明安装成功。
 
 
@@ -175,110 +176,110 @@ Linux 用户请直接删除文件夹，如执行
 建议使用命令行升级宏包。
 
 首先指定源，执行命令
-\begin{verbatim}
+\begin{shcode}
 tlmgr option repository ~
-\end{verbatim}
+\end{shcode}
 这里的 \verb|~| 指代地址，如 \verb|ctan| 即为让系统自动寻源；
 \verb|http://mirrors.tuna.tsinghua.edu.cn| 
 \verb|/CTAN/systems/texlive/tlnet| 即为手动指定清华的源。
 
 接下来，执行命令
-\begin{verbatim}
+\begin{shcode}
 tlmgr update --self
-\end{verbatim}
+\end{shcode}
 升级 tlmgr 本身。 然后，我们就可以升级宏包了。实际上，tlmgr
 升级所有宏包的代码非常简单，执行命令
-\begin{verbatim}
+\begin{shcode}
 tlmgr update --all
-\end{verbatim}
+\end{shcode}
 
 值得一提的是，这样的做法也会同时删除本地的那些已被我们设定的源所剔除的宏包。如果用户想
 保留它们的话，可以执行
 
-\begin{verbatim}
+\begin{shcode}
 tlmgr update --all --no-auto-remove
-\end{verbatim}
+\end{shcode}
 但是 tlmgr
 手册并不建议用户使用这样的方法。此外，为了防止更新后出现某些问题，我们还可以执行如下命令建立一个宏包备份：
 
-\begin{verbatim}
+\begin{shcode}
 tlmgr update --all --backup --backupdir E:\latexwork\backup
-\end{verbatim}
+\end{shcode}
 通过这句代码，我们就可以在更新宏包前将需要更新的宏包备份在
 |E:\latexwork\backup| 中。一旦更新出现问题，我们可以执行
 
-\begin{verbatim}
+\begin{shcode}
 tlmgr restore --bakeupdir E:\latexwork\backup --all
-\end{verbatim}
+\end{shcode}
 来恢复全部宏包，或者我们也可以恢复某个宏包，如
 
-\begin{verbatim}
+\begin{shcode}
 tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
-\end{verbatim}
+\end{shcode}
 就可以用于恢复 \pkg{mcmthesis}。
 
 \faq{在 Ubuntu 系统中使用升级宏包，系统显示未找到该命令该如何做}{ubuntu-tlmgr}
 首先，执行命令
-\begin{verbatim}
+\begin{shcode}
 sudo visudo
-\end{verbatim}
+\end{shcode}
 打开一个窗口，窗口中找到
-\begin{verbatim}
+\begin{shcode}
 Defaults secure_path="/usr/local/sbin..."
-\end{verbatim}
+\end{shcode}
 将其改为（假设是64位操作系统）
-\begin{verbatim}
+\begin{shcode}
 Defaults secure_path="/usr/local/texlive/2018/bin/x86_64-linux:/usr/local/..."
-\end{verbatim}
+\end{shcode}
 然后按 \verb|ctrl+X| 保存退出即可。
 
 \faq{\MiKTeX{} 如何升级宏包}{miktex-update}
 
 \MiKTeX{}
 可以用界面升级宏包，也可以使用命令行升级宏包：
-\begin{verbatim}
+\begin{shcode}
 mpm --admin --update
-\end{verbatim}
+\end{shcode}
 
 有些用户经常升级失败是因为源不稳定造成的。建议到
 \url{https://miktex.org/pkg/repositories} 找稳定的源。
 指定更新源地址的命令是
-\begin{verbatim}
+\begin{shcode}
 mpm --admin --set-repository=http://.../CTAN/systems/win32/miktex/tm/packages
-\end{verbatim}
+\end{shcode}
 
 %\faq{\TeXLive{} 对源的操作有哪些}{texlive-repo}
 %
 %查看源列表
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr repository list
-%\end{verbatim}
+%\end{shcode}
 %
 %正常情况下，列表中至少有一个源地址，并且该源地址被标记为 main。 添加源
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr repository add <path> [tag]
-%\end{verbatim}
+%\end{shcode}
 %
 %path 是源的地址，tag 是源的标签。例如添加
 %\url{http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet} 并标记为 thu
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr repository add http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet thu
-%\end{verbatim}
+%\end{shcode}
 %
 %标签可以省略 删除源
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr repository remove path|tag
-%\end{verbatim}
+%\end{shcode}
 %
 %例如将刚才添加的 thu 删除
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr repository remove thu
-%\end{verbatim}
+%\end{shcode}
 %
 %无视以前的列表，重新制定列表
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr repository set path[#tag] [path[#tag] ...]
-%\end{verbatim}
+%\end{shcode}
 %
 %特别强调，\TeXLive{} 要求源列表中至少存在一个被标记为 main
 %的源，否则一切操作都将失效。
@@ -346,25 +347,25 @@ mpm --admin --set-repository=http://.../CTAN/systems/win32/miktex/tm/packages
 %第一部分用于将该脚本移动到定时任务的根目录，并创建一个计划任务项。
 %为什么不用 AT 呢？因为 AT 在 Win10 中已经被取缔了。
 %
-%\begin{verbatim}
+%\begin{batcode}
 %if exist "C:\Windows\Tasks\autoTeXLivePackageUpdaterMonthly.bat" goto run
 %
 %move /y %0 "C:\Windows\Tasks"
 %schtasks /delete /tn "TeXLivePackage Updater Task" /f
 %schtasks /create /tn "TeXLivePackage Updater Task" /sc monthly /d /st 15:00:00 /tr "C:\Windows\Tasks\TeXLivePackageUpdater.bat"
-%\end{verbatim}
+%\end{batcode}
 %
 %更多关于计划任务的操作，可以去搜索，也可以参考\href{https://www.flighty.cn/html/tutorial/20170406_442.html}{这篇文章}。
 %* 调用 tlmgr 进行更新
 %
 %第二部分是调用 tlmgr 进行更新TeXLive宏包。
 %
-%\begin{verbatim}
+%\begin{shcode}
 %tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
 %tlmgr update --self
 %tlmgr update --list
 %tlmgr update --all --no-auto-install
-%\end{verbatim}
+%\end{shcode}
 %
 %以上四条命令分别实现的是\textbf{选取宏包源}、\textbf{更新 tlmgr 自身}、
 %\textbf{列出可更新的宏包名}、\textbf{更新所有宏包}。
@@ -490,15 +491,15 @@ options $\to$ configure texstudio $\to$ shortcuts
 
 详细的配置在 \pkg{minted} 宏包文档中有介绍。
 安装 python，选定安装 pip。打开命令行，执行
-\begin{verbatim}
+\begin{shcode}
 setx path=%path%;[Python];[\Python\Scripts]
-\end{verbatim}
+\end{shcode}
 这里的 |[Python]| 和 |[\Python\Scripts]| 代指你安装 python 的路径和该路径下的 scripts 文件夹。
 如 |D:\Python\Python36| 和 |D:\Python\Python36\Scripts|。
 然后在命令行中执行
-\begin{verbatim}
+\begin{shcode}
 pip install Pygments
-\end{verbatim}
+\end{shcode}
 进行安装。
 最后在编译文档的时候添加 |-shell-escape| 选项。
 
