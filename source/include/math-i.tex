@@ -107,8 +107,13 @@
 
 \faq{公式希腊字符如何加粗？}{}
 
-希腊字母没有粗体，可以选择合适的数学字体。 可以使用 bm
-宏包将希腊字母加粗。
+希腊字母没有原生粗体，可以选择合适的数学字体。 可以使用 \pkg{bm}宏包中的|\bm|命令、
+或者\pkg{unicode-math}宏包\footnote{需指定OpenType Math font，源代码文字为UTF8编
+  码，直接输入希腊文。此包不能与其他一些math包共存。}中的|\symbol{AaBb∇αβγ}|或者其他伪粗命令。
+粗。
+\begin{reference}
+  \item stackexchange. How can I get bold math symbols?. \url{https://tex.stackexchange.com/questions/595/how-can-i-get-bold-math-symbols}
+\end{reference}
 
 
 \faq{极限符号下面有两个趋近该怎么写}{}
@@ -159,33 +164,17 @@
 
 \faq{怎样在 LaTeX 中输入引号}{}
 
-左引号用 `（键盘1旁边那个键），右引号用 `。双引号也一样，``''。
-中文条件下可以直接用中文引号（这个与编码方式和中文支持方式有关的），会有自动配对（这个和编辑器以及输入法有关的），但是如果需要用到不配对引号的情况，需要使用通用方法。
+左引号用 `（键盘1旁边那个键），右引号用 `。西文双引号使用``''。
+中文条件下应直接使用中文双引号。
+\begin{reference}
+  \item 中华人民共和国教育部. 夹用英文的中文文本的标点符号用法（草案）.\url{http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/t20100115_75604.html}
+\end{reference}
 
 
 \faq{align环境默认是居中对齐吗？我在使用时，发现公式开始是居中的，后来却一直靠右断对齐，这是什么原因？}{}
 
-%\sout{align 默认靠右对齐，所以通常加 \&
-%符号，让代码左对齐。验证一下以下代码：}
-
-%\begin{verbatim}
-%\begin{align}
-%& \nabla \times H = J,\\
-%& \nabla \times E = - \partial _t B,\\
-%& \nabla \cdot B = 0.
-%\end{align}
-%\end{verbatim}
-\begin{example}
-\begin{align}
-& \nabla \times H = J,\\
-& \nabla \times E = - \partial _t B,\\
-& \nabla \cdot B = 0.
-\end{align}
-\end{example}
-
-再试试把 \& 去掉什么样。
-
-align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，两列之间用\&分隔。
+align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，
+两列之间用\&分隔。
 
 
 \faq{中英文标点使用规则不是很明白，尤其在公式环境里，字体和间距差别都比较大。怎样才能让正文和公式的标点统一（形状和间隔）？}{}
@@ -287,7 +276,6 @@ $\sum\limits_{i=1}^n, \prod\limits_\epsilon$
   如果使用 unicode-math 宏包，
 \end{enumerate}
 
-%\begin{latexcode}
 \begin{texlist}
 \removenolimits{%
   \int\iint\iiint\iiiint\oint\oiint\oiiint
@@ -297,7 +285,6 @@ $\sum\limits_{i=1}^n, \prod\limits_\epsilon$
   \intcap\intcup\upint\lowint
 }
 \end{texlist}
-%\end{latexcode}
 
 
 \faq{如何自定义数学运算符，然后让下标放在脚下？}{}
@@ -518,9 +505,9 @@ $\Psi$, $\varPsi$.
 
 
 \fbox{第一种方法}，使用 \verb|harpoon| 宏包，
-\begin{example}
+\begin{texlist}
 \overrightharp{this}
-\end{example}
+\end{texlist}
 
 
 
@@ -530,14 +517,14 @@ $\Psi$, $\varPsi$.
 %\newcommand{\myvec}[1]%
 %  {\stackrel{\raisebox{-2pt}[0pt][0pt]{\small$\rightharpoonup$}}{#1}}
 %\end{Verbatim}
-\begin{example}
+\begin{texlist}
 \newcommand{\myvec}[1]%
 {\stackrel{\raisebox{-2pt}[0pt][0pt]
 		{\small$\rightharpoonup$}}{#1}}
 \[
 	\myvec{A}
 \]
-\end{example}
+\end{texlist}
 
 \faq{常见矩阵的输入方法。}{}
 我们经常会见到如下矩阵：
@@ -553,7 +540,7 @@ $\Psi$, $\varPsi$.
 \end{example}
 
 很多用户刚开始的时候用 \verb|array| 环境来输入矩阵，示例如下：
-\begin{latexcode}
+\begin{example}
 \begin{gather*}
  \begin{array}{cc}  0 &  1 \\ 1 &  0 \end{array}  \quad
  \left(\begin{array}{cc}  0 & -i \\ i &  0 \end{array}\right) \\
@@ -562,7 +549,7 @@ $\Psi$, $\varPsi$.
  \left|\begin{array}{cc} a &  b \\ c &  d \end{array}\right| \quad
  \left\|\begin{array}{cc} i &  0 \\ 0 & -i \end{array}\right\|
 \end{gather*}
-\end{latexcode}
+\end{example}
 
 当然，大家可比较两个输出结果，择其一使用。
 
@@ -743,10 +730,10 @@ there is at least one full line below the matrix.
 \end{example}
 
 当然，如果是想批量更改的话，最好定义新的环境：
-\begin{latexcode}
+\begin{texlist}
 \newenvironment{sequation}{\small\begin{equation}}{\end{equation}}
 \newenvironment{tequation}{\tiny\begin{equation}}{\end{equation}}
-\end{latexcode}
+\end{texlist}
 \newenvironment{sequation}{\small\begin{equation}}{\end{equation}}
 \newenvironment{tequation}{\tiny\begin{equation}}{\end{equation}}
 \begin{example}
@@ -761,30 +748,30 @@ there is at least one full line below the matrix.
 
 \LaTeX{}根据文本字体的大小，调整公式的大小。
 通常我们不必做什么修改，当然也可以自己定义，用到的命令为 
-\begin{latexcode}
+\begin{texlist}
 \DeclareMathSizes{ds}{ts}{ss}{sss}
-\end{latexcode}
+\end{texlist}
 \noindent 分别对应\verb|displaystyle|，\verb|textstyle|，\verb|scriptstyle|，\verb|scriptscirptstyle|的尺寸。
 
 
 例如，下面一段代码加在文档 ``preamable'' 部分就可以实现对公式大小的修改：
 
-\begin{latexcode}
+\begin{texlist}
 % Size of the math equations
 \DeclareMathSizes{10}{10}{7}{5}
 \DeclareMathSizes{11}{11}{7.7}{5.5}
 \DeclareMathSizes{12}{12}{8.4}{6}
 \DeclareMathSizes{13}{13}{9.1}{6.5}
 \DeclareMathSizes{14}{14}{9.8}{7}
-\end{latexcode}
+\end{texlist}
 上面，第一个大括号里是文档使用的字号。只有在这与文档中字号定义相同时，后面对于公式
 大小的定义才有效。后面三个大括号分别定义的是，普通公式字号、第一级上下标、第二级上下标的字号大小。
 
 
 如果在一个使用12号字体的文档里，使用
-\begin{latexcode}
+\begin{texlist}
 \DeclareMathSizes{12}{20}{14}{10}
-\end{latexcode}
+\end{texlist}
 就可以得到，相对大的公式。
 \begin{note}
 	上文中，我们用 \verb|\displaystyle| 来使得行内分式变成行间分式大小，实际上，amsmath宏包提供了一个命令 \verb|\dfrac|，我常称``大分式''，而 \verb|textstyle| 对应的命令为 \verb|\tfrac|。我们看如下示例：
@@ -944,40 +931,40 @@ In display mode:
  $\nicefrac[\mathcal]{A}{B}$
 \end{example}
 	\noindent 其衍生宏包 \verb|units| 可用于输入物理单位，示例：
-\begin{example}
+\begin{texlist}
  \sffamily\bfseries\unit{m}\\
  \sffamily\bfseries$\unit{m}$\\
  \sffamily\itshape\unit[1]{m}\\
  \sffamily\itshape$\unit[1]{m}$\\
  \sffamily\bfseries\unitfrac{m}{s}\\
  \sffamily\bfseries$\unitfrac{m}{s}$
-\end{example}
+\end{texlist}
 \end{note}
 \fancybreak \faq{如何让公式编号与章节关联？}{}
 
 \jieyong{初级做法}
 
 有用户使用下面的方式来添加公式与章节关联，
-\begin{latexcode}
+\begin{texlist}
 \renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
-\end{latexcode}
+\end{texlist}
 \noindent 这一做法有个不好的地方就是：当\verb|section| 计数器增加时， \verb|equation| 计数器不会自动置零。
 
 解决这一问题导言区需要加上如下代码：
-\begin{latexcode}
+\begin{texlist}
 \makeatletter
  \@addtoreset{equation}{section}
 \makeatother
-\end{latexcode}
+\end{texlist}
 \noindent 或者每次使用 \verb|section| 命令之后，把 \verb|equation| 的计数器设置为 0。
 
 
 \jiejue
 
 通常，可使用 amsmath 宏包提供的 \verb|numberwithin| 命令来实现与章节的关联，即
-\begin{latexcode}
+\begin{texlist}
 \numberwithin{equation}{section}
-\end{latexcode}
+\end{texlist}
 
 \noindent 每次当 \verb|section| 计数器加1时，\verb|equation| 会自动置零。
 这样就可以方便地实现公式编号与章节之间的关联了。
@@ -1035,10 +1022,10 @@ In display mode:
 \jiejue
 
 在导言区加入
-\begin{latexcode}
+\begin{texlist}
 \usepackage{amsmath}
 \allowdisplaybreaks[4]
-\end{latexcode}
+\end{texlist}
 
 \jieshi
 
@@ -1062,25 +1049,25 @@ In display mode:
 
 \faq{数学常用环境的中文化}{}
 可以使用如下代码来处理。
-\begin{latexcode}
+\begin{texlist}
 \newtheorem{theorem}{{定理}}
 \newtheorem{proposition}{{命题}}
 \newtheorem{lemma}{{引理}}
 \newtheorem{corollary}{{推论}}[theorem]
 \newtheorem{definition}{{定义}}
 \newtheorem{example}{{例}}
-\end{latexcode}
+\end{texlist}
 
 有时，我们想要定理，定义等有一个缩进，可以使用 \verb|ntheorem| 宏包来定义其格式。较为顺手使用的可以用如下
 定义：
-\begin{latexcode}
+\begin{texlist}
 \newtheorem{theorem}{\hskip 2em{定理}}
 \newtheorem{proposition}{\hskip 2em{命题}}
 \newtheorem{lemma}{\hskip 2em{引理}}
 \newtheorem{corollary}{\hskip 2em{推论}}[theorem]
 \newtheorem{definition}{\hskip 2em{定义}}
-\newtheorem{example}{\hskip 2em{例}}
-\end{latexcode}
+\newtheorem{texlist}{\hskip 2em{例}}
+\end{texlist}
 
 \faq{如何实现公式的引用（括号引用） ？}{}
 
@@ -1207,7 +1194,7 @@ In display mode:
 
 \fbox{第一种方法}，是从IEEE摘选出来的解决方法，但是这个方式会使得公式浮动到下一页置顶显示。
 
-\begin{latexcode}
+\begin{example}
 \newcounter{mytempeqncnt}
 \begin{figure*}[!t]
  \normalsize
@@ -1227,10 +1214,10 @@ In display mode:
  \hrulefill
  \vspace*{4pt}
 \end{figure*}
-\end{latexcode}
+\end{example}
 
 \fbox{第二种方法}，使用multicol来实现，这个方法较贴近平时的使用习惯。
-\begin{latexcode}
+\begin{example}
 \begin{multicols}{2}
  Blah blah...
 \end{multicols}
@@ -1240,7 +1227,7 @@ In display mode:
 \begin{multicols}{2}
  Blah blah...
 \end{multicols}
-\end{latexcode}
+\end{example}
 有时，我们看到一些论文有如下的显示方式，\LaTeX{}里如何实现呢？
 
 \leftsep
@@ -1254,7 +1241,7 @@ In display mode:
 \rightsep
 
 其实现代码如下：
-\begin{latexcode}
+\begin{texlist}
 \newlength{\halfpagewidth}
 \setlength{\halfpagewidth}{\linewidth}
 \divide\halfpagewidth by 2
@@ -1286,7 +1273,7 @@ In display mode:
 \begin{multicols}{2}
  Blah blah...
 \end{multicols}
-\end{latexcode}
+\end{texlist}
 
 \fancybreak \faq{常用的数学字体有哪些？}{}
 
@@ -1436,11 +1423,11 @@ $A \xleftarrow{n=0} B \xrightarrow[T]{n>0} C$
 \fancybreak \faq{如何实现定理、 定义、 推论等的统一编号？}{}
 现在很多文章的定理、定义、推论、例子都采用统一编号，不再是独立编号。如定义 1.1，接下来可能是
 定理 1.2， 然后推论 1.3， 等等。这可以用如下的定义来完成：
-\begin{latexcode}
+\begin{texlist}
 \newtheorem{thm}{Theorem}[section] %如果不采用章节号做前缀， 则不用[section]
 \newtheorem{defn}[thm]{Definition} %这句定义使得defn环境和thm共享编号
 \newtheorem{lem}[thm]{Lemma}%这句定义使得lem环境和thm共享编号
-\end{latexcode}
+\end{texlist}
 
 \fancybreak \faq{如何调整公式中的距离？}{}
 
@@ -1532,15 +1519,15 @@ The text below.
 \end{example}
 
 通常，我们把把这一长度设置为弹性长度如：
-\begin{latexcode}
+\begin{texlist}
 \setlength\belowdisplayskip{1pt plus 3pt minus 7pt}
-\end{latexcode}
+\end{texlist}
 我们可以把其放在导言区来修改全文的公式与文字的间距。
 
 \jieyong{扩展方法}
 
 另外，这里我们再提供一个环境来调节公式与文字的间距，环境的参数便是我们需要减少的长度值。
-\begin{latexcode}
+\begin{texlist}
 \newenvironment{shrinkeq}[1]
  {\bgroup
    \addtolength\abovedisplayshortskip{#1}
@@ -1549,7 +1536,7 @@ The text below.
    \addtolength\belowdisplayskip{#1}
  }
  {\egroup\ignorespacesafterend}
-\end{latexcode}
+\end{texlist}
 
 
 使用方法如下：
@@ -1600,10 +1587,10 @@ Text after text after text after\dots
 \]
 \end{example}
 对于偏导呢，我们可以定义一个新的偏导符号如下：
-\begin{latexcode}
+\begin{texlist}
 \font\ursymbol=psyr at 10pt %可以改为其他字体大小
 \def\urpartial{\mbox{\ursymbol\char"B6}}
-\end{latexcode}
+\end{texlist}
 那么我们可以用 `\verb|\frac{\urpartial f}{\urpartial x}|' 来输出直立的偏导数符号了。效果如下：
 \begin{example}
 \[
@@ -1618,9 +1605,9 @@ Text after text after text after\dots
 这个问题是关于如何使用 \verb|\DeclareMathOperator|。
 
 先回答问题，定义下面的数学操作符：
-\begin{latexcode}
+\begin{texlist}
 \DeclareMathOperator{\doublesum}{\sum\sum}
-\end{latexcode}
+\end{texlist}
 
 \begin{example}
 正文中用
@@ -1634,14 +1621,14 @@ Text after text after text after\dots
 \begin{itemize}%[(1)]
 	\item 如果需要 \verb|\log \sin| 等相似的符号，用上面的格式；
 	\item 如果需要 \verb|\max \lim| 等相似的符号，用下面的格式：
-\begin{latexcode}
+\begin{texlist}
  \DeclareMathOperator*{\argmax}{\arg\max}
-\end{latexcode}
+\end{texlist}
 	注意，我用 \verb|\arg\max| 是希望产生下面的效果：$\arg\max$，
 	如果不要中间的空格或 $\arg$ 和 $\max$ 没定义，不要用反斜杠：
-\begin{latexcode}
+\begin{texlist}
  \DeclareMathOperator*{\Lim}{l.i.m.}
-\end{latexcode}
+\end{texlist}
 	这个符号用在随机数学中表示均方收敛。
 \end{itemize}
 
@@ -1769,7 +1756,7 @@ y\textcolor{blue}{-\frac{31}{8}}
 &= 2\left(x\textcolor{cyan}{-\frac{3}{4}}\right)^2%
 \end{align}
 其实现代码：
-\begin{latexcode}
+\begin{texlist}
 \usepackage{amsmath}
 \usepackage{empheq}
 \usepackage{xcolor}
@@ -1831,13 +1818,13 @@ y\textcolor{blue}{-\frac{31}{8}}
       y\textcolor{blue}{-\frac{31}{8}}
     &= 2\left(x\textcolor{cyan}{-\frac{3}{4}}\right)^2%
 \end{align}
-\end{latexcode}
+\end{texlist}
 
 \fancybreak \faq{如何制作证明环境结束符？}{}
 \label{pro2.21}
 
 通常，我们的使用 \verb|ntheorem| 宏包来定制定理的样式，例如：
-\begin{latexcode}
+\begin{texlist}
 \documentclass{article}
 \usepackage{ctex}
 \usepackage{amssymb}
@@ -1850,7 +1837,7 @@ y\textcolor{blue}{-\frac{31}{8}}
     一个证明环境。
   \end{Proof}
 \end{document}
-\end{latexcode}
+\end{texlist}
 %\begin{example}
 %\newtheorem{Proof}{\hskip 2em 证明}
 %\begin{Proof}
@@ -1874,7 +1861,7 @@ y\textcolor{blue}{-\frac{31}{8}}
 \]
 \end{proof}
 \end{example}
-%\begin{latexcode}
+%\begin{texlist}
 %\def\QEDclosed{\mbox{\rule[0pt]{1.3ex}{1.3ex}}} % 定义实心符
 %\def\QEDopen{{\setlength{\fboxsep}{0pt}\setlength{\fboxrule}
 %{0.2pt}\fbox{\rule[0pt]{0pt}{1.3ex}\rule[0pt]{1.3ex}{0pt}}}}
@@ -1883,7 +1870,7 @@ y\textcolor{blue}{-\frac{31}{8}}
 %\def\proof{\noindent{\bf Proof}: } %定义证明，注意选择中英文
 %\def\endproof{\hspace*{\fill}~\QED\par\endtrivlist\unskip}
 %%在proof环境自动添加结束符。
-%\end{latexcode}
+%\end{texlist}
 %
 %可以得到如下效果：
 %
@@ -1971,12 +1958,12 @@ y\textcolor{blue}{-\frac{31}{8}}
 \end{example}
 \noindent 公式的主编号使用计数器 parentequation ，子编号使用计数器 \verb|equation|。如果这种公式很多，在每一个
 \verb|subequations| 中都加上这么一句命令不是一个好的方法。你可以重新定义一个新的环境：
-\begin{latexcode}
+\begin{texlist}
 \newenvironment{mysubequations}
 {\begin{subequations}%
   \renewcommand{\theequation}{\theparentequation-\arabic{equation}}}
 {\end{subequations}}
-\end{latexcode}
+\end{texlist}
 \noindent 然后使用自定义的环境代替 \verb|subequations| 就可以了。
 
 \hfill ---选自《CTeX-FAQ》
@@ -2004,7 +1991,7 @@ y\textcolor{blue}{-\frac{31}{8}}
 
 \verb|amsmath| 宏包的 \verb|bmatrix|， \verb|pmatrix|等好像限制最大为10列？
 例如%[frame=single,rulecolor=\color{niceblue},fontsize=\small]
-\begin{latexcode}
+\begin{example}
 \[
  A=\begin{bmatrix}
  -1.15 & -0.0505 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -2021,7 +2008,7 @@ y\textcolor{blue}{-\frac{31}{8}}
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0
  \end{bmatrix}
 \]
-\end{latexcode}
+\end{example}
 
 \noindent 会提示
 
@@ -2040,19 +2027,19 @@ l.184 ...-0.0505 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 
 默认情况下，基本上所有matrix一类的东西的行数和列数都不能超过10
 这个最大值是由 \verb|MaxMatrixCols| 这个计数器决定的，但是我们可以使用如下代码：
-\begin{latexcode}
+\begin{texlist}
 \addtocounter{MaxMatrixCols}{10}
-\end{latexcode}
+\end{texlist}
 \noindent 就可以把最大值暂时定为20
 当然，这个值越大，消耗内存也越大
 
 \fancybreak \faq{cases 宏包和 amsmath 宏包是否可以一起用？}{}
 \jieyong{问题描述}
 当 \verb|cases| 宏包与 \verb|amsmath| 宏包这样加载时，就会报错：
-\begin{latexcode}
+\begin{texlist}
 \usepackage{cases}
 \usepackage{amsmath}
-\end{latexcode}
+\end{texlist}
 \noindent
 
 \jiejue
