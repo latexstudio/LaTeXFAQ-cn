@@ -44,7 +44,14 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
 \faq{为数学排版选择 Type 1 字体}{choose-type-1-fonts-for-math-typesetting}
 
 
-\faq{Type 1字体配置}{set-up-type-1-fonts}
+
+\faq{Type 1字体如何安装配置}{set-up-type-1-fonts}
+
+一些Type1字体包提供了相应的调用命令，详情请参考它们的文档。
+TODO：我不清楚这块内容，只找到了参考文献，还请他人来完善这个问题。
+\begin{reference}
+  \item Philipp Lehman. The Font Installation Guide.（\cs{texdoc fontinstallationguid}）
+\end{reference}
 
 
 \faq{切换到 T1 时字体变得模糊}{change-to-type-1-font-blurred}
@@ -53,9 +60,104 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
 \faq{由于 Ghostscript 太旧造成字体模糊}{old-Ghostscript-font-blurred}
 
 
+\faq{如何查看本机 \LaTeX{} 已找到的字体？}{local-fonts-list}
+
+按字体族名（font family name）输出本机 \LaTeX{} 已找到的字体：
+\begin{shcode}
+ fc-list -f '%{family}\n' :lang=zh | sort > fontfamilylist.txt
+\end{shcode}
+
+按字体文件名（font file name）输出本机 \LaTeX{} 已找到的字体：
+输出本机LaTeX能找到的字体（font file name）：
+\begin{shcode}
+ fc-list -f '%{file}\n' :lang=zh | sort > fontfilelist.txt
+\end{shcode}
+
+以上指定了|:lang=zh|过滤器只输出中文字体，可以去掉这一部分输出所有字体，或指定
+lang为其他语言。
+
+
+\faq{如何设置文档默认字体？}{set-default-local-fonts}
+
+\TeX{} 引擎多使用字体族名或字体文件名来调用字体，不同 \TeX{} 引擎调用方式有差别。
+在可行的情况下推荐使用字体族名进行字体设定，以防止同一字体因文件名有差异造成通用
+方面的问题。
+
+\XeLaTeX{} 和 \LuaLaTeX{} 中，可以使用\pkg{fontspec}来简单设置默认字体，它支持
+TrueType及OpenType字体。
+\begin{texlist}
+% fontspec宏包中对西文默认衬线字体、无衬线字体及等宽字体的设定
+\setmainfont{Libertinus Serif}
+\setsansfont{TeX Gyre Heros}
+\setmonofont{Libertinus Mono}
+\end{texlist}
+
+\pkg{ctex}中的子包\pkg{xecjk}构建于\pkg{fontspec}之上，提供了相应的中文字体设置命
+令。
+
+\pkg{ctex}默认根据用户不同的操作系统环境来选择对应的fontset文件来设定默认中文字体，
+你也可以自定义fontset文件，详情请|texdoc ctex|。
+
+如果您想手动指定默认字体的话，可以使用\pkg{ctex}提供的命令：
+\begin{texlist}
+% ctex宏包对CJK 默认衬线字体、无衬线字体及等宽字体的设定
+% 文档默认字体为思源宋体，默认字体|\itshape|时使用方正新楷体替代。
+\setCJKmainfont [ItalicFont = FZNewKai-Z03S]{Source Han Serif CN}
+% 普通无衬线字体为思源黑体的Normal字重，加粗时使用Medium字重。
+\setCJKsansfont [BoldFont=Source Han Sans CN Medium]{Source Han Sans CN Normal}
+% 中文等宽字体使用方正仿宋体。
+\setCJKmonofont {FZFangSong-Z02S}
+\end{texlist}
+
+TODO：math mode的字体调用复杂多样，暂不赘述。
+
+
+\faq{如何调用已被 \TeX{} 找到但仍未被配置的字体？}{set-local-fonts}
+
+\pkg{fontspec}为 \XeLaTeX{} 和 \LuaLaTeX{} 提供了方便的字体调用命令 |fontspec| ，
+详情请|texdoc fontspec|。
+\begin{texlist}
+  % \fontspec[<font features>]{<font name>} % 直接指定字体
+  % \newfontfamily<cmd>[<font features>]{<font name>} % 提供调用字体的命令<cmd>，
+  % 方便多次调用。
+  \newfontfamily\fontCMUtv{CMU Typewriter Text Variable Width}
+
+  I am the default font. \\
+  \fontspec{texgyreschola-regular.otf} Haha, I am texgyreschola. \\
+  \fontCMUtv and now CMU Typewriter Text Variable Width is me.
+\end{texlist}
+
+\pkg{ctex}宏包构建于\pkg{fontspec}之上，提供了相应的CJK字体设定命令，并为 CJK 字体
+加入了一些特性和功能）。
+\begin{texlist}
+
+  % \CJKfontspec{<font name>}[<font features>] % 直接指定字体
+  % \newCJKfontfamily<cmd>{<font name>}[<font features>] 提供调用字体族的命令。
+
+  \newCJKfontfamily\gothic{IPAexGothic} % 定义调用 IPAexGothic 字体的命令为 \gophic
+  \gothic 日本語
+  \songti 哇哈哈，我又回到了中文宋体。
+\end{texlist}
+
+\begin{reference}
+  \item fontspec及ctex文档。
+  \item 刘海洋 and 李阿玲. \LaTeX{} 如何混合排版中文与日文？（此链接还额外包
+    含\pTeX{} 字体设定的一些内容）.
+    \url{https://www.zhihu.com/question/68393040/answer/263348121}
+\end{reference}
+
+
 \faq{如何使用斜体}{how-to-use-italic-or-slanted-fonts}
 
-斜体一般是西文字体用的，在中文中不用斜体。
+斜体一般是西文字体用的，在中文中不用斜体。在实际使用中，对采用何种中文字体与西文意
+大利体（italic）搭配并不存在统一或权威意见，但较多数人使用楷体与意大利体搭配。
+在使用\pkg{ctex}包的情况下，可通过设定ItalicFonts选项选择你所想与意大利体搭配的
+中文字体。例：
+\begin{texlist}
+  % FZNewKai-Z03S为方正新楷体的字体族（font family name）名，Source Han Serif CN
+  % 为思源宋体的Region-specific Subset OTF版本。具体使用请根据本机环境定义。
+  \setCJKmainfont [ItalicFont = FZNewKai-Z03S]{Source Han Serif CN}
+\end{texlist}
 
 斜体这个名字比较误导，因为它对应英文的两个名字：倾斜体（slanted，指字形风格大致相同但是倾斜）和意大利体（italic，指字形设计为接近手写的形态，同时也就出现了倾斜）。
 
@@ -139,52 +241,10 @@ Scheme，NFSS）。它将文本字体分为五个互不干扰的属性（数学�
   参考： Ishort-zh-cn LaTeX入门，刘海洋、\url{http://blog.sina.com.cn/s/blog_5e16f1770100nqwx.html}
 
 
-\faq{如何查看本机 \LaTeX{} 已找到的字体？}{local-fonts-list}
-
-按字体族名（font family name）输出本机 \LaTeX{} 已找到的字体：
-\begin{shcode}
- fc-list -f '%{family}\n' :lang=zh | sort > fontfamilylist.txt
-\end{shcode}
-
-按字体文件名（font file name）输出本机 \LaTeX{} 已找到的字体：
-输出本机LaTeX能找到的字体（font file name）：
-\begin{shcode}
- fc-list -f '%{file}\n' :lang=zh | sort > fontfilelist.txt
-\end{shcode}
-
-以上指定了|:lang=zh|过滤器只输出中文字体，可以去掉这一部分输出所有字体，或指定
-lang为其他语言。
-
-\faq{如何设置文档字体为本机已安装字体？}{set-up-local-fonts}
-
-\TeX{} 引擎多使用字体族名或字体文件名来调用字体，不同 \TeX{} 引擎调用方式有差别。
-在可行的情况下推荐使用字体族名进行字体设定，以防止同一字体因文件名有差异造成通用
-方面的问题。
-
-不同 \TeX{} 引擎 及字体调用宏包实现方式不一，|ctex|宏包默认根据不同系统选择不同
-的fontset文件来设定中文字体，详情请|texdoc ctex|。
-
-以下仅以启用了|ctex| 宏包的 \XeLaTeX{} 为例（大括号内均为字体族名 font family name）：
-\begin{texlist}
-% 西文默认衬线字体、无衬线字体及等宽字体的设定
-\setmainfont{Libertinus Serif}
-\setsansfont{TeX Gyre Heros}
-\setmonofont{Libertinus Mono}
-
-% 中文默认衬线字体、无衬线字体及等宽字体的设定
-
-% 文档默认字体为思源宋体，默认字体|\itshape|时使用方正新楷体替代。
-\setCJKmainfont [ItalicFont = FZNewKai-Z03S]{Source Han Serif CN}
-% 普通无衬线字体为思源黑体的Normal字重，加粗时使用Medium字重。
-\setCJKsansfont [BoldFont=Source Han Sans CN Medium]{Source Han Sans CN Normal}
-% 中文等宽字体使用方正仿宋体。
-\setCJKmonofont {FZFangSong-Z02S}
-\end{texlist}
-
-TODO：math mode的字体调用较为复杂多样，暂不赘述。
 
 
 \faq{如何通过字体文件名来调用未安装本机字体？}{call-local-fonts-by-chinese-name}
+（TODO：不明白这个问题的意思。）
 
 
 \faq{字体大小经常出现警告，该引用什么宏包解决？}{how-to-solve-warnnings-of-fonts-size}
@@ -248,11 +308,18 @@ TODO：math mode的字体调用较为复杂多样，暂不赘述。
 \faq{如何使用 Font Awesome 提供的免费字体图标？ }{how-to-using-fontawesome-in-latex}
   直接应用 \pkg{fontawesome} 宏包就可以了。
 
-%TODO：这里使用了 verb 环境就会出错
+%TODO：这里使用了 verb 环境就会出错，好像是因为verb ||的问题不被pdf bookmark识别。
 %\faq{\LaTeX{} 中，\pkg{xecjk} 提供了汉字分区设置 |\xeCJKDeclareSubCJKBlock|，英文有类似操作吗？}{similar-command-in-english-as-xeCJKDeclareSubCJKBlock}
 
 
-\faq{ word 的字体和 \LaTeX{} 大小如何对应呢？}{what-is-the-relation-of-fonts-size-in-word-and-in-latex}
+\faq{word 的字体和 \LaTeX{} 大小如何对应呢？}{what-is-the-relation-of-fonts-size-in-word-and-in-latex}
+
+\pkg{ctex} 提供了 |zihao| 命令与word 常用的字号相对应，详情请运行命令|texdoc ctex|。
+\begin{reference}
+  \item 刘海洋 and 李阿玲. \LaTeX{} 如何混合排版中文与日文？（此链接还包含
+    \pTeX{} 设定的一些内容）.
+    \url{https://www.zhihu.com/question/68393040/answer/263348121}
+\end{reference}
 
 
 \faq{LaTeX 中如何设置定理环境中的字体？}{how-to-set-up-fonts-in-theorem-  
@@ -264,11 +331,7 @@ environment}
 
 \faq{\pdfLaTeX{} 如何使用 truetype 西文字体？}{using-truetype-fonts-in-pdflatex}
 
+
 \faq{在latex公式中如何将某一个字母或者希腊符号设置成某一个字体？}{}
 
 
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "../latex-faq-cn"
-%%% End:
