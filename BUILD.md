@@ -18,8 +18,8 @@ latexmk -xelatex latex-faq-cn
 ### 下载链接
 
 - 思源字体的官方下载地址位于 GitHub：
-  - 思源宋体：<https://github.com/adobe-fonts/source-han-serif/tree/release>
-  - 思源黑体：<https://github.com/adobe-fonts/source-han-sans/tree/release>
+  - 思源宋体：<https://github.com/adobe-fonts/source-han-serif/release>
+  - 思源黑体：<https://github.com/adobe-fonts/source-han-sans/release>
 
 - 由于众所周知的原因，在中国大陆地区访问 GitHub 速度较慢。此时，可以通过 [清华大学开源软件镜像站（tuna）](https://mirrors.tuna.tsinghua.edu.cn) 进行下载：
   - 思源宋体：<https://mirrors.tuna.tsinghua.edu.cn/adobe-fonts/source-han-serif>
