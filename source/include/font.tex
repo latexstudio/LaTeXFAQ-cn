@@ -111,6 +111,26 @@ TrueType及OpenType字体。
 
 TODO：math mode的字体调用复杂多样，暂不赘述。
 
+\faq{在\LaTeX{}中，如何更改默认字号？}{set-default-fontsize}
+
+文档类一般会提供几款字号选项供用户使用，详情请查看你所使用文档类的文档。如您想要
+的默认字号并不在类的选项中，可通过以下方式更改默认字号等。
+
+\LaTeX{}提供了成套的字号命令，如|normalsize|、|small|、|scriptsize|等，其中
+|normalsize|为文档字体默认大小，可以通过|renewcommand|命令对它们进行重新配置。请
+尽量配置这一系列命令，以防文档字体大小混乱。
+
+因这些命令往往内置了对math mode中行间公式间距的调整，所以需要根据字号重新调整这
+些间距。
+
+以下为\pkg{ctex}中文文档更改默认字体的示例，可酌情修改：\\
+\url{https://gitee.com/sd44/codes/naevt3u45786klrj2sfzd50}
+
+如在西文环境下使用，请将以上示例中的|\zihao{}|改为
+|\fontsize{<size>}{<skip>}\selectfont|\footnote{默认单位为pt。}，其中|<size>|为
+你想使用的字体大小，|<skip>|为字体基线到基线的行距，常将其定为|<size>|的1.2倍，可酌情修改。
+如|\fontsize{13}{14.5}\selectfont| 即指定字体大小为13pt。
+
 
 \faq{如何调用已被 \TeX{} 找到但仍未被配置的字体？}{set-local-fonts}
 
@@ -256,6 +276,8 @@ TODO：math mode的字体调用复杂多样，暂不赘述。
 
 |\symbol{"FF0E}| 编译后为空白是因你所使用的当前字体不包含这一字符，请指定包含这
 一字符的字体来显示。
+
+如将字体定为思源黑体：
 \begin{texlist}
 \newCJKfontfamily\cjksans{Noto Sans CJK SC} 
 \cjksans \symbol{"FF0E} 
@@ -302,7 +324,6 @@ TODO：math mode的字体调用复杂多样，暂不赘述。
 \faq{在 \LaTeX{} 公式中如何将某一个字母或者希腊符号设置成某一个字体？}{how-to-set-up-some-character-to-special-font}
 
 %TODO：这里使用了 verb 环境就会出错
-%\faq{怎样在一篇文档中使用多种字体？如何自定义字体大小？（不使用已经定义的 |\huge|、|\Huge|、|\large| 等）}{how-to-use-multiply-fonts-in-one-document}
 
 
 \faq{如何使用 Font Awesome 提供的免费字体图标？ }{how-to-using-fontawesome-in-latex}
