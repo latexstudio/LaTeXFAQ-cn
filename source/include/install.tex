@@ -43,7 +43,7 @@ Linux各发行版的包管理系统中一般都包括\TeXLive{}，一些发行�
 其自身的包管理命令安装而无需下载镜像文件。如Debian类系统（包括Ubuntu）可以通过以下命令安装
 texlive完全版本及与其相关的依赖包：
 \begin{shcode}
-aptitude install ~n^texlive
+  aptitude install ~n^texlive
 \end{shcode}
 
 
@@ -78,7 +78,7 @@ aptitude install ~n^texlive
 
 在 Linux 操作系统中，可使用命令行挂载镜像文件：
 \begin{shcode}
-mount -o loop ~/download/texlive.iso ~/iso
+  mount -o loop ~/download/texlive.iso ~/iso
 \end{shcode}
 
 
@@ -96,7 +96,7 @@ Linux 用户请在命令行执行 |./install-tl| 进入 no gui 安装模式
 
 在黑窗内输入
 \begin{shcode}
-cd /d ~
+  cd /d ~
 \end{shcode}
 后按 Enter 键（即执行该命令），此处 |~| 代指 \file{install-tl-windows.bat} 
 所在目录，
@@ -104,7 +104,7 @@ cd /d ~
 
 进入目录后继续执行
 \begin{shcode}
-install-tl-windows.bat -no-gui
+  install-tl-windows.bat -no-gui
 \end{shcode}
 开启纯命令行安装模式。默认状态下，点击 I 键，安装便会开始。
 若用户想改变安装路径或其他设置，只需根据屏幕提示进行更改即可。
@@ -116,7 +116,7 @@ install-tl-windows.bat -no-gui
 主要是因为缺少环境变量。将 \verb|C:\Windows\system32| 添加到系统环境变
 量中即可。或者在命令行中执行
 \begin{shcode}
-path=%path%;C:\Windows\system32
+  path=%path%;C:\Windows\system32
 \end{shcode}
 后再尝试安装。也可能由于下载文件损坏而造成安装失败，这时应重新下载。
 
@@ -125,11 +125,11 @@ path=%path%;C:\Windows\system32
 
 自行安装 perl，详细办法请上网自行搜索。然后执行命令
 \begin{shcode}
-./install-tl -gui wizard
+  ./install-tl -gui wizard
 \end{shcode}
 或
 \begin{shcode}
-./install-tl -gui perltk
+  ./install-tl -gui perltk
 \end{shcode}
 
 
@@ -155,7 +155,7 @@ Linux 用户需要手动配置环境变量。例如，将
 
 在新打开的命令行窗口中执行
 \begin{shcode}
-tex -v
+  tex -v
 \end{shcode}
 若命令行窗口中显示“TeX Live 2018”等内容，即说明安装成功。
 
@@ -177,7 +177,7 @@ Linux 用户请直接删除文件夹，如执行
 
 首先指定源，执行命令
 \begin{shcode}
-tlmgr option repository ~
+  tlmgr option repository ~
 \end{shcode}
 这里的 \verb|~| 指代地址，如 \verb|ctan| 即为让系统自动寻源；
 \verb|http://mirrors.tuna.tsinghua.edu.cn| 
@@ -185,51 +185,51 @@ tlmgr option repository ~
 
 接下来，执行命令
 \begin{shcode}
-tlmgr update --self
+  tlmgr update --self
 \end{shcode}
 升级 tlmgr 本身。 然后，我们就可以升级宏包了。实际上，tlmgr
 升级所有宏包的代码非常简单，执行命令
 \begin{shcode}
-tlmgr update --all
+  tlmgr update --all
 \end{shcode}
 
 值得一提的是，这样的做法也会同时删除本地的那些已被我们设定的源所剔除的宏包。如果用户想
 保留它们的话，可以执行
 
 \begin{shcode}
-tlmgr update --all --no-auto-remove
+  tlmgr update --all --no-auto-remove
 \end{shcode}
 但是 tlmgr
 手册并不建议用户使用这样的方法。此外，为了防止更新后出现某些问题，我们还可以执行如下命令建立一个宏包备份：
 
 \begin{shcode}
-tlmgr update --all --backup --backupdir E:\latexwork\backup
+  tlmgr update --all --backup --backupdir E:\latexwork\backup
 \end{shcode}
 通过这句代码，我们就可以在更新宏包前将需要更新的宏包备份在
 |E:\latexwork\backup| 中。一旦更新出现问题，我们可以执行
 
 \begin{shcode}
-tlmgr restore --bakeupdir E:\latexwork\backup --all
+  tlmgr restore --bakeupdir E:\latexwork\backup --all
 \end{shcode}
 来恢复全部宏包，或者我们也可以恢复某个宏包，如
 
 \begin{shcode}
-tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
+  tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
 \end{shcode}
 就可以用于恢复 \pkg{mcmthesis}。
 
 \faq{在 Ubuntu 系统中使用升级宏包，系统显示未找到该命令该如何做}{ubuntu-tlmgr}
 首先，执行命令
 \begin{shcode}
-sudo visudo
+  sudo visudo
 \end{shcode}
 打开一个窗口，窗口中找到
 \begin{shcode}
-Defaults secure_path="/usr/local/sbin..."
+  Defaults secure_path="/usr/local/sbin..."
 \end{shcode}
 将其改为（假设是64位操作系统）
 \begin{shcode}
-Defaults secure_path="/usr/local/texlive/2018/bin/x86_64-linux:/usr/local/..."
+  Defaults secure_path="/usr/local/texlive/2018/bin/x86_64-linux:/usr/local/..."
 \end{shcode}
 然后按 \verb|ctrl+X| 保存退出即可。
 
@@ -238,14 +238,14 @@ Defaults secure_path="/usr/local/texlive/2018/bin/x86_64-linux:/usr/local/..."
 \MiKTeX{}
 可以用界面升级宏包，也可以使用命令行升级宏包：
 \begin{shcode}
-mpm --admin --update
+  mpm --admin --update
 \end{shcode}
 
 有些用户经常升级失败是因为源不稳定造成的。建议到
 \url{https://miktex.org/pkg/repositories} 找稳定的源。
 指定更新源地址的命令是
 \begin{shcode}
-mpm --admin --set-repository=http://.../CTAN/systems/win32/miktex/tm/packages
+  mpm --admin --set-repository=http://.../CTAN/systems/win32/miktex/tm/packages
 \end{shcode}
 
 %\faq{\TeXLive{} 对源的操作有哪些}{texlive-repo}
