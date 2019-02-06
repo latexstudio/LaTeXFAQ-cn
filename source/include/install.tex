@@ -192,31 +192,35 @@ Linux 用户请直接删除文件夹，如执行
 \begin{shcode}
   tlmgr update --all
 \end{shcode}
-
-值得一提的是，这样的做法也会同时删除本地的那些已被我们设定的源所剔除的宏包。如果用户想
-保留它们的话，可以执行
-
+升级过程中如果遇到问题，可以执行
 \begin{shcode}
-  tlmgr update --all --no-auto-remove
+  tlmgr update −−reinstall−forcibly−removed --all
 \end{shcode}
-但是 tlmgr
-手册并不建议用户使用这样的方法。此外，为了防止更新后出现某些问题，我们还可以执行如下命令建立一个宏包备份：
 
-\begin{shcode}
-  tlmgr update --all --backup --backupdir E:\latexwork\backup
-\end{shcode}
-通过这句代码，我们就可以在更新宏包前将需要更新的宏包备份在
-|E:\latexwork\backup| 中。一旦更新出现问题，我们可以执行
-
-\begin{shcode}
-  tlmgr restore --bakeupdir E:\latexwork\backup --all
-\end{shcode}
-来恢复全部宏包，或者我们也可以恢复某个宏包，如
-
-\begin{shcode}
-  tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
-\end{shcode}
-就可以用于恢复 \pkg{mcmthesis}。
+%值得一提的是，这样的做法也会同时删除本地的那些已被我们设定的源所剔除的宏包。如果用户想
+%保留它们的话，可以执行
+%
+%\begin{shcode}
+%  tlmgr update --all --no-auto-remove
+%\end{shcode}
+%但是 tlmgr
+%手册并不建议用户使用这样的方法。此外，为了防止更新后出现某些问题，我们还可以执行如下命令建立一个宏包备份：
+%
+%\begin{shcode}
+%  tlmgr update --all --backup --backupdir E:\latexwork\backup
+%\end{shcode}
+%通过这句代码，我们就可以在更新宏包前将需要更新的宏包备份在
+%|E:\latexwork\backup| 中。一旦更新出现问题，我们可以执行
+%
+%\begin{shcode}
+%  tlmgr restore --bakeupdir E:\latexwork\backup --all
+%\end{shcode}
+%来恢复全部宏包，或者我们也可以恢复某个宏包，如
+%
+%\begin{shcode}
+%  tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
+%\end{shcode}
+%就可以用于恢复 \pkg{mcmthesis}。
 
 \faq{在 Ubuntu 系统中使用升级宏包，系统显示未找到该命令该如何做}{ubuntu-tlmgr}
 首先，执行命令
@@ -389,8 +393,8 @@ TeXShop），
 轻量简洁，适合新手学习。
 
 TeXStudio 是一款跨平台的开源 \LaTeX{} IDE(集成开发环境)。
-对于大部分用户而言，它的功能足以满足需要，下载可访问官网 
-\url{http://texstudio.sourceforge.net/}。
+对于大部分用户而言，它的功能足以满足需要，下载可访问 
+\url{https://github.com/texstudio-org/texstudio/releases}。
 
 Texmaker 是一款免费、现代、跨平台的 \LaTeX{} 编辑器。 它能够在 Linux，macOS 和 
 Windows 系统中使用，
@@ -407,20 +411,18 @@ Texpad 是运行于 macOS/iOS 在线平台的编辑器，带自动编译，支�
 \url{https://www.texpad.com}
 
 Visual Studio Code（vscode），是一款强大的跨平台编辑器。
-安装 LaTeX Workshop 插件即可进行编译工作。软件下载可见官网 
+安装 LaTeX Workshop 插件即可进行编译工作。Visual Studio Code 官网见 
 \url{https://code.visualstudio.com/}。
-配置可参考下面网址 \url{http://www.latexstudio.net/archives/11087.html}。
+配置可参考 \href{https://github.com/EthanDeng/vscode-latex}{LaTeX 编译环境配置：Visual Studio Code 配置简介} 和 \href{https://github.com/James-Yu/LaTeX-Workshop/wiki}{LaTeX-Workshop 的 Wiki}。
 
 
 \faq{如何在 Sublime 上配置 \LaTeX{} 编译环境}{sublime-latex}
-可以参考 LaTeXTools 插件的安装教程，具体安装方法可见 \url{http://www.qhjack.cn/blog/1792.html}。
-如果只是配置最简单的 LaTeXTools （如果已经安装好\TeXLive{}，Subline Text 3 和 Sumatra PDF），
-也可以参考 \url{https://blog.csdn.net/qazxswed807/article/details/51234834}。
+可以参考 \href{https://github.com/EthanDeng/sublime-text-latex}{Sublime Text 搭建 LaTeX 编写环境}。
 
 
-\faq{Sublime Text 下 \LaTeX{} 的高级应用？包括公式实时预览、快捷键设置、多发行版支持等等}{sublimeditor}
-
-可以参考 \url{https://htharoldht.com/latex-and-advanced-applications-under-sublime-text/}，以及\url{http://www.latexstudio.net/archives/51449.html}
+%\faq{Sublime Text 下 \LaTeX{} 的高级应用？包括公式实时预览、快捷键设置、多发行版支持等等}{sublimeditor}
+%
+%可以参考 \url{https://htharoldht.com/latex-and-advanced-applications-under-sublime-text/}，以及\url{http://www.latexstudio.net/archives/51449.html}
 
 
 \faq{\LaTeX{} 文档能转成 Microsoft Word 格式吗}{tex2word}
@@ -456,7 +458,8 @@ options $\to$ configure texstudio $\to$ shortcuts
 \begin{itemize}
   \item Windows 下可以使用 \href{https://www.sumatrapdfreader.org/free-pdf-reader.html}{SumatraPDF}
   \item Mac 下可以使用 \href{http://skim-app.sourceforge.net/}{Skim}。
-  \item Linux 下的 \href{https://gitlab.gnome.org/GNOME/evince}{Evince}和\href{https://okular.kde.org/}{Okular} 也支持实时更新 pdf。
+  \item Linux 下的 \href{https://gitlab.gnome.org/GNOME/evince}{Evince} 和
+  \href{https://okular.kde.org/}{Okular} 也支持实时更新 pdf。
 \end{itemize}
 
 
@@ -492,13 +495,13 @@ options $\to$ configure texstudio $\to$ shortcuts
 详细的配置在 \pkg{minted} 宏包文档中有介绍。
 安装 python，选定安装 pip。打开命令行，执行
 \begin{shcode}
-setx path=%path%;[Python];[\Python\Scripts]
+  setx path=%path%;[Python];[\Python\Scripts]
 \end{shcode}
 这里的 |[Python]| 和 |[\Python\Scripts]| 代指你安装 python 的路径和该路径下的 scripts 文件夹。
 如 |D:\Python\Python36| 和 |D:\Python\Python36\Scripts|。
 然后在命令行中执行
 \begin{shcode}
-pip install Pygments
+  pip install Pygments
 \end{shcode}
 进行安装。
 最后在编译文档的时候添加 |-shell-escape| 选项。
