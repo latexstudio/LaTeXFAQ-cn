@@ -105,11 +105,10 @@ LaTeX还设定了一些计数器来限制页面上浮动体的数量，见表 \r
 
 \begin{table}[ht!]
   \centering
-  \begin{longtable}{|c|c|}
+  \begin{tabular}{|c|c|}
     \hline
     计数器 & 含义 \\
     \hline
-    \endhead
     dbltopnumber & twocolumn 模式下可以位于页面顶部的浮动体最大数目（缺省为2） \\
     \hline
     topnumber & 可以位于页面顶部的浮动体最大数目（缺省为2） \\
@@ -118,7 +117,7 @@ LaTeX还设定了一些计数器来限制页面上浮动体的数量，见表 \r
     \hline
     totalnumber & 可以位于文本页中的浮动体最大数目（缺省为3） \\
     \hline
-  \end{longtable}
+  \end{tabular}
   \caption{浮动体计数器含义}
   \label{figure-counter}
 \end{table}
@@ -127,11 +126,10 @@ LaTeX 还设定了一些比例参数控制浮动体的放置，见表 \ref{figur
 
 \begin{table}[ht!]
   \centering
-  \begin{longtable}{|c|c|}
+  \begin{tabular}{|c|c|}
     \hline
     参数 & 含义 \\
     \hline
-    \endhead
     |\textfraction| & 文本页上文本最小比例（默认0.2） \\
     \hline
     |\topfraction| & 页面顶部浮动体高度比例（默认0.7） \\
@@ -144,7 +142,7 @@ LaTeX 还设定了一些比例参数控制浮动体的放置，见表 \ref{figur
     \hline
     |\dblfloatpagefraction| & twocolumn 模式下浮动页浮动体高度比例（默认0.5） \\
     \hline
-  \end{longtable}
+  \end{tabular}
   \caption{浮动体参数含义}
   \label{figure-params}
 \end{table}
