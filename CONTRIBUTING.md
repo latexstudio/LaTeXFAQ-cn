@@ -45,3 +45,22 @@ Git 的使用说明见 [Pro Git](https://git-scm.com/book/zh/v2)。
 很多编辑器，如 Visual Studio Code，会自带 [Git 集成](https://code.visualstudio.com/Docs/editor/versioncontrol)，同样对用户较为友好。
 
 GitHub 的使用说明见其 [帮助页面](https://help.github.com/)。
+
+## 注意
+
+使用Git拉取代码时，请务必注意当前拉取合并后当前所在的版本是否是最新版本，可以执行如下代码复位并放弃所有本地更改到最新：
+```
+git reset --hard origin/master
+```
+如果本地还有变动，可以尝试软复位：
+```
+git reset --soft origin/master
+```
+也可以尝试不带参数的复位命令，如下：
+```
+git reset  origin/master
+```
+他们的区别如下：
+- mixed：此为默认方式，不碰工作目录，只复位索引
+- soft：保持索引和工作目录不变，只复位提交
+- hard：丢弃所有未提交的信息，复位所有工作目录和索引（会丢失所有未提交的信息，可通过创建patch保留，具体查阅git资料）

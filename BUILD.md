@@ -4,7 +4,7 @@
 
 ```sh
 cd source/
-latexmk -xelatex latex-faq-cn
+latexmk  -xelatex -synctex=1 -interaction=nonstopmode -shell-escape latex-faq-cn
 ```
 
 您也可以使用 `xelatex` 手动编译。
