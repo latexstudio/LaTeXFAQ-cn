@@ -1,22 +1,4 @@
-% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
-%
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>.
-%
-
 % !TEX root = ../latex-faq-cn.tex
-% !TEX program = xelatex
-% !TEX options = --shell-escape
 
 \section{安装与配置问题}
 \label{sec:install}
@@ -24,7 +6,7 @@
 \faq{如何下载 \TeXLive{}？}{download-texlive}
 
 \TeXLive{} 分为在线安装和 ISO 镜像安装两种方式。在线安装时，需保证网络连接良好，一旦网络异常，很有
-可能前功尽弃。因此对于普通用户，我们建议先行下载 \TeXLive{} 的 ISO 镜像至本地，再进行安装。
+可能前功尽弃。因此对于普通用户，我们建议先行下载 \TeXLive{} 的 ISO 镜像文件至本地，再进行安装。
 
 \TeXLive{} 的 ISO 镜像文件可以在这一网址找到：\url{http://mirror.ctan.org/systems/texlive/Images/}。
 打开链接后，您可能会找到若干个 ISO 文件，如 \file{texlive.iso}、\file{texlive2018.iso}、
@@ -197,31 +179,6 @@ Linux 用户请直接删除文件夹，如执行
   tlmgr update −−reinstall−forcibly−removed --all
 \end{shcode}
 
-%值得一提的是，这样的做法也会同时删除本地的那些已被我们设定的源所剔除的宏包。如果用户想
-%保留它们的话，可以执行
-%
-%\begin{shcode}
-%  tlmgr update --all --no-auto-remove
-%\end{shcode}
-%但是 tlmgr
-%手册并不建议用户使用这样的方法。此外，为了防止更新后出现某些问题，我们还可以执行如下命令建立一个宏包备份：
-%
-%\begin{shcode}
-%  tlmgr update --all --backup --backupdir E:\latexwork\backup
-%\end{shcode}
-%通过这句代码，我们就可以在更新宏包前将需要更新的宏包备份在
-%|E:\latexwork\backup| 中。一旦更新出现问题，我们可以执行
-%
-%\begin{shcode}
-%  tlmgr restore --bakeupdir E:\latexwork\backup --all
-%\end{shcode}
-%来恢复全部宏包，或者我们也可以恢复某个宏包，如
-%
-%\begin{shcode}
-%  tlmgr restore --bakeupdir E:\latexwork\backup mcmthesis
-%\end{shcode}
-%就可以用于恢复 \pkg{mcmthesis}。
-
 \faq{在 Ubuntu 系统中使用升级宏包，系统显示未找到该命令该如何做}{ubuntu-tlmgr}
 首先，执行命令
 \begin{shcode}
@@ -252,134 +209,10 @@ Linux 用户请直接删除文件夹，如执行
   mpm --admin --set-repository=http://.../CTAN/systems/win32/miktex/tm/packages
 \end{shcode}
 
-%\faq{\TeXLive{} 对源的操作有哪些}{texlive-repo}
-%
-%查看源列表
-%\begin{shcode}
-%tlmgr repository list
-%\end{shcode}
-%
-%正常情况下，列表中至少有一个源地址，并且该源地址被标记为 main。 添加源
-%\begin{shcode}
-%tlmgr repository add <path> [tag]
-%\end{shcode}
-%
-%path 是源的地址，tag 是源的标签。例如添加
-%\url{http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet} 并标记为 thu
-%\begin{shcode}
-%tlmgr repository add http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet thu
-%\end{shcode}
-%
-%标签可以省略 删除源
-%\begin{shcode}
-%tlmgr repository remove path|tag
-%\end{shcode}
-%
-%例如将刚才添加的 thu 删除
-%\begin{shcode}
-%tlmgr repository remove thu
-%\end{shcode}
-%
-%无视以前的列表，重新制定列表
-%\begin{shcode}
-%tlmgr repository set path[#tag] [path[#tag] ...]
-%\end{shcode}
-%
-%特别强调，\TeXLive{} 要求源列表中至少存在一个被标记为 main
-%的源，否则一切操作都将失效。
-
-
 \faq{如何自动升级 \TeXLive{} 宏包？}{texlive-autoupdate}
 
 \href{http://pd10ibe5c.bkt.clouddn.com/TeXLive\%E5\%AE\%8F\%E5\%8C\%85\%E6\%AF\%8F\%E6\%9C\%88\%E8\%87\%AA\%E5\%8A\%A8\%E6\%9B\%B4\%E6\%96\%B0.zip}{这里可以下载每月自动升级\TeXLive{}宏包的脚本}。
 \href{http://htharoldht.com/texlive-package-automatically-upgrades-every-month/}{这里是该脚本的说明}。
-%* 脚本源码
-%
-%\begin{batcode}
-%  @echo off
-%
-%  if exist "C:\Windows\Tasks\AutoTeXLivePackageUpdaterMonthly.bat" goto run
-%
-%  move /y %0 "C:\Windows\Tasks"
-%  schtasks /delete /tn "TeXLivePackage Updater Task" /f
-%  schtasks /create /tn "TeXLivePackage Updater Task" /sc monthly /d /st 15:00:00 /tr "C:\Windows\Tasks\AutoTeXLivePackageUpdaterMonthly.bat"
-%
-%  :run
-%  echo ============================开始============================
-%  echo Writen By 有龙则灵_USTB
-%
-%  echo 是否更新TeXLive Package？
-%  set Choice=
-%  set /p Choice=请输入：y/n?
-%  IF "%Choice%"=="y" (goto ya) else (goto n)
-%
-%  :ya
-%  call tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
-%  echo ============================更新tlmgr============================
-%  echo Writen By 有龙则灵_USTB
-%  call tlmgr update --self
-%  echo ============================显示待更新的宏包以及可自动安装的项============================
-%  call tlmgr update --list
-%  echo Writen By 有龙则灵_USTB
-%
-%  echo 是否更新TeXLive Package？
-%  set Choice=
-%  set /p Choice=请输入：y/n?
-%  IF "%Choice%"=="y" (goto yb) else (goto n)
-%
-%  :yb
-%  echo ============================更新所有宏包============================
-%  call tlmgr update --all
-%  echo ============================结束============================
-%  echo Writen By 有龙则灵_USTB
-%  pause
-%  :n
-%\end{batcode}
-%
-%\begin{itemize}
-%
-%\item
-%  脚本阐释
-%
-%  \begin{itemize}
-%
-%  \item
-%    利用 Windows 自带的 SchTasks 创建定时任务
-%  \end{itemize}
-%\end{itemize}
-%
-%第一部分用于将该脚本移动到定时任务的根目录，并创建一个计划任务项。
-%为什么不用 AT 呢？因为 AT 在 Win10 中已经被取缔了。
-%
-%\begin{batcode}
-%if exist "C:\Windows\Tasks\autoTeXLivePackageUpdaterMonthly.bat" goto run
-%
-%move /y %0 "C:\Windows\Tasks"
-%schtasks /delete /tn "TeXLivePackage Updater Task" /f
-%schtasks /create /tn "TeXLivePackage Updater Task" /sc monthly /d /st 15:00:00 /tr "C:\Windows\Tasks\TeXLivePackageUpdater.bat"
-%\end{batcode}
-%
-%更多关于计划任务的操作，可以去搜索，也可以参考\href{https://www.flighty.cn/html/tutorial/20170406_442.html}{这篇文章}。
-%* 调用 tlmgr 进行更新
-%
-%第二部分是调用 tlmgr 进行更新TeXLive宏包。
-%
-%\begin{shcode}
-%tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
-%tlmgr update --self
-%tlmgr update --list
-%tlmgr update --all --no-auto-install
-%\end{shcode}
-%
-%以上四条命令分别实现的是\textbf{选取宏包源}、\textbf{更新 tlmgr 自身}、
-%\textbf{列出可更新的宏包名}、\textbf{更新所有宏包}。
-%--no-auto-install 实现的是不自动安装。众所周知 \TeXLive{}
-%是发行几乎所有投稿的宏包，所有每次更新里面都有太多自动安装的宏包。如果你想要这个功能，删掉这个参数即可。
-%更多关于 tlmgr 的操作，请参考\href{https://www.tug.org/texlive/doc/tlmgr.html}{官方文档}。
-%* 批处理编写
-%
-%代码里面其余部分均是 bat
-%编程的基本语句，可参考\href{https://baike.baidu.com/item/\%E6\%89\%B9\%E5\%A4\%84\%E7\%90\%86/1448600?fr=aladdin}{百度百科}。
 
 
 \faq{不同平台 \LaTeX{} 编辑器推荐}{editors}
@@ -420,16 +253,10 @@ Visual Studio Code（vscode），是一款强大的跨平台编辑器。
 可以参考 \href{https://github.com/EthanDeng/sublime-text-latex}{Sublime Text 搭建 LaTeX 编写环境}。
 
 
-%\faq{Sublime Text 下 \LaTeX{} 的高级应用？包括公式实时预览、快捷键设置、多发行版支持等等}{sublimeditor}
-%
-%可以参考 \url{https://htharoldht.com/latex-and-advanced-applications-under-sublime-text/}，以及\url{http://www.latexstudio.net/archives/51449.html}
-
-
 \faq{\LaTeX{} 文档能转成 Microsoft Word 格式吗}{tex2word}
 
 严格来讲，可以做，例如利用 pandoc 等工具进行自动转换，但结果往往不尽如人意，因此十分不
 建议这样做。
-%有时候投稿A期刊被拒，修改后转投B期刊，两者要求的稿件格式偶尔会有差异，就会遇到这样的格式转换问题。可以试试pandoc，也可以试试商业软件tex2word和word2tex，如果原来的文档书写规范，转换效果还是可以接受的，只要略作微调就可以使用。问题是遇到这样情况的时候，原来文档格式往往是很不规范的，结果就悲剧了。
 
 
 \faq{新手应该选择什么发行版，什么编辑器最省心}{tex-beginner}
@@ -507,7 +334,9 @@ options $\to$ configure texstudio $\to$ shortcuts
 最后在编译文档的时候添加 |-shell-escape| 选项。
 
 
-%\faq{\TeXLive{}为什么要采取每年一个大版本的制度？跨版本更新怎么做？UI字体为什么那么丑}{}
+\faq{\TeXLive{}为什么要采取每年一个大版本的制度？}{}
+
+参考  \url{https://tex.stackexchange.com/questions/107017/why-does-tex-live-require-yearly-updates}
 
 
 %\faq{在经常使用某个非 CTAN 收录的宏包的情况下。怎样安装这种非字体宏包？}{}
@@ -518,12 +347,12 @@ options $\to$ configure texstudio $\to$ shortcuts
 
 \faq{为了预防 \TeX{} 源文件用不同的编辑器，不同的系统下打开，产生乱码，无法撤回修改，有什么建议？}{}
 
-用 UTF-8 编码就好了
+目前大力建议用户使用 UTF-8 编码
 
 
 \faq{TeXStudio 里面某些命令明明没有打错，也可以正常编译，为什么编辑框会显示为红的？}{}
 
-编辑器里面并没有把所有的命令都写入它的格式文件，仅此而已。还有很多时候是语法检查的问题，要么设置相应的语言
+TeXStudio 编辑器并没有把所有的命令都写入它的格式文件，即 |cwl| 文件。还有很多时候是语法检查的问题，要么设置相应的语言
 包，要么关闭语法检查功能。
 
 

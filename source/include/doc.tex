@@ -1,23 +1,4 @@
 % !TEX root = ../latex-faq-cn.tex
-% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
-% 
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
-% 
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-% 
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>.
-% 
-
-% !TEX root = ../latex-faq-cn.tex
-% !TEX program = xelatex
-% !TEX options = --shell-escape
 
 \section{文档编辑}
 
@@ -48,7 +29,7 @@ lshort-zh 是一本比较薄的针对中文用户的 \LaTeX{} 入门教程，该
 \url{https://mirrors.tuna.tsinghua.edu.cn/CTAN/language/chinese/ctex/ctex.pdf}
 
 
-\faq{关于教程，用户比较容易获取的有两个：lshort 和 \LaTeX{} wikibook。}{lshort-latex-wikibook}
+%\faq{关于教程，用户比较容易获取的有两个：lshort 和 \LaTeX{} wikibook。}{lshort-latex-wikibook}
 
 
 % \faq{关于\TeX{}, Plain \TeX{} 及相关书籍}{tex-plain-tex-books}
@@ -178,6 +159,16 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
 \LaTeX{} wikibook 是 \url{https://www.latex-project.org/} 中列出的 \TeX{} and \LaTeX{} Books 之一，用户
 可访问 \url{https://en.wikibooks.org/wiki/LaTeX} 进行查阅。
 
+\faq{有时英文单词不能自动断行该怎么办？}{hyphen}
+
+如果 \LaTeX{} 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词
+中间断开。对于绝大部分单词，\LaTeX{} 能够找到合适的断词位置，在断开的行尾加上连字符 |-|。如果一些
+单词没能自动断词，我们可以在单词内手动使用 |\-| 命令指定断词的位置。
+一个极端的例子是：
+
+\begin{texinlist}
+I think this is: su\-per\-cal\-i\-frag\-i\-lis\-tic\-ex\-pi\-al\-i\-do\-cious.
+\end{texinlist}
 
 \faq{如何找到\ldots{}符号:}{how-to-find-symbols}
 
@@ -199,33 +190,21 @@ l3styleguide，source3（参考自\href{https://www.zhihu.com/question/27017364}
   用法是
   \begin{texlist}
     \symbol{<十进制编码>}
-    \symbol{"<十六进制编码>}
     \symbol{'<八进制编码>}
+    \symbol{"<十六进制编码>}
     \symbol{`<字符形式（特殊符号须加转义符 \ ）>}
-    % hello 你好
   \end{texlist}
-
+如
   \begin{texlist}
-    \[
-      P_{r,j}=\left\{\begin{array}{ll} 0 & \text{$r-j$ 为奇数},\\
-                       r!\,(-1)^{(r-j)/2} & \text{$r-j$ 为偶数}.
-                     \end{array}\right.
-                 \]
+    \documentclass{ctexart}
+    \begin{document}
+      \symbol{20320}\symbol{22909}
+      \symbol{'47540}\symbol{'54575}
+      \symbol{"4F60}\symbol{"597D}
+    \end{document}
   \end{texlist}
+均可编译出“你好”。
 \end{itemize}
-
-如果使用的TeXstudio软件想要查找某个符号，那么还可以拓展以下2个便捷的方式：
-\begin{itemize}
-\item 如下图点开1处的符号，再在2处选择符号类型，缩小查找范围，有运算符、关系、箭头、分隔符、Greek、Cyrillic等，再
-  点击需要的符号加入到数学环境中去这样就插入完成了。
-
-  \includegraphics[width=0.9\textwidth]{../images/5.png}
-\item 也可以手动输入，识别率不是特别高，可能需要多输入几次才会出来。设置如下：向导$\rightarrow$数学助手，手写输入完
-  之后插入即可。
-
-  \includegraphics[width=0.9\textwidth]{../images/image.png}
-\end{itemize}
-
 
 % \faq{如何找到 FAQs}{}
 
@@ -262,8 +241,9 @@ secnumdepth 计数器控制章节编号的深度，如果章节的层级大于 s
 \end{document}
 \end{texlist}
 
-控制目录页排版显示深度可以使用 |\setcounter{tocdepth}{2}|，此命令表示显示到三级标题。关于此问题的具体介绍可以参考
-\href{https://blog.csdn.net/RobertChenGuangzhi/article/details/50480856}{该网页}。
+\faq{如何控制目录编号的深度}{}
+
+控制目录页排版显示深度可以使用 |\setcounter{tocdepth}{*}|，|*| 表示你准备显示的深度。
 
 
 \faq{如何下载 arXiv 上面的 \TeX{} 源文件}{how-to-download-arxiv-tex}
@@ -273,9 +253,9 @@ secnumdepth 计数器控制章节编号的深度，如果章节的层级大于 s
 
 \faq{Windows 系统下用 TeXstudio 打开中文编写的源文件遇到乱码怎么办}{windows-texstudio-chinese-GBK}
 
-最简单的方法是借助 Notepad++ 等编辑器将文件转码为 UTF-8。如果没有 noteapd++，也可以直接使用 TeXstudio。
-这里我们默认文件的编码是 GB2312。首先打开文件，在 TeXstudio 右下角找到 encoding 位置的内容，
-有时系统显示为 ISO-8859-1。点击那里，进入 More encodings，在列表中点击 GB2312，然后点击按钮 view with。
+直接使用 TeXstudio将文件转码为 UTF-8。
+这里我们默认文件的编码是 GBK。首先打开文件，在 TeXstudio 右下角找到 encoding 位置的内容，
+有时系统显示为 ISO-8859-1。点击那里，进入 More encodings，在列表中点击 GBK，然后点击按钮 view with。
 正常来讲，乱码应该都会消失。 接下来，继续进入 More encodings，在列表中点击 UTF-8，然后点击按钮 change to。
 经过这些操作，源文件就重新变成了 UTF-8 编码。
 

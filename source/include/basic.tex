@@ -1,22 +1,4 @@
-% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
-%
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>.
-%
-
 % !TEX root = ../latex-faq-cn.tex
-% !TEX program = xelatex
-% !TEX options = --shell-escape
 
 \section{背景知识与基本概念}
 \label{sec:basic}
@@ -69,10 +51,6 @@ creation of beautiful books---and especially for books that contain a lot of mat
 
 \begin{description}
   % TODO
-%  \item[引擎] \LaTeX{}/\TeX{} 解析引擎，其实就是一个编译器，它输入一个 |.tex| 文件作为输入，根据
-%    源文件的内容送入解析引擎和渲染引擎进行处理，并将排版的成果——文档编译输出，\LaTeX{}/\TeX{} 的
-%    解析引擎目前有pdflatex、xelatex、lualatex等，它们都可以输出pdf文档文件（部分解析器可以输出dvi
-%    文件），用于在多平台进行分发甚至打印出版。
   \item[引擎] \LaTeX{}/\TeX{} 解析引擎，其实就是一个编译器，它输入一个 |.tex| 文件作为输入，根据
   源文件的内容送入解析引擎和渲染引擎进行处理，并将排版的成果——文档编译输出，\LaTeX{}/\TeX{} 的解
   析引擎目前有\pdfTeX{}、\XeLaTeX{}等。
@@ -208,8 +186,8 @@ creation of beautiful books---and especially for books that contain a lot of mat
 \begin{texinlist}
 \documentstyle[twoside,epsfig]{article}
 \end{texinlist}
-
 而 \LaTeX2e{} 使用 |\documentclass| 命令设置文档类型，用 |\usepackage| 命令调用宏包。
+\strong{\LaTeX2.09 已经过时}。 
 
 
 \faq{\TeX{}, \LaTeX{}, pdflatex, xelatex, xetex等的区别和关系，什么时候用什么编译器编译}
@@ -218,7 +196,7 @@ creation of beautiful books---and especially for books that contain a lot of mat
 
 LaTeX 其实是目前使用最广泛的 \TeX{} 格式。xeTeX 是一种引擎（编译器），pdfLaTeX （xeLaTeX） 是命令，
 他们分别结合了 pdfTeX（xeTeX） 引擎和 \LaTeX{} 格式。对于刚开始接触的人，建议处理英文时直接使用
-pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件）
+pdfLaTeX，处理非英文时使用 XeLaTeX（并且用 UTF-8 编码源文件）
 
 
 %\faq{文本文件编码解读}{encoding}
@@ -226,35 +204,30 @@ pdfLaTeX，处理非英文时使用 XeLaTeX（并且用utf-8编码源文件）
 
 \faq{\LaTeX{} 的源文件有什么要求？}{latex-source-file}
 
-\LaTeX{} 的源文件是 |*.tex| 文件，是指 latex 编译器处理输入文件的源码，latex 编译器会对输入文件进行
+\LaTeX{} 的源文件是 |.tex| 文件，是指 latex 编译器处理输入文件的源码，latex 编译器会对输入文件进行
 解析，构造解析树，进行渲染，然后输出处理后的文档，完成一次编译过程，由于 \LaTeX{} 解析器可能对中文
 文件名处理存在兼容性问题，不建议将 \LaTeX{} 的源文件的文件名设置为中文。
 
 
-\faq{连字符如何在 \TeX{} 起作用？}{hyphen}
-% TODO: 不应该放在这里，给的例子也很奇怪
-
-如果 \LaTeX{} 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词
-中间断开。对于绝大部分单词，\LaTeX{} 能够找到合适的断词位置，在断开的行尾加上连字符 |-|。如果一些
-单词没能自动断词，我们可以在单词内手动使用 |\-| 命令指定断词的位置，如：
-
-\begin{texinlist}
-I think this is: su\-per\-cal\-%
-i\-frag\-i\-lis\-tic\-ex\-pi\-%
-al\-i\-do\-cious.
-\end{texinlist}
+%\faq{连字符如何在 \TeX{} 起作用？}{hyphen}
+%% TODO: 不应该放在这里，给的例子也很奇怪
+%
+%如果 \LaTeX{} 遇到了很长的英文单词，仅在单词之间的位置断行无法生成宽度匀称的行时，就要考虑从单词
+%中间断开。对于绝大部分单词，\LaTeX{} 能够找到合适的断词位置，在断开的行尾加上连字符 |-|。如果一些
+%单词没能自动断词，我们可以在单词内手动使用 |\-| 命令指定断词的位置，如：
+%
+%\begin{texinlist}
+%I think this is: su\-per\-cal\-%
+%i\-frag\-i\-lis\-tic\-ex\-pi\-%
+%al\-i\-do\-cious.
+%\end{texinlist}
 
 
 %\faq{Unicode 和 \TeX{}}{unicode-and-tex}
 
 
 \faq{常见的 \TeX{} 文件扩展名与文件用途}{extensions}
-% TODO: 见如下链接
-%   https://tex.stackexchange.com/q/7770/136923
-%   https://tex.stackexchange.com/q/53240/136923
-%   https://github.com/wspr/latex-auxfiles
 
-常见的用户文件的扩展名与其用户如下：
 \begin{itemize}
   \item |.tex| 文件。源文件，需用户编写。
   \item |.sty| 宏包文件。宏包的名称就是去掉扩展名的文件名。
@@ -274,17 +247,24 @@ al\-i\-do\-cious.
   \item |.out| \pkg{hyperref} 宏包生成的 PDF 书签记录文件。
 \end{itemize}
 
+\begin{reference}
+  \item \url{https://tex.stackexchange.com/q/7770/136923}
+  \item \url{https://tex.stackexchange.com/q/53240/136923}
+  \item \url{https://github.com/wspr/latex-auxfiles}
+\end{reference}
+
 
 \faq{什么是 DVI 文件？}{what-is-dvi}
 % TODO: 部分内容重复
 
-DVI（device independent）文件为 \TeX{} 电子排版系统的输出文件。七十年代末，Knuth 在看到其多卷巨著
-《The Art of ComputerProgramming》第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此
-决定自己来开发一个高质量的计算机排版系统，这样就有了 TeX。TeX 的输出文件称为 DVI 文件，即是“Device
-Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI 文件就可以被送到任何输出设备，如打印机、屏幕
-等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，
-从页面设置到文本中字符的位置都被固定，不能更改。
-
+%DVI（device independent）文件为 \TeX{} 电子排版系统的输出文件。七十年代末，Knuth 在看到其多卷巨著
+%《The Art of ComputerProgramming》第二卷的校样时，对由计算机排版的校样的低质量感到无法忍受。因此
+%决定自己来开发一个高质量的计算机排版系统，这样就有了 TeX。TeX 的输出文件称为 DVI 文件，即是“Device
+%Independent”。一旦 TeX 处理了你的文件，你所得到的 DVI 文件就可以被送到任何输出设备，如打印机、屏幕
+%等并且总会得到相同的结果，而这与这些输出设备的限制没有任何关系。这说明 DVI 文件中所有的元素，
+%从页面设置到文本中字符的位置都被固定，不能更改。
+DVI（device independent）文件为 \TeX{} 电子排版系统的输出文件。
+目前 PDF 文件已经成为主流的输出文件，DVI 文件相对少见。
 
 \faq{什么是 TDS？}{what-its-tds}
 
@@ -372,7 +352,7 @@ ShareLaTeX 用户可以在 Overleaf v2 上继续编辑原先所有的项目文�
 
 Overleaf v1 目前运行的是 \TeXLive{} 2016，Overleaf v2 则是 \TeXLive{} 2017。升级 \TeXLive{} 2018
 可能需要等到 2019 年。Overleaf v1 和 v2 都支持 \LaTeX{} + dvipdf、\pdfLaTeX{}、\XeLaTeX{}、
-\LuaLaTeX{} 等多种编译方式；通过 |latexmkrc| 设置也可用 \pTeX{} 等其它编译器。支持中文，可以用
+\LuaLaTeX{} 等多种编译方式；通过 \pkg{latexmkrc} 设置也可用 \pTeX{} 等其它编译器。支持中文，可以用
 传统手段 \pkg{CJK} 宏包
 \footnote{示例见 \url{https://www.overleaf.com/read/xhzmbjjnbfrq}。}，
 也可用 \CTeX{} 宏集的新一代解决方案
@@ -382,49 +362,33 @@ Windows 中文字体的话（高校论文要求等原因），则还是建议本
 比较麻烦。
 
 Overleaf 用的服务器系统是 Ubuntu Linux，因此文件名区分大小写。编译时用的是 \pkg{latexmk}，因此在
-Overleaf上每“编译”一次，其实可能已经运行了 4 次 |xelatex| + 1 次 |bibtex| + 1 次 |makeglossaries|
-等等，把所有交叉引用、文献引用等等都解决掉，也可以自动调用 |biber| 或 \pkg{biblatex}，或自动编译
+Overleaf上每“编译”一次，其实可能已经运行了 4 次 \pkg{xelatex} + 1 次 \pkg{bibtex} + 1 次 \pkg{makeglossaries}
+等等，把所有交叉引用、文献引用等等都解决掉，也可以自动调用 \pkg{biber} 或 \pkg{biblatex}，或自动编译
 \pkg{chapterbib}、\pkg{multibib} 所导出的多个文献列表。
 
 Overleaf 编译也自动启用 |--shell-escape|，因此 \pkg{minted}、\pkg{tikz-externalize} 
 等都可以使用。|--shell-escape| 本来是有安全隐忧的，但是每个 Overleaf 文件项目都是一个单独的 Docker 
 容器（container），因此若是有谁想玩什么把戏，也不会波及其它项目。
 
-【其它重点功能介绍明天，不，有空时再补充：multi-authors collaboration, RichText mode,
-Overleaf Gallery and templates, one-click submission to journals, git bridge and github sync,
-history tracking, 文件项目空间上限】
+%【其它重点功能介绍明天，不，有空时再补充：multi-authors collaboration, RichText mode,
+%Overleaf Gallery and templates, one-click submission to journals, git bridge and github sync,
+%history tracking, 文件项目空间上限】
 
 如果对 Overleaf 有任何问题，建议直接发送电子邮件至
 \href{mailto:support@overleaf.com}{support@overleaf.com} 询问，不必过多自行揣测。若是担心语言沟通
-问题，大可放心——Overleaf 技术支援人员有熟悉中文的。
+问题，大可放心——有熟悉中文的 Overleaf 技术支援人员。
 
-%\pkg{minted} 在 Overleaf v1、v2 都是可以用的，例子参照
-%\url{https://www.overleaf.com/read/qphhfvnsddbs}。MATLAB 高亮也一样可以用 \pkg{minted} 完成，注意
-%字母大小写：
-%
-%\begin{texlist}
-%\begin{minted}{matlab}
-%...
-%\end{minted}
-%\end{texlist}
-%
-%Overleaf v1 的确有文件数目及项目大小限制，视收费与否而定：\url{https://www.overleaf.com/help/297}；
-%Overleaf v2 则相对宽松得多：所有项目（包括免费）都无文件大小上限，条件：每个项目限 2000 文件，以及
-%可编辑纯文本文件不大于 5MB。详见
-%\url{https://www.sharelatex.com/learn/Uploading_a_project#Limitations_on_Uploads}。
-%
-%Overleaf v1 是支持两层及以上的文件夹的，详情看 \url{https://www.overleaf.com/help/187}；
-%Overleaf v2 可以直接右键资料夹，再创建子资料夹。
-%
-%Overleaf v2 目前还是比较稳定的（2018 年 9 月将会全面上线）。当然如果是特定地区、单位限制的原因，
-%则不方便在这里讨论。
-%
-%【这里先预定个位置，以后可以写个篇幅比较长的功能介绍。若对 Overleaf 有任何问题，建议直接电邮
-%support@overleaf.com 询问，不必过多自行揣测。若是担心语言问题，Overleaf 技术支援人员有谙中文的。】
+\begin{reference}
+  \item \href{https://www.overleaf.com/read/qphhfvnsddbs}{Overleaf 中使用 \pkg{minted} 示例}
+  \item \href{https://www.overleaf.com/help/297}{Overleaf v1 文件数目及项目大小限制}
+  \item \href{https://www.sharelatex.com/learn/Uploading_a_project#Limitations_on_Uploads}{Overleaf v2 文件数目及项目大小限制}
+  \item \href{https://www.overleaf.com/help/187}{Overleaf v1 支持两层及以上的文件夹}
+\end{reference}
+
 
 \faq{编译器与编辑器的区别是什么？}{ide-compile-diff}
 
-在 \pkg{lshort} 中，确切解释了，所谓编译器，真正的名称叫排版引擎，是读入源代码并编译生成文档的
+按照 \pkg{lshort-zh-cn} 中的解释，所谓编译器，真正的名称叫排版引擎，是读入源代码并编译生成文档的
 程序，如 \pdfTeX{}、\XeTeX{} 等。
 
 编辑器，其实是用户书写源代码的工具，例如 Windows 下的记事本、Ubuntu 下的 gedit 等等。目前很多编辑器
