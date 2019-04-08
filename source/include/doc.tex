@@ -771,6 +771,37 @@ multicol 宏包的 muticols 环境则是左右两边底部对齐的。
 \item \url{https://tex.stackexchange.com/questions/13177/what-are-vertical-and-horizontal-modes}
 \end{reference}
 
+\faq{想要在文档中将键盘按键特殊标识出来该怎么办？}{use-menukeys}
+
+可以考虑使用 \cs{menukeys} 宏包。下面给出一个例子：
+
+\begin{texlist}
+  \documentclass{ctexart}
+  \usepackage[os=win]{menukeys} % 这里假设操作系统是 Windows
+  \renewmenumacro{\keys}[+]{shadowedroundedkeys} % 这里改变了键盘按键显示样式
+  \begin{document}
+    \keys{\ctrl + Z} 表示撤销。
+  \end{document}
+\end{texlist}
+
+\faq{想要显示键盘上的微软键该怎么办？}{use-menukeys-windows}
+
+可以考虑 \cs{menukeys} 和 \cs{fontawesome} 的搭配。下面给出一个例子：
+
+\begin{texlist}
+  \documentclass{ctexart}
+  \usepackage[os=win]{menukeys}
+  \usepackage{fontawesome}
+  \renewmenumacro{\keys}[+]{shadowedroundedkeys}
+  \makeatletter
+    \tw@make@key@box{OS@win}{\faWindows}
+    \tw@make@key@macro*{\OS}
+  \makeatother
+  \begin{document}
+    \keys{\OSwin} 表示微软键。
+  \end{document}
+\end{texlist}
+
 % \faq{如何使用带圈数字做脚注编号？}{}
 
 
