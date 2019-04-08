@@ -296,8 +296,7 @@ options $\to$ configure texstudio $\to$ shortcuts
 \begin{itemize}
   \item
     手写编译命令：
-    % TODO: 如何更好地换行显示
-\begin{jsoncode}
+\begin{jsoncode}[breaklines=true]
   {
       "shell_cmd": "xelatex -synctex=1 \"${file}\" && evince \"$file_base_name.pdf\"",
   }
