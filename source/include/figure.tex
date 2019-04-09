@@ -188,65 +188,96 @@ LaTeX 还设定了一些比例参数控制浮动体的放置，见表 \ref{figur
 
 \faq{并列插图如何进行排版}{col-figure-install}
 
-并列插图有3种情况：
+并列插图有几种情况：
 
 \begin{itemize}
-    \item 并排摆放，各有标题。\\
-    可以在figure环境中使用两个minipage环境，每个里面插入一幅插图。
-    
-    \begin{texinlist}
-    \begin{figure}[htbp]
-    \centering
-    \begin{minipage}{60pt}
-    \centering \includegraphics[scale=0.4]{leftfigure.png} \caption{左边的图片}
-    \end{minipage}
-    \hspace{10pt}%用来调整图片中间的间距
-    \begin{minipage}{60pt}
-    \centering
-    \includegraphics[scale=0.4]{rightfigure.png} \caption{右边的图片}
-    \end{minipage}
+  \item 并排摆放，各有标题。\\
+  可以在figure环境中使用两个minipage环境，每个里面插入一幅插图。
+  
+  \begin{texinlist}
+    \documentclass{ctexart}
+    \usepackage{mwe}
+    \begin{document}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.45\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{example-image-a.pdf}
+        \caption{左边图}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.45\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{example-image-b.pdf}
+        \caption{右边图}
+      \end{minipage}
     \end{figure}
-    \end{texinlist}
-    \item 并排摆放，共享标题。\\
-    通过使用两个 \cs{includegraphics} 命令
-
-   \begin{texinlist}
-\begin{figure}[htbp]
-\centering
-\includegraphics{leftfig.png}
-\includegraphics{rightfig.png}
-\caption{总标题}
-\end{figure}
-    \end{texinlist}
-    
-    \item 并排摆放，共享标题，并且有各自的子标题 \\
-    如果想要两幅并排的图片共享一个标题，并且各有自己的子标题， 可以使用Steven D. Cochran 开发的 subfig 宏包。它提供的 \cs{subfloat} 命令，并且总图和子图可以分别有标题和引用。
-    
-    \begin{texinlist}
-\begin{figure}[htbp]
-  \centering
-  \subfloat[左边图片的标题]{
-    \label{fig:subfig_a}
-    \includegraphics[scale=0.4]{leftfig.png}
-  }
-  \hspace{10pt}% 用来调整两图中间的间距
-  \subfloat[右边图片的标题]{
-    \label{fig:subfig_b}
-    \includegraphics[scale=0.4]{rightfig.png}
-  }
-  \caption{总标题}
-  \label{fig:subfig}
-\end{figure}
-    \end{texinlist}
-
-    此外，如果是并列的是两个有各自标题的插图，可以使用floatrow系列浮动体宏包，该宏包提供的floatrow环境可以并列图表等浮动体。
-    
+    \end{document}
+  \end{texinlist}
+  
+  \item 并排摆放，共享标题。\\
+  通过使用两个 \cs{includegraphics} 命令
+  \begin{texinlist}
+    \documentclass{ctexart}
+    \usepackage{mwe}
+    \begin{document}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.45\linewidth]{example-image-a.png}
+      \hfill
+      \includegraphics[width=0.45\linewidth]{example-image-b.png}
+      \caption{总标题}
+    \end{figure}
+    \end{document}
+  \end{texinlist}
+  
+  \item 并排摆放，共享标题，并且有各自的子标题 \\
+  如果想要两幅并排的图片共享一个标题，并且各有自己的子标题，可以使用 subfig 宏包或者 subcaption 宏包。
+  
+  \begin{texinlist}
+    \documentclass{ctexart}
+    \usepackage{subfig}
+    \usepackage{mwe}
+    \begin{document}
+    \begin{figure}
+      \centering
+      \subfloat[左图标题]{\includegraphics[width=0.4\linewidth]{example-image-a.pdf}}
+      \hfill
+      \subfloat[右图标题]{\includegraphics[width=0.4\linewidth]{example-image-b.pdf}}
+      \caption{总标题}
+   \end{figure}
+    \end{document}
+  \end{texinlist}
+  
+  \begin{texinlist}
+    \documentclass{ctexart}
+    \usepackage{subcaption}
+    \usepackage{mwe}
+    \begin{document}
+    \begin{figure}
+      \begin{subfigure}{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{example-image-a.pdf}
+        \caption{左图标题}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}{0.5\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{example-image-b.pdf}
+        \caption{右图标题}
+      \end{subfigure}
+      \caption{总标题}
+    \end{figure}
+    \end{document}
+  \end{texinlist}
 \end{itemize}
 
+此外，还可考虑floatrow宏包的一些功能。
 
-\faq{并列子图如何进行排版}{col-sub-figure}
 
-并列子图可以看看subfigure，subfloat、subcaption等宏包。
+%\faq{并列子图如何进行排版}{col-sub-figure}
+%
+%并列子图可以看看subfigure，subfloat、subcaption等宏包。
 
 
 \faq{如果想让图片的题注在图片右侧，应该怎么做}{figure-right}
