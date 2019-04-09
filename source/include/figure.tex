@@ -1,22 +1,4 @@
-% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
-%
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>.
-%
-
 % !TEX root = ../latex-faq-cn.tex
-% !TEX program = xelatex
-% !TEX options = --shell-escape
 
 \section{图片篇}
 
@@ -39,36 +21,6 @@ eps 格式的绘图软件包括:MATLAB、Mathematica、GNUPlot、 Asymptote 等�
 MacOS 系统，可以通过 Skim 阅览器选取,
 复制，从剪切板生成笔记的方法导出图像。
 
-\faq{在子文档中想用主文档所在文件夹下的子文件夹内的图片？}{subdoc-figure}
-
-关键在于找到图片，直接暴力使用指定路径的方法，MWE如下。
-
-\begin{verbatim}
-
-main----subfile
-     |--figure
-
-main.tex in main folder, figure.png in figure folder, sub.tex in subfile folder.
-
-main.tex:
-% !TeX program = pdflatex
-\documentclass{article}
-\usepackage{graphicx}
-\begin{document}
-  \include{./subfile/sub1}
-\end{document}
-
-sub.tex:
-% !TeX root = ../file.tex
-\section{test}
-hello! \LaTeX{}!
-\includegraphics[width=\linewidth]{../figure/figure.png}
-
-\end{verbatim}
-
-但是此种情况有问题，就是不能够使用 \textbackslash{}graphicspath
-指定插图路径。这个就留给后来人去解决吧。
-
 \faq{图片的路径如何自动设置，不用正文一个个设置路径？}{figure-path-set}
 
 可以使用指令graphicspath来设置图片路径，如：
@@ -78,6 +30,39 @@ hello! \LaTeX{}!
 
 即设定图片路径为当前目录下子文件夹figures。
 
+
+\faq{在子文档中想用主文档所在文件夹下的子文件夹内的图片？}{subdoc-figure}
+
+关键在于找到图片，借助于编辑器的魔法注释，直接暴力使用指定路径。
+假设
+\begingroup
+  \dirtree {%
+    .1 main.tex.\DTcomment{主文件}.
+    .2 subfile/\DTcomment{子文件所在文件夹}.
+    .2 figure/\DTcomment{图片所在文件夹}.
+  }
+\endgroup
+
+有如下代码：
+
+main.tex:
+\begin{texlist}
+\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+  \include{./subfile/sub}
+\end{document}
+\end{texlist}
+
+sub.tex:
+\begin{texlist}
+% !TeX root = ../file.tex
+\section{test}
+hello! \LaTeX{}!
+\includegraphics[width=\linewidth]{../figure/figure.png}
+\end{texlist}
+
+此种情况不能够使用 \cs{graphicspath}指定插图路径。
 
 \faq{图片浮动如何控制？各自参数如何使用？}{figure-control}
 
@@ -315,6 +300,24 @@ caption宏包提供了一个\cs{captionof}命令，可以在浮动体环境外�
 \faq{有没有办法把图片固定在某位置}{fig-on-this-pos}
 
 不使用浮动体就会在你指定的位置出现了，但是非常非常不可取，一般不建议这么搞。
+
+\faq{图片的题注很长，如何调整格式}{}
+
+可以考虑使用 caption 包，例如题注内容进行悬挂缩进，最后一行居中，可以用如下代码：
+
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{mwe}
+  \usepackage[justification=centerlast,format=hang]{caption}
+  \begin{document}
+  \begin{figure}
+      \centering
+      \includegraphics{example-image.pdf}
+      \caption{Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Ut puruselit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravidamauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectuset netus et malesuada fames ac turpis egestas.  Mauris ut leo.  Cras viverrametus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phaselluseu tellus sit amet tortor gravida placerat. Integer sapien est, iaculis in, pretiumquis, viverra ac, nunc.  Praesent eget sem vel leo ultrices bibendum.  Aeneanfaucibus. Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla. Cur-abitur auctor semper nulla. Donec varius orci eget risus. Duis nibh mi, congueeu, accumsan eleifend, sagittis quis, diam. Duis eget orci sit amet orci dignissimrutrum.}
+      \label{fig:my_label}
+  \end{figure}
+  \end{document}
+\end{texlist}
 
 
 %\faq{如何可以写一段话，放张图片，再写一段话，再放图片。}{}
