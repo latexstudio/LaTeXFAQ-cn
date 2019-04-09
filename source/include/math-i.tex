@@ -96,74 +96,51 @@
   \end{document}
 \end{texlist}
 
-\iffalse
-
-
 \faq{公式希腊字符如何加粗？}{}
 
-希腊字母没有原生粗体，可以使用 \pkg{bm}宏包中的|\bm|命令，
+希腊字母没有原生粗体，可以使用 \pkg{bm}宏包中的 |\bm| 命令，
 或者\pkg{unicode-math}宏包\footnote{需指定OpenType Math font，源代码文字为UTF8编
-  码，直接输入希腊文。此包不能与其他一些math包共存。}中的|\symbf{AaBb∇αβγ}|或者其他伪粗命令。
-粗。
+  码，直接输入希腊文。此包不能与其他一些math包共存。}中的|\symbf|或者其他伪粗命令。
 \begin{reference}
   \item stackexchange. How can I get bold math symbols?. \url{https://tex.stackexchange.com/questions/595/how-can-i-get-bold-math-symbols}
 \end{reference}
 
-
 \faq{极限符号下面有两个趋近该怎么写}{}
 
-直接给出例子：
+可以使用\cs{atop}，如：
 
-%\begin{verbatim}
-\begin{example}
-\[ \lim_{n\to\infty\atop m\to\infty} \]
-\end{example}
-%\end{verbatim}
-%效果如下：
-%
-%\[ \lim_{n\to\infty\atop m\to\infty} \]
-%\begin{Example}
-%	\[ \lim_{n\to\infty\atop m\to\infty} \]
-%\end{Example}
-
-%\begin{example}
-%	$\frac{1}{\pi}$,\quad
-%	$\sqrt[5]{1+k^2+k^4}$
-%\end{example}
-
-%\begin{Example}
-%	$\frac{1}{\pi}$,\quad
-%	$\sqrt[5]{1+k^2+k^4}$
-%\end{Example}
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{mathtools}
+  \begin{document}
+  \begin{equation*}
+       \lim_{n\to\infty\atop m\to\infty}
+  \end{equation*}
+  \end{document}
+\end{texlist}
 
 或者使用 \cs{substack}，代码如下：
 
-%\begin{texlist}
-%\documentclass{article}
-%\usepackage{amsmath}
-%\begin{document}
-%\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
-%\end{document}
-%\end{texlist}
-%
-%效果如下：
-%
-%\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
-\begin{example}
-\[ \lim_{\substack{n\to\infty\\ m\to\infty}} \]
-\end{example}
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{mathtools}
+  \begin{document}
+  \begin{equation*}
+       \lim_{\substack{n\to\infty\\ m\to\infty}}
+  \end{equation*}
+  \end{document}
+\end{texlist}
  
-% \includegraphics{https://images-cdn.shimo.im/FCY4A1SeBIcwBCGT/双重极限.PNG!thumbnail}
-
-
 \faq{怎样在 LaTeX 中输入引号}{}
 
-左引号用 `（键盘1旁边那个键），右引号用 `。西文双引号使用``''。
+左引号用 |`|（键盘1旁边那个键），右引号用 |'|（正常输入单引号）。
+西文双引号分别使用两次|`|和|'|。
 中文条件下应直接使用中文双引号。
 \begin{reference}
   \item 中华人民共和国教育部. 夹用英文的中文文本的标点符号用法（草案）.\url{http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/t20100115_75604.html}
 \end{reference}
 
+\iffalse
 
 \faq{align环境默认是居中对齐吗？我在使用时，发现公式开始是居中的，后来却一直靠右断对齐，这是什么原因？}{}
 
