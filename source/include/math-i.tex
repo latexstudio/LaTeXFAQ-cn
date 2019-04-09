@@ -1,24 +1,4 @@
-
-
-% Copyright (C) 2018 by latexstudio <http://www.latexstudio.net>
-%
-% This program is free software: you can redistribute it and/or modify
-% it under the terms of the GNU General Public License as published by
-% the Free Software Foundation, either version 3 of the License, or
-% (at your option) any later version.
-%
-% This program is distributed in the hope that it will be useful,
-% but WITHOUT ANY WARRANTY; without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-% GNU General Public License for more details.
-%
-% You should have received a copy of the GNU General Public License
-% along with this program.  If not, see <http://www.gnu.org/licenses/>.
-%
-
 % !TEX root = ../latex-faq-cn.tex
-% !TEX program = xelatex
-% !TEX options = --shell-escape
 
 \let\fancybreak\relax
 
@@ -101,6 +81,20 @@
   \item \url{https://tex.stackexchange.com/q/16840}
 \end{reference}
 
+\faq{怎样在大括号后给每个公式编号？}{}
+
+可以借助 \cs{cases} 包的 \env{numcases} 环境，下面给出一个例子：
+
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{cases}
+  \begin{document}
+  \begin{numcases}{|x|=}
+    x, & for $x \geq 0$\\
+    -x, & for $x < 0$
+  \end{numcases}
+  \end{document}
+\end{texlist}
 
 \iffalse
 
