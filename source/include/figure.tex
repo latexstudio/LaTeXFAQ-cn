@@ -350,6 +350,33 @@ caption宏包提供了一个\cs{captionof}命令，可以在浮动体环境外�
   \end{document}
 \end{texlist}
 
+\faq{图片双语标题要如何实现？}{}
+
+可以考虑 caption 包和 bicaption 的搭配用法。
+这里给出一个示例：
+
+\begin{texlist}
+  \documentclass{ctexart}
+  \usepackage{caption}
+  \usepackage{bicaption}
+  \usepackage{subcaption}
+  \captionsetup[bi-first]{bi-first}
+  \captionsetup[bi-second]{bi-second}
+  \DeclareCaptionOption{bi-first}[]{\def\figurename{图}}
+  \DeclareCaptionOption{bi-second}[]{\def\figurename{Figure}}
+  \renewcommand{\thefigure}{\thesection--\arabic{figure}}
+  \usepackage{mwe}
+  \begin{document}
+  \section{第一节}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{example-image.pdf}
+    \bicaption{示意图}{Example image}
+    \label{fig}
+  \end{figure}
+  图 \ref{fig} 是一个示意图。
+  \end{document}
+\end{texlist}
 
 %\faq{如何可以写一段话，放张图片，再写一段话，再放图片。}{}
 
