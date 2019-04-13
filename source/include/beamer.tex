@@ -100,6 +100,44 @@ Frametitle 上添加。
 }
 \end{texinlist}
 
+\faq{Beamer 中如何添加跨页的定理盒子？}{}
+
+可以自定义一个适用于跨页的盒子。
+
+\begin{texlist}
+  \documentclass{beamer}
+  \theoremstyle{definition}
+  \newtheorem{splittheorem}{Theorem}
+  \setbeamertemplate{theorem begin}
+  {%
+    \par\vskip\medskipamount%
+    \begin{beamercolorbox}[colsep*=.75ex]{block title}
+      \usebeamerfont*{block title}%
+        \inserttheoremname
+        \ifx\inserttheoremaddition\empty\else\ (\inserttheoremaddition)\fi%
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+    \ifbeamercolorempty[bg]{block title}
+    {}
+    {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+    \usebeamerfont{block body}%
+    \vskip-.25ex\vbox{}%
+  }
+  \setbeamertemplate{theorem end}{}
+  \usepackage{lipsum}
+  \begin{document}
+    \begin{frame}[allowframebreaks]
+    \begin{splittheorem}
+    \lipsum[1]
+    \lipsum[2]
+    \end{splittheorem}
+    \end{frame}
+  \end{document}
+\end{texlist}
+
+\begin{reference}
+  \item \url{https://tex.stackexchange.com/questions/50436/allow-theorem-split-in-many-frames-in-beamer}
+\end{reference}
 
 % \faq{如何在默认模板的基础上，定制自己的beamer模板}{beamer-default-Customized}
 
