@@ -140,14 +140,64 @@
   \item 中华人民共和国教育部. 夹用英文的中文文本的标点符号用法（草案）.\url{http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/t20100115_75604.html}
 \end{reference}
 
-\iffalse
+\faq{align 环境默认是居中对齐吗？我在使用时，发现公式开始是居中的，后来却一直靠右断对齐，这是什么原因？}{}
 
-\faq{align环境默认是居中对齐吗？我在使用时，发现公式开始是居中的，后来却一直靠右断对齐，这是什么原因？}{}
-
-align采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，
+align环境采用的是奇偶对齐的方式，第一列右对齐，第二列左对齐，就这样右左右左依此类推，
 两列之间用\&分隔。
+给出一个使用它的例子：
 
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{amsmath}
+  \begin{document}
+  \begin{align}
+    a_{11}& =b_{11}&
+    a_{12}& =b_{12}\\
+    a_{21}& =b_{21}&
+    a_{22}& =b_{22}+c_{22}
+  \end{align}
+  \end{document}
+\end{texlist}
 
+\faq{公式已经有一个大括号了，还想在其中再加大括号，并且每个大括号有一个编号和内部公式尽量对其，该怎么实现？}{}
+
+可以考虑使用 numcases 环境、aligned 环境、\textbackslash left\textbackslash \{、\textbackslash right. 和 \textbackslash hphantom 的组合。直接给出例子：
+
+\begin{texlist}
+  \documentclass{article}
+  \usepackage[a4paper,margin=1in]{geometry}
+  \usepackage{amsmath,cases}
+  \begin{document}
+  \begin{numcases}{}
+    \left\{
+    \begin{aligned}
+      i = 1, 2, \dotsc, n, & \ j=1, \ a_{ij}=1\\
+      & \ j = 2, \ a_{ij} = ( x_{T_i} - x_T )\\
+      & \ j = 3, \ a_{ij} = ( t_{T_i} - t_T )\\
+      & \ j = 4, \ a_{ij} = ( x_{T_i} - x_T )^2\\
+      & \ j = 5, \ a_{ij} = ( x_{T_i} - x_T ) ( t_{T_i} - t_T )\\
+      & \ j = 3, \ a_{ij} = ( t_{T_i} - t_T )^2\\
+    \end{aligned}
+    \right.\\
+    \left\{
+    \begin{aligned}
+      i = n+1, n+2, \dotsc, 2n, \dotsc, n(n-1), & \ j = 1, 2, 3, 5, \ d_{ij}=0\\
+      & \ j = 4, 6, \ \hphantom{3,5} \ d_{i,j}=1\\
+    \end{aligned}
+    \right.\\
+    \left\{
+    \begin{aligned}
+      i = n(n-1) + 1, n(n-2) + 2, \dotsc, n^2,& \ j = 1, 2, 4, \ g_{ij} = 0\\
+      & \ j = 3, \hphantom{,2,4} \ g_{ij} = 1\\
+      & \ j = 5, \hphantom{,2,4} \ g_{ij} = (x_{T_k} - x_T) \ k=1,2,\dotsc,n\\
+      & \ j = 6, \hphantom{,2,4} \ g_{ij} = 2 ( x_{T_k} - x_T ) \ k=1,2,\dotsc,n\\
+    \end{aligned}
+    \right.
+  \end{numcases}
+  \end{document}
+\end{texlist}
+
+\iffalse
 \faq{中英文标点使用规则不是很明白，尤其在公式环境里，字体和间距差别都比较大。怎样才能让正文和公式的标点统一（形状和间隔）？}{}
 
 详见：
