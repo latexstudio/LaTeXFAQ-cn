@@ -98,3 +98,27 @@ latex 自生 picture 环境的绘图语句进行绘制。以下面给出一个�
   \end{tikzpicture}
 \end{texinlist}
 \cs{transform shape} 保证了图中按坐标指定位置的点也可以同时缩放相对距离
+
+\faq{使用 \cs{xymatrix} 画图时，图像总不能居中，该如何处理？}{}
+
+这里需要用 \cs{centerline}，给出一个例子：
+
+\begin{texlist}
+  \documentclass{ctexart}
+  \usepackage[all,pdf]{xy}
+  \usepackage{zhlipsum}
+  \begin{document}
+    \zhlipsum[1][name=zhufu]
+    
+    \begin{figure}
+      \centerline{
+        \xymatrix{
+          A'\ar[rd]\ar[rr]&&B'\ar[rd]\\
+          &A\ar[rr]&&B\\
+          C'\ar[rd]\ar[uu]\ar[rr]|\hole&&D'\ar[rd]\ar[uu]|\hole\\
+          &C\ar[uu]&&D\ar[ll]\ar[uu]\\
+        }
+      }
+    \end{figure}
+  \end{document}
+\end{texlist}
