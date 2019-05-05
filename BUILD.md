@@ -9,11 +9,15 @@ latexmk  -xelatex -synctex=1 -interaction=nonstopmode -shell-escape latex-faq-cn
 
 您也可以使用 `xelatex` 手动编译。
 
+## TeX 发行版
+
+推荐使用 TeX Live 2019 或 MiKTeX 最新版。具体安装方法请参考有关文档，此处不再赘述。
+
 ## 思源字体安装
 
 本文档的中文字体使用思源宋体 / 思源黑体系列。由于种种原因，该字体的安装比较复杂，具体见下。
 
-思源字体的打包方式分为 OTC、OTF、Super OTC、Subset OTF 四种，本项目**仅支持前两种**方式。另一方面，思源字体由 Adobe 与 Google 联合发布，二者所用的字体名并不相同。Adobe 使用 Source Han Serif/Sans，而 Google 则使用 Noto Serif/Sans CJK。
+为了兼容多种平台，思源字体的打包方式分为 OTC、OTF、Super OTC、Subset OTF 四种。另一方面，思源字体由 Adobe 与 Google 联合发布，二者所用的字体名并不相同。Adobe 使用 Source Han Serif/Sans，而 Google 则使用 Noto Serif/Sans CJK。
 
 ### 下载链接
 
@@ -38,4 +42,4 @@ latexmk  -xelatex -synctex=1 -interaction=nonstopmode -shell-escape latex-faq-cn
   sudo apt-get install fonts-noto-cjk fonts-noto-cjk-extra
   ```
 
-- CTAN 上有名为 [`notoCJKsc`](https://ctan.org/pkg/notocjksc) 的字体包，但仅在 MikTeX 中提供
+- CTAN 上有名为 [`notoCJKsc`](https://ctan.org/pkg/notocjksc) 的字体包，但仅在 MikTeX 中提供。
