@@ -9,20 +9,20 @@
 \PassOptionsToPackage { no-math                  } { fontspec }
 \RequirePackage { xparse, xtemplate, l3keys2e }
 
-\cs_new:Npn \__faqcn_msg_new:nn  { \msg_new:nnn      { faqcn } }
-\cs_new:Npn \__faqcn_warning:nnn { \msg_warning:nnnn { faqcn } }
+\cs_new:Npn \@@_msg_new:nn  { \msg_new:nnn      { faqcn } }
+\cs_new:Npn \@@_warning:nnn { \msg_warning:nnnn { faqcn } }
 
 % 文档类选项
-\bool_new:N \g_faqcn_use_customized_fonts_bool
+\bool_new:N \g_@@_use_customized_fonts_bool
 \keys_define:nn { faqcn / option }
   {
-    use-customized-fonts .bool_gset:N = \g_faqcn_use_customized_fonts_bool,
+    use-customized-fonts .bool_gset:N = \g_@@_use_customized_fonts_bool,
     use-customized-fonts .initial:n   = true
   }
 \ProcessKeysOptions { faqcn / option }
 
 % 根据是否使用自定义字体来决定 ctex 文档类的载入方式
-\bool_if:NTF \g_faqcn_use_customized_fonts_bool
+\bool_if:NTF \g_@@_use_customized_fonts_bool
   { \LoadClass [ fontset = none ] { ctexart } }
   { \LoadClass { ctexart } }
 
@@ -37,6 +37,7 @@
     dirtree,
     enumitem,
     fancyvrb,
+    fontawesome5,
     geometry,
     graphicx,
     hologo,
@@ -52,7 +53,7 @@
   }
 
 % 西文字体
-\bool_if:NT \g_faqcn_use_customized_fonts_bool
+\bool_if:NT \g_@@_use_customized_fonts_bool
   {
     \setmainfont { LibertinusSerif }
       [
@@ -89,14 +90,14 @@
 % #2, #3, #4, #5: OTC/OTF 文件名
 % #6: Super OTC 字体名
 % #7: 选项
-\cs_new_protected:Npn \faqcn_set_cjk_font:Nnnnnnn #1#2#3#4#5#6#7
+\cs_new_protected:Npn \@@_set_cjk_font:Nnnnnnn #1#2#3#4#5#6#7
   {
-    \bool_set_false:N \l__source_han_super_otc_bool
-    \__faqcn_source_han_otc_otf:Nnnnnn #1 {#2} {#3} {#4} {#5} {#7}
-    \bool_if:NT \l__source_han_super_otc_bool
-      { \__faqcn_source_super_otc:Nnn #1 {#6} {#7} }
+    \bool_set_false:N \l_@@_source_han_super_otc_bool
+    \@@_source_han_otc_otf:Nnnnnn #1 {#2} {#3} {#4} {#5} {#7}
+    \bool_if:NT \l_@@_source_han_super_otc_bool
+      { \@@_source_han_super_otc:Nnn #1 {#6} {#7} }
   }
-\cs_new_protected:Npn \__faqcn_source_han_otc_otf:Nnnnnn #1#2#3#4#5#6
+\cs_new_protected:Npn \@@_source_han_otc_otf:Nnnnnn #1#2#3#4#5#6
   {
     \IfFontExistsTF { #2-Regular.ttc }
       { #1 {#2} [ Extension = .ttc, FontIndex = 2, #6 ] }
@@ -109,21 +110,21 @@
               {
                 \IfFontExistsTF { #5-Regular.otf }
                   { #1 {#5} [ Extension = .otf, #6 ] }
-                  { \bool_set_true:N \l__source_han_super_otc_bool }
+                  { \bool_set_true:N \l_@@_source_han_super_otc_bool }
               }
           }
       }
   }
-\bool_new:N \l__source_han_super_otc_bool
-\cs_new_protected:Npn \__faqcn_source_super_otc:Nnn #1#2#3
+\bool_new:N \l_@@_source_han_super_otc_bool
+\cs_new_protected:Npn \@@_source_han_super_otc:Nnn #1#2#3
   {
     \IfFontExistsTF {#2}
       { #1 {#2} [#3] }
       { \BOOM }
   }
-\bool_if:NT \g_faqcn_use_customized_fonts_bool
+\bool_if:NT \g_@@_use_customized_fonts_bool
   {
-    \faqcn_set_cjk_font:Nnnnnnn \setCJKmainfont
+    \@@_set_cjk_font:Nnnnnnn \setCJKmainfont
       { NotoSerifCJK } { SourceHanSerif } { NotoSerifCJKsc } { SourceHanSerifSC }
       { Source~ Han~ Serif~ SC }
       {
@@ -132,7 +133,7 @@
         ItalicFont     = *-Regular,
         BoldItalicFont = *-Bold
       }
-    \faqcn_set_cjk_font:Nnnnnnn \setCJKsansfont
+    \@@_set_cjk_font:Nnnnnnn \setCJKsansfont
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
       { Source~ Han~ Sans~ SC }
       {
@@ -141,7 +142,7 @@
         ItalicFont     = *-Medium,
         BoldItalicFont = *-Bold
       }
-    \faqcn_set_cjk_font:Nnnnnnn \setCJKmonofont
+    \@@_set_cjk_font:Nnnnnnn \setCJKmonofont
       { NotoSansCJK } { SourceHanSans } { NotoSansCJKsc } { SourceHanSansSC }
       { Source~ Han~ Sans~ SC }
       {
@@ -152,7 +153,7 @@
   }
 
 % 其他字体
-\bool_if:NTF \g_faqcn_use_customized_fonts_bool
+\bool_if:NTF \g_@@_use_customized_fonts_bool
   {
     % 用于代码环境
     \newfontfamily \CodeFont { RobotoMono }
@@ -178,13 +179,6 @@
     \cs_set_eq:NN \CodeFont \ttfamily
     \cs_set_eq:NN \LogoFont \sffamily
   }
-
-% FontAwesome 宏包中使用字体名调用，这在 macOS 中会失效
-\newfontfamily \FA { FontAwesome.otf }
-\cs_set:Npn \faicon #1
-  { \use:c { faicon@#1 } }
-\file_input:n { fontawesomesymbols-generic  }
-\file_input:n { fontawesomesymbols-xeluatex }
 
 % 中文版式设置
 \ctexset
@@ -237,8 +231,8 @@
   }
 
 % 脚注
-\cs_set:Npn \thefootnote { \faqcn_footnote_symbol:n { \int_use:N \c@footnote } }
-\cs_new_protected:Npn \faqcn_footnote_symbol:n #1
+\cs_set:Npn \thefootnote { \@@_footnote_symbol:n { \int_use:N \c@footnote } }
+\cs_new_protected:Npn \@@_footnote_symbol:n #1
   {
     \int_compare:nTF { #1 >= 21 }
       {
@@ -262,44 +256,44 @@
 \NewDocumentCommand \faq { o m m }
   {
     % TODO: 选项准备仿照 l3doc，如 added、updated 选项
-    \faqcn_faq:nn {#2} {#3}
+    \@@_faq:nn {#2} {#3}
   }
-\cs_new_protected:Npn \faqcn_faq:nn #1#2
+\cs_new_protected:Npn \@@_faq:nn #1#2
   {
-    \tl_set:Nn \l__faqcn_faq_title_tl { \textbf { \int_use:N \g_faqcn_count_int \quad #1 } }
+    \tl_set:Nn \l_@@_faq_title_tl { \textbf { \int_use:N \g_@@_count_int \quad #1 } }
     \tl_if_empty:nTF {#2}
       {
-        \tl_set:Nn \l__faqcn_faq_name_tl  { faq: no-tag- \int_use:N \g_faqcn_no_tag_count_int }
-        \int_gincr:N \g_faqcn_no_tag_count_int
+        \tl_set:Nn \l_@@_faq_name_tl  { faq: no-tag- \int_use:N \g_@@_no_tag_count_int }
+        \int_gincr:N \g_@@_no_tag_count_int
       }
-      { \tl_set:Nn \l__faqcn_faq_name_tl  { faq: #2 } }
+      { \tl_set:Nn \l_@@_faq_name_tl  { faq: #2 } }
     % 问题之间留空
     \skip_vertical:n { 2 ex }
     % 排版标题，以及交叉引用
-    \hypertarget {  \tl_use:N \l__faqcn_faq_name_tl } { \noindent \tl_use:N \l__faqcn_faq_title_tl }
-    \zref@labelbylist { \tl_use:N \l__faqcn_faq_name_tl } { faqcn }
+    \hypertarget {  \tl_use:N \l_@@_faq_name_tl } { \noindent \tl_use:N \l_@@_faq_title_tl }
+    \zref@labelbylist { \tl_use:N \l_@@_faq_name_tl } { faqcn }
     % PDF 书签
-    \pdfbookmark [ 2 ]
-      { \int_use:N \g_faqcn_count_int \ #1 }
-      { \tl_use:N \l__faqcn_faq_name_tl }
-    \int_gincr:N \g_faqcn_count_int
+    \pdfbookmark [2]
+      { \int_use:N \g_@@_count_int \ #1 }
+      { \tl_use:N \l_@@_faq_name_tl }
+    \int_gincr:N \g_@@_count_int
     \par
   }
-\tl_new:N \l__faqcn_faq_title_tl
-\tl_new:N \l__faqcn_faq_name_tl
-\int_new:N \g_faqcn_count_int
-\int_new:N \g_faqcn_no_tag_count_int
-\int_set_eq:NN \g_faqcn_count_int        \c_one
-\int_set_eq:NN \g_faqcn_no_tag_count_int \c_one
+\tl_new:N      \l_@@_faq_title_tl
+\tl_new:N      \l_@@_faq_name_tl
+\int_new:N     \g_@@_count_int
+\int_new:N     \g_@@_no_tag_count_int
+\int_set_eq:NN \g_@@_count_int        \c_one
+\int_set_eq:NN \g_@@_no_tag_count_int \c_one
 
 \zref@newlist { faqcn }
-\zref@newprop { faq@num } { \int_use:N \g_faqcn_count_int }
+\zref@newprop { faq@num } { \int_use:N \g_@@_count_int }
 \zref@addprop { faqcn } { faq@num }
 
 % 问答环境交叉引用
 \NewDocumentCommand \faqref { m }
-  { 问题 \nobreakspace \faqcn_ref:n {#1} }
-\cs_new_protected:Npn \faqcn_ref:n #1
+  { 问题 \nobreakspace \@@_ref:n {#1} }
+\cs_new_protected:Npn \@@_ref:n #1
   { \hyperlink { faq @ #1 } { \zref@extract { faq: #1 } { faq@num } } }
 
 % 问答环境参考文献
@@ -317,7 +311,7 @@
   {
     \skip_vertical:n { 2 ex }
     \small
-    \noindent \textsf{ 注意 } \marginpar { \raggedleft \faWarning }
+    \noindent \textsf{ 注意 } \marginpar { \raggedleft \faExclamationCircle }
     \par
     % \ignorespaces
   }
