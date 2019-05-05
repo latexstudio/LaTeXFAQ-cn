@@ -37,7 +37,6 @@
     dirtree,
     enumitem,
     fancyvrb,
-    fontawesome,
     geometry,
     graphicx,
     hologo,
@@ -55,17 +54,17 @@
 % 西文字体
 \bool_if:NT \g_faqcn_use_customized_fonts_bool
   {
-    \setmainfont { libertinusserif }
+    \setmainfont { LibertinusSerif }
       [
         Extension      = .otf,
-        UprightFont    = *-regular,
-        BoldFont       = *-bold,
-        ItalicFont     = *-italic,
-        BoldItalicFont = *-bolditalic
+        UprightFont    = *-Regular,
+        BoldFont       = *-Bold,
+        ItalicFont     = *-Italic,
+        BoldItalicFont = *-BoldItalic
       ]
     \setsansfont { Roboto }
       [
-        Extension      = .ttf,
+        Extension      = .otf,
         UprightFont    = *-Regular,
         BoldFont       = *-Bold,
         ItalicFont     = *-Italic,
@@ -79,15 +78,7 @@
         SlantedFont = * bto,
         HyphenChar  = None
       ]
-    % \setmonofont { RobotoMono }
-    %   [
-    %     Extension      = .ttf,
-    %     UprightFont    = *-Regular,
-    %     BoldFont       = *-Bold,
-    %     ItalicFont     = *-Italic,
-    %     BoldItalicFont = *-BoldItalic
-    %   ]
-    \setmathfont { libertinusmath-regular.otf }
+    \setmathfont { LibertinusMath-Regular.otf }
   }
 
 % 中文字体
@@ -166,7 +157,7 @@
     % 用于代码环境
     \newfontfamily \CodeFont { RobotoMono }
       [
-        Extension      = .ttf,
+        Extension      = .otf,
         UprightFont    = *-Regular,
         BoldFont       = *-Bold,
         ItalicFont     = *-Italic,
@@ -187,6 +178,13 @@
     \cs_set_eq:NN \CodeFont \ttfamily
     \cs_set_eq:NN \LogoFont \sffamily
   }
+
+% FontAwesome 宏包中使用字体名调用，这在 macOS 中会失效
+\newfontfamily \FA { FontAwesome.otf }
+\cs_set:Npn \faicon #1
+  { \use:c { faicon@#1 } }
+\file_input:n { fontawesomesymbols-generic  }
+\file_input:n { fontawesomesymbols-xeluatex }
 
 % 中文版式设置
 \ctexset
