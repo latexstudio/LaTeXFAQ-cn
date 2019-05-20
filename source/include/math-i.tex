@@ -197,6 +197,46 @@ align环境采用的是奇偶对齐的方式，第一列右对齐，第二列左
   \end{document}
 \end{texlist}
 
+\faq{如何产生不带编号的定理环境}{}
+
+使用 amsthm 的 \cs{newtheorem*} 命令即可。下面给出 MWE
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{amsthm}
+  \newtheorem*{thm*}{Theorem}
+  \begin{document}
+    \begin{thm*}
+      content...
+    \end{thm*}
+  \end{document}
+\end{texlist}
+
+\faq{cleveref 宏包如何正确引用继承计数器的类定理环境}{}
+
+这里需要给 \cs{label} 添加一个可选参数，例如
+\begin{texlist}
+  \documentclass{ctexart}
+  \usepackage{amsthm}
+  \newtheorem{thm}{定理}
+  \newtheorem{cor}[thm]{推论}
+  
+  \usepackage{cleveref}
+  \crefname{thm}{定理}{定理}
+  \crefname{cor}{推论}{推论}
+  
+  \begin{document}
+    \begin{thm}\label{thm:1}
+      定理内容
+    \end{thm}
+    
+    \begin{cor}\label[cor]{cor:2}
+      推论内容
+    \end{cor}
+    
+    \cref{cor:2} 和\cref{thm:1}.
+  \end{document}
+\end{texlist}
+
 \iffalse
 \faq{中英文标点使用规则不是很明白，尤其在公式环境里，字体和间距差别都比较大。怎样才能让正文和公式的标点统一（形状和间隔）？}{}
 
