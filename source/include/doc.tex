@@ -400,6 +400,49 @@ enumitem 宏包
 可以使用 paralist 宏包，这个宏包提供了 inparenum/inparitem/inpardesc 环境，可以在行内输出列表内容；
 也可以带上 inline 选项使用 enumitem 宏包，可以使用带*形式的三个列表环境，即在行内输出列表内容。
 
+\faq{如何自定义一个列表环境}{}
+
+实际上自定义列表环境可以用 list 环境来实现，这里给出一个比较复杂的例子，该例中定义了一个解列表，并且使用独立的计数器。
+\begin{texinlist}
+  \documentclass{ctexart}
+  \usepackage{ifthen}
+  \newcounter{solutioncounter}
+  \newenvironment{solution}
+  {
+    \vspace{\baselineskip}
+    \noindent
+    \begin{list}
+      {
+        \ifthenelse{\value{solutioncounter}>1}{(\arabic{solutioncounter})}{\textbf{解}:\ (\arabic{solutioncounter})}
+      }
+      {
+        \usecounter{solutioncounter}
+        \setlength{\labelwidth}{6em}
+        \setlength{\labelsep}{0pt}
+        \setlength{\leftmargin}{\labelwidth}
+        \setlength{\rightmargin}{0em}
+        \setlength{\parsep}{0ex}
+        \setlength{\itemsep}{0ex}
+        \setlength{\itemindent}{0em}
+        \setlength{\listparindent}{0em}
+      }
+    }
+    {
+    \end{list}
+  }
+  
+  \begin{document}
+    \begin{solution}
+      \item 第一题答案
+      \item 第二题答案
+      \item 第三题答案
+    \end{solution}
+  \end{document}
+\end{texinlist}
+
+\begin{reference}
+  \item \url{http://troubleshooters.com/linux/lyx/ownlists.htm}
+\end{reference}
 
 \faq{enumerate宏包修改列表标签格式很方便，但是这个宏包和enumitem宏包冲突，有什么解决办法么？}{enumerate-fight-enumitem}
 
