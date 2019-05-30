@@ -139,6 +139,49 @@ Frametitle 上添加。
   \item \url{https://tex.stackexchange.com/questions/50436/allow-theorem-split-in-many-frames-in-beamer}
 \end{reference}
 
+\faq{使用 beamer 时如何更改无序列表 itemize 标记}{}
+
+可以使用 
+\begin{texinlist}
+  \setbeamertemplate{itemize items}[]
+\end{texinlist}
+进行更改。下面给出一个 MWE
+
+\begin{texinlist}
+  \documentclass{beamer}
+  %\setbeamertemplate{itemize items}[triangle]
+  \setbeamertemplate{itemize items}[ball]
+  %\setbeamertemplate{itemize items}[default]
+  \begin{document}
+    \begin{frame}
+    \begin{itemize}
+      \item one
+      \item two
+    \end{itemize}
+  \end{frame}
+  \end{document}
+\end{texinlist}
+用户可以根据需要变换 |[]| 中的内容，参考 beamer 手册中有关 itemize items 的内容。
+
+\faq{beamer 中将脚注数字加上方括号}{}
+
+我们可以直接修改
+|\@makefnmark|，
+它是
+|\insertfootnotemark|
+实际调用的内容。
+MWE 如下：
+\begin{texinlist}
+\documentclass{beamer}
+  \begin{document}
+    \makeatletter
+    \renewcommand{\@makefnmark}{\hbox{\@textsuperscript{\usebeamercolor[fg]{footnote mark}\usebeamerfont*{footnote mark}{[\@thefnmark]}}}}
+    \makeatother
+    \begin{frame}
+    hello world\footnote{first footnote}
+  \end{frame}
+  \end{document}
+\end{texinlist}
 % \faq{如何在默认模板的基础上，定制自己的beamer模板}{beamer-default-Customized}
 
 

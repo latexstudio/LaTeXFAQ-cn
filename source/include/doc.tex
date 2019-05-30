@@ -400,6 +400,49 @@ enumitem 宏包
 可以使用 paralist 宏包，这个宏包提供了 inparenum/inparitem/inpardesc 环境，可以在行内输出列表内容；
 也可以带上 inline 选项使用 enumitem 宏包，可以使用带*形式的三个列表环境，即在行内输出列表内容。
 
+\faq{如何自定义一个列表环境}{}
+
+实际上自定义列表环境可以用 list 环境来实现，这里给出一个比较复杂的例子，该例中定义了一个解列表，并且使用独立的计数器。
+\begin{texinlist}
+  \documentclass{ctexart}
+  \usepackage{ifthen}
+  \newcounter{solutioncounter}
+  \newenvironment{solution}
+  {
+    \vspace{\baselineskip}
+    \noindent
+    \begin{list}
+      {
+        \ifthenelse{\value{solutioncounter}>1}{(\arabic{solutioncounter})}{\textbf{解}:\ (\arabic{solutioncounter})}
+      }
+      {
+        \usecounter{solutioncounter}
+        \setlength{\labelwidth}{6em}
+        \setlength{\labelsep}{0pt}
+        \setlength{\leftmargin}{\labelwidth}
+        \setlength{\rightmargin}{0em}
+        \setlength{\parsep}{0ex}
+        \setlength{\itemsep}{0ex}
+        \setlength{\itemindent}{0em}
+        \setlength{\listparindent}{0em}
+      }
+    }
+    {
+    \end{list}
+  }
+  
+  \begin{document}
+    \begin{solution}
+      \item 第一题答案
+      \item 第二题答案
+      \item 第三题答案
+    \end{solution}
+  \end{document}
+\end{texinlist}
+
+\begin{reference}
+  \item \url{http://troubleshooters.com/linux/lyx/ownlists.htm}
+\end{reference}
 
 \faq{enumerate宏包修改列表标签格式很方便，但是这个宏包和enumitem宏包冲突，有什么解决办法么？}{enumerate-fight-enumitem}
 
@@ -542,10 +585,10 @@ multicol 宏包的 muticols 环境则是左右两边底部对齐的。
 \faq{input和include有何区别？}{input-include-difference}
 
 \begin{itemize}
-\item |\include| 在读入文件之前会另起一页。|\input| 命令纯粹是把文件里的内容插入
-\item |\include| 不可用于导言区，而且导言区使用了 |\includeonly| 命令后，
-  |\include| 仅会引入由 |\includeonly| 指定的文件。
-\item |\include| 引入的文件中，不可以再次使用 |\include| 命令。
+\item \cs{include} 在读入文件之前会另起一页。\cs{input} 命令纯粹是把文件里的内容插入
+\item \cs{include} 不可用于导言区，而且导言区使用了 \cs{includeonly} 命令后，
+  \cs{include} 仅会引入由 \cs{includeonly} 指定的文件。
+\item \cs{include} 引入的文件中，不可以再次使用 \cs{include} 命令。
 \end{itemize}
 
 
@@ -801,6 +844,18 @@ multicol 宏包的 muticols 环境则是左右两边底部对齐的。
     \keys{\OSwin} 表示微软键。
   \end{document}
 \end{texlist}
+
+\faq{怎么给插入的PDF页添加页码}{}
+
+考虑用 pdfpages 包吧。例如
+
+\begin{texinlist}
+  \documentclass{article}
+  \usepackage{pdfpages}
+  \begin{document}
+    \includepdf[pagecommand={}]{test.pdf}
+  \end{document}
+\end{texinlist}
 
 % \faq{如何使用带圈数字做脚注编号？}{}
 
