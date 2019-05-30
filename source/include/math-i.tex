@@ -244,16 +244,15 @@ align环境采用的是奇偶对齐的方式，第一列右对齐，第二列左
 \begin{texlist}
   \documentclass{article}
   \usepackage{mathtools}
-  
   \newtagform{dots}{\ldots(}{)}
   \usetagform{dots}
   \renewcommand\eqref[1]{(\ref{#1})}
   
   \begin{document}
-  \begin{equation}\label{eq:1}
-    a^2+b^2=c^2
-  \end{equation}
-  \eqref{eq:1}
+    \begin{equation}\label{eq:1}
+      a^2+b^2=c^2
+    \end{equation}
+    \eqref{eq:1}
   \end{document}
 \end{texlist}
 
