@@ -237,6 +237,26 @@ align环境采用的是奇偶对齐的方式，第一列右对齐，第二列左
   \end{document}
 \end{texlist}
 
+\faq{公式标号和公式之间加点该如何设置}{}
+
+可以用 \cs{newtagform} 和 \cs{usetagform} 来完成，并且 \cs{renewcommand} 来保证引用时不加点，例如
+
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{mathtools}
+  
+  \newtagform{dots}{\ldots(}{)}
+  \usetagform{dots}
+  \renewcommand\eqref[1]{(\ref{#1})}
+  
+  \begin{document}
+  \begin{equation}\label{eq:1}
+    a^2+b^2=c^2
+  \end{equation}
+  \eqref{eq:1}
+  \end{document}
+\end{texlist}
+
 \iffalse
 \faq{中英文标点使用规则不是很明白，尤其在公式环境里，字体和间距差别都比较大。怎样才能让正文和公式的标点统一（形状和间隔）？}{}
 
