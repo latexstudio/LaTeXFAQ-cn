@@ -857,6 +857,20 @@ multicol 宏包的 muticols 环境则是左右两边底部对齐的。
   \end{document}
 \end{texinlist}
 
+\faq{如果我在论文中使用的单位没有包含在 siunitx 包怎么办}{}
+
+单位是可以自定义的。例如
+
+\begin{texlist}
+  \documentclass{article}
+  \usepackage{siunitx}
+  \DeclareSIUnit{\annum}{a}
+  \DeclareSIUnit{\year}{yr}
+  \begin{document}
+    距今 \SI{1}{\giga\annum} 的地质现象持续了 \SI{1}{\mega\year}.
+  \end{document}
+\end{texlist}
+
 % \faq{如何使用带圈数字做脚注编号？}{}
 
 
