@@ -446,7 +446,7 @@ enumitem 宏包
 
 \faq{enumerate宏包修改列表标签格式很方便，但是这个宏包和enumitem宏包冲突，有什么解决办法么？}{enumerate-fight-enumitem}
 
-如果只是需要使用这种短标签表示方法，利用enumitem宏包同样能够做到，只需要带上shortlabels选项加载enumitem宏包即可。
+如果只是需要使用这种短标签表示方法，利用 \pkg{enumitem} 宏包同样能够做到，只需要带上shortlabels选项加载 \pkg{enumitem} 宏包即可。
 同时，enumitem宏包提供了自定义短标签名称和格式的宏命令，你也可以自己定义一些有趣的标签形式。
 
 
@@ -488,6 +488,21 @@ enumitem 宏包
   \end{document}
 \end{texlist}
 
+
+\faq{如何让列表横向排列？}{}
+
+可以使用 \pkg{enumitem} 的 inline 选项，同时选项间的距离可通过 itemjoin 来控制。
+
+\begin{texlist}
+  \documentclass{ctexart}
+  \usepackage[inline]{enumitem}
+  \begin{document}
+    \begin{enumerate*}[itemjoin=\quad]
+      \item A
+      \item B
+    \end{enumerate*}
+  \end{document}
+\end{texlist}
 
 \faq{如何给目录中的章节都带上引导点来连接页码？}{tableofcontents-dotdotdot}
 
