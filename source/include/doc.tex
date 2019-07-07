@@ -551,6 +551,45 @@ enumitem 宏包
 \end{texlist}
 这样在目录中译者序是没有编号的，对应等级是section，标题是译者序。参考：《lshort》目录章节。
 
+\faq{如何额外做一个另外一种语言的目录}{}
+
+直接给一个例子。
+\begin{texlist}
+  \documentclass{ctexart}
+  
+  \makeatletter
+  \newcommand\englishtableofcontents{%
+    \if@twocolumn
+    \@restonecoltrue\onecolumn
+    \else
+    \@restonecolfalse
+    \fi
+    {\def\contentsname{Contents}%
+      \section*{%
+        \contentsname
+        \@mkboth{\MakeUppercase\contentsname}
+        {\MakeUppercase\contentsname}%
+    }}%
+    \@starttoc{tec}%
+    \if@restonecol\twocolumn\fi
+  }
+  \newcommand{\addetoc}[2]{%
+    \addcontentsline{tec}{#1}{\protect\numberline{\csname the#1\endcsname}#2}%
+  }
+  \makeatother
+  
+  \begin{document}
+    \tableofcontents
+    \englishtableofcontents
+    
+    \section{介绍}
+    \addetoc{section}{Introduction}
+    
+    \subsection{方法和材料}
+    \addetoc{subsection}{Methods and materials}
+  \end{document}
+\end{texlist}
+
 
 \faq{怎样定义“第几页/共几页”的页码样式？}{how-to-define-pagenumber}
 
