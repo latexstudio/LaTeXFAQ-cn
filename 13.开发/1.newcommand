@@ -1,1 +1,5 @@
 ```\newcommand[n]{\yourconnand}{#1#2...#n}```
+- \newcommand
+- \newcommand*
+- \renewcommand
+- \renewcommand*
