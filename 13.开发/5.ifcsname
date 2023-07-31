@@ -1,0 +1,5 @@
+\ifcsname @command\endcsname
+      \command1
+    \else
+      \command2
+    \fi
