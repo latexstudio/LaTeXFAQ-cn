@@ -1,0 +1,5 @@
+- kvoptions
+  * \DeclareStringOption
+  * \DeclareVoidOption
+
+- etoolbox
