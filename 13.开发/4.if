@@ -1,0 +1,3 @@
+\ifdefstring{\yourglobalname@option}{option1}{
+  \commands
+}{\relax}
