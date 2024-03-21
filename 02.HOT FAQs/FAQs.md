@@ -4,9 +4,9 @@
 >
 > - 由于本人时间有限，目前只会记录本人自己答疑的问题，其他群友答疑的问题暂时不会记录
 >
-> - 由于群 U 逆天，部分问题并不会给出群友心中完美的解答.
+> - 由于本人能力有限 + 群 U 逆天，部分问题并不会给出群友心中完美的解答.
 >
-> - 由于群友部分问题描述过于模糊/严重违背常理，这类问题不予记录
+> - 由于群友部分问题描述过于模糊/严重违背常理，这类问题不予记录.
 >
 > - Stay simple, stay fool.
 
@@ -101,3 +101,101 @@
 - 那张图名为 `13.png` ，那就 `control+F` 查找 `13.png` ，删去 `\addcontentsline{toc}{subsection}{\includegraphics[]{13.png}}` 即可解决.
 
 - 这行命令的意思就是在目录的 subsection 添加为一张图片.
+
+
+
+#### 调节 `\frac` 的分子、分母和分数线之间的距离 <2024/03/18 25:06 LaTeX技术交流1群 (91940767)>
+
+- 请问一下，我希望调整ctexbook类的section项的样式，希望其字体按照我希望的本地字体加载，但以下两个命令，一个只能控制西文字体，一个只能控制中文字体，但二者同时加载会发生冲突，请问我该如何才能同时控制中西文字体呢？字体文件 `ChironSungHK-H.ttf` 附上.
+
+```tex
+\documentclass{ctexart}
+\usepackage{fontspec}
+\newfontfamily{\CSHH}{ChironSungHK-H.ttf}                %只能控制西文
+%\newCJKfontfamily{\CSHH}{ChironSungHK-H.ttf}            %只能控制中文
+\ctexset{section={format=\CSHH\raggedright\zihao{-4}}}
+
+\begin{document}
+    \section{ABC一二三}
+\end{document}
+```
+
+
+- 解决方案
+
+```tex
+\documentclass{ctexart}
+\usepackage{fontspec}
+\usepackage{lipsum,zhlipsum}
+
+\newfontfamily\CSM{CSMS}[Extension=.ttf]
+\setCJKfamilyfont{CSHK}{ChironSungHK-H}[Extension =.ttf]
+
+\ctexset{section={format=\CJKfamily{CSHK}\raggedright\zihao{-4}}}
+
+\begin{document}
+
+\section{第一章}
+    \lipsum[6]
+    \CSM\lipsum[6]
+    \zhlipsum[6]
+    \CJKfamily{CSHK}\zhlipsum[6]
+\end{document}
+```
+
+- 你如果是在项目地址导入字体，那么就加入这个 `.ttf` ，然后名字要和 `.ttf` 文件名对应.
+
+- 如果是直接安装电脑里的，那么你就要把字体名字改为电脑字体管理界面显示的名字.
+
+#### 调节 `\frac` 的分子、分母和分数线之间的距离 <2024/03/20 20:57 LaTeX技术交流1群 (91940767)>
+
+- 请教一下 怎么加了 `\displaystyle` 这个公式的积分号还是比较小呢，请问能不能让积分号更大一点呢，我试过了 `\cfrac` 发现效果还是不行.
+
+  ```tex
+  $$
+  C=\frac{A\varepsilon_{0}\varepsilon_{\perp}}{\displaystyle \int_{0}^{l}\frac{dz}{1+\gamma\left(1-\frac{\left(z-\frac{l}{2}\right)^{2}}{R^{2}}\right)}}
+  $$
+  ```
+
+  $$
+  C=\frac{A\varepsilon_{0}\varepsilon_{\perp}}{\displaystyle \int_{0}^{l}\frac{dz}{1+\gamma\left(1-\frac{\left(z-\frac{l}{2}\right)^{2}}{R^{2}}\right)}}
+  $$
+
+  - 群友：建议积分号右边用 `tfrac` ，或者上下同乘 `R^2`
+  - 群友：不要在MD中做这个，它不合适；实在想做就在LaTeX里面做，有无数种的方法.
+
+- 我知道，我只是调个公式 懒得开 `tex`.
+
+  - 群友：你这嵌套太多了.
+
+- 效果更不好了，我不知道是不是这个md渲染的问题，我还是开一个 `tex` 试试
+
+$$
+C=\frac{A\varepsilon_{0}\varepsilon_{\perp}}{\displaystyle \int_0^1\tfrac{dz}{1+\gamma\left (1-\frac{\left (z-\frac{1}{2}\right)^{2}}{R^{2}}\right)}}
+$$
+
+- 把 `\fracl2` 直接写成 `l/2` 视觉上或许会好些.
+
+  - 群友：上下乘 `R^2` 消掉一层嵌套.
+- https://tex.stackexchange.com/questions/39181/big-integral-sign#:~:text=The%20command%20%5Cmathlarger%20of%20the,mathlarger%7B%5Cint%7D%7D%7D%20%2C%20etc. 这大不大？
+
+  - 心满意足，谢谢大神.
+- 还是不建议搞太大，否则你不觉得 `dz` 太...
+  - 好像也对.
+  - 群友：小马拉大车是吧.
+- 他不只是大小的问题，还有位置的问题..
+- 调几个s好像都不是特别合适.
+  - 群友：你可以调不是那么大，然后向下微移积分号.
+  - 其实，我建议你这样写：我们物理系的，比如写一些4维积分，都是 `\int d^4x` 这样，被积的放在前面.
+
+$$
+C=\cfrac{A\varepsilon_0\varepsilon_\bot}{\displaystyle\int\mathrm{d}\,z\left\{1+\gamma\left[1-\dfrac{(z-l/2)^2}{R^2}\right]\right\}^{-1}}
+$$
+
+  - 你这个也是物理系算电动力学里的电容还是什么，建议把变量放前面，这样也更美观了.
+
+- 你觉得这个咋样？`raisebox` ，满足你的奇怪需求，拿走不谢.
+
+   ```tex
+   \[C=\cfrac{A\varepsilon_0\varepsilon_\bot}{\displaystyle\bigintss\raisebox{3pt}{$\dfrac{\mathrm{d}\,z}{1+\gamma\left(1-\frac{(z-l/2)^2}{R^2}\right)}$}}\]
+   ```
